@@ -1,9 +1,120 @@
-.header{
-    height: 60px;
-    width: 100%;
-    border-bottom: 1px solid black;
+.header {
+  height: 9.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 7.2rem;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  & > div:nth-child(2) {
+    & > button:nth-child(1) {
+      height: 4rem;
+      width: 19rem;
+      border-radius: var(--button-radius);
+      -webkit-border-radius: var(--button-radius);
+      -moz-border-radius: var(--button-radius);
+      -ms-border-radius: var(--button-radius);
+      -o-border-radius: var(--button-radius);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-color: var(--button-bgcolor-1);
+      color: var(--text-primary);
+      font-size: var(--font-medium);
+      font-weight: 700;
+    }
+
+    & > button {
+      width: 4rem;
+      height: 4rem;
+      display: grid;
+      place-items: center;
+      font-size: var(--icon-size);
+      background-color: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+  }
 }
 
-.header>p{
-    font-size: var(--font-medium);
+.nav {
+  margin-left: 20rem;
+
+  & > ul {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    & > li {
+      list-style-type: none;
+
+      a {
+        font-size: var(--font-medium);
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.mobileNavContainer{
+  display: none !important;
+}
+
+@media screen and (min-width: 0px) and (max-width: 430px) {
+  .header {
+    padding-inline: 3rem;
+    
+    & > div:nth-child(1),
+    & > div:nth-child(2){
+      display: none;
+    }
+  }
+
+  .mobileNavContainer{
+    width: 100%;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+
+    &>button{
+      font-size: var(--icon-size);
+      background-color: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (min-width: 431px) and (max-width: 768px) {
+  .header {
+    padding-inline: 3rem;
+    
+    & > div:nth-child(1),
+    & > div:nth-child(2){
+      display: none;
+    }
+  }
+
+  .mobileNavContainer{
+    width: 100%;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+
+    &>button{
+      font-size: var(--icon-size);
+      background-color: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+  }
 }

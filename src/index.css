@@ -14,10 +14,19 @@
   --font-medium: 1.6rem;
   --font-small: 1.4rem;
   --font-vsmall: 1.2rem;
+  --icon-size: 2.2rem;
+  --button-radius: 1rem;
 }
 
 body[data-theme="light"] {
-  --bg-primary: #efefef;
+  --bg-primary: #fff;
+  --text-primary: #000000;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --header-textcolor: #FCC535;
+  --button-bgcolor-1: #FCC535;
+  --button-bgcolor-2: #ffffff;
+  --footer-bgcolor: rgba(26, 26, 26, 1);
+  --border-color: rgba(137, 137, 137, 1);
 }
 
 body[data-theme="dark"] {
