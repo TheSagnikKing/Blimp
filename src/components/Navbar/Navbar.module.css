@@ -1,0 +1,9 @@
+.header{
+    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+.header>p{
+    font-size: var(--font-medium);
+}
