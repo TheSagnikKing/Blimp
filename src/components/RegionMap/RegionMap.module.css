@@ -1,0 +1,21 @@
+.RegionMapContainer{
+    height: 107.536rem;
+
+    &>img{
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 430px){
+    .RegionMapContainer{
+    height: 41.5rem;
+
+    &>img{
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
+}
+}

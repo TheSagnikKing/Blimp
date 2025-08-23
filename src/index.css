@@ -16,6 +16,11 @@
   --font-vsmall: 1.2rem;
   --icon-size: 2.2rem;
   --button-radius: 1rem;
+  --subheader-large: 5rem;
+  --subheader-large-lineheight: 6rem;
+  --subheader-small: 2.4rem;
+  --subheader-small-lineheight: 2.5rem
+
 }
 
 body[data-theme="light"] {

@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-inline: 7.2rem;
+  padding-inline: 7.5rem;
 
   & > div {
     display: flex;
@@ -69,7 +69,7 @@
 
 @media screen and (min-width: 0px) and (max-width: 430px) {
   .header {
-    padding-inline: 3rem;
+    padding-inline: 1.5rem;
     
     & > div:nth-child(1),
     & > div:nth-child(2){
@@ -95,7 +95,7 @@
 
 @media screen and (min-width: 431px) and (max-width: 768px) {
   .header {
-    padding-inline: 3rem;
+    padding-inline: 1.5rem;
     
     & > div:nth-child(1),
     & > div:nth-child(2){

@@ -1,7 +1,7 @@
 .footer {
   width: 100%;
   padding-block: 4.5rem;
-  padding-inline: 7.6rem;
+  padding-inline: 7.5rem;
   background-color: var(--footer-bgcolor);
 
   & > div:nth-child(1) {
@@ -174,8 +174,8 @@
 
 @media screen and (min-width: 0px) and (max-width: 430px) {
   .footer {
-    padding-inline: 3rem;
-    padding-block: 3rem;
+    padding-inline: 1.5rem;
+    padding-block: 1.5rem;
 
     & > div:nth-child(1) {
       display: block;
@@ -204,8 +204,8 @@
 
 @media screen and (min-width: 431px) and (max-width: 768px) {
   .footer {
-    padding-inline: 3rem;
-    padding-block: 3rem;
+    padding-inline: 1.5rem;
+    padding-block: 1.5rem;
 
     & > div:nth-child(1) {
       display: block;
