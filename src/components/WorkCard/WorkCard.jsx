@@ -1,24 +1,10 @@
 import React, { useEffect, useState } from "react";
 import style from "./WorkCard.module.css";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 const WorkCard = ({ dir, title }) => {
-  const [mobileWidth, setMobileWidth] = useState(window.innerWidth <= 768);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setMobileWidth(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  console.log("mobileWidth ", mobileWidth);
+  
+  const { mobileWidth } = useGlobalContext();
 
   return (
     <div className={style.missionCardWrapper}>

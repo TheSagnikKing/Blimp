@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { GoCalendar } from "react-icons/go";
 import { MdFilterAlt } from "react-icons/md";
 import { RiAccountCircleLine, RiInstagramFill } from "react-icons/ri";
+import { RxCross1 } from "react-icons/rx";
 
 export const SearchIcon = FiSearch
 export const AccountIcon = RiAccountCircleLine
@@ -15,3 +16,4 @@ export const MenuIcon = GiHamburgerMenu
 export const FilterIcon = MdFilterAlt  
 export const RightIcon = FiArrowRight 
 export const CalenderIcon = GoCalendar 
+export const CrossIcon = RxCross1

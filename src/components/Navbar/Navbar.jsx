@@ -4,25 +4,6 @@ import blimpLogoBlack from "../../assets/blimpLogoBlack.png";
 import { AccountIcon, MenuIcon, SearchIcon } from "../../icons";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("Theme"));
-
-  const themeChanged = () => {
-    if (theme === "light") {
-      setTheme("dark");
-      localStorage.setItem("Theme", "dark");
-    } else {
-      setTheme("light");
-      localStorage.setItem("Theme", "light");
-    }
-  };
-
-  useEffect(() => {
-    if (theme) {
-      const body = document.querySelector("body");
-
-      body.setAttribute("data-theme", theme);
-    }
-  }, [theme]);
 
   const menus = [
     {
@@ -35,7 +16,7 @@ const Navbar = () => {
     },
     {
       name: "About Us",
-      url: "/",
+      url: "/aboutus",
     },
     {
       name: "Contact Us",
@@ -77,21 +58,6 @@ const Navbar = () => {
         <button>
           <AccountIcon />
         </button>
-      </div>
-
-
-      <div className={style.mobileNavContainer}>
-        <div className={style.logoContainer}>
-          <a href="/" aria-label="Go to Home">
-            <img
-              src={blimpLogoBlack}
-              alt="Blimp Company Logo"
-              className={style.logo}
-            />
-          </a>
-        </div>
-
-        <button><MenuIcon/></button>
       </div>
       
     </header>

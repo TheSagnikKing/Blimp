@@ -1,74 +1,95 @@
-.crowdFundContainer {
+.missionContainer {
+  padding-inline: 7.5rem;
+}
+
+.vissionContainer {
   padding: 7.5rem;
   display: flex;
   flex-direction: column;
   gap: 4rem;
 
-  & > h2,
-  p {
-    text-align: center;
-  }
-
-  & > h2 {
-    font-size: 6rem;
-    font-weight: 800;
-  }
-
-  & > p {
-    font-size: var(--font-medium);
-    color: var(--text-secondary);
-    width: 39%;
-    margin-inline: auto;
-  }
-}
-
-.crowdHeaderContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-}
-
-.crowdHeadItem {
-  width: 55%;
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  gap: 4rem;
-
-  & > div:nth-child(1) {
-    background-color: rgba(10, 132, 255, 1);
-    min-width: 15.932rem;
-    min-height: 15.932rem;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5rem;
-    font-weight: 700;
-    color: #fff;
-  }
-
-  & > div:nth-child(2) {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
+  & > div {
     & > h2 {
-      font-size: 2.6rem;
-      line-height: 2.7rem;
-      font-weight: 700;
+      font-size: var(--subheader-large);
       text-transform: capitalize;
     }
+  }
 
-    & > p {
-      font-size: var(--font-medium);
-      line-height: 2.8rem;
-      font-weight: 400;
-      color: var(--text-secondary);
+  & > img {
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    object-fit: cover;
+  }
+
+  & > div:nth-child(3) {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+
+      & > h2 {
+        font-size: var(--subheader-small);
+        line-height: var(--subheader-small-lineheight);
+        text-transform: capitalize;
+      }
+
+      & > p {
+        font-size: var(--font-medium);
+        line-height: 2.8rem;
+        font-weight: 400;
+        color: var(--text-secondary);
+      }
+
+      & > button {
+        width: max-content;
+        height: 4rem;
+        padding-inline: 2rem;
+        border-radius: var(--button-radius);
+        -webkit-border-radius: var(--button-radius);
+        -moz-border-radius: var(--button-radius);
+        -ms-border-radius: var(--button-radius);
+        -o-border-radius: var(--button-radius);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border: none;
+        outline: none;
+        cursor: pointer;
+
+        & > p {
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+
+        & > span {
+          display: grid;
+          place-items: center;
+          font-size: 1.8rem;
+        }
+      }
+    }
+
+    & > div:nth-child(1) {
+      & > button {
+        /* background: transparent; */
+
+        & > span {
+          /* color: var(--button-bgcolor-1); */
+        }
+      }
+    }
+
+    & > div:nth-child(2) {
+      & > button {
+        background-color: var(--button-bgcolor-1);
+      }
     }
   }
 }
@@ -127,29 +148,30 @@
 }
 
 @media screen and (min-width: 0px) and (max-width: 430px) {
-  .crowdFundContainer {
+  .missionContainer {
+    padding-inline: 1.5rem;
+  }
+
+  .vissionContainer {
     padding: 1.5rem;
     gap: 2rem;
 
-    & > h2 {
-      font-size: var(--subheader-small);
+    & > div {
+      & > h2 {
+        font-size: var(--subheader-small);
+        line-height: var(--subheader-small-lineheight);
+        text-transform: capitalize;
+        text-align: center;
+      }
     }
 
-    & > p {
-      width: 100%;
-      margin-bottom: 2rem;
-    }
-  }
+    & > div:nth-child(3) {
+      flex-direction: column;
+      /* gap: 2rem; */
 
-  .crowdHeadItem{
-    width: 100%;
-    padding-inline: 1.5rem;
-    align-items: flex-start;
-
-    & > div:nth-child(1){
-      min-width: 10rem;
-      min-height: 10rem;
-      font-size: 2.5rem;
+      & > div {
+        gap: 2rem;
+      }
     }
   }
 
@@ -191,30 +213,32 @@
   }
 }
 
+
 @media screen and (min-width: 431px) and (max-width: 1200px) {
-  .crowdFundContainer {
+  .missionContainer {
+    padding-inline: 1.5rem;
+  }
+
+  .vissionContainer {
     padding: 1.5rem;
     gap: 2rem;
 
-    & > h2 {
-      font-size: var(--subheader-small);
+    & > div {
+      & > h2 {
+        font-size: var(--subheader-small);
+        line-height: var(--subheader-small-lineheight);
+        text-transform: capitalize;
+        text-align: center;
+      }
     }
 
-    & > p {
-      width: 100%;
-      margin-bottom: 2rem;
-    }
-  }
+    & > div:nth-child(3) {
+      flex-direction: column;
+      /* gap: 2rem; */
 
-  .crowdHeadItem{
-    width: 100%;
-    padding-inline: 1.5rem;
-    align-items: flex-start;
-
-    & > div:nth-child(1){
-      min-width: 10rem;
-      min-height: 10rem;
-      font-size: 2.5rem;
+      & > div {
+        gap: 2rem;
+      }
     }
   }
 

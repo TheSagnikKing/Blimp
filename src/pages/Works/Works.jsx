@@ -1,65 +1,33 @@
 import React from "react";
 import style from "./Works.module.css";
-import WorkCard from "../../components/WorkCard/WorkCard";
-import FocusCard from "../../components/FocusCard/FocusCard";
-import { RightIcon } from "../../icons";
 import BlogCard from "../../components/BlogCard/BlogCard";
 
 const Works = () => {
   return (
     <main>
-      <section className={style.missionContainer}>
-        <WorkCard dir={"left"} title={"Our Mission*"} />
-        <WorkCard dir={"right"} title={"Our Vision*"} />
-        <WorkCard dir={"left"} title={"Our Values*"} />
+      <section className={style.crowdFundContainer}>
+        <h2>Our guide to crowdfunding</h2>
+        <p>
+          Libero dictum ut purus ut vel sit egestas. Ut ac mattis senectus ac
+          suspendisse vitae vel nulla eleifend. Est eros facilisi aenean nisl a.
+          Vitae et fusce purus consectetur.
+        </p>
       </section>
 
-      <FocusCard />
-
-      <section className={style.vissionContainer}>
-        <div>
-          <h2>Transforming lives</h2>
-          <h2>Through love and generosity.</h2>
-        </div>
-        <img
-          src="https://img.lemde.fr/2024/09/27/0/0/7965/5310/1440/960/60/0/85faf87_1727417648111-000-36gp2e6.jpg"
-          alt=""
-        />
-
-        <div>
-          <div>
-            <h2>our best work</h2>
-            <p>
-              Facilisis mollis morbi ultrices ac tellus vitae pulvinar. Egestas
-              sagittis nec et arcu enim ac. Vivamus a dignissim nulla ornare sit
-              aliquam elementum blandit. Leo in sem pellentesque viverra
-              malesuada viverra eget aliquam. Diam mi dolor pellentesque nec at.
-              Ut nisi faucibus ultrices etiam tortor vitae eros.
-            </p>
-
-            <button>
-              <p>learn more</p>
-              <span>
-                <RightIcon />
-              </span>
-            </button>
+      <section className={style.crowdHeaderContainer}>
+        {[0, 1, 2, 3, 4].map((item) => (
+          <div className={style.crowdHeadItem}>
+            <div>{item + 1}</div>
+            <div>
+              <h2>header</h2>
+              <p>
+                Libero dictum ut purus ut vel sit egestas. Ut ac mattis senectus
+                ac suspendisse vitae vel nulla eleifend. Est eros facilisi
+                aenean nisl a. Vitae et fusce purus
+              </p>
+            </div>
           </div>
-
-          <div>
-            <h2>want to contribute ?</h2>
-            <p>
-              Urna velit pharetra pellentesque magna eget. Ut egestas est id
-              netus. Facilisis mollis morbi ultrices ac tellus vitae pulvinar.
-              Egestas sagittis nec et arcu enim ac. Vivamus a dignissim nulla
-              ornare sit aliquam elementum blandit. Leo in sem pellentesque
-              viverra malesuada viverra eget aliquam. Diam mi dolor
-            </p>
-
-            <button>
-              <p>donate</p>
-            </button>
-          </div>
-        </div>
+        ))}
       </section>
 
       <section className={style.blogsContainer}>

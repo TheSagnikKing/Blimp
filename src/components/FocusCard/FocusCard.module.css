@@ -58,3 +58,29 @@
     }
   }
 }
+
+
+@media screen and (min-width: 431px) and (max-width: 1200px) {
+  .focusContainer {
+    padding-block: 3rem;
+    padding-inline: 3rem;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    height: auto;
+  }
+
+  .focusItem {
+    flex-basis: calc((100% - 2rem) / 2);
+
+    & > div {
+      & > h2 {
+        font-size: 2rem;
+        font-weight: 800;
+      }
+
+      & > p {
+        font-size: var(--font-small);
+      }
+    }
+  }
+}
