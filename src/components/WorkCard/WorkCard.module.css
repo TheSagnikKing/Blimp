@@ -1,0 +1,64 @@
+.missionCardWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+
+  & > img {
+    width: 50%;
+    height: 56rem;
+    margin-block: 8rem;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    object-fit: cover;
+  }
+
+  & > div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    & > h2 {
+      font-size: var(--subheader-large);
+      line-height: var(--subheader-large-lineheight);
+      font-weight: 800;
+      text-transform: capitalize;
+    }
+
+    & > p {
+      font-size: var(--font-medium);
+      line-height: 2.8rem;
+      font-weight: 400;
+    }
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 430px) {
+  .missionCardWrapper {
+    flex-direction: column;
+    gap: 2rem;
+
+    & > img,
+    & > div {
+      width: 100%;
+    }
+
+    & > img {
+      margin-block: 1rem;
+      height: 20.9rem;
+    }
+
+    & > div {
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      
+      & > h2 {
+        font-size: var(--subheader-small);
+        line-height: var(--subheader-small-lineheight);
+      }
+    }
+  }
+}

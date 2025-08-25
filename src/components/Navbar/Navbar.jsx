@@ -27,7 +27,7 @@ const Navbar = () => {
   const menus = [
     {
       name: "How it works",
-      url: "/",
+      url: "/works",
     },
     {
       name: "Discover",
