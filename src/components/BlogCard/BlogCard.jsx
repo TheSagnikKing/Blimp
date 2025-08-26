@@ -1,10 +1,17 @@
 import React from "react";
 import style from "./BlogCard.module.css";
 import { CalenderIcon, RightIcon } from "../../icons";
+import { useNavigate } from "react-router-dom";
 
 const BlogCard = ({ title }) => {
+
+  const navigate = useNavigate()
+  
   return (
-    <div className={style.blogCardItem}>
+    <div
+      onClick={() => navigate("/news-detail")}
+      className={style.blogCardItem}
+    >
       <img src="https://a.rgbimg.com/users/b/ba/badk/600/qfOGvbS.jpg" alt="" />
 
       <div>
@@ -23,7 +30,9 @@ const BlogCard = ({ title }) => {
 
         <button>
           read more
-          <span><RightIcon/></span>
+          <span>
+            <RightIcon />
+          </span>
         </button>
       </div>
     </div>

@@ -3,7 +3,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FiArrowRight, FiSearch } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoCalendar } from "react-icons/go";
-import { MdFilterAlt } from "react-icons/md";
+import { LuClock } from "react-icons/lu";
+import { MdFilterAlt, MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 import { RiAccountCircleLine, RiInstagramFill } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
 
@@ -17,3 +18,6 @@ export const FilterIcon = MdFilterAlt
 export const RightIcon = FiArrowRight 
 export const CalenderIcon = GoCalendar 
 export const CrossIcon = RxCross1
+export const PhoneIcon = MdOutlinePhone 
+export const EmailIcon = MdOutlineEmail 
+export const ClockIcon = LuClock 

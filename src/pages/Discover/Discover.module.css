@@ -1,0 +1,199 @@
+.discoverBannerContainer {
+  min-height: 40rem;
+  border-radius: var(--button-radius);
+  -webkit-border-radius: var(--button-radius);
+  -moz-border-radius: var(--button-radius);
+  -ms-border-radius: var(--button-radius);
+  -o-border-radius: var(--button-radius);
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSghoyS8FyLRMHEX6afiZbCUDv_OYz8oZSE7yuhxITRM_-c2p1NSxhNHuCALDGxkOHs6QY&usqp=CAU");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-inline: 7.5rem;
+  padding: 4rem;
+  position: relative;
+  margin-bottom: 4rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  & > div {
+    position: relative;
+    z-index: 2;
+    & > h2 {
+      font-size: var(--subheader-large);
+      line-height: var(--subheader-large-lineheight);
+      text-align: center;
+      color: #fff;
+    }
+
+    & > p {
+      font-size: 3.5rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    & > div {
+      width: max-content;
+      margin-inline: auto;
+      margin-top: 4rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      & > div {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        & > p {
+          font-size: var(--font-large);
+          font-weight: 500;
+          color: #ffffff;
+        }
+
+        & > input {
+          height: 5rem;
+          width: 18rem;
+          border-radius: var(--button-radius);
+          -webkit-border-radius: var(--button-radius);
+          -moz-border-radius: var(--button-radius);
+          -ms-border-radius: var(--button-radius);
+          -o-border-radius: var(--button-radius);
+          background-color: #fff;
+          border: none;
+          outline: none;
+          padding-inline: 1rem;
+          font-size: var(--font-medium);
+        }
+      }
+    }
+  }
+}
+
+.featureContainer {
+  padding-inline: 7.2rem;
+  padding-block: 6rem;
+  background-color: var(--bg-primary);
+}
+
+.featureCardContainer {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 2rem;
+}
+
+.paginationContainer {
+  margin: 3rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 0px) and (max-width: 430px) {
+  .discoverBannerContainer {
+    padding: 4rem;
+    margin: 0rem;
+    border-radius: 0rem;
+    -webkit-border-radius: 0rem;
+    -moz-border-radius: 0rem;
+    -ms-border-radius: 0rem;
+    -o-border-radius: 0rem;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      & > h2 {
+        font-size: var(--subheader-small);
+        line-height: var(--subheader-small-lineheight);
+      }
+
+      & > p {
+        font-size: var(--font-medium);
+      }
+
+      & div{
+        flex-direction: column;
+        gap: 4rem;
+
+        &>div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            &>p{
+                min-width: 10rem;
+            }
+
+            &>input{
+                height: 2.567rem;
+            }
+        }
+      }
+    }
+  }
+
+  .featureContainer {
+    padding-inline: 1.5rem;
+    padding-block: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 431px) and (max-width: 1200px) {
+  .discoverBannerContainer {
+    padding: 4rem;
+    margin: 0rem;
+    border-radius: 0rem;
+    -webkit-border-radius: 0rem;
+    -moz-border-radius: 0rem;
+    -ms-border-radius: 0rem;
+    -o-border-radius: 0rem;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      & > h2 {
+        font-size: var(--subheader-small);
+        line-height: var(--subheader-small-lineheight);
+      }
+
+      & > p {
+        font-size: var(--font-medium);
+      }
+
+      & div{
+        flex-direction: column;
+        gap: 4rem;
+
+        &>div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            &>p{
+                min-width: 10rem;
+            }
+
+            &>input{
+                height: 2.567rem;
+            }
+        }
+      }
+    }
+  }
+
+  .featureContainer {
+    padding-inline: 1.5rem;
+    padding-block: 1.5rem;
+  }
+}

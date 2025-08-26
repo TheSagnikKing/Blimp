@@ -4,6 +4,9 @@ const Layout = lazy(() => import("./Layout/Layout"));
 const Hero = lazy(() => import("./pages/Hero/Hero"));
 const AboutUs = lazy(() => import("./pages/AboutUs/AboutUs"));
 const HowItWorks = lazy(() => import("./pages/Works/Works"))
+const ContactUs = lazy(() => import("./pages/ContactUs/ContactUs"))
+const Discover = lazy(() => import("./pages/Discover/Discover"))
+const NewsDetail = lazy(() => import("./pages/NewsDetail/NewsDetail"))
 
 const App = () => {
 
@@ -30,6 +33,9 @@ const App = () => {
             <Route path="/" element={<Hero />} />
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/works" element={<HowItWorks/>}/>
+            <Route path="/contact-us" element={<ContactUs/>}/>
+            <Route path="/discover" element={<Discover/>}/>
+            <Route path="/news-detail" element={<NewsDetail/>}/>
           </Route>
         </Routes>
       </Suspense>

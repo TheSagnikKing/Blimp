@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./FeatureCard.module.css";
 
-const FeatureCard = ({ image }) => {
+const FeatureCard = ({ image, id }) => {
   return (
     <div className={style.featureCard}>
       <img src={image} alt="" />
@@ -14,7 +14,7 @@ const FeatureCard = ({ image }) => {
         
         <div>
           <div>
-            <h2>Goal: $ 12000</h2>
+            <h2>Goal: $ 12000 {id ? id : ""}</h2>
             <p>Raised: $ 8000</p>
           </div>
 

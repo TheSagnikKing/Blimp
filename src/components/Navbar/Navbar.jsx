@@ -12,7 +12,7 @@ const Navbar = () => {
     },
     {
       name: "Discover",
-      url: "/",
+      url: "/discover",
     },
     {
       name: "About Us",
@@ -20,7 +20,7 @@ const Navbar = () => {
     },
     {
       name: "Contact Us",
-      url: "/",
+      url: "/contact-us",
     },
   ];
 

@@ -1,0 +1,545 @@
+.contactUsContainer {
+  & > h2 {
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 700;
+    margin-block: 12rem;
+  }
+}
+
+.reachOutContainer {
+  width: calc(100% - 15rem);
+  margin-inline: auto;
+  margin-bottom: 6rem;
+  display: flex;
+
+  & > div:nth-child(1) {
+    width: 41.6rem;
+    padding: 4rem;
+    background-color: rgba(242, 245, 248, 1);
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    & > div:nth-child(1) {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      & > h2 {
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 5rem;
+      }
+
+      & > p {
+        font-size: var(--font-medium);
+        color: var(--text-secondary);
+      }
+    }
+
+    & > div:nth-child(2) {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      & > div {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        & > div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 2.2rem;
+          color: rgba(10, 132, 255, 1);
+        }
+
+        & > p {
+          font-size: var(--font-medium);
+        }
+      }
+    }
+
+    & > div:nth-child(3) {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      & > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        background-color: rgba(10, 132, 255, 1);
+        color: #fff;
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  & > form {
+    flex: 1;
+    padding: 4rem;
+    background-color: rgba(248, 249, 250, 1);
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .inputContainerOne {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      & > div {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex: 1;
+
+        & > label {
+          font-size: var(--font-medium);
+          font-weight: 500;
+        }
+
+        & > input {
+          height: 4rem;
+          border-radius: 0.6rem;
+          -webkit-border-radius: 0.6rem;
+          -moz-border-radius: 0.6rem;
+          -ms-border-radius: 0.6rem;
+          -o-border-radius: 0.6rem;
+          border: none;
+          outline: none;
+          padding-inline: 1rem;
+
+          &::placeholder {
+            color: var(--text-secondary);
+            font-size: var(--font-medium);
+          }
+        }
+      }
+    }
+
+    .inputContainerTwo {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      & > label {
+        font-size: var(--font-medium);
+        font-weight: 500;
+      }
+
+      & > input {
+        height: 4rem;
+        border-radius: 0.6rem;
+        -webkit-border-radius: 0.6rem;
+        -moz-border-radius: 0.6rem;
+        -ms-border-radius: 0.6rem;
+        -o-border-radius: 0.6rem;
+        border: none;
+        outline: none;
+        padding-inline: 1rem;
+
+        &::placeholder {
+          color: var(--text-secondary);
+          font-size: var(--font-medium);
+        }
+      }
+    }
+
+    .inputContainerTwotextArea {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      & > label {
+        font-size: var(--font-medium);
+        font-weight: 500;
+      }
+
+      & > textarea {
+        height: 14.8rem;
+        border-radius: 0.6rem;
+        -webkit-border-radius: 0.6rem;
+        -moz-border-radius: 0.6rem;
+        -ms-border-radius: 0.6rem;
+        -o-border-radius: 0.6rem;
+        border: none;
+        outline: none;
+        padding: 1rem;
+        resize: none;
+
+        &::placeholder {
+          color: var(--text-secondary);
+          font-size: var(--font-medium);
+        }
+      }
+    }
+
+    & > button {
+      width: max-content;
+      height: 6rem;
+      border-radius: var(--button-radius);
+      -webkit-border-radius: var(--button-radius);
+      -moz-border-radius: var(--button-radius);
+      -ms-border-radius: var(--button-radius);
+      -o-border-radius: var(--button-radius);
+      padding-inline: 4rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-color: rgba(252, 197, 53, 1);
+      font-weight: 700;
+      font-size: var(--font-large);
+      text-transform: uppercase;
+    }
+  }
+}
+
+.contactBannerImage {
+  padding: 7.5rem;
+
+  & > img {
+    height: 38rem;
+    width: 100%;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    object-fit: cover;
+  }
+}
+
+.questionContainer {
+  padding: 0rem 7.5rem 7.5rem 7.5rem;
+  display: flex;
+  gap: 15rem;
+
+  & > div:nth-child(1) {
+    width: 28.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    & > h2 {
+      font-size: var(--subheader-large);
+      line-height: var(--subheader-large-lineheight);
+    }
+
+    & > p {
+      font-size: var(--font-large);
+      color: var(--text-secondary);
+    }
+
+    & > input {
+      height: 5.7rem;
+      border-radius: var(--button-radius);
+      -webkit-border-radius: var(--button-radius);
+      -moz-border-radius: var(--button-radius);
+      -ms-border-radius: var(--button-radius);
+      -o-border-radius: var(--button-radius);
+      background-color: rgba(248, 249, 250, 1);
+      border: none;
+      outline: none;
+      padding-inline: 1rem;
+      font-size: var(--font-medium);
+
+      &::placeholder {
+        color: var(--text-secondary);
+        font-size: var(--font-medium);
+      }
+    }
+  }
+
+  & > div:nth-child(2) {
+    flex: 1;
+
+    & > div:nth-child(1) {
+      background-color: rgba(243, 243, 243, 1);
+      min-height: 17.7rem;
+      border-radius: 2rem;
+      -webkit-border-radius: 2rem;
+      -moz-border-radius: 2rem;
+      -ms-border-radius: 2rem;
+      -o-border-radius: 2rem;
+      padding: 4rem;
+      display: flex;
+      justify-content: space-between;
+
+      & > div:nth-child(1) {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex: 0.9;
+
+        & > h2 {
+          font-size: 2.4rem;
+          font-weight: 600;
+        }
+
+        & > p {
+          font-size: var(--font-medium);
+          color: var(--text-secondary);
+        }
+      }
+
+      & > button {
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border-radius: 50%;
+        background-color: rgba(252, 197, 53, 1);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: var(--font-medium);
+      }
+    }
+
+    .charityItem {
+      height: 12rem;
+      border-bottom: 0.1rem solid var(--border-color);
+      padding: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      & > h2 {
+        flex: 0.8;
+        font-size: var(--subheader-small);
+        line-height: var(--subheader-smalls-lineheight);
+      }
+
+      & > button {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.4rem;
+        color: #ffffff;
+        background-color: #000000;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 430px) {
+  .contactUsContainer {
+    & > h2 {
+      font-size: 2.4rem;
+      line-height: var(--subheader-small-lineheight);
+      margin-block: 2rem;
+      font-weight: 800;
+    }
+  }
+
+  .reachOutContainer {
+    margin-inline: initial;
+    flex-direction: column;
+    padding: 1.5rem;
+    width: 100%;
+
+    & > div:nth-child(1) {
+      width: 100%;
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+      border-bottom-left-radius: 0rem;
+      padding: 2rem;
+
+      & > div:nth-child(1) {
+        & > h2 {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    & > form {
+      min-width: 100%;
+      border-top-right-radius: 0rem;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      padding: 2rem;
+
+      .inputContainerOne {
+        flex-direction: column;
+        align-items: normal;
+      }
+
+      & > button {
+        height: 3.5rem;
+        margin-inline: auto;
+      }
+    }
+  }
+
+  .contactBannerImage {
+    padding: 1.5rem;
+
+    & > img {
+      height: 20.9rem;
+    }
+  }
+
+  .questionContainer {
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 2rem;
+
+    & > div:nth-child(1) {
+      width: 100%;
+      & > h2 {
+        font-size: var(--subheader-small);
+        line-height: var(--subheader-small-lineheight);
+      }
+    }
+
+    & > div:nth-child(2) {
+      & > div:nth-child(1) {
+        padding: 1.5rem;
+
+        & > button{
+            width: 2.6rem;
+            height: 2.6rem;
+            font-size: 1.4rem;
+        }
+
+        & > div {
+
+          &>p{
+            font-size: var(--font-small) !important;
+          }
+        }
+      }
+
+      .charityItem {
+        padding: 1.5rem;
+
+        & > h2 {
+          font-size: var(--font-medium);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 431px) and (max-width: 1140px) {
+  .contactUsContainer {
+    & > h2 {
+      font-size: 2.4rem;
+      line-height: var(--subheader-small-lineheight);
+      margin-block: 2rem;
+      font-weight: 800;
+    }
+  }
+
+  .reachOutContainer {
+    margin-inline: initial;
+    flex-direction: column;
+    padding: 1.5rem;
+    width: 100%;
+
+    & > div:nth-child(1) {
+      width: 100%;
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+      border-bottom-left-radius: 0rem;
+      padding: 2rem;
+
+      & > div:nth-child(1) {
+        & > h2 {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    & > form {
+      min-width: 100%;
+      border-top-right-radius: 0rem;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      padding: 2rem;
+
+      .inputContainerOne {
+        flex-direction: column;
+        align-items: normal;
+      }
+
+      & > button {
+        height: 3.5rem;
+        margin-inline: auto;
+      }
+    }
+  }
+
+  .contactBannerImage {
+    padding: 1.5rem;
+
+    & > img {
+      height: 20.9rem;
+    }
+  }
+
+  .questionContainer {
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 2rem;
+
+    & > div:nth-child(1) {
+      width: 100%;
+      & > h2 {
+        font-size: var(--subheader-small);
+        line-height: var(--subheader-small-lineheight);
+      }
+    }
+
+    & > div:nth-child(2) {
+      & > div:nth-child(1) {
+        padding: 1.5rem;
+
+        & > button{
+            width: 2.6rem;
+            height: 2.6rem;
+            font-size: 1.4rem;
+        }
+
+        & > div {
+
+          &>p{
+            font-size: var(--font-small) !important;
+          }
+        }
+      }
+
+      .charityItem {
+        padding: 1.5rem;
+
+        & > h2 {
+          font-size: var(--font-medium);
+        }
+      }
+    }
+  }
+}

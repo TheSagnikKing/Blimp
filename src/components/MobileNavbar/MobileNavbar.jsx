@@ -13,7 +13,7 @@ const MobileNavbar = () => {
     },
     {
       name: "Discover",
-      url: "/",
+      url: "/discover",
     },
     {
       name: "About Us",
@@ -21,7 +21,7 @@ const MobileNavbar = () => {
     },
     {
       name: "Contact Us",
-      url: "/",
+      url: "/contact-us",
     },
   ];
 

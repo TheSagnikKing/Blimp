@@ -30,6 +30,7 @@
     justify-content: space-between;
     padding-bottom: 3rem;
     gap: 2rem;
+    
 
     & > div {
       display: flex;
