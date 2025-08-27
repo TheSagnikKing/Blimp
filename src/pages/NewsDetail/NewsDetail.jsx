@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./NewsDetail.module.css";
+import BlogCard from "../../components/BlogCard/BlogCard";
 
 const NewsDetail = () => {
   return (
@@ -48,9 +49,78 @@ const NewsDetail = () => {
         </div>
 
         <div>
-            <p>Vivamus a dignissim nulla ornare sit aliquam elementum blandit. Leo in sem pellentesque viverra malesuada viverra eget aliquam:</p>
+          <p>
+            Vivamus a dignissim nulla ornare sit aliquam elementum blandit. Leo
+            in sem pellentesque viverra malesuada viverra eget aliquam:
+          </p>
+        </div>
+
+        <ul>
+          <li>
+            <b>Nunc tortor et a ornare et placerat.</b> Tellus in ultricies
+            risus accumsan turpis id nam. Maecenas proin sodales diam vel mauris
+            facilisis arcu semper. Mi accumsan gravida dignissim turpis
+            sollicitudin. At auctor sed facilisi massa amet. Est morbi aliquam
+            sed orci.
+          </li>
+
+          <li>
+            <b>Pulvinar aliquam sed egestas tempus aliquet sollicitudin.</b>{" "}
+            Lectus et rhoncus venenatis interdum lectus nam. Amet curabitur
+            cursus pulvinar nisl id morbi adipiscing. Nunc eget arcu enim ac
+            pellentesque integer bibendum augue. Ut amet tortor auctor
+            hendrerit. Massa at amet nisl mauris vulputate.
+          </li>
+
+          <li>
+            <b>Accumsan quis vel habitasse arcu nisi sed.</b> Pharetra malesuada
+            velit iaculis urna eu. Luctus lobortis lacus metus nec ullamcorper.
+            Arcu nisl odio elit nunc. Arcu amet imperdiet cras volutpat.
+            Facilisis euismod bibendum urna eu feugiat. Et morbi mauris ultrices
+            massa tellus purus suspendisse nec. Magnis tempor aliquam elementum
+            imperdiet posuere. Quis arcu ultricies id quisque leo pulvinar augue
+            sit.
+          </li>
+
+          <li>
+            <b>
+              Arcu ultricies malesuada lectus nulla est nunc integer
+              pellentesque magna.
+            </b>{" "}
+            Egestas malesuada faucibus arcu nunc elit leo quis interdum. Ac vel
+            in commodo accumsan mollis cras massa posuere eget. Condimentum
+            posuere velit cras velit tortor ridiculus sit. Lectus augue libero
+            etiam sed nisl.
+          </li>
+        </ul>
+
+        <button>Donate now</button>
+
+        <div className={style.addsContainer}>
+            <h2>Run Ads / Causes section</h2>
         </div>
       </section>
+
+
+      <section className={style.blogsContainer}>
+
+        <div>
+          <h2>latest news and blog</h2>
+          <button>
+            <span>more news</span>
+          </button>
+        </div>
+
+        <div className={style.blogCardContainer}>
+          <BlogCard title={"where to give now"}/>
+          <BlogCard title={"popular charities"}/>
+          <BlogCard title={"childcare crisis"}/>
+        </div>
+
+        <button>more causes</button>
+
+      </section>
+      
     </main>
   );
 };

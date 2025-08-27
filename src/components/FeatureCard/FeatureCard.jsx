@@ -1,9 +1,17 @@
 import React from "react";
 import style from "./FeatureCard.module.css";
+import { useNavigate } from "react-router-dom";
 
 const FeatureCard = ({ image, id }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className={style.featureCard}>
+    <div
+      onClick={() => {
+        navigate("/feature-detail");
+      }}
+      className={style.featureCard}
+    >
       <img src={image} alt="" />
       <div>
         <p>Gaza</p>
@@ -11,7 +19,7 @@ const FeatureCard = ({ image, id }) => {
         <div className={style.progressbar}>
           <div></div>
         </div>
-        
+
         <div>
           <div>
             <h2>Goal: $ 12000 {id ? id : ""}</h2>

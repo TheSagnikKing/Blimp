@@ -7,6 +7,7 @@ const HowItWorks = lazy(() => import("./pages/Works/Works"))
 const ContactUs = lazy(() => import("./pages/ContactUs/ContactUs"))
 const Discover = lazy(() => import("./pages/Discover/Discover"))
 const NewsDetail = lazy(() => import("./pages/NewsDetail/NewsDetail"))
+const FeatureDetail = lazy(() => import("./pages/FeatureDetail/FeatureDetail"))
 
 const App = () => {
 
@@ -36,6 +37,7 @@ const App = () => {
             <Route path="/contact-us" element={<ContactUs/>}/>
             <Route path="/discover" element={<Discover/>}/>
             <Route path="/news-detail" element={<NewsDetail/>}/>
+            <Route path="/feature-detail" element={<FeatureDetail/>}/>
           </Route>
         </Routes>
       </Suspense>

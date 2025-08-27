@@ -91,7 +91,6 @@
         display: flex;
         align-items: center;
         gap: 2rem;
-        /* background-color: red; */
 
         & > button {
           background-color: transparent;

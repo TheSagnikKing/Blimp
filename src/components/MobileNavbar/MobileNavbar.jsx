@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import style from "./MobileNavbar.module.css";
 import blimpLogoBlack from "../../assets/blimpLogoBlack.png";
-import { CrossIcon, MenuIcon } from "../../icons";
+import { CrossIcon, MenuIcon, SearchIcon } from "../../icons";
 import { useGlobalContext } from "../../context/GlobalContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const MobileNavbar = () => {
   const menus = [
@@ -26,38 +26,74 @@ const MobileNavbar = () => {
   ];
 
   const { openMobileMenu, setOpenMobileMenu } = useGlobalContext();
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+
+  console.log(location.pathname);
+
   return (
     <header className={style.mobileHeader}>
-      <div className={style.logoContainer}>
-        <a href="/" aria-label="Go to Home">
-          <img
-            src={blimpLogoBlack}
-            alt="Blimp Company Logo"
-            className={style.logo}
-          />
-        </a>
-      </div>
+      {searchOpen && location.pathname === "/" ? (
+        <div className={style.search_input}>
+          <input placeholder="Search for campaigns or causes" />
+          <button
+            onClick={() => {
+              setSearchOpen(false);
+            }}
+          >
+            <CrossIcon />
+          </button>
+        </div>
+      ) : (
+        <>
+          <div className={style.logoContainer}>
+            <a href="/" aria-label="Go to Home">
+              <img
+                src={blimpLogoBlack}
+                alt="Blimp Company Logo"
+                className={style.logo}
+              />
+            </a>
+          </div>
 
-      <button
-        onClick={() => {
-          setOpenMobileMenu((prev) => !prev);
-        }}
-      >
-        {openMobileMenu ? <CrossIcon /> : <MenuIcon />}
-      </button>
+          <div>
+            {location.pathname === "/" ? (
+              <button
+                onClick={() => {
+                  setSearchOpen((prev) => !prev);
+                }}
+              >
+                <SearchIcon />
+              </button>
+            ) : null}
+
+            <button
+              onClick={() => {
+                setOpenMobileMenu((prev) => !prev);
+              }}
+            >
+              {openMobileMenu ? <CrossIcon /> : <MenuIcon />}
+            </button>
+          </div>
+        </>
+      )}
 
       {openMobileMenu && (
         <div className={style.mobileMenuContainer}>
           <div>
             {menus.map((item) => {
               return (
-                <button onClick={() => {
-                  navigate(item.url)
-                  setOpenMobileMenu(false)
-                }}>{item.name}</button>
+                <button
+                  onClick={() => {
+                    navigate(item.url);
+                    setOpenMobileMenu(false);
+                  }}
+                >
+                  {item.name}
+                </button>
               );
             })}
           </div>
