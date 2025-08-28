@@ -1,4 +1,4 @@
-import { BsWhatsapp } from "react-icons/bs";
+import { BsFillCreditCard2BackFill, BsWhatsapp } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiArrowRight, FiSearch } from "react-icons/fi";
@@ -23,3 +23,4 @@ export const PhoneIcon = MdOutlinePhone
 export const EmailIcon = MdOutlineEmail 
 export const ClockIcon = LuClock 
 export const WhatsappIcon = BsWhatsapp 
+export const CreditCardIcon = BsFillCreditCard2BackFill 

@@ -8,6 +8,9 @@ const ContactUs = lazy(() => import("./pages/ContactUs/ContactUs"))
 const Discover = lazy(() => import("./pages/Discover/Discover"))
 const NewsDetail = lazy(() => import("./pages/NewsDetail/NewsDetail"))
 const FeatureDetail = lazy(() => import("./pages/FeatureDetail/FeatureDetail"))
+const CheckOutPage = lazy(() => import("./pages/CheckOutPage/CheckOutPage"))
+const NewsBlogPage = lazy(() => import("./pages/NewsBlogPage/NewsBlogPage"))
+const LoginSignup = lazy(() => import("./pages/LoginSignup/LoginSignup"))
 
 const App = () => {
 
@@ -38,6 +41,9 @@ const App = () => {
             <Route path="/discover" element={<Discover/>}/>
             <Route path="/news-detail" element={<NewsDetail/>}/>
             <Route path="/feature-detail" element={<FeatureDetail/>}/>
+            <Route path="/checkout" element={<CheckOutPage/>}/>
+            <Route path="/news-blog" element={<NewsBlogPage/>}/>
+            <Route path="/login-signup" element={<LoginSignup/>}/>
           </Route>
         </Routes>
       </Suspense>
