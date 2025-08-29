@@ -1,9 +1,10 @@
 import { BsFillCreditCard2BackFill, BsWhatsapp } from "react-icons/bs";
-import { FaFacebookF } from "react-icons/fa";
+import { FaCamera, FaFacebookF, FaPen, FaSortDown } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiArrowRight, FiSearch } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoCalendar } from "react-icons/go";
+import { IoMdEye } from "react-icons/io";
 import { LuClock } from "react-icons/lu";
 import { MdFilterAlt, MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 import { RiAccountCircleLine, RiInstagramFill } from "react-icons/ri";
@@ -24,3 +25,7 @@ export const EmailIcon = MdOutlineEmail
 export const ClockIcon = LuClock 
 export const WhatsappIcon = BsWhatsapp 
 export const CreditCardIcon = BsFillCreditCard2BackFill 
+export const EditIcon = FaPen
+export const CameraIcon = FaCamera
+export const DownArrow = FaSortDown 
+export const EyeIcon = IoMdEye 
