@@ -15,7 +15,7 @@ const Hero = () => {
         <div className={style.heroContent}>
           <p>Gaza</p>
           <h1>
-            <span>GIVING</span> IS THE GREATEST ACT OF GRACE
+            <span>GIVING</span> IS THE GREATEST ACT OF GRACE JJJ
           </h1>
           <button>Support a campaign</button>
         </div>
