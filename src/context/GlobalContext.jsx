@@ -39,6 +39,7 @@ export const GlobalProvider = ({ children }) => {
   }, [openMobileMenu]);
 
   const [theme, setTheme] = useState(localStorage.getItem("Theme"));
+  
 
   const themeChanged = () => {
     if (theme === "light") {

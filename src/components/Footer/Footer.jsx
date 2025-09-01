@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./Footer.module.css";
+import styles from "./Footer.module.css";
 import blimpLogo from "../../assets/blimpLogo.png";
 import { FacebookIcon, InstagramIcon, TwitterXIcon } from "../../icons";
 
@@ -42,7 +42,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer className={style.footer}>
+      <footer className={styles.footer}>
         <div>
           <div>
             <h2>
@@ -55,7 +55,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className={style.linkContainer}>
+          <div className={styles.linkContainer}>
             <div>
               <button>
                 <InstagramIcon />
@@ -85,7 +85,7 @@ const Footer = () => {
           <img src={blimpLogo} alt="Blimp Company Logo" />
         </div>
 
-        <div className={style.menuContainer}>
+        <div className={styles.menuContainer}>
           {menus.map((item) => {
             return (
               <a href="#" key={item.name}>
@@ -95,7 +95,7 @@ const Footer = () => {
           })}
         </div>
 
-        {/* <div className={style.linkContainer}>
+        {/* <div className={styles.linkContainer}>
           <div>
             <button>
               <InstagramIcon />
@@ -112,7 +112,7 @@ const Footer = () => {
           
         </div> */}
       </footer>
-      <div className={style.copyrightContainer}>
+      <div className={styles.copyrightContainer}>
         <p>Copyright @ 2024. All Rights Reserved</p>
       </div>
     </>

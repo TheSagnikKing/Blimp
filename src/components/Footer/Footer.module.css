@@ -2,7 +2,8 @@
   width: 100%;
   padding-block: 4.5rem;
   padding-inline: 7.5rem;
-  background-color: var(--footer-bgcolor);
+  /* background-color: var(--footer-bgcolor) !important; */
+  background-color:rgba(26, 26, 26, 1);
 
   & > div:nth-child(1) {
     display: flex;
@@ -162,7 +163,7 @@
   height: 10rem;
   display: grid;
   place-items: center;
-  background-color: var(--footer-bgcolor);
+  background-color: rgba(26, 26, 26, 1);
   border-top: 0.1rem solid var(--border-color);
 
   & > p {
