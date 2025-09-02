@@ -25,6 +25,53 @@ const MobileNavbar = () => {
     },
   ];
 
+  const menuProfile = [
+    {
+      name: "How it works",
+      url: "/works",
+    },
+    {
+      name: "Discover",
+      url: "/discover",
+    },
+    {
+      name: "About Us",
+      url: "/aboutus",
+    },
+    {
+      name: "Contact Us",
+      url: "/contact-us",
+    },
+    {
+      name: "Profile",
+      url: "/account",
+    },
+    {
+      name: "Active Campaigns",
+      url: "/account/active-campaigns",
+    },
+    {
+      name: "Draft Campaigns",
+      url: "/account/draft-campaigns",
+    },
+    {
+      name: "Donation History",
+      url: "/account/donation-history",
+    },
+    {
+      name: "Bank Account",
+      url: "/account/bank-account",
+    },
+    {
+      name: "KYC Document",
+      url: "/account/kyc-document",
+    },
+    {
+      name: "Change Password",
+      url: "/account/change-password",
+    },
+  ]
+
   const { openMobileMenu, setOpenMobileMenu } = useGlobalContext();
   const [searchOpen, setSearchOpen] = useState(false);
 

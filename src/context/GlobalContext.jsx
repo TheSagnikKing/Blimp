@@ -39,7 +39,7 @@ export const GlobalProvider = ({ children }) => {
   }, [openMobileMenu]);
 
   const [theme, setTheme] = useState(localStorage.getItem("Theme"));
-  
+
 
   const themeChanged = () => {
     if (theme === "light") {
@@ -56,6 +56,10 @@ export const GlobalProvider = ({ children }) => {
       const body = document.querySelector("body");
 
       body.setAttribute("data-theme", theme);
+
+    } else {
+      setTheme("light");
+      localStorage.setItem("Theme", "light");
     }
   }, [theme]);
 
