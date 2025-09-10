@@ -1,47 +1,54 @@
 .header {
   height: 9.5rem;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding-inline: 7.5rem;
 
   &>div {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 2rem;
-  }
+    height: inherit;
+    width: min(100%, var(--maximum-screen-width));
+    margin-inline: auto;
 
-  &>div:nth-child(2) {
-    &>button:nth-child(1) {
-      height: 4rem;
-      width: 19rem;
-      border-radius: var(--button-radius);
-      -webkit-border-radius: var(--button-radius);
-      -moz-border-radius: var(--button-radius);
-      -ms-border-radius: var(--button-radius);
-      -o-border-radius: var(--button-radius);
-      border: none;
-      outline: none;
-      cursor: pointer;
-      background-color: #FCC535;
-      color: var(--text-primary);
-      font-size: var(--font-medium);
-      font-weight: 700;
+    &>div {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
     }
 
-    &>button {
-      width: 4rem;
-      height: 4rem;
-      display: grid;
-      place-items: center;
-      font-size: var(--icon-size);
-      background-color: transparent;
-      border: none;
-      outline: none;
-      cursor: pointer;
+    &>div:nth-child(2) {
+      &>button:nth-child(1) {
+        height: 4rem;
+        width: 19rem;
+        border-radius: var(--button-radius);
+        -webkit-border-radius: var(--button-radius);
+        -moz-border-radius: var(--button-radius);
+        -ms-border-radius: var(--button-radius);
+        -o-border-radius: var(--button-radius);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background-color: #FCC535;
+        color: var(--text-primary);
+        font-size: var(--font-medium);
+        font-weight: 700;
+      }
+
+      &>button {
+        width: 4rem;
+        height: 4rem;
+        display: grid;
+        place-items: center;
+        font-size: var(--icon-size);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+      }
     }
   }
+
 }
 
 .nav {

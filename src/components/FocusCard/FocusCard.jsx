@@ -31,17 +31,19 @@ const FocusCard = () => {
 
   return (
     <section className={style.focusContainer}>
-      {focusMenu.map((item) => {
-        return (
-          <div key={item.name} className={style.focusItem}>
-            <img src={item.img} alt="" />
-            <div>
-              <h2>{item.name}</h2>
-              <p>{item.desc}</p>
+      <div>
+        {focusMenu.map((item) => {
+          return (
+            <div key={item.name} className={style.focusItem}>
+              <img src={item.img} alt="" />
+              <div>
+                <h2>{item.name}</h2>
+                <p>{item.desc}</p>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </section>
   );
 };

@@ -21,7 +21,8 @@
   --subheader-large: 5rem;
   --subheader-large-lineheight: 6rem;
   --subheader-small: 2.4rem;
-  --subheader-small-lineheight: 2.5rem
+  --subheader-small-lineheight: 2.5rem;
+  --maximum-screen-width: 1440px;
 
 }
 
