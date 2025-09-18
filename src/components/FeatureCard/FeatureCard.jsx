@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./FeatureCard.module.css";
 import { useNavigate } from "react-router-dom";
+import { PlaceIcon, RightIcon } from "../../icons";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 const FeatureCard = ({ image, id }) => {
   const navigate = useNavigate();
@@ -14,25 +16,19 @@ const FeatureCard = ({ image, id }) => {
     >
       <img src={image} alt="" />
       <div>
-        <p>Gaza</p>
         <h2>We the People - Embrace. Empower.Engage. Inc.</h2>
-        <div className={style.progressbar}>
-          <div></div>
-        </div>
-
         <div>
-          <div>
-            <h2>Goal: $ 12000 {id ? id : ""}</h2>
-            <p>Raised: $ 8000</p>
-          </div>
-
-          <div>
-            <h2>14</h2>
-            <p>donations</p>
-          </div>
+          <PlaceIcon />
+          <p>Gaza</p>
         </div>
 
-        <button>View Details</button>
+        <ProgressBar />
+
+
+        <button>
+          <span>View More</span>
+          <RightIcon />
+        </button>
       </div>
     </div>
   );

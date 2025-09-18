@@ -7,6 +7,8 @@ import RegionMapContainer from "../../components/RegionMap/RegionMap";
 import NewsCard from "../../components/NewsCard/NewsCard";
 import BiographImage from "../../assets/biograph.jpg";
 import FocusCard from "../../components/FocusCard/FocusCard";
+import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import CampaignCard from "../../components/CampaignCard/CampaignCard";
 
 const Hero = () => {
   return (
@@ -14,10 +16,10 @@ const Hero = () => {
       <main className={style.heroContainer}>
         <div>
           <div className={style.heroContent}>
-            <p>Gaza</p>
             <h1>
-              <span>GIVING</span> IS THE GREATEST ACT OF GRACE
+              <span>giving</span> is the greatest act of grace
             </h1>
+            <p>Help power the world's social justice movements</p>
             <button>Support a campaign</button>
           </div>
         </div>
@@ -26,55 +28,45 @@ const Hero = () => {
 
       <section className={style.impactContainer}>
         <div>
-          <img src={crowdImageOne} alt="" />
+          <h2>the latest</h2>
           <div>
-            <h2>From Good Intentions to Great Impact</h2>
-            <p>
-              Having a great idea or a noble cause is just the beginning. At
-              Blimp, we help you turn your passion into real-world results. Our
-              fundraising platform empowers you to rally support, raise funds, and
-              bring your vision to life—because good intentions deserve the chance
-              to make a real impact. Let's make it happen, together
-            </p>
-
+            <img src={crowdImageOne} alt="" />
             <div>
-              <div>
-                <div>1</div>
-                <p>Choose your cause</p>
-              </div>
+              <h2>From Good Intentions to Great Impact</h2>
+              <p>
+                Having a great idea or a noble cause is just the beginning. At Blimp, we help you turn your passion into real-world results. Our fundraising platform empowers you to rally support, raise funds, and bring your vision to life—because good intentions deserve the chance to make a real impact. Let's make it happen, together. Having a great idea or a noble cause is just the beginning. At Blimp, we help you turn your passion into real-world results. Our fundraising platform empowers you to rally support, raise funds,
+              </p>
 
-              <div>
-                <div>3</div>
-                <p>Donate the amount you like</p>
-              </div>
+              <ProgressBar />
 
-              <div>
-                <div>2</div>
-                <p>Register on our website</p>
-              </div>
-
-              <div>
-                <div>4</div>
-                <p>Stay tuned about the cause</p>
-              </div>
+              <button>Donate</button>
             </div>
-          </div>
 
-          <button>View Details</button>
+            <div className={style.impactMobileContainer}>
+              <h3>from good intentions to great impact</h3>
+              <button>View More</button>
+              <button>Donate</button>
+            </div>
+
+            <button>View Details</button>
+          </div>
         </div>
       </section>
 
-      <FocusCard />
+      {/* <section className={style.topCampaignsContainer}>
+        <div>
+          <h2>top campaigns</h2>
+
+          <div>
+            <CampaignCard />
+            <CampaignCard />
+          </div>
+        </div>
+      </section>
 
       <section className={style.featureContainer}>
         <div>
-          <div>
-            <h2>Featured</h2>
-            <button>
-              <span>Filter</span>
-              <FilterIcon size={"2.4rem"} />
-            </button>
-          </div>
+          <h2>Featured</h2>
 
           <div className={style.featureCardContainer}>
             <FeatureCard
@@ -153,7 +145,7 @@ const Hero = () => {
 
           <img src={BiographImage} alt="" />
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

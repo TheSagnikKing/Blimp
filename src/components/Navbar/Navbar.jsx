@@ -52,13 +52,12 @@ const Navbar = () => {
         </div>
 
         <div>
-          <button>GET FUNDING</button>
           <button>
             <SearchIcon />
+            <span>Search</span>
           </button>
-          <button>
-            <AccountIcon />
-          </button>
+
+          <button>Sign In</button>
         </div>
       </div>
 

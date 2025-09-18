@@ -9,23 +9,25 @@ import { LuClock } from "react-icons/lu";
 import { MdFilterAlt, MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 import { RiAccountCircleLine, RiInstagramFill } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
+import { IoLocationOutline } from "react-icons/io5";
 
 export const SearchIcon = FiSearch
 export const AccountIcon = RiAccountCircleLine
 export const InstagramIcon = RiInstagramFill
-export const FacebookIcon = FaFacebookF  
-export const TwitterXIcon = FaXTwitter 
+export const FacebookIcon = FaFacebookF
+export const TwitterXIcon = FaXTwitter
 export const MenuIcon = GiHamburgerMenu
-export const FilterIcon = MdFilterAlt  
-export const RightIcon = FiArrowRight 
-export const CalenderIcon = GoCalendar 
+export const FilterIcon = MdFilterAlt
+export const RightIcon = FiArrowRight
+export const CalenderIcon = GoCalendar
 export const CrossIcon = RxCross1
-export const PhoneIcon = MdOutlinePhone 
-export const EmailIcon = MdOutlineEmail 
-export const ClockIcon = LuClock 
-export const WhatsappIcon = BsWhatsapp 
-export const CreditCardIcon = BsFillCreditCard2BackFill 
+export const PhoneIcon = MdOutlinePhone
+export const EmailIcon = MdOutlineEmail
+export const ClockIcon = LuClock
+export const WhatsappIcon = BsWhatsapp
+export const CreditCardIcon = BsFillCreditCard2BackFill
 export const EditIcon = FaPen
 export const CameraIcon = FaCamera
-export const DownArrow = FaSortDown 
-export const EyeIcon = IoMdEye 
+export const DownArrow = FaSortDown
+export const EyeIcon = IoMdEye
+export const PlaceIcon = IoLocationOutline
