@@ -1,9 +1,11 @@
 import React from 'react'
 import style from './NewsCard.module.css'
 
-const NewsCard = ({title}) => {
+const NewsCard = ({ title, index }) => {
   return (
-    <div className={style.newscardItem}>
+    <div
+      style={{ borderTop: index === 0 ? 'none' : '0.1rem solid rgba(232, 232, 232, 1)' }}
+      className={style.newscardItem}>
       <div>
         <p>09.25.24</p>
         <h2>{title}</h2>

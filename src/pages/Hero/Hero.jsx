@@ -53,9 +53,9 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* <section className={style.topCampaignsContainer}>
+      <section className={style.topCampaignsContainer}>
         <div>
-          <h2>top campaigns</h2>
+          {/* <h2>top campaigns</h2> */}
 
           <div>
             <CampaignCard />
@@ -63,6 +63,7 @@ const Hero = () => {
           </div>
         </div>
       </section>
+
 
       <section className={style.featureContainer}>
         <div>
@@ -109,20 +110,25 @@ const Hero = () => {
 
       <section className={style.newsContainer}>
         <div>
-          <img
-            src={
-              "https://www.aljazeera.com/wp-content/uploads/2023/10/2023-10-09T044716Z_1634135774_RC2PO3AAEA8A_RTRMADP_3_ISRAEL-PALESTINIANS-1696828113.jpg?resize=770%2C513&quality=80"
-            }
-            alt=""
-          />
+          <h2>News</h2>
           <div>
-            <h2>News</h2>
-            <NewsCard title="Stroke care gains in Puerto Rico falter after Hurricane Maria..." />
-            <NewsCard title="Stroke care gains in Puerto Rico falter after Hurricane Maria..." />
-            <NewsCard title="Stroke care gains in Puerto Rico falter after Hurricane Maria..." />
-            <NewsCard title="Stroke care gains in Puerto Rico falter after Hurricane Maria..." />
-
-            <button>view more</button>
+            <img
+              src={
+                "https://www.aljazeera.com/wp-content/uploads/2023/10/2023-10-09T044716Z_1634135774_RC2PO3AAEA8A_RTRMADP_3_ISRAEL-PALESTINIANS-1696828113.jpg?resize=770%2C513&quality=80"
+              }
+              alt=""
+            />
+            <div>
+              {
+                [0, 1, 2, 3].map((item, index) => {
+                  return (
+                    <NewsCard
+                      index={index}
+                      key={index} title="Stroke care gains in Puerto Rico falter after Hurricane Maria..." />
+                  )
+                })
+              }
+            </div>
           </div>
         </div>
       </section>
@@ -145,7 +151,7 @@ const Hero = () => {
 
           <img src={BiographImage} alt="" />
         </div>
-      </section> */}
+      </section>
     </>
   );
 };
