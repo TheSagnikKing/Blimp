@@ -716,6 +716,222 @@
     }
   }
 
+  /* .featureContainer {
+    padding-inline: 0rem;
+    padding-block: 2rem;
+
+    &>div {
+      &>h2 {
+        font-size: 3.2rem;
+        margin-inline: auto;
+        width: 90vw;
+      }
+
+      &>button {
+        margin-block: 4rem;
+      }
+    }
+  } */
+
+  .featureContainer {
+    padding-inline: 1.5rem;
+  }
+
+  .newsContainer {
+    padding-block: 2rem;
+    padding-inline: 1.5rem;
+
+    &>div {
+
+      &>h2 {
+        font-size: 3.2rem;
+        margin-inline: auto;
+        width: 90vw;
+      }
+
+      &>div {
+        &>img {
+          display: none;
+        }
+
+        &>div {
+          width: 100%;
+
+          &>h2 {
+            font-size: var(--subheader-small);
+            line-height: var(--subheader-small-lineheight);
+            text-align: center;
+          }
+
+          &>button {
+            display: inline-block;
+            width: 100%;
+            height: 6rem;
+            background-color: #000000;
+            border-radius: 1.5rem;
+            -webkit-border-radius: 1.5rem;
+            -moz-border-radius: 1.5rem;
+            -ms-border-radius: 1.5rem;
+            -o-border-radius: 1.5rem;
+            text-transform: uppercase;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: var(--font-medium);
+          }
+        }
+      }
+    }
+  }
+
+  .biographContainer {
+    padding-block: 2rem;
+    padding-inline: 1.5rem;
+
+    &>div {
+      height: auto;
+      flex-direction: column-reverse;
+      gap: 2rem;
+
+      &>img,
+      &>div {
+        width: 100%;
+      }
+
+      &>img {
+        height: 20.9rem;
+      }
+
+      &>div {
+        gap: 2rem;
+
+        &>h2 {
+          font-size: var(--subheader-small);
+          line-height: var(--subheader-small-lineheight);
+        }
+      }
+    }
+  }
+}
+
+
+/* @media screen and (min-width: 431px) and (max-width: 768px) {
+  .heroContainer {
+    height: 50rem;
+    padding-inline: 1.5rem;
+
+    &>div {
+      width: 100%;
+    }
+
+    &::after {
+      height: inherit;
+    }
+  }
+
+  .heroContent {
+    height: max-content;
+    gap: 2rem;
+
+
+    &>h1 {
+      font-size: 2.4rem;
+      margin: 0rem;
+    }
+
+    &>p {
+      font-size: var(--font-small);
+      margin-bottom: 0rem;
+    }
+
+    &>button {
+      min-height: 4rem;
+    }
+  }
+
+
+  .impactContainer {
+    height: auto;
+    flex-direction: column;
+    padding-block: 1.5rem 0rem;
+    padding-inline: 0rem;
+    gap: 2rem;
+
+    &>div {
+
+      &>h2 {
+        width: 90vw;
+        font-size: 3.2rem;
+        margin-inline: auto;
+      }
+
+      &>div {
+        display: flex;
+        flex-direction: column;
+        gap: 0rem;
+
+        &>img {
+          width: 100%;
+          height: 64.1rem;
+        }
+
+        &>div {
+          display: none;
+        }
+
+        .impactMobileContainer {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+          background-color: #000;
+          width: 100%;
+          padding-block: 2rem;
+
+          &>h3 {
+            font-size: 2rem;
+            color: #fff;
+            text-transform: capitalize;
+            margin: 0rem !important;
+            width: 90vw;
+            margin-inline: auto;
+            text-align: center;
+          }
+
+          &>button:nth-child(2) {
+            background-color: transparent;
+            color: #fff;
+          }
+
+        }
+      }
+    }
+  }
+
+  .topCampaignsContainer {
+    padding: 1.5rem;
+
+    &>div {
+      &>h2 {
+        font-size: 3.2rem;
+        margin-inline: auto;
+        width: 90vw;
+      }
+
+      &>div {
+        flex-direction: column;
+        gap: 2rem;
+
+        &>div {
+          width: 90vw !important;
+          margin-inline: auto !important;
+        }
+      }
+    }
+  }
+
   .featureContainer {
     padding-inline: 0rem;
     padding-block: 2rem;
@@ -810,4 +1026,4 @@
       }
     }
   }
-}
+} */
