@@ -1,4 +1,4 @@
-.discoverBannerContainer {
+/* .discoverBannerContainer {
   min-height: 40rem;
   border-radius: var(--button-radius);
   -webkit-border-radius: var(--button-radius);
@@ -74,16 +74,88 @@
       }
     }
   }
+} */
+
+.discoverSortContainer {
+  padding-inline: 7.5rem;
+
+  &>div {
+    width: min(100%, var(--maximum-screen-width));
+    margin-inline: auto;
+
+    &>div:nth-child(1) {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: max-content;
+      margin-inline: auto;
+
+      &>h2 {
+        font-size: 4.8rem;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      &>p {
+        font-size: var(--font-large);
+        text-align: center;
+        color: var(--text-secondary);
+      }
+    }
+
+    &>div:nth-child(2) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4rem;
+      margin-top: 4rem;
+
+      .sortCardItem {
+        flex: 0 0 calc((100% - 16rem) / 5);
+        height: 20.5rem;
+        background-color: #F7F7F7;
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        &>div {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+
+          &>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 8rem;
+          }
+
+          &>p {
+            font-size: var(--font-medium);
+            font-weight: 500;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+
+  }
 }
 
 .featureContainer {
   padding-inline: 7.2rem;
   padding-block: 6rem;
-  background-color: var(--bg-primary);
+
+  &>div {
+    width: min(100%, var(--maximum-screen-width));
+    margin-inline: auto;
+  }
 }
 
 .featureCardContainer {
-  margin-top: 4rem;
+  margin-top: 0rem;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -97,103 +169,73 @@
 }
 
 @media screen and (min-width: 0px) and (max-width: 430px) {
-  .discoverBannerContainer {
-    padding: 4rem;
-    margin: 0rem;
-    border-radius: 0rem;
-    -webkit-border-radius: 0rem;
-    -moz-border-radius: 0rem;
-    -ms-border-radius: 0rem;
-    -o-border-radius: 0rem;
 
-    & > div {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+  .discoverSortContainer {
+    padding-inline: 1.5rem;
 
-      & > h2 {
-        font-size: var(--subheader-small);
-        line-height: var(--subheader-small-lineheight);
+    &>div {
+      &>div:nth-child(1) {
+        &>h2 {
+          font-size: 2.8rem;
+        }
+
+        &>p {
+          font-size: var(--font-medium);
+        }
       }
 
-      & > p {
-        font-size: var(--font-medium);
-      }
+      &>div:nth-child(2) {
+        gap: 2rem;
 
-      & div{
-        flex-direction: column;
-        gap: 4rem;
-
-        &>div{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-
-            &>p{
-                min-width: 10rem;
-            }
-
-            &>input{
-                height: 2.567rem;
-            }
+        .sortCardItem {
+          flex: 0 0 calc((100% - 2rem) / 2);
         }
       }
     }
   }
 
   .featureContainer {
-    padding-inline: 1.5rem;
+    padding-inline: 0rem;
     padding-block: 1.5rem;
+  }
+
+  .featureCardContainer {
+    margin-top: 2rem;
   }
 }
 
-@media screen and (min-width: 431px) and (max-width: 1200px) {
-  .discoverBannerContainer {
-    padding: 4rem;
-    margin: 0rem;
-    border-radius: 0rem;
-    -webkit-border-radius: 0rem;
-    -moz-border-radius: 0rem;
-    -ms-border-radius: 0rem;
-    -o-border-radius: 0rem;
+@media screen and (min-width: 431px) and (max-width: 768px) {
 
-    & > div {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+  .discoverSortContainer {
+    padding-inline: 1.5rem;
 
-      & > h2 {
-        font-size: var(--subheader-small);
-        line-height: var(--subheader-small-lineheight);
+    &>div {
+      &>div:nth-child(1) {
+        &>h2 {
+          font-size: 2.8rem;
+        }
+
+        &>p {
+          font-size: var(--font-medium);
+        }
       }
 
-      & > p {
-        font-size: var(--font-medium);
-      }
+      &>div:nth-child(2) {
+        gap: 2rem;
 
-      & div{
-        flex-direction: column;
-        gap: 4rem;
-
-        &>div{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-
-            &>p{
-                min-width: 10rem;
-            }
-
-            &>input{
-                height: 2.567rem;
-            }
+        .sortCardItem {
+          flex: 0 0 calc((100% - 6rem) / 3);
         }
       }
     }
   }
 
   .featureContainer {
-    padding-inline: 1.5rem;
+    padding-inline: 0rem;
     padding-block: 1.5rem;
+  }
+
+  .featureCardContainer {
+    margin-top: 2rem;
   }
 }

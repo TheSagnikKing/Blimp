@@ -21,14 +21,6 @@ const KYC = () => {
         </div>
       </div>
 
-      <div className={styles.inputGroup}>
-        <label htmlFor="">Select Your Document</label>
-        <div>
-          <input type="text" defaultValue="" />
-          <DownArrow className={styles.editIcon} />
-        </div>
-      </div>
-
       <div>
         <button>upload</button>
         <p>** supported format (pdf, jpeg,) max size(5mb)</p>

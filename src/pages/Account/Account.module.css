@@ -1,19 +1,45 @@
 .container {
-  display: flex;
-  gap: 4rem;
   padding: 2rem;
-  min-height: 80vh;
-  background-color: var(--bg-primary);
+
+  &>div {
+    width: min(100%, var(--maximum-screen-width));
+    margin-inline: auto;
+    display: flex;
+    gap: 4rem;
+    min-height: 80vh;
+    background-color: var(--bg-primary);
+
+    .content {
+      flex: 1;
+      padding: 2rem;
+      background: rgba(242, 245, 248, 1);
+      border-radius: var(--button-radius);
+      /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); */
+      -webkit-border-radius: var(--button-radius);
+      -moz-border-radius: var(--button-radius);
+      -ms-border-radius: var(--button-radius);
+      -o-border-radius: var(--button-radius);
+    }
+  }
 }
 
-.content {
-  flex: 1;
-  padding: 2rem;
-  background:rgba(242, 245, 248, 1);
-  border-radius: var(--button-radius);
-  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); */
-  -webkit-border-radius: var(--button-radius);
-  -moz-border-radius: var(--button-radius);
-  -ms-border-radius: var(--button-radius);
-  -o-border-radius: var(--button-radius);
+@media screen and (min-width:0px) and (max-width:768px) {
+  .container {
+    &>div {
+      .content {
+        padding: 0rem;
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width:769px) and (max-width:1200px) {
+  .container {
+    &>div {
+      .content {
+        padding: 0rem;
+      }
+    }
+  }
 }

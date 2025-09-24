@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const GlobalContext = createContext();
 
@@ -62,6 +63,7 @@ export const GlobalProvider = ({ children }) => {
       localStorage.setItem("Theme", "light");
     }
   }, [theme]);
+
 
   const value = {
     mobileWidth,

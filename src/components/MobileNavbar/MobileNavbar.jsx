@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./MobileNavbar.module.css";
 import blimpLogoBlack from "../../assets/blimpLogoBlack.png";
-import { CrossIcon, MenuIcon, SearchIcon } from "../../icons";
+import { CrossIcon, MenuIcon, RightIcon, SearchIcon } from "../../icons";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -25,51 +25,47 @@ const MobileNavbar = () => {
     },
   ];
 
-  const menuProfile = [
+  const AccountMenu = [
     {
-      name: "How it works",
-      url: "/works",
-    },
-    {
-      name: "Discover",
-      url: "/discover",
-    },
-    {
-      name: "About Us",
-      url: "/aboutus",
-    },
-    {
-      name: "Contact Us",
-      url: "/contact-us",
-    },
-    {
+      id: 1,
       name: "Profile",
       url: "/account",
     },
     {
+      id: 2,
       name: "Active Campaigns",
       url: "/account/active-campaigns",
     },
     {
+      id: 3,
       name: "Draft Campaigns",
       url: "/account/draft-campaigns",
     },
+
     {
+      id: 4,
       name: "Donation History",
       url: "/account/donation-history",
     },
+
     {
+      id: 5,
       name: "Bank Account",
       url: "/account/bank-account",
     },
+
     {
+      id: 6,
       name: "KYC Document",
       url: "/account/kyc-document",
     },
+
     {
+      id: 7,
       name: "Change Password",
       url: "/account/change-password",
     },
+
   ]
 
   const { openMobileMenu, setOpenMobileMenu } = useGlobalContext();
@@ -79,7 +75,10 @@ const MobileNavbar = () => {
 
   const location = useLocation();
 
-  console.log(location.pathname);
+  const [authenticated, setAuthenticated] = useState(true)
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false)
+
+
 
   return (
     <header className={style.mobileHeader}>
@@ -128,24 +127,66 @@ const MobileNavbar = () => {
         </>
       )}
 
+
+
       {openMobileMenu && (
         <div className={style.mobileMenuContainer}>
-          <div>
-            {menus.map((item) => {
-              return (
-                <button
-                  onClick={() => {
-                    navigate(item.url);
-                    setOpenMobileMenu(false);
-                  }}
-                >
-                  {item.name}
-                </button>
-              );
-            })}
-          </div>
 
-          <button>Login</button>
+          {
+            profileMenuOpen ? (
+              <div>
+                {AccountMenu.map((item) => {
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        navigate(item.url);
+                        setOpenMobileMenu(false);
+                      }}
+                    >
+                      {item.name}
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <>
+                <div>
+                  {menus.map((item) => {
+                    return (
+                      <button
+                        key={item.name}
+                        onClick={() => {
+                          navigate(item.url);
+                          setOpenMobileMenu(false);
+                        }}
+                      >
+                        {item.name}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {
+                  authenticated ? (
+                    <div
+                      onClick={() => setProfileMenuOpen(true)}
+                      className={style.profileSectionCard}>
+                      <div><p>AG</p></div>
+                      <div>
+                        <p>Arghya Ghosh</p>
+                        <div><RightIcon /></div>
+                      </div>
+                    </div>
+                  ) : (
+                    <button>Login</button>
+                  )
+                }
+
+              </>
+            )
+          }
+
         </div>
       )}
     </header>

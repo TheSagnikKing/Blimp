@@ -6,10 +6,13 @@ import { useNavigate } from "react-router-dom";
 const BlogCard = ({ title }) => {
 
   const navigate = useNavigate()
-  
+
   return (
     <div
-      onClick={() => navigate("/news-detail")}
+      onClick={() => {
+        navigate("/news-detail")
+        window.scrollTo(0, 0);
+      }}
       className={style.blogCardItem}
     >
       <img src="https://a.rgbimg.com/users/b/ba/badk/600/qfOGvbS.jpg" alt="" />

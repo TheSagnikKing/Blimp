@@ -120,6 +120,15 @@
 @media screen and (min-width: 0px) and (max-width: 430px){
   .profileContainer{
     margin: initial;
-    padding: 0rem;
+    padding: 2rem;
+  }
+
+  .avatar {
+    width: 14rem;
+    height: 14rem;
+  }
+
+  .avatarText {
+    font-size: 6rem;
   }
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./Navbar.module.css";
 import blimpLogoBlack from "../../assets/blimpLogoBlack.png";
 import { AccountIcon, MenuIcon, SearchIcon } from "../../icons";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
 
@@ -19,10 +20,16 @@ const Navbar = () => {
       url: "/aboutus",
     },
     {
+      name: "News",
+      url: "/news-blog",
+    },
+    {
       name: "Contact Us",
       url: "/contact-us",
     },
   ];
+
+  const navigate = useNavigate()
 
   return (
     <header className={style.header}>
@@ -49,6 +56,7 @@ const Navbar = () => {
               ))}
             </ul>
           </nav>
+
         </div>
 
         <div>
@@ -57,7 +65,7 @@ const Navbar = () => {
             <span>Search</span>
           </button>
 
-          <button>Sign In</button>
+          <button onClick={() => navigate("/login-signup")}>Sign In</button>
         </div>
       </div>
 

@@ -12,8 +12,12 @@ import SecondMedal from "../../assets/medal2nd.png";
 import ThirdMedal from "../../assets/medal3rd.png";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import { useNavigate } from "react-router-dom";
 
 const FeatureDetail = () => {
+
+  const navigate = useNavigate()
+
   return (
     <main>
       <section className={style.featureDetailContainer}>
@@ -26,18 +30,6 @@ const FeatureDetail = () => {
               Published by: <b>Arghya Ghosh</b>
             </p>
 
-            {/* <div>
-            <div>
-              <p>$180,050 USD raised</p>
-              <p>$200K goal - 3.9K donations</p>
-            </div>
-
-            <div className={style.circularProgressbar}>
-              <div>
-                <p>100%</p>
-              </div>
-            </div>
-          </div> */}
             <ProgressBar />
 
             <div className={style.linkContainer}>
@@ -56,7 +48,9 @@ const FeatureDetail = () => {
                 </button>
               </div>
 
-              <button>Donate</button>
+              <button onClick={() => {
+                navigate("/checkout")
+              }}>Donate</button>
             </div>
           </div>
 
@@ -234,7 +228,9 @@ const FeatureDetail = () => {
         <div>
           <div>
             <h2>latest news and blog</h2>
-            <button>
+            <button onClick={() => {
+              navigate("/news-blog")
+            }}>
               <span>more news</span>
             </button>
           </div>
@@ -253,3 +249,4 @@ const FeatureDetail = () => {
 };
 
 export default FeatureDetail;
+

@@ -1,47 +1,9 @@
-// import React from "react";
-// import style from "./Discover.module.css";
-
-// const Discover = () => {
-//   return (
-//     <main>
-//       <section className={style.discoverBannerContainer}>
-//         <div>
-//           <h2>Discover</h2>
-//           <p>Find causes you truly care about</p>
-
-//           <div>
-//             <div>
-//                 <p>Show me</p>
-//                 <input type="text" />
-//             </div>
-
-//             <div>
-//                 <p>Campaign's</p>
-//                 <input type="text" />
-//             </div>
-
-//             <div>
-//                 <p>Sorted by</p>
-//                 <input type="text" />
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       <section className={style.paginationContainer}>
-//         <h2>Pagination</h2>
-//       </section>
-//     </main>
-//   );
-// };
-
-// export default Discover;
-
 import React, { useState } from "react";
 import style from "./Discover.module.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import FeatureCard from "../../components/FeatureCard/FeatureCard";
+import { AnimalIcon, CommunityIcon, EducationIcon, EmergencyIcon, EnvironmentIcon, EventIcon, FamilyIcon, MedicalIcon, NonProfitIcon, SportIcon } from "../../icons";
 
 const Discover = () => {
   const [page, setPage] = useState(1);
@@ -66,9 +28,23 @@ const Discover = () => {
     setPage(value);
   };
 
+  const sortCardData = [
+    { id: 1, icon: <MedicalIcon />, label: "Medical" },
+    { id: 2, icon: <EmergencyIcon />, label: "Emergency" },
+    { id: 3, icon: <AnimalIcon />, label: "Animals" },
+    { id: 4, icon: <EducationIcon />, label: "Education" },
+    { id: 5, icon: <NonProfitIcon />, label: "Non Profit" },
+
+    { id: 6, icon: <EnvironmentIcon />, label: "Environment" },
+    { id: 7, icon: <CommunityIcon />, label: "Community" },
+    { id: 8, icon: <EventIcon />, label: "Event" },
+    { id: 9, icon: <FamilyIcon />, label: "Family" },
+    { id: 10, icon: <SportIcon />, label: "Sport" },
+  ]
+
   return (
     <main>
-      <section className={style.discoverBannerContainer}>
+      {/* <section className={style.discoverBannerContainer}>
         <div>
           <h2>Discover</h2>
           <p>Find causes you truly care about</p>
@@ -90,19 +66,44 @@ const Discover = () => {
             </div>
           </div>
         </div>
+      </section> */}
+
+      <section className={style.discoverSortContainer}>
+        <div>
+          <div>
+            <h2>Discover</h2>
+            <p>Find causes you truly care about</p>
+          </div>
+
+          <div>
+            {
+              sortCardData.map((item) => (
+                <div key={item} className={style.sortCardItem}>
+                  <div>
+                    <div>{item?.icon}</div>
+                    <p>{item?.label}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+        </div>
       </section>
 
       <section className={style.featureContainer}>
-        <div className={style.featureCardContainer}>
-          {currentItems.map((item) => (
-            <FeatureCard
-              key={item.id}
-              image={
-                "https://www.comece.eu/wp-content/uploads/sites/2/2025/02/shutterstock-gaza-people.jpg"
-              }
-              id={item.id}
-            />
-          ))}
+        <div>
+          <div className={style.featureCardContainer}>
+            {currentItems.map((item) => (
+              <FeatureCard
+                key={item.id}
+                image={
+                  "https://www.comece.eu/wp-content/uploads/sites/2/2025/02/shutterstock-gaza-people.jpg"
+                }
+                id={item.id}
+              />
+            ))}
+          </div>
         </div>
       </section>
 

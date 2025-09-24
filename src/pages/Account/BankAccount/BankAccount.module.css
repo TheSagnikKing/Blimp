@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding: 2rem;
 
   &>div:nth-child(1) {
     display: flex;
@@ -10,17 +11,17 @@
 
     &>button {
       padding-inline: 3rem;
-      height: 4rem;
+      height: 4.4rem;
       border: none;
-      border-radius: var(--button-radius);
-      background: #FCC535;
+      background: #8FD600;
       font-size: var(--font-medium);
       font-weight: bold;
       cursor: pointer;
-      -webkit-border-radius: var(--button-radius);
-      -moz-border-radius: var(--button-radius);
-      -ms-border-radius: var(--button-radius);
-      -o-border-radius: var(--button-radius);
+      border-radius: 3rem;
+      -webkit-border-radius: 3rem;
+      -moz-border-radius: 3rem;
+      -ms-border-radius: 3rem;
+      -o-border-radius: 3rem;
       text-transform: capitalize;
     }
   }

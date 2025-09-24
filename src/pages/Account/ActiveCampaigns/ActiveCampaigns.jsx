@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./ActiveCampaign.module.css";
+import ProgressBar from "../../../components/ProgressBar/ProgressBar";
 
 const ActiveCampaigns = () => {
   return (
@@ -14,18 +15,8 @@ const ActiveCampaigns = () => {
                 Published by: <b>Arghya Ghosh</b>
               </p>
 
-              <div>
-                <div>
-                  <p>$180,050 USD raised</p>
-                  <p>$200K goal - 3.9K donations</p>
-                </div>
+              <ProgressBar />
 
-                <div className={styles.circularProgressbar}>
-                  <div>
-                    <p>100%</p>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div>

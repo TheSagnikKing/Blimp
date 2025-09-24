@@ -93,13 +93,14 @@
     align-items: center;
 
     &>button {
-      height: 6rem;
+      height: 4.4rem;
+      width: fit-content;
       padding-inline: 3rem;
-      border-radius: var(--button-radius);
-      -webkit-border-radius: var(--button-radius);
-      -moz-border-radius: var(--button-radius);
-      -ms-border-radius: var(--button-radius);
-      -o-border-radius: var(--button-radius);
+      border-radius: 3rem;
+      -webkit-border-radius: 3rem;
+      -moz-border-radius: 3rem;
+      -ms-border-radius: 3rem;
+      -o-border-radius: 3rem;
       border: none;
       outline: none;
       cursor: pointer;
@@ -109,7 +110,7 @@
     }
 
     &>button:nth-child(1) {
-      background-color: #FCC535;
+      background-color: #8FD600;
       color: var(--text-primary);
     }
 

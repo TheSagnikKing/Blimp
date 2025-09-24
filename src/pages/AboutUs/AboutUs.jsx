@@ -14,7 +14,7 @@ const AboutUs = () => {
         <WorkCard dir={"left"} title={"Our Values*"} />
       </section>
 
-      <FocusCard />
+      {/* <FocusCard /> */}
 
       <section className={style.vissionContainer}>
         <div>

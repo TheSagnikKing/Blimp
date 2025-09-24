@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 const Layout = lazy(() => import("./Layout/Layout"));
 const Hero = lazy(() => import("./pages/Hero/Hero"));
 const AboutUs = lazy(() => import("./pages/AboutUs/AboutUs"));
@@ -45,9 +45,12 @@ const App = () => {
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/works" element={<HowItWorks />} />
             <Route path="/contact-us" element={<ContactUs />} />
+
             <Route path="/discover" element={<Discover />} />
+
             <Route path="/news-detail" element={<NewsDetail />} />
             <Route path="/feature-detail" element={<FeatureDetail />} />
+
             <Route path="/checkout" element={<CheckOutPage />} />
             <Route path="/news-blog" element={<NewsBlogPage />} />
             <Route path="/login-signup" element={<LoginSignup />} />
@@ -56,11 +59,11 @@ const App = () => {
             <Route path="/account" element={<Account />}>
               <Route index element={<Profile />} />
               <Route path="active-campaigns" element={<ActiveCampaigns />} />
-              <Route path="draft-campaigns" element={<DraftCampaigns/>}/>
-              <Route path="donation-history" element={<DonationHistory/>}/>
-              <Route path="bank-account" element={<BankAccount/>}/>
-              <Route path="kyc-document" element={<KYC/>}/>
-              <Route path="change-password" element={<ChangePassword/>}/>
+              <Route path="draft-campaigns" element={<DraftCampaigns />} />
+              <Route path="donation-history" element={<DonationHistory />} />
+              <Route path="bank-account" element={<BankAccount />} />
+              <Route path="kyc-document" element={<KYC />} />
+              <Route path="change-password" element={<ChangePassword />} />
             </Route>
 
           </Route>
