@@ -20,6 +20,7 @@ const DonationHistory = lazy(() => import("./pages/Account/DonationHistory/Donat
 const BankAccount = lazy(() => import("./pages/Account/BankAccount/BankAccount"))
 const KYC = lazy(() => import("./pages/Account/KYC/KYC"))
 const ChangePassword = lazy(() => import("./pages/Account/ChangePassword/ChangePassword"))
+const StartCampaign = lazy(() => import("./pages/StartCampaign/StartCampaign"))
 
 const App = () => {
   useEffect(() => {
@@ -54,6 +55,7 @@ const App = () => {
             <Route path="/checkout" element={<CheckOutPage />} />
             <Route path="/news-blog" element={<NewsBlogPage />} />
             <Route path="/login-signup" element={<LoginSignup />} />
+            <Route path="/start-campaign" element={<StartCampaign/>}/>
 
             {/* Account Page with Nested Routes */}
             <Route path="/account" element={<Account />}>
