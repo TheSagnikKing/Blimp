@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./ActiveCampaign.module.css";
 import ProgressBar from "../../../components/ProgressBar/ProgressBar";
+import { useNavigate } from "react-router-dom";
 
 const ActiveCampaigns = () => {
+  const navigate = useNavigate()
   return (
     <div>
       {[1, 2, 3, 4].map((item) => {
@@ -20,7 +22,9 @@ const ActiveCampaigns = () => {
             </div>
 
             <div>
-              <button>view campaign</button>
+              <button onClick={() => {
+                navigate("/cause")
+              }}>view campaign</button>
               <button>promote campaign</button>
             </div>
           </div>

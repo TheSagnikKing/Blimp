@@ -1,9 +1,15 @@
 import React from 'react'
 import style from './NewsCard.module.css'
+import { useNavigate } from 'react-router-dom'
 
 const NewsCard = ({ title, index }) => {
+  const navigate = useNavigate()
   return (
     <div
+      onClick={() => {
+        window.scrollTo(0, 0)
+        navigate("/news-detail")
+      }}
       style={{ borderTop: index === 0 ? 'none' : '0.1rem solid rgba(232, 232, 232, 1)' }}
       className={style.newscardItem}>
       <div>

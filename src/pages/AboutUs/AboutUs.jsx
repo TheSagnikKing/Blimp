@@ -4,8 +4,12 @@ import WorkCard from "../../components/WorkCard/WorkCard";
 import FocusCard from "../../components/FocusCard/FocusCard";
 import { RightIcon } from "../../icons";
 import BlogCard from "../../components/BlogCard/BlogCard";
+import { useNavigate } from "react-router-dom";
 
 const AboutUs = () => {
+
+  const navigate = useNavigate()
+
   return (
     <main>
       <section className={style.missionContainer}>
@@ -37,7 +41,9 @@ const AboutUs = () => {
               Ut nisi faucibus ultrices etiam tortor vitae eros.
             </p>
 
-            <button>
+            <button onClick={() => {
+              navigate("/feature-detail")
+            }}>
               <p>learn more</p>
               <span>
                 <RightIcon />
@@ -55,7 +61,9 @@ const AboutUs = () => {
               viverra malesuada viverra eget aliquam. Diam mi dolor
             </p>
 
-            <button>
+            <button onClick={() => {
+              navigate("/checkout")
+            }}>
               <p>donate</p>
             </button>
           </div>
@@ -66,15 +74,18 @@ const AboutUs = () => {
 
         <div>
           <h2>latest news and blog</h2>
-          <button>
+          <button onClick={() => {
+            window.scrollTo(0, 0)
+            navigate("/news-blog")
+          }}>
             <span>more news</span>
           </button>
         </div>
 
         <div className={style.blogCardContainer}>
-          <BlogCard title={"where to give now"}/>
-          <BlogCard title={"popular charities"}/>
-          <BlogCard title={"childcare crisis"}/>
+          <BlogCard title={"where to give now"} />
+          <BlogCard title={"popular charities"} />
+          <BlogCard title={"childcare crisis"} />
         </div>
 
         <button>more causes</button>

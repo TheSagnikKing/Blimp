@@ -1,8 +1,11 @@
 import React from "react";
 import style from "./Works.module.css";
 import BlogCard from "../../components/BlogCard/BlogCard";
+import { useNavigate } from "react-router-dom";
 
 const Works = () => {
+
+  const navigate = useNavigate()
   return (
     <main>
       <section className={style.crowdFundContainer}>
@@ -21,8 +24,8 @@ const Works = () => {
           </div>
 
           <div>
-            {[0, 1, 2, 3, 4].map((item) => (
-              <div className={style.crowdHeadItem}>
+            {[0, 1, 2, 3, 4].map((item, index) => (
+              <div className={style.crowdHeadItem} key={index}>
                 <div><p>{item + 1}</p></div>
                 <div>
                   <h2>Use our tools to create your fundraiser</h2>
@@ -42,7 +45,10 @@ const Works = () => {
         <div>
           <div>
             <h2>latest news and blog</h2>
-            <button>
+            <button onClick={() => {
+              window.scrollTo(0, 0)
+              navigate("/news-blog")
+            }}>
               <span>more news</span>
             </button>
           </div>

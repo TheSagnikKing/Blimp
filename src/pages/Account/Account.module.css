@@ -25,9 +25,10 @@
 
 @media screen and (min-width:0px) and (max-width:768px) {
   .container {
+    padding: 1rem;
     &>div {
       .content {
-        padding: 0rem;
+        padding: 1rem;
       }
     }
   }
@@ -38,7 +39,7 @@
   .container {
     &>div {
       .content {
-        padding: 0rem;
+        padding: 1rem;
       }
     }
   }

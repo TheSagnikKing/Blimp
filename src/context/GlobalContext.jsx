@@ -39,16 +39,16 @@ export const GlobalProvider = ({ children }) => {
     };
   }, [openMobileMenu]);
 
-  const [theme, setTheme] = useState(localStorage.getItem("Theme"));
+  const [theme, setTheme] = useState(localStorage.getItem("BlimpTheme"));
 
 
   const themeChanged = () => {
     if (theme === "light") {
       setTheme("dark");
-      localStorage.setItem("Theme", "dark");
+      localStorage.setItem("BlimpTheme", "dark");
     } else {
       setTheme("light");
-      localStorage.setItem("Theme", "light");
+      localStorage.setItem("BlimpTheme", "light");
     }
   };
 
@@ -60,7 +60,7 @@ export const GlobalProvider = ({ children }) => {
 
     } else {
       setTheme("light");
-      localStorage.setItem("Theme", "light");
+      localStorage.setItem("BlimpTheme", "light");
     }
   }, [theme]);
 

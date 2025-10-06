@@ -10,6 +10,7 @@ const FeatureCard = ({ image, id }) => {
   return (
     <div
       onClick={() => {
+        window.scrollTo(0, 0)
         navigate("/feature-detail");
       }}
       className={style.featureCard}

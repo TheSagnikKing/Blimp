@@ -1,8 +1,10 @@
 import React from "react";
 import style from "./NewsDetail.module.css";
 import BlogCard from "../../components/BlogCard/BlogCard";
+import { useNavigate } from "react-router-dom";
 
 const NewsDetail = () => {
+  const navigate = useNavigate()
   return (
     <main>
       <section className={style.newsDetailContainer}>
@@ -109,7 +111,10 @@ const NewsDetail = () => {
         <div>
           <div>
             <h2>latest news and blog</h2>
-            <button>
+            <button onClick={() => {
+              window.scrollTo(0, 0)
+              navigate("/news-blog")
+            }}>
               <span>more news</span>
             </button>
           </div>

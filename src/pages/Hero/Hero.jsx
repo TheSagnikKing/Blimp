@@ -9,8 +9,12 @@ import BiographImage from "../../assets/biograph.jpg";
 import FocusCard from "../../components/FocusCard/FocusCard";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import CampaignCard from "../../components/CampaignCard/CampaignCard";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+
+  const navigate = useNavigate()
+
   return (
     <>
       <main className={style.heroContainer}>
@@ -20,7 +24,10 @@ const Hero = () => {
               <span>giving</span> is the greatest act of grace
             </h1>
             <p>Help power the world's social justice movements</p>
-            <button>Support a campaign</button>
+            <button onClick={() => {
+              window.scrollTo(0, 0)
+              navigate("/start-campaign")
+            }}>Get Funding</button>
           </div>
         </div>
 
@@ -39,7 +46,10 @@ const Hero = () => {
 
               <ProgressBar />
 
-              <button>Donate</button>
+              <button onClick={() => {
+                window.scrollTo(0, 0)
+                navigate("/checkout")
+              }}>Donate</button>
             </div>
 
             <div className={style.impactMobileContainer}>

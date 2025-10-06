@@ -76,3 +76,17 @@
     }
   }
 }
+
+@media screen and (min-width:0px) and (max-width:430px) {
+  .bankContainer {
+    padding: 0rem;
+
+    &>div:nth-child(1) {
+      justify-content: center;
+      align-items: center;
+      &>span {
+        display: none;
+      }
+    }
+  }
+}

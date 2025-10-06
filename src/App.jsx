@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import "./App.css"
 const Layout = lazy(() => import("./Layout/Layout"));
 const Hero = lazy(() => import("./pages/Hero/Hero"));
 const AboutUs = lazy(() => import("./pages/AboutUs/AboutUs"));
@@ -21,6 +22,7 @@ const BankAccount = lazy(() => import("./pages/Account/BankAccount/BankAccount")
 const KYC = lazy(() => import("./pages/Account/KYC/KYC"))
 const ChangePassword = lazy(() => import("./pages/Account/ChangePassword/ChangePassword"))
 const StartCampaign = lazy(() => import("./pages/StartCampaign/StartCampaign"))
+const Cause = lazy(() => import("./pages/Cause/Cause"))
 
 const App = () => {
   useEffect(() => {
@@ -39,7 +41,15 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="loading-wrapper">
+        <div className="loading">
+          <span>.</span>
+          <span>.</span>
+          <span>.</span>
+          <span>.</span>
+          <span>.</span>
+        </div>
+      </div>}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Hero />} />
@@ -55,7 +65,8 @@ const App = () => {
             <Route path="/checkout" element={<CheckOutPage />} />
             <Route path="/news-blog" element={<NewsBlogPage />} />
             <Route path="/login-signup" element={<LoginSignup />} />
-            <Route path="/start-campaign" element={<StartCampaign/>}/>
+            <Route path="/start-campaign" element={<StartCampaign />} />
+            <Route path="/cause" element={<Cause />} />
 
             {/* Account Page with Nested Routes */}
             <Route path="/account" element={<Account />}>
