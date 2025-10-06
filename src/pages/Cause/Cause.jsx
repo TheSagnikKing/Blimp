@@ -5,13 +5,13 @@ import {
     InstagramIcon,
     TwitterXIcon,
     WhatsappIcon,
-} from "../../../icons";
+} from "../../icons";
 
-import FirstMedal from "../../../assets/medal1st.png";
-import SecondMedal from "../../../assets/medal2nd.png";
-import ThirdMedal from "../../../assets/medal3rd.png";
-import BlogCard from "../../../components/BlogCard/BlogCard";
-import ProgressBar from "../../../components/ProgressBar/ProgressBar";
+import FirstMedal from "../../assets/medal1st.png";
+import SecondMedal from "../../assets/medal2nd.png";
+import ThirdMedal from "../../assets/medal3rd.png";
+import BlogCard from "../../components/BlogCard/BlogCard";
+import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import { useNavigate } from "react-router-dom";
 
 const Cause = () => {
