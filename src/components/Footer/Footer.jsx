@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Footer.module.css";
 import blimpLogo from "../../assets/blimpLogo.png";
 import { FacebookIcon, InstagramIcon, TwitterXIcon } from "../../icons";
+import toast from 'react-hot-toast';
+import { toastStyle } from "../../utils/toastStyles";
+import api from "../../api/api";
 
 const Footer = () => {
   const menus = [
@@ -40,6 +43,46 @@ const Footer = () => {
     },
   ];
 
+  const [subscribeEmail, setSubscribeEmail] = useState("")
+
+  const [subscribeNewsLetters, setSubscribeNewsLetters] = useState({
+    loading: false,
+    error: null,
+    data: {},
+  });
+
+  const handleSubscribe = async () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(subscribeEmail)) {
+      toast.error("Please enter a valid email", {
+        duration: 3000,
+        style: toastStyle,
+      });
+      return;
+    }
+
+    try {
+      setSubscribeNewsLetters((prev) => ({ ...prev, loading: true, error: null }));
+
+      const { data } = await api.post("/subscribeNewsLetters", { email: subscribeEmail })
+
+      if (data?.code === 400) {
+        setSubscribeNewsLetters({ loading: false, error: data.message, data: {} });
+        return
+      }
+
+      setSubscribeNewsLetters({ loading: false, error: null, data });
+
+      toast.success(data.message, { duration: 3000, style: toastStyle });
+      setSubscribeEmail("")
+
+    } catch (error) {
+      setSubscribeNewsLetters({ loading: false, error: error.message, data: {} });
+    }
+
+  };
+
+
   return (
     <>
       <footer className={styles.footer}>
@@ -51,8 +94,15 @@ const Footer = () => {
                 newsletter.
               </h2>
               <div>
-                <input type="text" placeholder="Enter Email" />
-                <button>subscribe</button>
+                <input
+                  type="text"
+                  placeholder="Enter Email"
+                  value={subscribeEmail}
+                  onChange={(e) => {
+                    setSubscribeEmail(e.target.value)
+                  }}
+                />
+                <button onClick={handleSubscribe}>subscribe</button>
               </div>
             </div>
 

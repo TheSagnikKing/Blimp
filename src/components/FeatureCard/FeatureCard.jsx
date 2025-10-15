@@ -4,26 +4,35 @@ import { useNavigate } from "react-router-dom";
 import { PlaceIcon, RightIcon } from "../../icons";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
-const FeatureCard = ({ image, id }) => {
+const FeatureCard = ({ featureItem }) => {
   const navigate = useNavigate();
 
   return (
     <div
       onClick={() => {
         window.scrollTo(0, 0)
-        navigate("/feature-detail");
+        navigate("/feature-detail", {
+          state: featureItem
+        });
       }}
       className={style.featureCard}
     >
-      <img src={image} alt="" />
+      <img src={featureItem?.banner_image} alt="" />
       <div>
-        <h2>We the People - Embrace. Empower.Engage. Inc.</h2>
+        <h2>{featureItem?.campaign_name}</h2>
         <div>
           <PlaceIcon />
-          <p>Gaza</p>
+          <p>{featureItem?.country?.name}</p>
         </div>
 
-        <ProgressBar />
+        <ProgressBar
+          raisedAmount={featureItem?.raisedAmount}
+          targetAmount={featureItem?.targetAmount}
+          percentageAchieved={featureItem?.percentageAchieved}
+          donationCount={featureItem?.donationInfo?.length}
+          currency={featureItem?.country?.currency}
+          symbol={featureItem?.country?.symbol}
+        />
 
 
         <button>

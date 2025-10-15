@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import "./App.css"
+import { Toaster } from 'react-hot-toast';
 const Layout = lazy(() => import("./Layout/Layout"));
 const Hero = lazy(() => import("./pages/Hero/Hero"));
 const AboutUs = lazy(() => import("./pages/AboutUs/AboutUs"));
@@ -40,49 +41,53 @@ const App = () => {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Suspense fallback={<div className="loading-wrapper">
-        <div className="loading">
-          <span>.</span>
-          <span>.</span>
-          <span>.</span>
-          <span>.</span>
-          <span>.</span>
-        </div>
-      </div>}>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Hero />} />
-            <Route path="/aboutus" element={<AboutUs />} />
-            <Route path="/works" element={<HowItWorks />} />
-            <Route path="/contact-us" element={<ContactUs />} />
+    <>
+      <Toaster />
+      <BrowserRouter>
+        <Suspense fallback={<div className="loading-wrapper">
+          <div className="loading">
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+          </div>
+        </div>}>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Hero />} />
+              <Route path="/aboutus" element={<AboutUs />} />
+              <Route path="/works" element={<HowItWorks />} />
+              <Route path="/contact-us" element={<ContactUs />} />
 
-            <Route path="/discover" element={<Discover />} />
+              <Route path="/discover" element={<Discover />} />
 
-            <Route path="/news-detail" element={<NewsDetail />} />
-            <Route path="/feature-detail" element={<FeatureDetail />} />
+              <Route path="/news-detail" element={<NewsDetail />} />
+              <Route path="/feature-detail" element={<FeatureDetail />} />
 
-            <Route path="/checkout" element={<CheckOutPage />} />
-            <Route path="/news-blog" element={<NewsBlogPage />} />
-            <Route path="/login-signup" element={<LoginSignup />} />
-            <Route path="/start-campaign" element={<StartCampaign />} />
-            <Route path="/cause" element={<Cause />} />
+              <Route path="/checkout" element={<CheckOutPage />} />
+              <Route path="/news-blog" element={<NewsBlogPage />} />
+              <Route path="/login-signup" element={<LoginSignup />} />
+              <Route path="/start-campaign" element={<StartCampaign />} />
+              <Route path="/cause" element={<Cause />} />
 
-            {/* Account Page with Nested Routes */}
-            <Route path="/account" element={<Account />}>
-              <Route index element={<Profile />} />
-              <Route path="active-campaigns" element={<ActiveCampaigns />} />
-              <Route path="draft-campaigns" element={<DraftCampaigns />} />
-              <Route path="donation-history" element={<DonationHistory />} />
-              <Route path="bank-account" element={<BankAccount />} />
-              <Route path="kyc-document" element={<KYC />} />
-              <Route path="change-password" element={<ChangePassword />} />
+              {/* Account Page with Nested Routes */}
+              <Route path="/account" element={<Account />}>
+                <Route index element={<Profile />} />
+                <Route path="active-campaigns" element={<ActiveCampaigns />} />
+                <Route path="draft-campaigns" element={<DraftCampaigns />} />
+                <Route path="donation-history" element={<DonationHistory />} />
+                <Route path="bank-account" element={<BankAccount />} />
+                <Route path="kyc-document" element={<KYC />} />
+                <Route path="change-password" element={<ChangePassword />} />
+              </Route>
+
             </Route>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </>
 
-          </Route>
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
   );
 };
 

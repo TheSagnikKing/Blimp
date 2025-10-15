@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Hero.module.css";
 import crowdImageOne from "../../assets/crowdImageOne.jpg";
 import { FilterIcon } from "../../icons";
@@ -10,41 +10,154 @@ import FocusCard from "../../components/FocusCard/FocusCard";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import CampaignCard from "../../components/CampaignCard/CampaignCard";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/api";
 
 const Hero = () => {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const [supportCampaigns, setSupportCampaigns] = useState({
+    loading: false,
+    error: null,
+    data: {},
+  });
+
+  const [latestCampaigns, setLatestCampaigns] = useState({
+    loading: false,
+    error: null,
+    data: {},
+  });
+
+  const [featuredCampaigns, setFeaturedCampaigns] = useState({
+    loading: false,
+    error: null,
+    data: {},
+  });
+
+
+  const [latestArticles, setLatestArticles] = useState({
+    loading: false,
+    error: null,
+    data: {},
+  });
+
+  useEffect(() => {
+    const fetchSupportCampaigns = async () => {
+      setSupportCampaigns((prev) => ({ ...prev, loading: true, error: null }));
+      try {
+        const { data } = await api.post("/get-support-campaign");
+        if (data.code === 200) {
+          setSupportCampaigns({ loading: false, error: null, data });
+        } else if (data.code === 400) {
+          setSupportCampaigns({ loading: false, error: data.message, data: {} });
+        }
+      } catch (error) {
+        setSupportCampaigns({ loading: false, error: error.message, data: {} });
+      }
+    };
+
+    const fetchLatestCampaigns = async () => {
+      setLatestCampaigns((prev) => ({ ...prev, loading: true, error: null }));
+      try {
+        const { data } = await api.post("/get-top-campaigns");
+        if (data.code === 200) {
+          setLatestCampaigns({ loading: false, error: null, data });
+        } else if (data.code === 400) {
+          setLatestCampaigns({ loading: false, error: data.message, data: {} });
+        }
+      } catch (error) {
+        setLatestCampaigns({ loading: false, error: error.message, data: {} });
+      }
+    };
+
+
+    const fetchFeaturedCampaigns = async () => {
+      setFeaturedCampaigns((prev) => ({ ...prev, loading: true, error: null }));
+      try {
+        const { data } = await api.post("/get-featured-campaign");
+        if (data.code === 200) {
+          setFeaturedCampaigns({ loading: false, error: null, data });
+        } else if (data.code === 400) {
+          setFeaturedCampaigns({ loading: false, error: data.message, data: {} });
+        }
+      } catch (error) {
+        setFeaturedCampaigns({ loading: false, error: error.message, data: {} });
+      }
+    };
+
+
+    const fetchLatestArticles = async () => {
+      setLatestArticles((prev) => ({ ...prev, loading: true, error: null }));
+      try {
+        const { data } = await api.post("/get-latest-article");
+        if (data.code === 200) {
+          setLatestArticles({ loading: false, error: null, data });
+        } else if (data.code === 400) {
+          setLatestArticles({ loading: false, error: data.message, data: {} });
+        }
+      } catch (error) {
+        setLatestArticles({ loading: false, error: error.message, data: {} });
+      }
+    };
+
+    fetchSupportCampaigns();
+    fetchLatestCampaigns();
+    fetchFeaturedCampaigns();
+    fetchLatestArticles();
+
+  }, []);
+
+
+  const [visibleFeatureCount, setVisibleFeatureCount] = useState(6);
+
+  const allFeatureItems = featuredCampaigns?.data?.data || [];
+
+  const handleShowAllFeatureItems = () => {
+    setVisibleFeatureCount(allFeatureItems.length);
+  };
 
   return (
     <>
-      <main className={style.heroContainer}>
+      <main
+        style={{
+          backgroundImage: `url(${supportCampaigns?.data?.data?.banner_image})`
+        }}
+
+        className={style.heroContainer}>
         <div>
           <div className={style.heroContent}>
             <h1>
-              <span>giving</span> is the greatest act of grace
+              {supportCampaigns?.data?.data?.campaign_name}
             </h1>
-            <p>Help power the world's social justice movements</p>
-            <button onClick={() => {
+            {/* <p>Help power the world's social justice movements</p> */}
+            <button button onClick={() => {
               window.scrollTo(0, 0)
               navigate("/start-campaign")
-            }}>Get Funding</button>
-          </div>
-        </div>
+            }}>Get Funding</button >
+          </div >
+        </div >
 
-      </main>
+      </main >
 
       <section className={style.impactContainer}>
         <div>
           <h2>the latest</h2>
           <div>
-            <img src={crowdImageOne} alt="" />
+            <img src={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.banner_image} alt="" />
             <div>
-              <h2>From Good Intentions to Great Impact</h2>
+              <h2>{latestCampaigns?.data?.data?.latestCampaigns?.[1]?.campaign_name}</h2>
               <p>
-                Having a great idea or a noble cause is just the beginning. At Blimp, we help you turn your passion into real-world results. Our fundraising platform empowers you to rally support, raise funds, and bring your vision to life—because good intentions deserve the chance to make a real impact. Let's make it happen, together. Having a great idea or a noble cause is just the beginning. At Blimp, we help you turn your passion into real-world results. Our fundraising platform empowers you to rally support, raise funds,
+                {latestCampaigns?.data?.data?.latestCampaigns?.[1]?.description}
               </p>
 
-              <ProgressBar />
+              <ProgressBar
+                raisedAmount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.raisedAmount}
+                targetAmount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.targetAmount}
+                percentageAchieved={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.percentageAchieved}
+                donationCount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.donationInfo?.length}
+                currency={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country?.currency}
+                symbol={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country?.symbol}
+              />
 
               <button onClick={() => {
                 window.scrollTo(0, 0)
@@ -65,11 +178,18 @@ const Hero = () => {
 
       <section className={style.topCampaignsContainer}>
         <div>
-          {/* <h2>top campaigns</h2> */}
 
           <div>
-            <CampaignCard />
-            <CampaignCard />
+            <CampaignCard
+              bannerImage={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.banner_image}
+              description={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.description}
+              campaignName={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.campaign_name}
+            />
+            <CampaignCard
+              bannerImage={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.banner_image}
+              description={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.description}
+              campaignName={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.campaign_name}
+            />
           </div>
         </div>
       </section>
@@ -80,39 +200,22 @@ const Hero = () => {
           <h2>Featured</h2>
 
           <div className={style.featureCardContainer}>
-            <FeatureCard
-              image={
-                "https://www.comece.eu/wp-content/uploads/sites/2/2025/02/shutterstock-gaza-people.jpg"
-              }
-            />
-            <FeatureCard
-              image={
-                "https://i.cbc.ca/1.6994453.1697145406!/fileImage/httpImage/image.JPG_gen/derivatives/original_1180/israel-palestinians.JPG?im="
-              }
-            />
-            <FeatureCard
-              image={
-                "https://www.reuters.com/resizer/v2/VGZR7BVP5NNYRNU6KTYUN7LFK4.jpg?auth=a1c51cb319e7e544d21b79be4a3a3f88af20222c3f0adfac49944492916ed741"
-              }
-            />
-            <FeatureCard
-              image={
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxlqCpFCo7SOUmjdSidBJeTXz6eF5MaZA8vOA9RxcVjOPSq44mD7pRZ7Vms7FaaqH22V0&usqp=CAU"
-              }
-            />
-            <FeatureCard
-              image={
-                "https://mondoweiss.net/wp-content/uploads/2024/12/051224_Khan_Yunis_OSH_1_002-1024x683.jpg"
-              }
-            />
-            <FeatureCard
-              image={
-                "https://www.palestinechronicle.com/wp-content/uploads/2024/09/GazaWar_Day334_PC.png"
-              }
-            />
+            {
+              allFeatureItems.slice(0, visibleFeatureCount).map((item) => {
+                return (
+                  <FeatureCard
+                    key={item.id}
+                    featureItem={item}
+                  />
+                )
+              })
+            }
+
           </div>
 
-          <button>more causes</button>
+          {visibleFeatureCount < allFeatureItems.length && (
+            <button onClick={handleShowAllFeatureItems}>more causes</button>
+          )}
         </div>
       </section>
 
@@ -123,18 +226,18 @@ const Hero = () => {
           <h2>News</h2>
           <div>
             <img
-              src={
-                "https://www.aljazeera.com/wp-content/uploads/2023/10/2023-10-09T044716Z_1634135774_RC2PO3AAEA8A_RTRMADP_3_ISRAEL-PALESTINIANS-1696828113.jpg?resize=770%2C513&quality=80"
-              }
+              src={latestArticles?.data?.data?.latestArticle?.image}
               alt=""
             />
             <div>
               {
-                [0, 1, 2, 3].map((item, index) => {
+                latestArticles?.data?.data?.nextArticles?.map((item, index) => {
                   return (
                     <NewsCard
                       index={index}
-                      key={index} title="Stroke care gains in Puerto Rico falter after Hurricane Maria..." />
+                      key={item.id}
+                      articleItem={item}
+                    />
                   )
                 })
               }

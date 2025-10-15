@@ -2,8 +2,9 @@ import React from "react";
 import style from "./BlogCard.module.css";
 import { CalenderIcon, RightIcon } from "../../icons";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
-const BlogCard = ({ title }) => {
+const BlogCard = ({ index, key, articleItem }) => {
 
   const navigate = useNavigate()
 
@@ -15,20 +16,26 @@ const BlogCard = ({ title }) => {
       }}
       className={style.blogCardItem}
     >
-      <img src="https://a.rgbimg.com/users/b/ba/badk/600/qfOGvbS.jpg" alt="" />
+      <img src={articleItem?.image} alt="" />
 
       <div>
         <div>
           <span>
             <CalenderIcon />
           </span>
-          <p>June 20, 2024</p>
+          <p>{moment(articleItem?.createdAt).format("MMMM D, YYYY")}</p>
         </div>
 
-        <h2>{title}</h2>
-        <p>
-          Dolor donec eget morbi nisi. Eu ut et enim ornare nisl vel auctor odio
-          a. Curabitur porttitor quis gravida porttitor vel...
+        <h2>{articleItem?.title}</h2>
+        <p style={{
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          minHeight: "6rem"
+        }}>
+          {articleItem?.description}
         </p>
 
         <button>

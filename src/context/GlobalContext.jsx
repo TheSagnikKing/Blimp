@@ -6,72 +6,72 @@ const GlobalContext = createContext();
 export const useGlobalContext = () => useContext(GlobalContext);
 
 export const GlobalProvider = ({ children }) => {
-  const [mobileWidth, setMobileWidth] = useState(false);
+    const [mobileWidth, setMobileWidth] = useState(false);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1200px)");
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(max-width: 1200px)");
 
-    setMobileWidth(mediaQuery.matches);
+        setMobileWidth(mediaQuery.matches);
 
-    const handleChange = (e) => {
-      setMobileWidth(e.matches);
+        const handleChange = (e) => {
+            setMobileWidth(e.matches);
+        };
+
+        mediaQuery.addEventListener("change", handleChange);
+
+        return () => {
+            mediaQuery.removeEventListener("change", handleChange);
+        };
+    }, []);
+
+    const [openMobileMenu, setOpenMobileMenu] = useState(false);
+
+    useEffect(() => {
+        if (openMobileMenu) {
+            document.body.style.overflow = "hidden"; // Disable scroll
+        } else {
+            document.body.style.overflow = "auto"; // Enable scroll
+        }
+
+        // Cleanup when component unmounts
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [openMobileMenu]);
+
+    const [theme, setTheme] = useState(localStorage.getItem("BlimpTheme"));
+
+
+    const themeChanged = () => {
+        if (theme === "light") {
+            setTheme("dark");
+            localStorage.setItem("BlimpTheme", "dark");
+        } else {
+            setTheme("light");
+            localStorage.setItem("BlimpTheme", "light");
+        }
     };
 
-    mediaQuery.addEventListener("change", handleChange);
+    useEffect(() => {
+        if (theme) {
+            const body = document.querySelector("body");
 
-    return () => {
-      mediaQuery.removeEventListener("change", handleChange);
+            body.setAttribute("data-theme", theme);
+
+        } else {
+            setTheme("light");
+            localStorage.setItem("BlimpTheme", "light");
+        }
+    }, [theme]);
+
+
+    const value = {
+        mobileWidth,
+        openMobileMenu,
+        setOpenMobileMenu,
     };
-  }, []);
 
-  const [openMobileMenu, setOpenMobileMenu] = useState(false);
-
-  useEffect(() => {
-    if (openMobileMenu) {
-      document.body.style.overflow = "hidden"; // Disable scroll
-    } else {
-      document.body.style.overflow = "auto"; // Enable scroll
-    }
-
-    // Cleanup when component unmounts
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [openMobileMenu]);
-
-  const [theme, setTheme] = useState(localStorage.getItem("BlimpTheme"));
-
-
-  const themeChanged = () => {
-    if (theme === "light") {
-      setTheme("dark");
-      localStorage.setItem("BlimpTheme", "dark");
-    } else {
-      setTheme("light");
-      localStorage.setItem("BlimpTheme", "light");
-    }
-  };
-
-  useEffect(() => {
-    if (theme) {
-      const body = document.querySelector("body");
-
-      body.setAttribute("data-theme", theme);
-
-    } else {
-      setTheme("light");
-      localStorage.setItem("BlimpTheme", "light");
-    }
-  }, [theme]);
-
-
-  const value = {
-    mobileWidth,
-    openMobileMenu,
-    setOpenMobileMenu,
-  };
-
-  return (
-    <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
-  );
+    return (
+        <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
+    );
 };

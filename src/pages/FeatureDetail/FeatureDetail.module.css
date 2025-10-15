@@ -247,7 +247,8 @@
           background-color: rgba(217, 217, 217, 1);
 
           &>h2 {
-            font-size: var(--subheader-large);
+            font-size: 3.2rem;
+            text-transform: uppercase;
           }
         }
       }
@@ -260,6 +261,7 @@
         &>h3 {
           font-size: var(--font-medium);
           font-weight: 600;
+          text-transform: capitalize;
         }
 
         &>p {
@@ -426,7 +428,7 @@
             &>div:nth-child(2) {
               &>h3 {
                 font-size: var(--font-small);
-                text-align: center;
+                text-align: center
               }
             }
 
