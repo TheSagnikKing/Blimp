@@ -3,11 +3,26 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { GlobalProvider } from "./context/GlobalContext.jsx";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+// 🧩 Step 1: Create a custom MUI theme
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,     // mobile
+      sm: 430,   // tablet
+      md: 1200,  // desktop
+    },
+  },
+});
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <GlobalProvider>
-      <App />
-    </GlobalProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalProvider>
+        <App />
+      </GlobalProvider>
+    </ThemeProvider>
   </StrictMode>
 );

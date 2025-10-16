@@ -11,6 +11,7 @@ import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import CampaignCard from "../../components/CampaignCard/CampaignCard";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/api";
+import Skeleton from "@mui/material/Skeleton";
 
 const Hero = () => {
 
@@ -130,7 +131,7 @@ const Hero = () => {
               {supportCampaigns?.data?.data?.campaign_name}
             </h1>
             {/* <p>Help power the world's social justice movements</p> */}
-            <button button onClick={() => {
+            <button onClick={() => {
               window.scrollTo(0, 0)
               navigate("/start-campaign")
             }}>Get Funding</button >
@@ -143,30 +144,64 @@ const Hero = () => {
         <div>
           <h2>the latest</h2>
           <div>
-            <img src={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.banner_image} alt="" />
-            <div>
-              <h2>{latestCampaigns?.data?.data?.latestCampaigns?.[1]?.campaign_name}</h2>
-              <p>
-                {latestCampaigns?.data?.data?.latestCampaigns?.[1]?.description}
-              </p>
+            {
+              latestArticles?.loading ? (
+                <>
+                  <Skeleton
+                    variant="rectangular"
+                    height="40rem"
+                    sx={{
+                      width: {
+                        xs: "100%", // mobile
+                        sm: "100%", // tablet
+                        md: "50%",  // desktop
+                      },
+                    }}
+                  />
 
-              <ProgressBar
-                raisedAmount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.raisedAmount}
-                targetAmount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.targetAmount}
-                percentageAchieved={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.percentageAchieved}
-                donationCount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.donationInfo?.length}
-                currency={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country?.currency}
-                symbol={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country?.symbol}
-              />
+                  <Skeleton
+                    variant="rectangular"
+                    height="40rem"
+                    sx={{
+                      width: {
+                        xs: "100%", // mobile
+                        sm: "100%", // tablet
+                        md: "50%",  // desktop
+                      },
+                    }}
+                  />
+                </>
+              ) : (
+                <>
+                  <img src={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.banner_image} alt="" />
 
-              <button onClick={() => {
-                window.scrollTo(0, 0)
-                navigate("/checkout")
-              }}>Donate</button>
-            </div>
+                  <div>
+                    <h2>{latestCampaigns?.data?.data?.latestCampaigns?.[1]?.campaign_name}</h2>
+                    <p>
+                      {latestCampaigns?.data?.data?.latestCampaigns?.[1]?.description}
+                    </p>
+
+                    <ProgressBar
+                      raisedAmount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.raisedAmount}
+                      targetAmount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.targetAmount}
+                      percentageAchieved={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.percentageAchieved}
+                      donationCount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.donationInfo?.length}
+                      currency={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country?.currency}
+                      symbol={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country?.symbol}
+                    />
+
+                    <button onClick={() => {
+                      window.scrollTo(0, 0)
+                      navigate("/checkout")
+                    }}>Donate</button>
+                  </div>
+                </>
+              )
+            }
+
 
             <div className={style.impactMobileContainer}>
-              <h3>from good intentions to great impact</h3>
+              <h3>{latestCampaigns?.data?.data?.latestCampaigns?.[1]?.campaign_name}</h3>
               <button>View More</button>
               <button>Donate</button>
             </div>
@@ -174,22 +209,48 @@ const Hero = () => {
             <button>View Details</button>
           </div>
         </div>
-      </section>
+      </section >
 
       <section className={style.topCampaignsContainer}>
         <div>
 
           <div>
-            <CampaignCard
-              bannerImage={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.banner_image}
-              description={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.description}
-              campaignName={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.campaign_name}
-            />
-            <CampaignCard
-              bannerImage={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.banner_image}
-              description={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.description}
-              campaignName={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.campaign_name}
-            />
+            {
+              latestCampaigns?.loading ? (
+                [0, 1].map((item) => {
+                  return (
+                    <Skeleton
+                      key={item}
+                      variant="rectangular"
+                      height="40rem"
+                      animation={false}
+                      sx={{
+                        width: {
+                          xs: "100%", // mobile
+                          sm: "100%", // tablet
+                          md: "50%",  // desktop
+                        },
+                        bgcolor: "#1e1e1e",
+                      }}
+                    />
+                  )
+                })
+              ) : (
+                <>
+                  <CampaignCard
+                    bannerImage={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.banner_image}
+                    description={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.description}
+                    campaignName={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.campaign_name}
+                  />
+                  <CampaignCard
+                    bannerImage={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.banner_image}
+                    description={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.description}
+                    campaignName={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.campaign_name}
+                  />
+                </>
+              )
+            }
+
           </div>
         </div>
       </section>
@@ -201,14 +262,34 @@ const Hero = () => {
 
           <div className={style.featureCardContainer}>
             {
-              allFeatureItems.slice(0, visibleFeatureCount).map((item) => {
-                return (
-                  <FeatureCard
-                    key={item.id}
-                    featureItem={item}
-                  />
-                )
-              })
+              featuredCampaigns?.loading ? (
+                [0, 1, 2, 3, 4, 5].map((item) => {
+                  return (
+                    <Skeleton
+                      key={item}
+                      variant="rectangular"
+                      height={"40rem"}
+                      sx={{
+                        width: {
+                          xs: "100%", // mobile
+                          sm: "48%", // tablet
+                          md: "32%",  // desktop
+                        },
+                      }}
+                    />
+                  )
+                })
+              ) : (
+                allFeatureItems.slice(0, visibleFeatureCount).map((item) => {
+                  return (
+                    <FeatureCard
+                      key={item.id}
+                      featureItem={item}
+                    />
+                  )
+                })
+              )
+
             }
 
           </div>
@@ -225,21 +306,55 @@ const Hero = () => {
         <div>
           <h2>News</h2>
           <div>
-            <img
-              src={latestArticles?.data?.data?.latestArticle?.image}
-              alt=""
-            />
+            {
+              latestArticles.loading ? (
+                <Skeleton
+                  variant="rectangular"
+                  // width={"50%"}
+                  height={"50rem"}
+                  sx={{
+                    width: {
+                      xs: "0%", // mobile
+                      sm: "100%", // tablet
+                      md: "50%",  // desktop
+                    },
+                  }}
+                // sx={{ bgcolor: "black" }}
+                />
+              ) : (
+                <img
+                  src={latestArticles?.data?.data?.latestArticle?.image}
+                  alt=""
+                />
+              )
+            }
+
             <div>
               {
-                latestArticles?.data?.data?.nextArticles?.map((item, index) => {
-                  return (
-                    <NewsCard
-                      index={index}
-                      key={item.id}
-                      articleItem={item}
-                    />
-                  )
-                })
+                latestArticles.loading ? (
+                  [0, 1, 2, 3].map((item) => {
+                    return (
+                      <Skeleton
+                        key={item}
+                        variant="rectangular"
+                        width={"100%"}
+                        height={"9.6rem"}
+                      // sx={{ bgcolor: "black" }}
+                      />
+                    )
+                  })
+                ) : (
+                  latestArticles?.data?.data?.nextArticles?.map((item, index) => {
+                    return (
+                      <NewsCard
+                        index={index}
+                        key={item.id}
+                        articleItem={item}
+                      />
+                    )
+                  })
+                )
+
               }
             </div>
           </div>

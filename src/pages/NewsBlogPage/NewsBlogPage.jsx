@@ -3,6 +3,7 @@ import style from "./NewsBlogPage.module.css";
 import NewsCard from "../../components/NewsCard/NewsCard";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import api from "../../api/api";
+import Skeleton from "@mui/material/Skeleton";
 
 const NewsBlogPage = () => {
 
@@ -35,21 +36,64 @@ const NewsBlogPage = () => {
     <main>
       <section className={style.newsContainer}>
         <div>
-          <BlogCard
-            articleItem={latestArticles?.data?.data?.latestArticle}
-          />
+          {
+            latestArticles.loading ? (
+              <Skeleton
+                variant="rectangular"
+                height={"56rem"}
+                sx={{
+                  width: {
+                    xs: "100%", // mobile
+                    sm: "100%", // tablet
+                    md: "50%",  // desktop
+                  },
+                }}
+              // sx={{ bgcolor: "black" }}
+              />
+            ) : (
+              <BlogCard
+                articleItem={latestArticles?.data?.data?.latestArticle}
+              />
+            )
+          }
+
           <div>
-            <h2>Latest News</h2>
             {
-              latestArticles?.data?.data?.nextArticles?.map((item, index) => {
-                return (
-                  <NewsCard
-                    index={index}
-                    key={item.id}
-                    articleItem={item}
-                  />
-                )
-              })
+              latestArticles.loading ? (
+                <Skeleton
+                  variant="rectangular"
+                  width={"100%"}
+                  height={"9.6rem"}
+                // sx={{ bgcolor: "black" }}
+                />
+              ) : (
+                <h2>Latest News</h2>
+              )
+            }
+
+            {
+              latestArticles.loading ? (
+                [0, 1, 2].map((item) => {
+                  return (
+                    <Skeleton
+                      key={item}
+                      variant="rectangular"
+                      height={"9.6rem"}
+                    // sx={{ bgcolor: "black" }}
+                    />
+                  )
+                })
+              ) : (
+                latestArticles?.data?.data?.nextArticles?.map((item, index) => {
+                  return (
+                    <NewsCard
+                      index={index}
+                      key={item.id}
+                      articleItem={item}
+                    />
+                  )
+                })
+              )
             }
             <button>view more</button>
           </div>
@@ -60,20 +104,40 @@ const NewsBlogPage = () => {
         <div>
 
           {
-            latestArticles?.data?.data?.remainingArticles?.map((item, index) => {
-              return (
-                <BlogCard
-                  index={index}
-                  key={item.id}
-                  articleItem={item}
-                />
-              )
-            })
+            latestArticles.loading ? (
+              [0, 1, 2, 3, 4, 5].map((item) => {
+                return (
+                  <Skeleton
+                    key={item}
+                    variant="rectangular"
+                    height={"30rem"}
+                    sx={{
+                      width: {
+                        xs: "100%", // mobile
+                        sm: "48%", // tablet
+                        md: "32%",  // desktop
+                      },
+                    }}
+                  // sx={{ bgcolor: "black" }}
+                  />
+                )
+              })
+            ) : (
+              latestArticles?.data?.data?.remainingArticles?.map((item, index) => {
+                return (
+                  <BlogCard
+                    index={index}
+                    key={item.id}
+                    articleItem={item}
+                  />
+                )
+              })
+            )
           }
 
         </div>
 
-        <button>more causes</button>
+        {!latestArticles.loading && <button>more causes</button>}
 
       </div>
 

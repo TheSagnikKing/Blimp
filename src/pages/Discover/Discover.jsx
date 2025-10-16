@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Discover.module.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import FeatureCard from "../../components/FeatureCard/FeatureCard";
 import { AnimalIcon, CommunityIcon, EducationIcon, EmergencyIcon, EnvironmentIcon, EventIcon, FamilyIcon, MedicalIcon, NonProfitIcon, SportIcon } from "../../icons";
+import api from "../../api/api";
+import Skeleton from "@mui/material/Skeleton";
 
 const Discover = () => {
+
+  const [campaignHistoryList, setCampaignHistoryList] = useState({
+    loading: false,
+    error: null,
+    data: {},
+  });
+
   const [page, setPage] = useState(1);
   const itemsPerPage = 6;
 
@@ -42,31 +51,37 @@ const Discover = () => {
     { id: 10, icon: <SportIcon />, label: "Sport" },
   ]
 
+  const userId = "48"
+
+  useEffect(() => {
+    if (userId) {
+
+      const fetchCampaignHistory = async () => {
+        setCampaignHistoryList((prev) => ({ ...prev, loading: true, error: null }));
+        try {
+          const { data } = await api.post("/get-discover-campaign", {
+            userId
+          });
+          if (data.code === 200) {
+            setCampaignHistoryList({ loading: false, error: null, data });
+          } else if (data.code === 400) {
+            setCampaignHistoryList({ loading: false, error: data.message, data: {} });
+          }
+        } catch (error) {
+          setCampaignHistoryList({ loading: false, error: error.message, data: {} });
+        }
+      };
+
+      fetchCampaignHistory()
+
+    }
+    // get-discover-campaign
+  }, [userId])
+
+  console.log(campaignHistoryList)
+
   return (
     <main>
-      {/* <section className={style.discoverBannerContainer}>
-        <div>
-          <h2>Discover</h2>
-          <p>Find causes you truly care about</p>
-
-          <div className={style.filterWrapper}>
-            <div>
-              <p>Show me</p>
-              <input type="text" />
-            </div>
-
-            <div>
-              <p>Campaign's</p>
-              <input type="text" />
-            </div>
-
-            <div>
-              <p>Sorted by</p>
-              <input type="text" />
-            </div>
-          </div>
-        </div>
-      </section> */}
 
       <section className={style.discoverSortContainer}>
         <div>
@@ -78,7 +93,7 @@ const Discover = () => {
           <div>
             {
               sortCardData.map((item) => (
-                <div key={item} className={style.sortCardItem}>
+                <div key={item?.label} className={style.sortCardItem}>
                   <div>
                     <div>{item?.icon}</div>
                     <p>{item?.label}</p>
@@ -94,15 +109,35 @@ const Discover = () => {
       <section className={style.featureContainer}>
         <div>
           <div className={style.featureCardContainer}>
-            {currentItems.map((item) => (
-              <FeatureCard
-                key={item.id}
-                image={
-                  "https://www.comece.eu/wp-content/uploads/sites/2/2025/02/shutterstock-gaza-people.jpg"
-                }
-                id={item.id}
-              />
-            ))}
+
+            {
+              campaignHistoryList?.loading ? (
+                [0, 1, 2, 3, 4, 5].map((item) => {
+                  return (
+                    <Skeleton
+                      key={item}
+                      variant="rectangular"
+                      height={"40rem"}
+                      sx={{
+                        width: {
+                          xs: "100%", // mobile
+                          sm: "48%", // tablet
+                          md: "32%",  // desktop
+                        },
+                      }}
+                    />
+                  )
+                })
+              ) : (
+                campaignHistoryList?.data?.data?.map((item) => (
+                  <FeatureCard
+                    key={item.id}
+                    featureItem={item}
+                  />
+                ))
+              )
+            }
+
           </div>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import { BsCalendar2Event, BsFillCreditCard2BackFill, BsWhatsapp } from "react-icons/bs";
-import { FaCamera, FaFacebookF, FaPen, FaSortDown } from "react-icons/fa";
+import { FaCamera, FaFacebookF, FaPen, FaPlus, FaSortDown } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiArrowRight, FiSearch } from "react-icons/fi";
 import { GiHamburgerMenu, GiProgression, GiSprout } from "react-icons/gi";
@@ -8,7 +8,7 @@ import { IoMdEye } from "react-icons/io";
 import { LuClock } from "react-icons/lu";
 import { MdEmergency, MdFilterAlt, MdOutlineEmail, MdOutlineFamilyRestroom, MdOutlinePets, MdOutlinePhone, MdOutlineSportsCricket } from "react-icons/md";
 import { RiAccountCircleLine, RiInstagramFill, RiUserCommunityFill } from "react-icons/ri";
-import { RxCross1 } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
 import { IoLocationOutline, IoSchoolSharp } from "react-icons/io5";
 import { MdMedicalServices } from "react-icons/md";
 
@@ -21,7 +21,7 @@ export const MenuIcon = GiHamburgerMenu
 export const FilterIcon = MdFilterAlt
 export const RightIcon = FiArrowRight
 export const CalenderIcon = GoCalendar
-export const CrossIcon = RxCross1
+export const CrossIcon = RxCross2
 export const PhoneIcon = MdOutlinePhone
 export const EmailIcon = MdOutlineEmail
 export const ClockIcon = LuClock
@@ -43,3 +43,4 @@ export const CommunityIcon = RiUserCommunityFill
 export const EventIcon = BsCalendar2Event
 export const FamilyIcon = MdOutlineFamilyRestroom
 export const SportIcon = MdOutlineSportsCricket
+export const AddIcon = FaPlus

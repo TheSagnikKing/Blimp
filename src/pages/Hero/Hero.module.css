@@ -534,6 +534,7 @@
       }
 
       &>div {
+        gap: 0rem;
         &>img {
           display: none;
         }

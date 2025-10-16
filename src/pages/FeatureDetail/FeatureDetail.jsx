@@ -103,11 +103,6 @@ const FeatureDetail = () => {
     }
   }, [featureItem.id, pageNo])
 
-  console.log(latestArticles)
-
-  // console.log("totalSupporters ", totalSupporters?.data?.data?.campaign?.donationInfo)
-  // console.log(pageNo)
-
   return (
     <main>
       <section className={style.featureDetailContainer}>
@@ -344,7 +339,7 @@ const FeatureDetail = () => {
             <div>
               {totalSupporters?.data?.data?.campaign?.donationInfo?.length > 0 && totalSupporters?.data?.data?.campaign?.donationInfo?.map((item, index) => {
                 return (
-                  <div key={item} className={style.supporterItem}>
+                  <div key={item.id} className={style.supporterItem}>
                     <div>
                       {index === 0 ? (
                         <img src={FirstMedal} alt="" />
@@ -363,11 +358,11 @@ const FeatureDetail = () => {
 
                     <div>
                       <h3>{item.is_anonymous ? "anonymous" : `${item.first_name} ${item.last_name}`}</h3>
-                      {item === 1 ? (
+                      {index === 0 ? (
                         <p>Top Contributor</p>
-                      ) : item === 2 ? (
+                      ) : index === 1 ? (
                         <p>Top Contributor</p>
-                      ) : item === 3 ? (
+                      ) : index === 2 ? (
                         <p>Top Contributor</p>
                       ) : (
                         <span />
@@ -425,15 +420,35 @@ const FeatureDetail = () => {
 
           <div className={style.blogCardContainer}>
             {
-              latestArticles?.data?.data?.nextArticles?.map((item, index) => {
-                return (
-                  <BlogCard
-                    index={index}
-                    key={item.id}
-                    articleItem={item}
-                  />
-                )
-              })
+              latestArticles?.loading ? (
+                [0, 1, 2, 3, 4, 5].map((item) => {
+                  return (
+                    <Skeleton
+                      key={item}
+                      variant="rectangular"
+                      height={"30rem"}
+                      sx={{
+                        width: {
+                          xs: "100%", // mobile
+                          sm: "48%", // tablet
+                          md: "32%",  // desktop
+                        },
+                      }}
+                    />
+                  )
+                })
+              ) : (
+                latestArticles?.data?.data?.nextArticles?.map((item, index) => {
+                  return (
+                    <BlogCard
+                      index={index}
+                      key={item.id}
+                      articleItem={item}
+                    />
+                  )
+                })
+              )
+
             }
           </div>
 

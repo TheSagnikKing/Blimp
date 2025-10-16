@@ -4,7 +4,7 @@ import { CalenderIcon, RightIcon } from "../../icons";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
-const BlogCard = ({ index, key, articleItem }) => {
+const BlogCard = ({ index, articleItem }) => {
 
   const navigate = useNavigate()
 
