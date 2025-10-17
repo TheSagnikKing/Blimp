@@ -1,25 +1,77 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./NewsDetail.module.css";
 import BlogCard from "../../components/BlogCard/BlogCard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import api from "../../api/api";
+import Skeleton from "@mui/material/Skeleton";
 
 const NewsDetail = () => {
+
   const navigate = useNavigate()
+  const params = useParams()
+
+  const [newsDetailItem, setNewsDetailItem] = useState({
+    loading: false,
+    error: null,
+    data: {},
+  });
+
+  useEffect(() => {
+    const fetchNewsDetailItem = async () => {
+      setNewsDetailItem((prev) => ({ ...prev, loading: true, error: null }));
+      try {
+        const { data } = await api.post("/get-articles-details", {
+          article_id: params.id
+        });
+        if (data.code === 200) {
+          setNewsDetailItem({ loading: false, error: null, data });
+        } else if (data.code === 400) {
+          setNewsDetailItem({ loading: false, error: data.message, data: {} });
+        }
+      } catch (error) {
+        setNewsDetailItem({ loading: false, error: error.message, data: {} });
+      }
+    };
+
+    fetchNewsDetailItem()
+  }, [])
+
+  console.log(newsDetailItem)
+
   return (
     <main>
       <section className={style.newsDetailContainer}>
         <div>
-          <h2>Clean Water for All</h2>
-          <img src="https://pixy.org/download/54116/" alt="" />
+          {
+            newsDetailItem?.loading ? (
+              <Skeleton
+                variant="rectangular"
+                width={"100%"}
+                height={"4rem"}
+              />
+            ) : (
+              <h2>{newsDetailItem?.data?.data?.title}</h2>
+            )
+          }
+
+          {
+            newsDetailItem?.loading ? (
+              <Skeleton
+                variant="rectangular"
+                width={"100%"}
+                height={"56rem"}
+              />
+            ) : (
+              <img src={newsDetailItem?.data?.data?.image} alt="" />
+            )
+          }
 
           <div>
-            <h2>Lectus augue libero etiam</h2>
+            <h2>Description</h2>
             <p>
-              Arcu ultricies malesuada lectus nulla est nunc integer pellentesque
-              magna. Egestas malesuada faucibus arcu nunc elit leo quis interdum.
-              Ac vel in commodo accumsan mollis cras massa posuere eget.
-              Condimentum posuere velit cras velit tortor ridiculus sit. Lectus
-              augue libero etiam sed nisl
+              {
+                newsDetailItem?.data?.data?.description
+              }
             </p>
           </div>
 

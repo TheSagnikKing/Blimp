@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "./ContactUs.module.css";
 import {
   AddIcon,
@@ -15,6 +15,8 @@ import Skeleton from "@mui/material/Skeleton";
 import toast from "react-hot-toast";
 import { toastStyle } from "../../utils/toastStyles";
 import { ClipLoader } from "react-spinners";
+import { PhoneNumberUtil } from "google-libphonenumber";
+import { PhoneInput } from "react-international-phone";
 
 const ContactUs = () => {
 
@@ -56,10 +58,97 @@ const ContactUs = () => {
   const [subject, setSubject] = useState("")
   const [description, setDescription] = useState("")
 
+  // contact us error states
+
+  const [firstnameError, setFirstnameError] = useState("")
+  const [lastnameError, setLastnameError] = useState("")
+  const [emailError, setEmailError] = useState("")
+  const [phonenumberError, setPhonenumberError] = useState("")
+  const [subjectError, setSubjectError] = useState("")
+  const [descriptionError, setDescriptionError] = useState("")
   const [sendMessageLoader, setSendMessageLoader] = useState(false)
+  const [countryflag, setCountryFlag] = useState("gb");
+  const [countryCode, setCountryCode] = useState("");
+  const [invalidnumber, setInvalidNumber] = useState(false);
+
+  const phoneRef = useRef();
+
+  const phoneUtil = PhoneNumberUtil.getInstance();
+
+  const isPhoneValid = (phone) => {
+    try {
+      return phoneUtil.isValidNumber(phoneUtil.parseAndKeepRawInput(phone));
+    } catch (error) {
+      return false;
+    }
+  };
+
+
+  const handlePhoneChange = (phone, meta) => {
+    setPhonenumberError("");
+    const { country } = meta;
+
+    const isValid = isPhoneValid(phone);
+
+    if (isValid) {
+      setPhonenumber(phone);
+      setCountryCode(country?.dialCode);
+      setCountryFlag(country?.iso2);
+      setInvalidNumber(false);
+    } else {
+      setInvalidNumber(true);
+    }
+  };
 
   const sendMessage = async (e) => {
     e.preventDefault();
+
+    let hasError = false
+
+    setFirstnameError("")
+    setLastnameError("")
+    setEmailError("")
+    setPhonenumberError("")
+    setSubjectError("")
+    setDescriptionError("")
+
+    if (!firstname.trim()) {
+      setFirstnameError("Please enter your first name.")
+      hasError = true
+    };
+    if (!lastname.trim()) {
+      setLastnameError("Please enter your last name.")
+      hasError = true
+    };
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!email.trim()) {
+      setEmailError("Please enter your email address.")
+      hasError = true
+    } else if (!emailRegex.test(email)) {
+      setEmailError("Invalid email format")
+      hasError = true
+    };
+
+    if (!phonenumber.trim()) {
+      setPhonenumberError("Phone number is required");
+      hasError = true;
+    } else if (invalidnumber) {
+      setPhonenumberError("Invalid phone number");
+      hasError = true;
+    }
+
+    if (!subject.trim()) {
+      setSubjectError("Please enter a subject.")
+      hasError = true
+    };
+    if (!description.trim() || description.trim().length < 10) {
+      setDescriptionError("Please enter a valid message (at least 10 characters).")
+      hasError = true
+    }
+
+    if (hasError) return
 
     try {
       const contactData = {
@@ -70,18 +159,6 @@ const ContactUs = () => {
         subject,
         description,
       };
-
-      if (!firstname.trim()) return toast.error("Please enter your first name.", { duration: 3000, style: toastStyle });
-      if (!lastname.trim()) return toast.error("Please enter your last name.", { duration: 3000, style: toastStyle });
-      if (!email.trim()) return toast.error("Please enter your email address.", { duration: 3000, style: toastStyle });
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) return toast.error("Please enter a valid email address.", { duration: 3000, style: toastStyle });
-      if (!phonenumber.trim()) return toast.error("Please enter your phone number.", { duration: 3000, style: toastStyle });
-      const phoneRegex = /^[0-9]{7,15}$/;
-      if (!phoneRegex.test(phonenumber)) return toast.error("Please enter a valid phone number (digits only).", { duration: 3000, style: toastStyle });
-      if (!subject.trim()) return toast.error("Please enter a subject.", { duration: 3000, style: toastStyle });
-      if (!description.trim() || description.trim().length < 10)
-        return toast.error("Please enter a valid message (at least 10 characters).", { duration: 3000, style: toastStyle });
 
       setSendMessageLoader(true);
 
@@ -105,7 +182,6 @@ const ContactUs = () => {
       console.error("Error sending message:", error);
       toast.error("Something went wrong. Please try again.", { duration: 3000, style: toastStyle });
     } finally {
-      // ✅ Always turn off loader, no matter what
       setSendMessageLoader(false);
     }
   };
@@ -173,6 +249,10 @@ const ContactUs = () => {
                   value={firstname}
                   onChange={(e) => setFirstname(e.target.value)}
                 />
+
+                {firstnameError && (
+                  <p className="input-error-message">{firstnameError}</p>
+                )}
               </div>
 
               <div>
@@ -183,6 +263,10 @@ const ContactUs = () => {
                   value={lastname}
                   onChange={(e) => setLastname(e.target.value)}
                 />
+
+                {lastnameError && (
+                  <p className="input-error-message">{lastnameError}</p>
+                )}
               </div>
             </div>
 
@@ -195,16 +279,27 @@ const ContactUs = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
+
+                {emailError && (
+                  <p className="input-error-message">{emailError}</p>
+                )}
               </div>
 
               <div>
                 <label htmlFor="phone">Phone Number</label>
-                <input
-                  type="text"
-                  placeholder="Phone Number"
+
+                <PhoneInput
+                  aria-labelledby="mobileLabel"
+                  forceDialCode={true}
+                  defaultCountry={countryflag}
                   value={phonenumber}
-                  onChange={(e) => setPhonenumber(e.target.value)}
+                  ref={phoneRef}
+                  onChange={(phone, meta) => handlePhoneChange(phone, meta)}
                 />
+
+                {phonenumberError && (
+                  <p className="input-error-message">{phonenumberError}</p>
+                )}
               </div>
             </div>
 
@@ -216,6 +311,10 @@ const ContactUs = () => {
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
               />
+
+              {subjectError && (
+                <p className="input-error-message">{subjectError}</p>
+              )}
             </div>
 
             <div className={style.inputContainerTwotextArea}>
@@ -227,6 +326,10 @@ const ContactUs = () => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
+
+              {descriptionError && (
+                <p className="input-error-message">{descriptionError}</p>
+              )}
             </div>
 
             <button onClick={sendMessage}>{sendMessageLoader ? <ClipLoader

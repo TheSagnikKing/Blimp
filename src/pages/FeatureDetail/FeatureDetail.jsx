@@ -126,7 +126,6 @@ const FeatureDetail = () => {
                 variant="rectangular"
                 width={"100%"}
                 height={"56rem"}
-              // sx={{ bgcolor: "black" }}
               />
             ) : (
               <img src={featureItemDetail?.data?.data?.banner_image} alt="" />

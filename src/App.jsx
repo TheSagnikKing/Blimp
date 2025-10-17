@@ -62,13 +62,13 @@ const App = () => {
 
               <Route path="/discover" element={<Discover />} />
 
-              <Route path="/news-detail" element={<NewsDetail />} />
+              <Route path="/news-detail/:id" element={<NewsDetail />} />
               <Route path="/feature-detail" element={<FeatureDetail />} />
 
               <Route path="/checkout" element={<CheckOutPage />} />
               <Route path="/news-blog" element={<NewsBlogPage />} />
               <Route path="/login-signup" element={<LoginSignup />} />
-              <Route path="/start-campaign" element={<StartCampaign />} />
+              <Route path="/start-campaign" element={<StartCampaign />} /> 
               <Route path="/cause" element={<Cause />} />
 
               {/* Account Page with Nested Routes */}
