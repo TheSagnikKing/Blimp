@@ -3,8 +3,16 @@ import style from "./Navbar.module.css";
 import blimpLogoBlack from "../../assets/blimpLogoBlack.png";
 import { AccountIcon, MenuIcon, SearchIcon } from "../../icons";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
+
+  const {
+    isAuthenticated,
+    setIsAuthenticated
+  } = useAuth()
+
+  console.log("FROM NAVBAR ", isAuthenticated)
 
   const menus = [
     {
@@ -65,7 +73,14 @@ const Navbar = () => {
             <span>Search</span>
           </button>
 
-          <button onClick={() => navigate("/login-signup")}>Sign In</button>
+          {
+            isAuthenticated ? (
+              <h1>Hurray !</h1>
+            ) : (
+              <button onClick={() => navigate("/login-signup")}>Sign In</button>
+            )
+          }
+
         </div>
       </div>
 

@@ -6,8 +6,19 @@ import { toastStyle } from "../../utils/toastStyles";
 import toast from "react-hot-toast";
 import api from "../../api/api";
 import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const LoginSignup = () => {
+
+  const navigate = useNavigate()
+  const {
+    user,
+    setUser,
+    setIsAuthenticated
+  } = useAuth()
+
+
   const [signinEmail, setSigninEmail] = useState("");
   const [signinPassword, setSigninPassword] = useState("");
   const [signinLoader, setSigninLoader] = useState("")
@@ -38,7 +49,6 @@ const LoginSignup = () => {
   const [countryCode, setCountryCode] = useState("");
 
   const phoneRef = useRef();
-
   const phoneUtil = PhoneNumberUtil.getInstance();
 
   const isPhoneValid = (phone) => {
@@ -203,6 +213,12 @@ const LoginSignup = () => {
           duration: 3000,
           style: toastStyle,
         });
+
+        localStorage.setItem("usersignindata", JSON.stringify(data?.data))
+        setUser(data?.data)
+        localStorage.setItem("usersignin", "true")
+        setIsAuthenticated(true)
+        navigate("/account")
       } else {
         toast.error(data.message, { duration: 3000, style: toastStyle });
       }

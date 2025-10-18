@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import styles from "./Profile.module.css";
 import { EditIcon, CameraIcon } from "../../../icons";
+import { useAuth } from "../../../context/AuthContext";
 
 const Profile = () => {
+
+  const {
+    user,
+    setUser
+  } = useAuth()
+
   const [profileImage, setProfileImage] = useState(null);
 
   // Handle profile image upload
