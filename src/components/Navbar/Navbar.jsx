@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./Navbar.module.css";
 import blimpLogoBlack from "../../assets/blimpLogoBlack.png";
-import { AccountIcon, MenuIcon, SearchIcon } from "../../icons";
+import { AccountIcon, MenuIcon, ProfileIcon, SearchIcon } from "../../icons";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
@@ -12,7 +12,7 @@ const Navbar = () => {
     setIsAuthenticated
   } = useAuth()
 
-  console.log("FROM NAVBAR ", isAuthenticated)
+  const navigate = useNavigate()
 
   const menus = [
     {
@@ -37,7 +37,6 @@ const Navbar = () => {
     },
   ];
 
-  const navigate = useNavigate()
 
   return (
     <header className={style.header}>
@@ -75,9 +74,16 @@ const Navbar = () => {
 
           {
             isAuthenticated ? (
-              <h1>Hurray !</h1>
+              <button
+                className={style.profileBtn}
+                onClick={() => navigate("/account")}
+              >
+                <ProfileIcon />
+              </button>
             ) : (
-              <button onClick={() => navigate("/login-signup")}>Sign In</button>
+              <button
+                className={style.signinBtn}
+                onClick={() => navigate("/login-signup")}>Sign In</button>
             )
           }
 

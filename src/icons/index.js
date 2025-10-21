@@ -6,11 +6,12 @@ import { GiHamburgerMenu, GiProgression, GiSprout } from "react-icons/gi";
 import { GoCalendar } from "react-icons/go";
 import { IoMdEye } from "react-icons/io";
 import { LuClock } from "react-icons/lu";
-import { MdEmergency, MdFilterAlt, MdOutlineEmail, MdOutlineFamilyRestroom, MdOutlinePets, MdOutlinePhone, MdOutlineSportsCricket } from "react-icons/md";
+import { MdAccountCircle, MdEmergency, MdFilterAlt, MdOutlineEmail, MdOutlineFamilyRestroom, MdOutlinePets, MdOutlinePhone, MdOutlineSportsCricket } from "react-icons/md";
 import { RiAccountCircleLine, RiInstagramFill, RiUserCommunityFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import { IoLocationOutline, IoSchoolSharp } from "react-icons/io5";
 import { MdMedicalServices } from "react-icons/md";
+import { VscAccount } from "react-icons/vsc";
 
 export const SearchIcon = FiSearch
 export const AccountIcon = RiAccountCircleLine
@@ -44,3 +45,4 @@ export const EventIcon = BsCalendar2Event
 export const FamilyIcon = MdOutlineFamilyRestroom
 export const SportIcon = MdOutlineSportsCricket
 export const AddIcon = FaPlus
+export const ProfileIcon = MdAccountCircle

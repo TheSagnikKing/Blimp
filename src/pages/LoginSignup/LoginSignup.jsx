@@ -15,7 +15,9 @@ const LoginSignup = () => {
   const {
     user,
     setUser,
-    setIsAuthenticated
+    setIsAuthenticated,
+    userId,
+    setUserId
   } = useAuth()
 
 
@@ -214,10 +216,10 @@ const LoginSignup = () => {
           style: toastStyle,
         });
 
-        localStorage.setItem("usersignindata", JSON.stringify(data?.data))
-        setUser(data?.data)
         localStorage.setItem("usersignin", "true")
+        localStorage.setItem("userId", data?.data?.userData?.id)
         setIsAuthenticated(true)
+        setUserId(data?.data?.userData?.id)
         navigate("/account")
       } else {
         toast.error(data.message, { duration: 3000, style: toastStyle });
