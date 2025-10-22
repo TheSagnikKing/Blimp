@@ -1,8 +1,20 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Sidebar.module.css";
+import { useAuth } from "../../context/AuthContext";
 
 const Sidebar = () => {
+  const {
+    user,
+    setUser,
+    isAuthenticated,
+    setIsAuthenticated,
+    userId,
+    setUserId
+  } = useAuth()
+
+  const navigate = useNavigate()
+
   return (
     <div className={styles.sidebar}>
       <NavLink
@@ -41,18 +53,23 @@ const Sidebar = () => {
       </NavLink>
 
       <NavLink
-        to="/account/kyc-document"
-        className={({ isActive }) => (isActive ? styles.active : "")}
-      >
-        KYC Document
-      </NavLink>
-
-      <NavLink
         to="/account/change-password"
         className={({ isActive }) => (isActive ? styles.active : "")}
       >
         Change Password
       </NavLink>
+
+      <button
+        onClick={() => {
+          localStorage.removeItem("userId")
+          localStorage.removeItem("usersignin")
+          setUser(null)
+          setUserId(null)
+          setIsAuthenticated(false)
+          navigate("/login-signup")
+        }}
+        className={styles.logoutButton}
+      >Logout</button>
 
     </div>
   );

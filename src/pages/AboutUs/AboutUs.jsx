@@ -128,12 +128,12 @@ const AboutUs = () => {
 
         <div>
           <h2>latest news and blog</h2>
-          <button onClick={() => {
+          {/* <button onClick={() => {
             window.scrollTo(0, 0)
             navigate("/news-blog")
           }}>
             <span>more news</span>
-          </button>
+          </button> */}
         </div>
 
         <div className={style.blogCardContainer}>

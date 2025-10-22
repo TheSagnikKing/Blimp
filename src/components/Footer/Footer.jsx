@@ -15,15 +15,6 @@ const Footer = () => {
       name: "How it Works",
     },
     {
-      name: "Blog",
-    },
-    {
-      name: "BlimpTube",
-    },
-    {
-      name: "Case Studies",
-    },
-    {
       name: "Team",
     },
     {
@@ -37,9 +28,6 @@ const Footer = () => {
     },
     {
       name: "Terms & Conditions",
-    },
-    {
-      name: "Settings",
     },
   ];
 

@@ -85,7 +85,7 @@ const App = () => {
                   <Route path="draft-campaigns" element={<DraftCampaigns />} />
                   <Route path="donation-history" element={<DonationHistory />} />
                   <Route path="bank-account" element={<BankAccount />} />
-                  <Route path="kyc-document" element={<KYC />} />
+                  {/* <Route path="kyc-document" element={<KYC />} /> */}
                   <Route path="change-password" element={<ChangePassword />} />
                 </Route>
               </Route>

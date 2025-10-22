@@ -93,7 +93,7 @@
     align-items: center;
 
     &>button {
-      height: 4.4rem;
+      height: 4rem;
       padding-inline: 3rem;
       border-radius: 3rem;
       -webkit-border-radius: 3rem;
@@ -104,8 +104,8 @@
       outline: none;
       cursor: pointer;
       font-size: var(--font-medium);
-      font-weight: 700;
-      text-transform: uppercase;
+      font-weight: 500;
+      /* text-transform: uppercase; */
     }
 
     &>button:nth-child(1) {
@@ -120,6 +120,39 @@
   }
 }
 
+
+.noDraftCampaigns {
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+  height: 100%;
+
+  &>div {
+    &>h1 {
+      text-align: center;
+    }
+
+    &>button {
+      height: 4.4rem;
+      width: fit-content;
+      padding-inline: 3rem;
+      border-radius: 1rem;
+      -webkit-border-radius: 1rem;
+      -moz-border-radius: 1rem;
+      -ms-border-radius: 1rem;
+      -o-border-radius: 1rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: var(--font-medium);
+      font-weight: 700;
+      text-transform: uppercase;
+      background-color: #8FD600;
+      color: #000;
+      margin-top: 2rem;
+    }
+  }
+}
 
 @media screen and (min-width:0px) and (max-width:430px) {
   .campaignCard {

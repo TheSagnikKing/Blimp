@@ -55,19 +55,19 @@
     }
 
     &>button {
-      height: 6rem;
+      height: 4rem;
       border: none;
       outline: none;
       cursor: pointer;
       font-size: var(--font-medium);
-      font-weight: 700;
-      background-color: rgba(231, 66, 75, 1);
+      font-weight: 500;
+      background-color: #000;
       color: #ffffff;
-      border-radius: var(--button-radius);
-      -webkit-border-radius: var(--button-radius);
-      -moz-border-radius: var(--button-radius);
-      -ms-border-radius: var(--button-radius);
-      -o-border-radius: var(--button-radius);
+      border-radius: 2rem;
+      -webkit-border-radius: 2rem;
+      -moz-border-radius: 2rem;
+      -ms-border-radius: 2rem;
+      -o-border-radius: 2rem;
     }
   }
 
@@ -155,7 +155,7 @@
       font-size: 1.4rem;
     }
 
-    &>div{
+    &>div {
       display: grid;
       place-items: center;
       font-size: 1.8rem;

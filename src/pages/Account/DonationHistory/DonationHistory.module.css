@@ -11,32 +11,8 @@
   -o-border-radius: var(--button-radius);
   margin-bottom: 2rem;
 
-  &>div:nth-child(1) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    &>h2 {
-      font-size: 4rem;
-    }
-
-    &>button {
-      height: 4.4rem;
-      padding-inline: 3rem;
-      border-radius: 3rem;
-      -webkit-border-radius: 3rem;
-      -moz-border-radius: 3rem;
-      -ms-border-radius: 3rem;
-      -o-border-radius: 3rem;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      font-size: var(--font-medium);
-      font-weight: 700;
-      text-transform: uppercase;
-      background-color: #8FD600;
-      color: var(--text-primary);
-    }
+  &>h2 {
+    font-size: 4rem;
   }
 
   .donationContainer {
@@ -111,22 +87,103 @@
     }
   }
 
+  &>div:nth-child(3) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &>button {
+      height: 4rem;
+      width: fit-content;
+      padding-inline: 3rem;
+      border-radius: 3rem;
+      -webkit-border-radius: 3rem;
+      -moz-border-radius: 3rem;
+      -ms-border-radius: 3rem;
+      -o-border-radius: 3rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: var(--font-medium);
+      font-weight: 500;
+      /* text-transform: uppercase; */
+    }
+
+    &>button:nth-child(1) {
+      background-color: #8FD600;
+      color: var(--text-primary);
+    }
+
+    &>button:nth-child(2) {
+      background-color: #000000;
+      color: #fff;
+    }
+  }
 }
 
-@media screen and (min-width:0px) and (max-width:1200px) {
+.noDonationHistory {
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+  height: 100%;
+
+  &>div {
+    &>h1 {
+      text-align: center;
+    }
+
+    &>button {
+      height: 4.4rem;
+      width: fit-content;
+      padding-inline: 3rem;
+      border-radius: 1rem;
+      -webkit-border-radius: 1rem;
+      -moz-border-radius: 1rem;
+      -ms-border-radius: 1rem;
+      -o-border-radius: 1rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: var(--font-medium);
+      font-weight: 700;
+      text-transform: uppercase;
+      background-color: #8FD600;
+      color: #000;
+      margin-top: 2rem;
+    }
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 430px) {
   .campaignCard {
-    &>div:nth-child(1) {
+    &>h2 {
+      font-size: var(--subheader-small);
+    }
+
+    .donationContainer {
+      &>div:nth-child(2) {
+        gap: 1rem;
+
+        &>div {
+          &>p:nth-child(1) {
+            font-size: var(--font-small);
+          }
+
+          &>p:nth-child(2) {
+            font-size: var(--font-vsmall);
+          }
+        }
+      }
+    }
+
+    &>div:nth-child(3) {
       flex-direction: column;
-      align-items: flex-start;
       gap: 1rem;
 
-      &>h2 {
-        font-size: 3rem;
-      }
-
       &>button {
-        height: 4rem;
-        padding-inline: 2.5rem;
+        width: 100%;
+        height: 5rem;
+        padding-inline: 0;
         font-size: var(--font-small);
       }
     }

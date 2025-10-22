@@ -6,7 +6,7 @@ const BankAccount = () => {
     <div className={styles.bankContainer}>
       <div>
         <span></span>
-        <button>change bank account</button>
+        {/* <button>change bank account</button> */}
       </div>
 
       <form action="">
@@ -30,7 +30,7 @@ const BankAccount = () => {
           <input type="text" />
         </div>
 
-        <button>update</button>
+        {/* <button>update</button> */}
       </form>
     </div>
   )

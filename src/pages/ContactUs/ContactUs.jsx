@@ -179,7 +179,6 @@ const ContactUs = () => {
       }
 
     } catch (error) {
-      console.error("Error sending message:", error);
       toast.error("Something went wrong. Please try again.", { duration: 3000, style: toastStyle });
     } finally {
       setSendMessageLoader(false);
@@ -217,12 +216,13 @@ const ContactUs = () => {
                 <p>blimp@email.net</p>
               </div>
 
-              <div>
+              {/* <div>
                 <div>
                   <ClockIcon />
                 </div>
                 <p>Mon-Fri: 8:00am - 6:00pm</p>
-              </div>
+              </div> */}
+
             </div>
 
             <div>

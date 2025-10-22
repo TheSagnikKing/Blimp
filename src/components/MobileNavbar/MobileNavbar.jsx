@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import style from "./MobileNavbar.module.css";
 import blimpLogoBlack from "../../assets/blimpLogoBlack.png";
-import { CrossIcon, MenuIcon, RightIcon, SearchIcon } from "../../icons";
+import { CrossIcon, LeftIcon, MenuIcon, ProfileIcon, RightIcon, SearchIcon } from "../../icons";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const MobileNavbar = () => {
+
+  const {
+    isAuthenticated,
+    setIsAuthenticated,
+    user
+  } = useAuth()
+
   const menus = [
     {
       name: "How it works",
@@ -53,13 +61,6 @@ const MobileNavbar = () => {
       name: "Bank Account",
       url: "/account/bank-account",
     },
-
-    {
-      id: 6,
-      name: "KYC Document",
-      url: "/account/kyc-document",
-    },
-
     {
       id: 7,
       name: "Change Password",
@@ -78,7 +79,7 @@ const MobileNavbar = () => {
   const [authenticated, setAuthenticated] = useState(true)
   const [profileMenuOpen, setProfileMenuOpen] = useState(false)
 
-
+  console.log(navigate)
 
   return (
     <header className={style.mobileHeader}>
@@ -128,13 +129,15 @@ const MobileNavbar = () => {
       )}
 
 
-
       {openMobileMenu && (
         <div className={style.mobileMenuContainer}>
-
           {
             profileMenuOpen ? (
               <div>
+                <button onClick={() => {
+                  navigate(-1)
+                  setProfileMenuOpen(false)
+                }}><LeftIcon size={"1.2rem"} /> Back</button>
                 {AccountMenu.map((item) => {
                   return (
                     <button
@@ -168,18 +171,38 @@ const MobileNavbar = () => {
                 </div>
 
                 {
-                  authenticated ? (
+                  isAuthenticated && user?.profile_picture ? (
                     <div
                       onClick={() => setProfileMenuOpen(true)}
                       className={style.profileSectionCard}>
-                      <div><p>AG</p></div>
+                      <div><img
+                        src={user.profile_picture} alt=""
+                        width={"100%"}
+                        height={"100%"}
+                        style={{ borderRadius: "50%" }}
+                      /></div>
                       <div>
-                        <p>Arghya Ghosh</p>
+                        <p>{user?.fullname}</p>
+                        <div><RightIcon /></div>
+                      </div>
+                    </div>
+                  ) : isAuthenticated ? (
+                    <div
+                      onClick={() => setProfileMenuOpen(true)}
+                      className={style.profileSectionCard}>
+                      <div><ProfileIcon size={"4.5rem"} /></div>
+                      <div>
+                        <p>{user?.fullname}</p>
                         <div><RightIcon /></div>
                       </div>
                     </div>
                   ) : (
-                    <button>Login</button>
+                    <button
+                      className={style.signinBtn}
+                      onClick={() => {
+                        setOpenMobileMenu(false);
+                        navigate("/login-signup")
+                      }}>Sign In</button>
                   )
                 }
 
@@ -188,8 +211,9 @@ const MobileNavbar = () => {
           }
 
         </div>
-      )}
-    </header>
+      )
+      }
+    </header >
   );
 };
 

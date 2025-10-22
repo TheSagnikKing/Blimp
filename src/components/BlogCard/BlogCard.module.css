@@ -60,10 +60,18 @@
       outline: none;
 
       &>span {
-        font-size: 2rem;
+        font-size: var(--font-small);
+        background-color: #efefef;
+        height: 2.5rem;
+        width: 2.5rem;
         display: flex;
+        justify-content: center;
         align-items: center;
-        color: rgba(10, 132, 255, 1);
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
       }
     }
   }

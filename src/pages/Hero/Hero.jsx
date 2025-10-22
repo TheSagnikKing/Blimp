@@ -300,7 +300,7 @@ const Hero = () => {
         </div>
       </section>
 
-      <RegionMapContainer />
+      {/* <RegionMapContainer /> */}
 
       <section className={style.newsContainer}>
         <div>
@@ -361,7 +361,7 @@ const Hero = () => {
         </div>
       </section>
 
-      <section className={style.biographContainer}>
+      {/* <section className={style.biographContainer}>
         <div>
           <div>
             <h2>Changing Lives, Together</h2>
@@ -379,7 +379,7 @@ const Hero = () => {
 
           <img src={BiographImage} alt="" />
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

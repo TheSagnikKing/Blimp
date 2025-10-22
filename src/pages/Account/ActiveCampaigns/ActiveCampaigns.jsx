@@ -45,10 +45,7 @@ const ActiveCampaigns = () => {
   }, [userId])
 
 
-  console.log("activeCampaigns ", activeCampaigns)
-
   return (
-
     activeCampaigns?.loading ? (
       <>
         {
@@ -75,7 +72,7 @@ const ActiveCampaigns = () => {
       <>
         {activeCampaigns?.data?.data?.campaigns?.map((item) => {
           return (
-            <div className={styles.campaignCard} key={item}>
+            <div className={styles.campaignCard} key={item.id}>
               <h2>{item?.campaign_name}</h2>
 
               <div className={styles.donationContainer}>
@@ -121,50 +118,6 @@ const ActiveCampaigns = () => {
         </div>
       </div >
     )
-
-    // true ? (
-    // <div
-    //   className={styles.noActiveCampaigns}
-    //   style={{
-    //     display: "flex",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //     height: "100%"
-    //   }}>
-    //   <div>
-    //     <h1>No Active Campaigns</h1>
-    //     <button
-    //       onClick={() => {
-    //         navigate("/start-campaign")
-    //       }}>Start a campaign</button>
-    //   </div>
-    // </div >
-    // ) : (
-    // <>
-    //   {[1, 2, 3, 4].map((item) => {
-    //     return (
-    //       <div className={styles.campaignCard} key={item}>
-    //         <h2>*Your Campaign Name*</h2>
-
-    //         <div className={styles.donationContainer}>
-    //           <p>
-    //             Published by: <b>Arghya Ghosh</b>
-    //           </p>
-    //           <ProgressBar />
-    //         </div>
-
-    //         <div>
-    //           <button onClick={() => navigate("/cause")}>
-    //             view campaign
-    //           </button>
-    //           <button>promote campaign</button>
-    //         </div>
-    //       </div>
-    //     );
-    //   })}
-    // </>
-    // )
-
   );
 };
 

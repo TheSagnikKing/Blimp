@@ -150,7 +150,8 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      width: min(57.7rem, 100%);
+      /* width: min(47.7rem, 100%); */
+      width: fit-content;
       height: min(6.3rem, auto);
       align-content: flex-start;
       gap: 2rem;
@@ -183,28 +184,45 @@
     padding-inline: 1.5rem;
     padding-block: 1.5rem;
 
-    &>div:nth-child(1) {
-      display: block;
-
+    &>div {
       &>div:nth-child(1) {
-        flex-direction: column;
+        display: block;
 
-        &>h2 {
-          font-size: 2.2rem;
+        &>div:nth-child(1) {
+          flex-direction: column;
+
+          &>h2 {
+            font-size: 2.4rem;
+          }
+        }
+
+        .linkContainer {
+          margin-inline: auto;
+
+          &>div:nth-child(2) {
+            margin-inline: auto;
+          }
         }
       }
 
-      .linkContainer {
-        margin-inline: auto;
+      &>p {
+        margin-block: 2rem;
+        font-size: 1.6rem;
+      }
 
-        &>div:nth-child(2) {
-          margin-inline: auto;
+      .menuContainer {
+        &>a {
+          font-size: 1.2rem;
         }
       }
     }
+  }
+
+  .copyrightContainer {
+    height: 6rem;
 
     &>p {
-      margin-block: 2rem
+      font-size: 1.4rem;
     }
   }
 }
@@ -235,7 +253,7 @@
         }
       }
 
-      &>p{
+      &>p {
         text-align: center;
       }
     }

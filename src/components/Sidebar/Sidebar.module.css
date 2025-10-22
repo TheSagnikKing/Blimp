@@ -24,21 +24,31 @@
   -o-border-radius: var(--button-radius);
 }
 
+.logoutButton {
+  width: max-content;
+  padding-inline: 2rem;
+  height: 5rem;
+  border: none;
+  font-size: var(--font-large);
+  font-weight: 700;
+  cursor: pointer;
+  background-color: transparent;
+}
 
-@media screen and (min-width: 0px) and (max-width: 430px){
-  .sidebar{
+@media screen and (min-width: 0px) and (max-width: 430px) {
+  .sidebar {
     display: none;
   }
 }
 
-@media screen and (min-width: 431px) and (max-width: 768px){
-  .sidebar{
+@media screen and (min-width: 431px) and (max-width: 768px) {
+  .sidebar {
     display: none;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1200px){
-  .sidebar{
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .sidebar {
     width: 30rem;
   }
 }

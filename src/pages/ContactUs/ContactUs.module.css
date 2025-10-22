@@ -205,20 +205,18 @@
       &>button {
         width: max-content;
         height: 4rem;
-        padding-inline: 4rem;
         border-radius: 3rem;
         -webkit-border-radius: 3rem;
         -moz-border-radius: 3rem;
         -ms-border-radius: 3rem;
         -o-border-radius: 3rem;
-        padding-inline: 4rem;
+        padding-inline: 2rem;
         border: none;
         outline: none;
         cursor: pointer;
         background-color: #8FD600;
-        font-weight: 700;
+        font-weight: 500;
         font-size: var(--font-large);
-        text-transform: uppercase;
       }
     }
   }

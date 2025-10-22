@@ -37,7 +37,9 @@ const FeatureCard = ({ featureItem }) => {
 
         <button>
           <span>View More</span>
-          <RightIcon />
+          <div>
+            <RightIcon />
+          </div>
         </button>
       </div>
     </div>

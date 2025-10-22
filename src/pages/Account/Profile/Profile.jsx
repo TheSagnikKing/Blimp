@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 import { toastStyle } from "../../../utils/toastStyles";
 import api from "../../../api/api";
 import { ClipLoader } from "react-spinners";
+import { Skeleton } from "@mui/material";
+import { useGlobalContext } from "../../../context/GlobalContext";
 
 const Profile = () => {
 
@@ -17,6 +19,8 @@ const Profile = () => {
     isAuthenticated,
     userId
   } = useAuth()
+
+  const { mobileWidth } = useGlobalContext();
 
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -141,7 +145,6 @@ const Profile = () => {
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      // setProfileImage(URL.createObjectURL(file));
 
       const allowedTypes = ["image/jpeg", "image/webp", "image/png"];
       if (!allowedTypes.includes(file.type)) {
@@ -183,50 +186,41 @@ const Profile = () => {
     }
   };
 
+  // console.log(user?.profile_picture)
+
   return (
     <div className={styles.profileContainer}>
       {/* Profile Picture Section */}
       <div className={styles.avatarWrapper}>
         <div className={styles.avatar}>
-          {profileImage ? (
-            <div
-              style={{
-                width: "17rem",
-                height: "17rem",
-              }}
-            >
+          <div
+            className={styles.profileImageContainer}
+          >
+            {profileImageLoader ? (
+              <Skeleton
+                variant="circular"
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
+            ) : profileImage ? (
               <img
                 src={profileImage}
                 alt="Profile"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                }}
+                className={styles.profileImage}
               />
-            </div>
-          ) : user?.profile_picture ? (
-            <div
-              style={{
-                width: "17rem",
-                height: "17rem",
-              }}
-            >
+            ) : user?.profile_picture ? (
               <img
-                src={user?.profile_picture}
+                src={user.profile_picture}
                 alt="Profile"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                }}
+                className={styles.profileImage}
               />
-            </div>
-          ) : (
-            <ProfileIcon size="17rem" />
-          )}
+            ) : (
+              <ProfileIcon size={mobileWidth ? "14rem" : "17rem"} />
+            )}
+          </div>
+
 
           {/* Hidden file input */}
           <input

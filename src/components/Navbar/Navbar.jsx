@@ -9,7 +9,8 @@ const Navbar = () => {
 
   const {
     isAuthenticated,
-    setIsAuthenticated
+    setIsAuthenticated,
+    user
   } = useAuth()
 
   const navigate = useNavigate()
@@ -73,7 +74,14 @@ const Navbar = () => {
           </button>
 
           {
-            isAuthenticated ? (
+            isAuthenticated && user?.profile_picture ? (
+              <button
+                className={style.profileBtn}
+                onClick={() => navigate("/account")}
+              >
+                <img src={user?.profile_picture} alt="" width={"100%"} height={"100%"} style={{ borderRadius: "50%" }} />
+              </button>
+            ) : isAuthenticated ? (
               <button
                 className={style.profileBtn}
                 onClick={() => navigate("/account")}

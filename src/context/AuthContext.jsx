@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
             const fetchLoggedinUser = async () => {
                 try {
                     const { data } = await api.post("/get-profile", {
-                        user_id: "58"
+                        user_id: userId
                     });
 
                     if (data.code === 200) {
