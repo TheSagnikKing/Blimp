@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./WorkCard.module.css";
 import { useGlobalContext } from "../../context/GlobalContext";
 
-const WorkCard = ({ dir, title }) => {
-  
+const WorkCard = ({ dir, title, description }) => {
   const { mobileWidth } = useGlobalContext();
 
   return (
@@ -16,13 +15,7 @@ const WorkCard = ({ dir, title }) => {
           />
           <div>
             <h2>{title}</h2>
-            <p>
-              Having a great idea or a noble cause is just the beginning. At
-              Blimp, we help you turn your passion into real-world results. Our
-              fundraising platform empowers you to rally support, raise funds,
-              and bring your vision to life—because good intentions deserve the
-              chance to make a real impact. Let's make it happen, together.
-            </p>
+            <p>{description}</p>
           </div>
         </>
       ) : dir === "left" ? (
@@ -33,26 +26,14 @@ const WorkCard = ({ dir, title }) => {
           />
           <div>
             <h2>{title}</h2>
-            <p>
-              Having a great idea or a noble cause is just the beginning. At
-              Blimp, we help you turn your passion into real-world results. Our
-              fundraising platform empowers you to rally support, raise funds,
-              and bring your vision to life—because good intentions deserve the
-              chance to make a real impact. Let's make it happen, together.
-            </p>
+            <p>{description}</p>
           </div>
         </>
       ) : (
         <>
           <div>
             <h2>{title}</h2>
-            <p>
-              Having a great idea or a noble cause is just the beginning. At
-              Blimp, we help you turn your passion into real-world results. Our
-              fundraising platform empowers you to rally support, raise funds,
-              and bring your vision to life—because good intentions deserve the
-              chance to make a real impact. Let's make it happen, together.
-            </p>
+            <p>{description}</p>
           </div>
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqdnu3tuqGZxqxqvmLhwEEPSCTrXCJOW0J4Q&s"

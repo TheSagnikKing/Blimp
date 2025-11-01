@@ -45,8 +45,6 @@ const DonationHistory = () => {
 
   }, [userId])
 
-  console.log(donationHistory)
-
   return (
     donationHistory?.loading ? (
       <>

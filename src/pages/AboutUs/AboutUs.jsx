@@ -9,9 +9,8 @@ import api from "../../api/api";
 import Skeleton from "@mui/material/Skeleton";
 
 const AboutUs = () => {
-
-  const navigate = useNavigate()
-  const userId = 42
+  const navigate = useNavigate();
+  const userId = 42;
 
   const [userCampaigns, setUserCampaigns] = useState({
     loading: false,
@@ -31,7 +30,7 @@ const AboutUs = () => {
         setUserCampaigns((prev) => ({ ...prev, loading: true, error: null }));
         try {
           const { data } = await api.post("/get-campaigns", {
-            userId
+            userId,
           });
           if (data.code === 200) {
             setUserCampaigns({ loading: false, error: null, data });
@@ -42,7 +41,7 @@ const AboutUs = () => {
           setUserCampaigns({ loading: false, error: error.message, data: {} });
         }
       }
-    }
+    };
 
     const fetchLatestArticles = async () => {
       setLatestArticles((prev) => ({ ...prev, loading: true, error: null }));
@@ -58,19 +57,40 @@ const AboutUs = () => {
       }
     };
 
-    fetchUserCampaign()
+    fetchUserCampaign();
     fetchLatestArticles();
-
-  }, [userId])
+  }, [userId]);
 
   // console.log(latestArticles)
+
+  const aboutUsData = [
+    {
+      id: 1,
+      title: "Mission",
+      description:
+        "BLIMP's mission is to empower individuals, innovators, and organizations to bring their ideas to life through accessible, transparent, and community-driven crowdfunding solutions.We are dedicated to providing a trusted platform that bridges creators with supporters, fostering collaboration, creativity, and positive impact.By simplifying the crowdfunding experience and ensuring accountability, BLIMP enables people to fund their goals, grow their ventures, and inspire others to believe in the power of collective support.",
+    },
+    {
+      id: 2,
+      title: "Vision",
+      description:
+        "Our vision is to become a leading global platform for crowdfunding innovation, recognized for empowering creators and backers to collaborate toward meaningful change.We aspire to build a world where every idea, regardless of scale or origin, has the opportunity to succeed, supported by a network of engaged and confident contributors.Through integrity, inclusivity, and innovation, BLIMP seeks to redefine crowdfunding as a catalyst for sustainable growth, creativity, and social progress.",
+    },
+  ];
 
   return (
     <main>
       <section className={style.missionContainer}>
-        <WorkCard dir={"left"} title={"Our Mission*"} />
-        <WorkCard dir={"right"} title={"Our Vision*"} />
-        <WorkCard dir={"left"} title={"Our Values*"} />
+        {aboutUsData.map((item, index) => {
+          return (
+            <WorkCard
+              key={item.id}
+              dir={index % 2 === 0 ? "left" : "right"} // alternate direction
+              title={item.title}
+              description={item.description}
+            />
+          );
+        })}
       </section>
 
       {/* <FocusCard /> */}
@@ -95,9 +115,11 @@ const AboutUs = () => {
               Ut nisi faucibus ultrices etiam tortor vitae eros.
             </p>
 
-            <button onClick={() => {
-              navigate("/feature-detail")
-            }}>
+            <button
+              onClick={() => {
+                navigate("/feature-detail");
+              }}
+            >
               <p>learn more</p>
               <span>
                 <RightIcon />
@@ -115,9 +137,11 @@ const AboutUs = () => {
               viverra malesuada viverra eget aliquam. Diam mi dolor
             </p>
 
-            <button onClick={() => {
-              navigate("/checkout")
-            }}>
+            <button
+              onClick={() => {
+                navigate("/checkout");
+              }}
+            >
               <p>donate</p>
             </button>
           </div>
@@ -125,7 +149,6 @@ const AboutUs = () => {
       </section>
 
       <section className={style.blogsContainer}>
-
         <div>
           <h2>latest news and blog</h2>
           {/* <button onClick={() => {
@@ -137,10 +160,8 @@ const AboutUs = () => {
         </div>
 
         <div className={style.blogCardContainer}>
-
-          {
-            latestArticles.loading ? (
-              [0, 1, 2, 3, 4, 5].map((item) => {
+          {latestArticles.loading
+            ? [0, 1, 2, 3, 4, 5].map((item) => {
                 return (
                   <Skeleton
                     key={item}
@@ -150,33 +171,25 @@ const AboutUs = () => {
                       width: {
                         xs: "100%", // mobile
                         sm: "48%", // tablet
-                        md: "32%",  // desktop
+                        md: "32%", // desktop
                       },
                     }}
                   />
-                )
+                );
               })
-            ) : (
-              latestArticles?.data?.data?.remainingArticles?.map((item, index) => {
-                return (
-                  <BlogCard
-                    index={index}
-                    key={item.id}
-                    articleItem={item}
-                  />
-                )
-              })
-            )
-          }
-
+            : latestArticles?.data?.data?.remainingArticles?.map(
+                (item, index) => {
+                  return (
+                    <BlogCard index={index} key={item.id} articleItem={item} />
+                  );
+                }
+              )}
         </div>
 
         <button>more causes</button>
-
       </section>
     </main>
   );
 };
 
 export default AboutUs;
-
