@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./StartCampaign.module.css";
-import { DownArrow } from "../../icons";
+import { DownArrow, UpArrow } from "../../icons";
+import api from "../../api/api";
+import Skeleton from "@mui/material/Skeleton";
 
 const StartCampaign = () => {
   const [stepper, setStepper] = useState([
@@ -37,17 +39,76 @@ const StartCampaign = () => {
       name: "Payment",
     },
   ]);
-
-  const [selectCountry, setSelectCountry] = useState(false);
   const [selectedStep, setSelectedStep] = useState(1);
+
+  const [categories, setCategories] = useState({
+    loading: false,
+    error: null,
+    data: {},
+  });
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      setCategories((prev) => ({ ...prev, loading: true, error: null }));
+      try {
+        const { data } = await api.post("/get-category");
+        if (data.code === 200) {
+          setCategories({ loading: false, error: null, data });
+        } else if (data.code === 400) {
+          setCategories({
+            loading: false,
+            error: data.message,
+            data: {},
+          });
+        }
+      } catch (error) {
+        setCategories({ loading: false, error: error.message, data: {} });
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const [countries, setCountries] = useState({
+    loading: false,
+    error: null,
+    data: {},
+  });
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      setCountries((prev) => ({ ...prev, loading: true, error: null }));
+      try {
+        const { data } = await api.post("/get-countries");
+        if (data.code === 200) {
+          setCountries({ loading: false, error: null, data });
+        } else if (data.code === 400) {
+          setCountries({
+            loading: false,
+            error: data.message,
+            data: {},
+          });
+        }
+      } catch (error) {
+        setCountries({ loading: false, error: error.message, data: {} });
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
+  const [selectedCategoryOpen, setSelectedCategoryOpen] = useState(false);
+  const [selectedCountryOpen, setSelectedCountryOpen] = useState(false);
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [targetedAmount, setTargetedAmount] = useState(0);
+  const [campaignTitle, setCampaignTitle] = useState("");
 
   return (
     <section className={styles.startCampaignContainer}>
       <div>
-        <div
-          className={styles.mobileStepperCircle}
-        >
-
+        <div className={styles.mobileStepperCircle}>
           <div>
             <p>{selectedStep}</p>
           </div>
@@ -137,27 +198,106 @@ const StartCampaign = () => {
         {selectedStep === 1 && (
           <div className={styles.stepperCategoryContainer}>
             <div>
-              <div onClick={() => setSelectCountry((prev) => !prev)}>
-                <input type="text" placeholder="Select Country" readOnly />
-                <div>
-                  <DownArrow />
-                </div>
+              <div onClick={() => setSelectedCategoryOpen((prev) => !prev)}>
+                <input
+                  type="text"
+                  placeholder="Select Category"
+                  value={selectedCategory?.name ?? ""}
+                  readOnly
+                />
+                <div>{selectedCategoryOpen ? <UpArrow /> : <DownArrow />}</div>
               </div>
 
-              <button onClick={() => setSelectedStep(2)}>
+              <button
+                onClick={() => {
+                  if (!selectedCategory) {
+                    return;
+                  }
+                  setSelectedStep(2);
+                  localStorage.setItem(
+                    "selectedCategory",
+                    JSON.stringify(selectedCategory)
+                  );
+                }}
+              >
                 Save and Continue
               </button>
 
-              {selectCountry && (
-                <div className={styles.dropdownContainer}>dfbdfb</div>
-              )}
+              {selectedCategoryOpen &&
+                (categories.loading ? (
+                  <div className={styles.drop_down_container_loading}>
+                    <Skeleton
+                      variant="rectangular"
+                      height={"4rem"}
+                      animation="wave"
+                    />
+
+                    <Skeleton
+                      variant="rectangular"
+                      height={"4rem"}
+                      animation="wave"
+                    />
+
+                    <Skeleton
+                      variant="rectangular"
+                      height={"4rem"}
+                      animation="wave"
+                    />
+
+                    <Skeleton
+                      variant="rectangular"
+                      height={"4rem"}
+                      animation="wave"
+                    />
+                  </div>
+                ) : categories.data?.data?.length > 0 ? (
+                  <div className={styles.drop_down_container}>
+                    {categories.data?.data?.map((item) => {
+                      return (
+                        <button
+                          key={item.id}
+                          onClick={() => {
+                            setSelectedCategory(item);
+                            setSelectedCategoryOpen(false);
+                          }}
+                        >
+                          <p>{item.name}</p>
+                        </button>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className={styles.drop_down_container_error}>
+                    <p>No categories present</p>
+                  </div>
+                ))}
             </div>
 
             <div>
-              <div>1</div>
-              <div>2</div>
-              <div>3</div>
-              <div>4</div>
+              <div>
+                <img
+                  src="https://www.aljazeera.com/wp-content/uploads/2024/08/AFP__20240823__36EM9XC__v1__HighRes__BangladeshWeatherFlood-1724392248.jpg"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://www.aljazeera.com/wp-content/uploads/2024/08/AFP__20240823__36EM9XC__v1__HighRes__BangladeshWeatherFlood-1724392248.jpg"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://www.aljazeera.com/wp-content/uploads/2024/08/AFP__20240823__36EM9XC__v1__HighRes__BangladeshWeatherFlood-1724392248.jpg"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://www.aljazeera.com/wp-content/uploads/2024/08/AFP__20240823__36EM9XC__v1__HighRes__BangladeshWeatherFlood-1724392248.jpg"
+                  alt=""
+                />
+              </div>
             </div>
           </div>
         )}
@@ -165,20 +305,84 @@ const StartCampaign = () => {
         {selectedStep === 2 && (
           <div className={styles.stepperCountryContainer}>
             <div>
-              <div onClick={() => setSelectCountry((prev) => !prev)}>
-                <input type="text" placeholder="Select Country" readOnly />
-                <div>
-                  <DownArrow />
-                </div>
+              <div onClick={() => setSelectedCountryOpen((prev) => !prev)}>
+                <input
+                  type="text"
+                  placeholder="Select Country"
+                  value={`${selectedCountry?.name ?? ""} ${
+                    selectedCountry?.phone_code ?? ""
+                  }`.trim()}
+                  readOnly
+                />
+
+                <div>{selectedCategoryOpen ? <UpArrow /> : <DownArrow />}</div>
               </div>
 
-              <button onClick={() => setSelectedStep(3)}>
+              <button
+                onClick={() => {
+                  if (!selectedCountry) {
+                    return;
+                  }
+                  setSelectedStep(3);
+                  localStorage.setItem(
+                    "selectedCountry",
+                    JSON.stringify(selectedCountry)
+                  );
+                }}
+              >
                 Save and Continue
               </button>
 
-              {selectCountry && (
-                <div className={styles.dropdownContainer}>dfbdfb</div>
-              )}
+              {selectedCountryOpen &&
+                (countries.loading ? (
+                  <div className={styles.drop_down_container_loading}>
+                    <Skeleton
+                      variant="rectangular"
+                      height={"4rem"}
+                      animation="wave"
+                    />
+
+                    <Skeleton
+                      variant="rectangular"
+                      height={"4rem"}
+                      animation="wave"
+                    />
+
+                    <Skeleton
+                      variant="rectangular"
+                      height={"4rem"}
+                      animation="wave"
+                    />
+
+                    <Skeleton
+                      variant="rectangular"
+                      height={"4rem"}
+                      animation="wave"
+                    />
+                  </div>
+                ) : countries.data?.data?.length > 0 ? (
+                  <div className={styles.drop_down_container}>
+                    {countries.data?.data?.map((item) => {
+                      return (
+                        <button
+                          key={item.id}
+                          onClick={() => {
+                            setSelectedCountry(item);
+                            setSelectedCountryOpen(false);
+                          }}
+                        >
+                          <p>
+                            {item.name} {item.phone_code}
+                          </p>
+                        </button>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className={styles.drop_down_container_error}>
+                    <p>No country present</p>
+                  </div>
+                ))}
             </div>
           </div>
         )}
@@ -186,20 +390,33 @@ const StartCampaign = () => {
         {selectedStep === 3 && (
           <div className={styles.stepperGoalContainer}>
             <div>
-              <div onClick={() => setSelectCountry((prev) => !prev)}>
-                <input type="text" placeholder="$ 0.00" readOnly />
-                <div>
-                  <DownArrow />
-                </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Your goal"
+                  value={targetedAmount}
+                  onChange={(e) => {
+                    const numericValue = e.target.value.replace(/[^0-9.]/g, "");
+                    setTargetedAmount(numericValue);
+                  }}
+                />
               </div>
 
-              <button onClick={() => setSelectedStep(4)}>
+              <button
+                onClick={() => {
+                  if (!targetedAmount) {
+                    return;
+                  }
+
+                  setSelectedStep(4);
+                  localStorage.setItem(
+                    "targetedAmount",
+                    JSON.stringify(targetedAmount)
+                  );
+                }}
+              >
                 Save and Continue
               </button>
-
-              {selectCountry && (
-                <div className={styles.dropdownContainer}>dfbdfb</div>
-              )}
             </div>
           </div>
         )}
@@ -207,15 +424,30 @@ const StartCampaign = () => {
         {selectedStep === 4 && (
           <div className={styles.stepperTitleContainer}>
             <div>
-              <input type="text" placeholder="Name your campaign" value={""} />
+              <div>
+                <input
+                  type="text"
+                  placeholder="Name your campaign"
+                  value={campaignTitle}
+                  onChange={(e) => setCampaignTitle(e.target.value)}
+                />
+              </div>
 
-              <button onClick={() => setSelectedStep(5)}>
+              <button
+                onClick={() => {
+                  if (!campaignTitle) {
+                    return;
+                  }
+
+                  setSelectedStep(5);
+                  localStorage.setItem(
+                    "campaignTitle",
+                    JSON.stringify(campaignTitle)
+                  );
+                }}
+              >
                 Save and Continue
               </button>
-
-              {selectCountry && (
-                <div className={styles.dropdownContainer}>dfbdfb</div>
-              )}
             </div>
           </div>
         )}

@@ -34,6 +34,10 @@ const App = () => {
       p, h1, h2, h3, h4, h5, i, a, input, textarea, input::placeholder, textarea::placeholder, select, label {
         color: var(--text-primary);
       }
+
+      p {
+        font-size: 1.6rem;
+      }
     `;
     document.head.appendChild(styleElement);
 

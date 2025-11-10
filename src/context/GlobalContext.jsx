@@ -64,11 +64,10 @@ export const GlobalProvider = ({ children }) => {
         }
     }, [theme]);
 
-
     const value = {
         mobileWidth,
         openMobileMenu,
-        setOpenMobileMenu,
+        setOpenMobileMenu
     };
 
     return (

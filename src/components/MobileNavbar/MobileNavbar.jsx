@@ -79,8 +79,6 @@ const MobileNavbar = () => {
   const [authenticated, setAuthenticated] = useState(true)
   const [profileMenuOpen, setProfileMenuOpen] = useState(false)
 
-  console.log(navigate)
-
   return (
     <header className={style.mobileHeader}>
       {searchOpen && location.pathname === "/" ? (

@@ -4,7 +4,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FiArrowRight, FiSearch } from "react-icons/fi";
 import { GiHamburgerMenu, GiProgression, GiSprout } from "react-icons/gi";
 import { GoCalendar } from "react-icons/go";
-import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp, IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { LuClock } from "react-icons/lu";
 import { MdAccountCircle, MdEmergency, MdFilterAlt, MdOutlineEmail, MdOutlineFamilyRestroom, MdOutlinePets, MdOutlinePhone, MdOutlineSportsCricket } from "react-icons/md";
 import { RiAccountCircleLine, RiInstagramFill, RiUserCommunityFill } from "react-icons/ri";
@@ -30,7 +30,8 @@ export const WhatsappIcon = BsWhatsapp
 export const CreditCardIcon = BsFillCreditCard2BackFill
 export const EditIcon = FaPen
 export const CameraIcon = FaCamera
-export const DownArrow = FaSortDown
+export const DownArrow = IoIosArrowDown
+export const UpArrow = IoIosArrowUp
 export const EyeIcon = IoMdEye
 export const EyeOffIcon = IoMdEyeOff
 export const PlaceIcon = IoLocationOutline
