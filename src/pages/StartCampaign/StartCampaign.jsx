@@ -8,8 +8,12 @@ import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import { toastStyle } from "../../utils/toastStyles";
 import { set, get, del } from "idb-keyval";
+import { useNavigate } from "react-router-dom";
 
 const StartCampaign = () => {
+  
+  const navigate = useNavigate()
+
   const parseSelectedCategory =
     JSON.parse(localStorage.getItem("selectedCategory")) || null;
   const parseSelectedCountry =
@@ -228,7 +232,7 @@ const StartCampaign = () => {
   };
 
   const handle_remove_image = async (image_id) => {
-    const campaign_images = await get("campaignImages") || [];
+    const campaign_images = (await get("campaignImages")) || [];
     const updated_campaign_images = campaign_images.filter(
       (item) => item.id !== image_id
     );
@@ -236,6 +240,8 @@ const StartCampaign = () => {
     await set("campaignImages", updated_campaign_images);
     setSelectedCampaignImages(updated_campaign_images);
   };
+
+  // console.log("Idx file", bannerImage.file);
 
   const handle_banner_file_select = async (e) => {
     const file = e.target.files[0];
@@ -287,42 +293,65 @@ const StartCampaign = () => {
     data: {},
   });
 
-  const start_campaign_handler = async () => {
-    const campaign_data = {
-      user_id: user.id,
-      category: parseSelectedCategory.id,
-      country: parseSelectedCountry.id,
-      target_amount: parseTargetedAmount,
-      purpose: 1,
-      campaign_name: parseCampaignTitle,
-      description: parseSelectedCampaingDescription,
-      campagin_date: new Date().toISOString().split("T")[0],
-      hear_about_blimp: "Online",
-      banner_image: "",
-      images: "",
-      name: user.fullname,
-      email: user.email,
-      request_for_donor: 1,
-      team_memeber_name: parseBeneficiaryDetail,
-      is_draft: 0,
-    };
 
+  const start_campaign_handler = async () => {
     try {
+      const formData = new FormData();
+
+      formData.append("user_id", user.id);
+      formData.append("category", parseSelectedCategory.id);
+      formData.append("country", parseSelectedCountry.id);
+      formData.append("target_amount", parseTargetedAmount);
+      formData.append("purpose", 1);
+      formData.append("campaign_name", parseCampaignTitle);
+      formData.append("description", parseSelectedCampaingDescription);
+      formData.append("campagin_date", new Date().toISOString().split("T")[0]);
+      formData.append("hear_about_blimp", "Online");
+      formData.append("name", user.fullname);
+      formData.append("email", user.email);
+      formData.append("request_for_donor", 1);
+      formData.append("team_memeber_name", parseBeneficiaryDetail);
+      formData.append("is_draft", 0);
+
+      // ✅ Append single file
+      if (bannerImage?.file) {
+        formData.append("banner_image", bannerImage.file);
+      }
+
+      // ✅ Append multiple files
+      if (selectedCampaignImages?.length > 0) {
+        selectedCampaignImages.forEach((item, index) => {
+          formData.append("images", item.file); // backend must accept array files
+        });
+      }
+
       setStartCampaign((prev) => ({ ...prev, loading: true, error: null }));
 
-      const { data } = await api.post("/campaigns", campaign_data);
+      const { data } = await api.post("/campaigns", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (data.code === 200) {
         setStartCampaign({ loading: false, error: null, data });
+        const keysToRemove = [
+          "beneficiaryDetail",
+          "campaignTitle",
+          "selectedCampaingDescription",
+          "selectedCategory",
+          "selectedCountry",
+          "targetedAmount",
+          "userEmail",
+          "userFullname"
+        ]
 
-        if (campaign_data?.banner_image) {
-          console.log("Calling banner image api");
-        }
+        keysToRemove.forEach((key) => localStorage.removeItem(key))
+        await del("bannerImage")
+        await del("campaignImages")
+        toast.success(data.message, { duration: 3000, style: toastStyle });
+        navigate("/account/draft-campaigns")
 
-        if (campaign_data?.images.length > 0) {
-          console.log("Calling images api");
-        }
-        console.log("Clearing Local Storage");
       } else if (data.code === 400) {
         toast.error(data.message, { duration: 3000, style: toastStyle });
         setStartCampaign({ loading: false, error: data.message, data: {} });
@@ -957,10 +986,6 @@ const StartCampaign = () => {
                 localStorage.setItem(
                   "selectedCampaingDescription",
                   JSON.stringify(selectedCampaingDescription)
-                );
-                localStorage.setItem(
-                  "selectedCampaignImages",
-                  JSON.stringify(selectedCampaignImages)
                 );
                 localStorage.setItem(
                   "beneficiaryDetail",

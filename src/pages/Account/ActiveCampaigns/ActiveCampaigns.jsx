@@ -82,7 +82,7 @@ const ActiveCampaigns = () => {
 
                 <ProgressBar
                   raisedAmount={item?.raisedAmount}
-                  targetAmount={item?.targetAmount}
+                  targetAmount={item?.target_amount}
                   percentageAchieved={item?.percentageAchieved}
                   donationCount={item?.donationInfo?.length}
                   currency={item?.country?.currency}
