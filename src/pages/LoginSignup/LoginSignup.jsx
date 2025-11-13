@@ -10,20 +10,14 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const LoginSignup = () => {
-
-  const navigate = useNavigate()
-  const {
-    user,
-    setUser,
-    setIsAuthenticated,
-    userId,
-    setUserId
-  } = useAuth()
-
+  const navigate = useNavigate();
+  const { user, setUser, setIsAuthenticated, userId, setUserId } = useAuth();
 
   const [signinEmail, setSigninEmail] = useState("");
   const [signinPassword, setSigninPassword] = useState("");
-  const [signinLoader, setSigninLoader] = useState("")
+  const [signinLoader, setSigninLoader] = useState("");
+  const [accountType, setAccountType] =
+    useState("individual");
 
   // signin error states
   const [signinEmailError, setSigninEmailError] = useState("");
@@ -98,6 +92,7 @@ const LoginSignup = () => {
     setSignupPasswordError("");
     setSignupConfirmPasswordError("");
     setSignupPhoneNumberError("");
+    setAccountType("individual")
 
     if (!firstname.trim()) {
       setFirstnameError("First name is required");
@@ -150,12 +145,15 @@ const LoginSignup = () => {
       fullname: `${firstname} ${lastname}`,
       email: signupEmail,
       password: signupPassword,
-      phone_number: Number(signupPhoneNumber.replace("+", "").slice(countryCode.length)),
+      account_type: accountType === "individual" ? 1 : 2,
+      phone_number: Number(
+        signupPhoneNumber.replace("+", "").slice(countryCode.length)
+      ),
       country_code: Number(countryCode),
     };
 
     try {
-      setSignupLoader(true)
+      setSignupLoader(true);
       const { data } = await api.post("/signup", signupData);
 
       if (data.code === 200) {
@@ -166,17 +164,15 @@ const LoginSignup = () => {
       } else {
         toast.error(data.message, { duration: 3000, style: toastStyle });
       }
-
     } catch (error) {
       toast.error("Signup failed", { duration: 3000, style: toastStyle });
     } finally {
-      setSignupLoader(false)
+      setSignupLoader(false);
     }
   };
 
-
   const signinHandler = async () => {
-    let hasError = false
+    let hasError = false;
 
     setSigninEmailError("");
     setSigninPasswordError("");
@@ -199,15 +195,15 @@ const LoginSignup = () => {
       hasError = true;
     }
 
-    if (hasError) return
+    if (hasError) return;
 
     const signindata = {
       emailOrPhoneNumber: signinEmail,
-      password: signinPassword
-    }
+      password: signinPassword,
+    };
 
     try {
-      setSigninLoader(true)
+      setSigninLoader(true);
       const { data } = await api.post("/login", signindata);
 
       if (data.code === 200) {
@@ -216,22 +212,20 @@ const LoginSignup = () => {
           style: toastStyle,
         });
 
-        localStorage.setItem("usersignin", "true")
-        localStorage.setItem("userId", data?.data?.userData?.id)
-        setIsAuthenticated(true)
-        setUserId(data?.data?.userData?.id)
-        navigate("/account")
+        localStorage.setItem("usersignin", "true");
+        localStorage.setItem("userId", data?.data?.userData?.id);
+        setIsAuthenticated(true);
+        setUserId(data?.data?.userData?.id);
+        navigate("/account");
       } else {
         toast.error(data.message, { duration: 3000, style: toastStyle });
       }
-
     } catch (error) {
       toast.error("Signup failed", { duration: 3000, style: toastStyle });
     } finally {
-      setSigninLoader(false)
+      setSigninLoader(false);
     }
-
-  }
+  };
 
   return (
     <main className={style.authContainer}>
@@ -268,14 +262,17 @@ const LoginSignup = () => {
           </div>
 
           <button onClick={signinHandler} disabled={signinLoader}>
-            {signinLoader ? <ClipLoader
-              color="#fff"
-              size={"3rem"}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            /> : "Login"}
+            {signinLoader ? (
+              <ClipLoader
+                color="#fff"
+                size={"3rem"}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            ) : (
+              "Login"
+            )}
           </button>
-
         </div>
 
         <div>
@@ -358,17 +355,47 @@ const LoginSignup = () => {
               onChange={(e) => setSignupConfirmPassword(e.target.value)}
             />
             {signupConfirmPasswordError && (
-              <p className="input-error-message">{signupConfirmPasswordError}</p>
+              <p className="input-error-message">
+                {signupConfirmPasswordError}
+              </p>
             )}
           </div>
 
+          <div className={style.account_type}>
+            <div>
+              <input
+                name="accountType"
+                type="radio"
+                value="individual"
+                checked={accountType === "individual"}
+                onChange={(e) => setAccountType(e.target.value)}
+              />
+              <p>Individual</p>
+            </div>
+
+            <div>
+              <input
+                name="accountType"
+                type="radio"
+                value="organization"
+                checked={accountType === "organization"}
+                onChange={(e) => setAccountType(e.target.value)}
+              />
+              <p>Organization</p>
+            </div>
+          </div>
+
           <button onClick={signupHandler} disabled={signupLoader}>
-            {signupLoader ? <ClipLoader
-              color="#fff"
-              size={"3rem"}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            /> : "Create My Account"}
+            {signupLoader ? (
+              <ClipLoader
+                color="#fff"
+                size={"3rem"}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            ) : (
+              "Create My Account"
+            )}
           </button>
         </div>
       </div>

@@ -797,7 +797,7 @@ const StartCampaign = () => {
                 />
               </div>
 
-              <div>
+              {/* <div>
                 <div>
                   <input
                     name="accountType"
@@ -820,12 +820,12 @@ const StartCampaign = () => {
                   <p>Organization</p>
                 </div>
 
-                {/* <div>
+                <div>
                   <button>Upload File</button>
                   <p>**Passport / National ID (for individuals)</p>
                   <p>**NGO/ONG Registration Certificate (for organizations)</p>
-                </div> */}
-              </div>
+                </div>
+              </div> */}
             </div>
 
             <button

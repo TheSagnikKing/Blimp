@@ -7,12 +7,9 @@ import { useAuth } from "../../../context/AuthContext";
 import { Skeleton } from "@mui/material";
 
 const ActiveCampaigns = () => {
+  const { userId } = useAuth();
 
-  const {
-    userId
-  } = useAuth()
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [activeCampaigns, setActiveCampaigns] = useState({
     loading: false,
@@ -26,98 +23,111 @@ const ActiveCampaigns = () => {
         setActiveCampaigns((prev) => ({ ...prev, loading: true, error: null }));
         try {
           const { data } = await api.post("/get-campaigns", {
-            userId: userId
+            userId: userId,
           });
 
           if (data.code === 200) {
             setActiveCampaigns({ loading: false, error: null, data });
           } else {
-            setActiveCampaigns({ loading: false, error: data.message, data: {} });
+            setActiveCampaigns({
+              loading: false,
+              error: data.message,
+              data: {},
+            });
           }
         } catch (error) {
-          setActiveCampaigns({ loading: false, error: error.message, data: {} });
+          setActiveCampaigns({
+            loading: false,
+            error: error.message,
+            data: {},
+          });
         }
-      }
+      };
 
-      fetchActiveCampaigns()
+      fetchActiveCampaigns();
     }
+  }, [userId]);
 
-  }, [userId])
+  return activeCampaigns?.loading ? (
+    <>
+      {[0, 1, 2].map((item) => {
+        return (
+          <Skeleton
+            key={item}
+            variant="rectangular"
+            height={"25rem"}
+            sx={{
+              width: {
+                xs: "100%", // mobile
+                sm: "100%", // tablet
+                md: "100%", // desktop
+              },
+              marginBottom: "2rem",
+            }}
+          />
+        );
+      })}
+    </>
+  ) : activeCampaigns?.data?.data?.campaigns.length > 0 ? (
+    <>
+      {activeCampaigns?.data?.data?.campaigns?.map((item) => {
+        return (
+          <div className={styles.campaignCard} key={item.id}>
+            <h2>{item?.campaign_name}</h2>
 
+            <div className={styles.donationContainer}>
+              <p>
+                Published by: <b>{item?.name}</b>
+              </p>
 
-  return (
-    activeCampaigns?.loading ? (
-      <>
-        {
-          [0, 1, 2].map((item) => {
-            return (
-              <Skeleton
-                key={item}
-                variant="rectangular"
-                height={"25rem"}
-                sx={{
-                  width: {
-                    xs: "100%", // mobile
-                    sm: "100%", // tablet
-                    md: "100%",  // desktop
-                  },
-                  marginBottom: "2rem"
-                }}
+              <ProgressBar
+                raisedAmount={item?.raisedAmount}
+                targetAmount={item?.target_amount}
+                percentageAchieved={item?.percentageAchieved}
+                donationCount={item?.donationInfo?.length}
+                currency={item?.country?.currency}
+                symbol={item?.country?.symbol}
               />
-            )
-          })
-        }
-      </>
-    ) : activeCampaigns?.data?.data?.campaigns.length > 0 ? (
-      <>
-        {activeCampaigns?.data?.data?.campaigns?.map((item) => {
-          return (
-            <div className={styles.campaignCard} key={item.id}>
-              <h2>{item?.campaign_name}</h2>
-
-              <div className={styles.donationContainer}>
-                <p>
-                  Published by: <b>{item?.name}</b>
-                </p>
-
-                <ProgressBar
-                  raisedAmount={item?.raisedAmount}
-                  targetAmount={item?.target_amount}
-                  percentageAchieved={item?.percentageAchieved}
-                  donationCount={item?.donationInfo?.length}
-                  currency={item?.country?.currency}
-                  symbol={item?.country?.symbol}
-                />
-              </div>
-
-              <div>
-                <button onClick={() => navigate("/cause")}>
-                  view campaign
-                </button>
-                <button>promote campaign</button>
-              </div>
             </div>
-          );
-        })}
-      </>
-    ) : (
-      <div
-        className={styles.noActiveCampaigns}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100%"
-        }}>
-        <div>
-          <h1>No Active Campaigns</h1>
-          <button
-            onClick={() => {
-              navigate("/start-campaign")
-            }}>Start a campaign</button>
-        </div>
-      </div >
-    )
+
+            <div>
+              <button
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  navigate("/feature-detail", {
+                    state: item,
+                  });
+                }}
+              >
+                view campaign
+              </button>
+              <button>promote campaign</button>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  ) : (
+    <div
+      className={styles.noActiveCampaigns}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+      }}
+    >
+      <div>
+        <h1>No Active Campaigns</h1>
+        <button
+          onClick={() => {
+            navigate("/start-campaign");
+          }}
+        >
+          Start a campaign
+        </button>
+      </div>
+    </div>
   );
 };
 

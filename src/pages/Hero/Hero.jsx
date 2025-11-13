@@ -12,10 +12,13 @@ import CampaignCard from "../../components/CampaignCard/CampaignCard";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import Skeleton from "@mui/material/Skeleton";
+import { useAuth } from "../../context/AuthContext";
 
 const Hero = () => {
-
+  const { user } = useAuth();
   const navigate = useNavigate();
+
+  console.log(user);
 
   const [supportCampaigns, setSupportCampaigns] = useState({
     loading: false,
@@ -35,7 +38,6 @@ const Hero = () => {
     data: {},
   });
 
-
   const [latestArticles, setLatestArticles] = useState({
     loading: false,
     error: null,
@@ -50,7 +52,11 @@ const Hero = () => {
         if (data.code === 200) {
           setSupportCampaigns({ loading: false, error: null, data });
         } else if (data.code === 400) {
-          setSupportCampaigns({ loading: false, error: data.message, data: {} });
+          setSupportCampaigns({
+            loading: false,
+            error: data.message,
+            data: {},
+          });
         }
       } catch (error) {
         setSupportCampaigns({ loading: false, error: error.message, data: {} });
@@ -71,7 +77,6 @@ const Hero = () => {
       }
     };
 
-
     const fetchFeaturedCampaigns = async () => {
       setFeaturedCampaigns((prev) => ({ ...prev, loading: true, error: null }));
       try {
@@ -79,13 +84,20 @@ const Hero = () => {
         if (data.code === 200) {
           setFeaturedCampaigns({ loading: false, error: null, data });
         } else if (data.code === 400) {
-          setFeaturedCampaigns({ loading: false, error: data.message, data: {} });
+          setFeaturedCampaigns({
+            loading: false,
+            error: data.message,
+            data: {},
+          });
         }
       } catch (error) {
-        setFeaturedCampaigns({ loading: false, error: error.message, data: {} });
+        setFeaturedCampaigns({
+          loading: false,
+          error: error.message,
+          data: {},
+        });
       }
     };
-
 
     const fetchLatestArticles = async () => {
       setLatestArticles((prev) => ({ ...prev, loading: true, error: null }));
@@ -105,9 +117,7 @@ const Hero = () => {
     fetchLatestCampaigns();
     fetchFeaturedCampaigns();
     fetchLatestArticles();
-
   }, []);
-
 
   const [visibleFeatureCount, setVisibleFeatureCount] = useState(6);
 
@@ -121,87 +131,132 @@ const Hero = () => {
     <>
       <main
         style={{
-          backgroundImage: `url(${supportCampaigns?.data?.data?.banner_image})`
+          backgroundImage: `url(${supportCampaigns?.data?.data?.banner_image})`,
         }}
-
-        className={style.heroContainer}>
+        className={style.heroContainer}
+      >
         <div>
           <div className={style.heroContent}>
-            <h1>
-              {supportCampaigns?.data?.data?.campaign_name}
-            </h1>
+            <h1>{supportCampaigns?.data?.data?.campaign_name}</h1>
             {/* <p>Help power the world's social justice movements</p> */}
-            <button onClick={() => {
-              window.scrollTo(0, 0)
-              navigate("/start-campaign")
-            }}>Get Funding</button >
-          </div >
-        </div >
-
-      </main >
+            <button
+              onClick={() => {
+                // login-signup
+                if (user === null || user === undefined) {
+                  window.scrollTo(0, 0);
+                  navigate("/login-signup");
+                } else {
+                  window.scrollTo(0, 0);
+                  navigate("/start-campaign");
+                }
+              }}
+            >
+              Get Funding
+            </button>
+          </div>
+        </div>
+      </main>
 
       <section className={style.impactContainer}>
         <div>
           <h2>the latest</h2>
           <div>
-            {
-              latestArticles?.loading ? (
-                <>
-                  <Skeleton
-                    variant="rectangular"
-                    height="40rem"
-                    sx={{
-                      width: {
-                        xs: "100%", // mobile
-                        sm: "100%", // tablet
-                        md: "50%",  // desktop
-                      },
-                    }}
+            {latestArticles?.loading ? (
+              <>
+                <Skeleton
+                  variant="rectangular"
+                  height="40rem"
+                  sx={{
+                    width: {
+                      xs: "100%", // mobile
+                      sm: "100%", // tablet
+                      md: "50%", // desktop
+                    },
+                  }}
+                />
+
+                <Skeleton
+                  variant="rectangular"
+                  height="40rem"
+                  sx={{
+                    width: {
+                      xs: "100%", // mobile
+                      sm: "100%", // tablet
+                      md: "50%", // desktop
+                    },
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <img
+                  src={
+                    latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                      ?.banner_image
+                  }
+                  alt=""
+                />
+
+                <div>
+                  <h2>
+                    {
+                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                        ?.campaign_name
+                    }
+                  </h2>
+                  <p>
+                    {
+                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                        ?.description
+                    }
+                  </p>
+
+                  <ProgressBar
+                    raisedAmount={
+                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                        ?.raisedAmount
+                    }
+                    targetAmount={
+                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                        ?.targetAmount
+                    }
+                    percentageAchieved={
+                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                        ?.percentageAchieved
+                    }
+                    donationCount={
+                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                        ?.donationInfo?.length
+                    }
+                    currency={
+                      latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country
+                        ?.currency
+                    }
+                    symbol={
+                      latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country
+                        ?.symbol
+                    }
                   />
 
-                  <Skeleton
-                    variant="rectangular"
-                    height="40rem"
-                    sx={{
-                      width: {
-                        xs: "100%", // mobile
-                        sm: "100%", // tablet
-                        md: "50%",  // desktop
-                      },
+                  <button
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                      navigate("/checkout");
                     }}
-                  />
-                </>
-              ) : (
-                <>
-                  <img src={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.banner_image} alt="" />
-
-                  <div>
-                    <h2>{latestCampaigns?.data?.data?.latestCampaigns?.[1]?.campaign_name}</h2>
-                    <p>
-                      {latestCampaigns?.data?.data?.latestCampaigns?.[1]?.description}
-                    </p>
-
-                    <ProgressBar
-                      raisedAmount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.raisedAmount}
-                      targetAmount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.targetAmount}
-                      percentageAchieved={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.percentageAchieved}
-                      donationCount={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.donationInfo?.length}
-                      currency={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country?.currency}
-                      symbol={latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country?.symbol}
-                    />
-
-                    <button onClick={() => {
-                      window.scrollTo(0, 0)
-                      navigate("/checkout")
-                    }}>Donate</button>
-                  </div>
-                </>
-              )
-            }
-
+                  >
+                    Donate
+                  </button>
+                </div>
+              </>
+            )}
 
             <div className={style.impactMobileContainer}>
-              <h3>{latestCampaigns?.data?.data?.latestCampaigns?.[1]?.campaign_name}</h3>
+              <h3>
+                {
+                  latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                    ?.campaign_name
+                }
+              </h3>
               <button>View More</button>
               <button>Donate</button>
             </div>
@@ -209,61 +264,73 @@ const Hero = () => {
             <button>View Details</button>
           </div>
         </div>
-      </section >
+      </section>
 
       <section className={style.topCampaignsContainer}>
         <div>
-
           <div>
-            {
-              latestCampaigns?.loading ? (
-                [0, 1].map((item) => {
-                  return (
-                    <Skeleton
-                      key={item}
-                      variant="rectangular"
-                      height="40rem"
-                      animation={false}
-                      sx={{
-                        width: {
-                          xs: "100%", // mobile
-                          sm: "100%", // tablet
-                          md: "50%",  // desktop
-                        },
-                        bgcolor: "#1e1e1e",
-                      }}
-                    />
-                  )
-                })
-              ) : (
-                <>
-                  <CampaignCard
-                    bannerImage={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.banner_image}
-                    description={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.description}
-                    campaignName={latestCampaigns?.data?.data?.latestCampaigns?.[2]?.campaign_name}
+            {latestCampaigns?.loading ? (
+              [0, 1].map((item) => {
+                return (
+                  <Skeleton
+                    key={item}
+                    variant="rectangular"
+                    height="40rem"
+                    animation={false}
+                    sx={{
+                      width: {
+                        xs: "100%", // mobile
+                        sm: "100%", // tablet
+                        md: "50%", // desktop
+                      },
+                      bgcolor: "#1e1e1e",
+                    }}
                   />
-                  <CampaignCard
-                    bannerImage={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.banner_image}
-                    description={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.description}
-                    campaignName={latestCampaigns?.data?.data?.latestCampaigns?.[3]?.campaign_name}
-                  />
-                </>
-              )
-            }
-
+                );
+              })
+            ) : (
+              <>
+                <CampaignCard
+                  bannerImage={
+                    latestCampaigns?.data?.data?.latestCampaigns?.[2]
+                      ?.banner_image
+                  }
+                  description={
+                    latestCampaigns?.data?.data?.latestCampaigns?.[2]
+                      ?.description
+                  }
+                  campaignName={
+                    latestCampaigns?.data?.data?.latestCampaigns?.[2]
+                      ?.campaign_name
+                  }
+                />
+                <CampaignCard
+                  bannerImage={
+                    latestCampaigns?.data?.data?.latestCampaigns?.[3]
+                      ?.banner_image
+                  }
+                  description={
+                    latestCampaigns?.data?.data?.latestCampaigns?.[3]
+                      ?.description
+                  }
+                  campaignName={
+                    latestCampaigns?.data?.data?.latestCampaigns?.[3]
+                      ?.campaign_name
+                  }
+                />
+              </>
+            )}
           </div>
         </div>
       </section>
-
 
       <section className={style.featureContainer}>
         <div>
           <h2>Featured</h2>
 
           <div className={style.featureCardContainer}>
-            {
-              featuredCampaigns?.loading ? (
-                [0, 1, 2, 3, 4, 5].map((item) => {
+            {featuredCampaigns?.loading
+              ? [0, 1, 2, 3, 4, 5].map((item) => {
                   return (
                     <Skeleton
                       key={item}
@@ -273,25 +340,15 @@ const Hero = () => {
                         width: {
                           xs: "100%", // mobile
                           sm: "48%", // tablet
-                          md: "32%",  // desktop
+                          md: "32%", // desktop
                         },
                       }}
                     />
-                  )
+                  );
                 })
-              ) : (
-                allFeatureItems.slice(0, visibleFeatureCount).map((item) => {
-                  return (
-                    <FeatureCard
-                      key={item.id}
-                      featureItem={item}
-                    />
-                  )
-                })
-              )
-
-            }
-
+              : allFeatureItems.slice(0, visibleFeatureCount).map((item) => {
+                  return <FeatureCard key={item.id} featureItem={item} />;
+                })}
           </div>
 
           {visibleFeatureCount < allFeatureItems.length && (
@@ -306,56 +363,51 @@ const Hero = () => {
         <div>
           <h2>News</h2>
           <div>
-            {
-              latestArticles.loading ? (
-                <Skeleton
-                  variant="rectangular"
-                  // width={"50%"}
-                  height={"50rem"}
-                  sx={{
-                    width: {
-                      xs: "0%", // mobile
-                      sm: "100%", // tablet
-                      md: "50%",  // desktop
-                    },
-                  }}
+            {latestArticles.loading ? (
+              <Skeleton
+                variant="rectangular"
+                // width={"50%"}
+                height={"50rem"}
+                sx={{
+                  width: {
+                    xs: "0%", // mobile
+                    sm: "100%", // tablet
+                    md: "50%", // desktop
+                  },
+                }}
                 // sx={{ bgcolor: "black" }}
-                />
-              ) : (
-                <img
-                  src={latestArticles?.data?.data?.latestArticle?.image}
-                  alt=""
-                />
-              )
-            }
+              />
+            ) : (
+              <img
+                src={latestArticles?.data?.data?.latestArticle?.image}
+                alt=""
+              />
+            )}
 
             <div>
-              {
-                latestArticles.loading ? (
-                  [0, 1, 2, 3].map((item) => {
+              {latestArticles.loading
+                ? [0, 1, 2, 3].map((item) => {
                     return (
                       <Skeleton
                         key={item}
                         variant="rectangular"
                         width={"100%"}
                         height={"9.6rem"}
-                      // sx={{ bgcolor: "black" }}
+                        // sx={{ bgcolor: "black" }}
                       />
-                    )
+                    );
                   })
-                ) : (
-                  latestArticles?.data?.data?.nextArticles?.map((item, index) => {
-                    return (
-                      <NewsCard
-                        index={index}
-                        key={item.id}
-                        articleItem={item}
-                      />
-                    )
-                  })
-                )
-
-              }
+                : latestArticles?.data?.data?.nextArticles?.map(
+                    (item, index) => {
+                      return (
+                        <NewsCard
+                          index={index}
+                          key={item.id}
+                          articleItem={item}
+                        />
+                      );
+                    }
+                  )}
             </div>
           </div>
         </div>

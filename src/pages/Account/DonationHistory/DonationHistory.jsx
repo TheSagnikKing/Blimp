@@ -82,7 +82,7 @@ const DonationHistory = () => {
 
                 <ProgressBar
                   raisedAmount={item?.raisedAmount || 0}
-                  targetAmount={item?.targetAmount || 0}
+                  targetAmount={item?.target_amount || 0}
                   percentageAchieved={item?.percentageAchieved || 0}
                   donationCount={item?.donationInfo?.length || 0}
                   currency={item?.country?.currency || ""}

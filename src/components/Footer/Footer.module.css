@@ -48,6 +48,7 @@
             border: none;
             outline: none;
             padding-inline: 2rem;
+            font-size: 1.4rem;
 
             &::-webkit-input-placeholder {
               color: var(--text-secondary);

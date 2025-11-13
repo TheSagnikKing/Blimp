@@ -3,11 +3,24 @@ import style from "./Discover.module.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import FeatureCard from "../../components/FeatureCard/FeatureCard";
-import { AnimalIcon, CommunityIcon, EducationIcon, EmergencyIcon, EnvironmentIcon, EventIcon, FamilyIcon, MedicalIcon, NonProfitIcon, SportIcon } from "../../icons";
+import {
+  AnimalIcon,
+  CommunityIcon,
+  EducationIcon,
+  EmergencyIcon,
+  EnvironmentIcon,
+  EventIcon,
+  FamilyIcon,
+  MedicalIcon,
+  NonProfitIcon,
+  SportIcon,
+} from "../../icons";
 import api from "../../api/api";
 import Skeleton from "@mui/material/Skeleton";
+import { useAuth } from "../../context/AuthContext";
 
 const Discover = () => {
+  const { user } = useAuth();
 
   const [campaignHistoryList, setCampaignHistoryList] = useState({
     loading: false,
@@ -49,40 +62,46 @@ const Discover = () => {
     { id: 8, icon: <EventIcon />, label: "Event" },
     { id: 9, icon: <FamilyIcon />, label: "Family" },
     { id: 10, icon: <SportIcon />, label: "Sport" },
-  ]
-
-  const userId = "48"
+  ];
 
   useEffect(() => {
-    if (userId) {
-
+    if (user?.id) {
       const fetchCampaignHistory = async () => {
-        setCampaignHistoryList((prev) => ({ ...prev, loading: true, error: null }));
+        setCampaignHistoryList((prev) => ({
+          ...prev,
+          loading: true,
+          error: null,
+        }));
         try {
           const { data } = await api.post("/get-discover-campaign", {
-            userId
+            userId: user.id,
           });
           if (data.code === 200) {
             setCampaignHistoryList({ loading: false, error: null, data });
           } else if (data.code === 400) {
-            setCampaignHistoryList({ loading: false, error: data.message, data: {} });
+            setCampaignHistoryList({
+              loading: false,
+              error: data.message,
+              data: {},
+            });
           }
         } catch (error) {
-          setCampaignHistoryList({ loading: false, error: error.message, data: {} });
+          setCampaignHistoryList({
+            loading: false,
+            error: error.message,
+            data: {},
+          });
         }
       };
 
-      fetchCampaignHistory()
-
+      fetchCampaignHistory();
     }
     // get-discover-campaign
-  }, [userId])
+  }, [user]);
 
-  console.log(campaignHistoryList)
 
   return (
     <main>
-
       <section className={style.discoverSortContainer}>
         <div>
           <div>
@@ -91,28 +110,23 @@ const Discover = () => {
           </div>
 
           <div>
-            {
-              sortCardData.map((item) => (
-                <div key={item?.label} className={style.sortCardItem}>
-                  <div>
-                    <div>{item?.icon}</div>
-                    <p>{item?.label}</p>
-                  </div>
+            {sortCardData.map((item) => (
+              <div key={item?.label} className={style.sortCardItem}>
+                <div>
+                  <div>{item?.icon}</div>
+                  <p>{item?.label}</p>
                 </div>
-              ))
-            }
+              </div>
+            ))}
           </div>
-
         </div>
       </section>
 
       <section className={style.featureContainer}>
         <div>
           <div className={style.featureCardContainer}>
-
-            {
-              campaignHistoryList?.loading ? (
-                [0, 1, 2, 3, 4, 5].map((item) => {
+            {campaignHistoryList?.loading
+              ? [0, 1, 2, 3, 4, 5].map((item) => {
                   return (
                     <Skeleton
                       key={item}
@@ -122,22 +136,15 @@ const Discover = () => {
                         width: {
                           xs: "100%", // mobile
                           sm: "48%", // tablet
-                          md: "32%",  // desktop
+                          md: "32%", // desktop
                         },
                       }}
                     />
-                  )
+                  );
                 })
-              ) : (
-                campaignHistoryList?.data?.data?.map((item) => (
-                  <FeatureCard
-                    key={item.id}
-                    featureItem={item}
-                  />
-                ))
-              )
-            }
-
+              : campaignHistoryList?.data?.data?.map((item) => (
+                  <FeatureCard key={item.id} featureItem={item} />
+                ))}
           </div>
         </div>
       </section>

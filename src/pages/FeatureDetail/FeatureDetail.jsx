@@ -46,7 +46,6 @@ const FeatureDetail = () => {
 
   const [pageNo, setPageNo] = useState(1)
 
-
   useEffect(() => {
     if (featureItem.id) {
       const fetchCampaignDetails = async () => {

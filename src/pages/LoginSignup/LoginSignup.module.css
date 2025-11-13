@@ -148,6 +148,19 @@
         }
       }
 
+      .account_type{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4rem;
+
+        &>div{
+          display: flex;
+          flex-direction: row;
+          gap: 2rem;
+        }
+      }
+
       &>button {
         min-height: 4rem;
         width: 19rem;

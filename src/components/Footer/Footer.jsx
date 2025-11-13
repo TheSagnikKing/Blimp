@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import styles from "./Footer.module.css";
 import blimpLogo from "../../assets/blimpLogo.png";
 import { FacebookIcon, InstagramIcon, TwitterXIcon } from "../../icons";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 import { toastStyle } from "../../utils/toastStyles";
 import api from "../../api/api";
+import { ClipLoader } from "react-spinners";
 
 const Footer = () => {
   const menus = [
@@ -31,7 +32,7 @@ const Footer = () => {
     },
   ];
 
-  const [subscribeEmail, setSubscribeEmail] = useState("")
+  const [subscribeEmail, setSubscribeEmail] = useState("");
 
   const [subscribeNewsLetters, setSubscribeNewsLetters] = useState({
     loading: false,
@@ -41,7 +42,13 @@ const Footer = () => {
 
   const handleSubscribe = async () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(subscribeEmail)) {
+    if (!subscribeEmail) {
+      toast.error("Please enter an email", {
+        duration: 3000,
+        style: toastStyle,
+      });
+      return;
+    }else if (!emailRegex.test(subscribeEmail)) {
       toast.error("Please enter a valid email", {
         duration: 3000,
         style: toastStyle,
@@ -50,26 +57,37 @@ const Footer = () => {
     }
 
     try {
-      setSubscribeNewsLetters((prev) => ({ ...prev, loading: true, error: null }));
+      setSubscribeNewsLetters((prev) => ({
+        ...prev,
+        loading: true,
+        error: null,
+      }));
 
-      const { data } = await api.post("/subscribeNewsLetters", { email: subscribeEmail })
+      const { data } = await api.post("/subscribeNewsLetters", {
+        email: subscribeEmail,
+      });
 
       if (data?.code === 400) {
-        setSubscribeNewsLetters({ loading: false, error: data.message, data: {} });
-        return
+        setSubscribeNewsLetters({
+          loading: false,
+          error: data.message,
+          data: {},
+        });
+        return;
       }
 
       setSubscribeNewsLetters({ loading: false, error: null, data });
 
       toast.success(data.message, { duration: 3000, style: toastStyle });
-      setSubscribeEmail("")
-
+      setSubscribeEmail("");
     } catch (error) {
-      setSubscribeNewsLetters({ loading: false, error: error.message, data: {} });
+      setSubscribeNewsLetters({
+        loading: false,
+        error: error.message,
+        data: {},
+      });
     }
-
   };
-
 
   return (
     <>
@@ -87,10 +105,24 @@ const Footer = () => {
                   placeholder="Enter Email"
                   value={subscribeEmail}
                   onChange={(e) => {
-                    setSubscribeEmail(e.target.value)
+                    setSubscribeEmail(e.target.value);
                   }}
                 />
-                <button onClick={handleSubscribe}>subscribe</button>
+                <button
+                  disabled={subscribeNewsLetters?.loading}
+                  onClick={handleSubscribe}
+                >
+                  {subscribeNewsLetters?.loading ? (
+                    <ClipLoader
+                      size={"3rem"}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                      color="#fff"
+                    />
+                  ) : (
+                    "subscribe"
+                  )}
+                </button>
               </div>
             </div>
 

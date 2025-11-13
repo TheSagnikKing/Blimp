@@ -1,7 +1,13 @@
 import React, { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import "./App.css"
-import { Toaster } from 'react-hot-toast';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
+import "./App.css";
+import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./protected/ProtectedRoute";
 import ProtectedAuthRoute from "./protected/ProtectedAuthRoute";
 const Layout = lazy(() => import("./Layout/Layout"));
@@ -18,14 +24,24 @@ const LoginSignup = lazy(() => import("./pages/LoginSignup/LoginSignup"));
 
 const Account = lazy(() => import("./pages/Account/Account"));
 const Profile = lazy(() => import("./pages/Account/Profile/Profile"));
-const ActiveCampaigns = lazy(() => import("./pages/Account/ActiveCampaigns/ActiveCampaigns"));
-const DraftCampaigns = lazy(() => import("./pages/Account/DraftCampaigns/DraftCampaigns"))
-const DonationHistory = lazy(() => import("./pages/Account/DonationHistory/DonationHistory"))
-const BankAccount = lazy(() => import("./pages/Account/BankAccount/BankAccount"))
-const KYC = lazy(() => import("./pages/Account/KYC/KYC"))
-const ChangePassword = lazy(() => import("./pages/Account/ChangePassword/ChangePassword"))
-const StartCampaign = lazy(() => import("./pages/StartCampaign/StartCampaign"))
-const Cause = lazy(() => import("./pages/Cause/Cause"))
+const ActiveCampaigns = lazy(() =>
+  import("./pages/Account/ActiveCampaigns/ActiveCampaigns")
+);
+const DraftCampaigns = lazy(() =>
+  import("./pages/Account/DraftCampaigns/DraftCampaigns")
+);
+const DonationHistory = lazy(() =>
+  import("./pages/Account/DonationHistory/DonationHistory")
+);
+const BankAccount = lazy(() =>
+  import("./pages/Account/BankAccount/BankAccount")
+);
+const KYC = lazy(() => import("./pages/Account/KYC/KYC"));
+const ChangePassword = lazy(() =>
+  import("./pages/Account/ChangePassword/ChangePassword")
+);
+const StartCampaign = lazy(() => import("./pages/StartCampaign/StartCampaign"));
+const Cause = lazy(() => import("./pages/Cause/Cause"));
 
 const App = () => {
   useEffect(() => {
@@ -50,15 +66,19 @@ const App = () => {
     <>
       <Toaster />
       <BrowserRouter>
-        <Suspense fallback={<div className="loading-wrapper">
-          <div className="loading">
-            <span>.</span>
-            <span>.</span>
-            <span>.</span>
-            <span>.</span>
-            <span>.</span>
-          </div>
-        </div>}>
+        <Suspense
+          fallback={
+            <div className="loading-wrapper">
+              <div className="loading">
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+              </div>
+            </div>
+          }
+        >
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Hero />} />
@@ -78,28 +98,32 @@ const App = () => {
                 <Route path="/login-signup" element={<LoginSignup />} />
               </Route>
 
-              <Route path="/start-campaign" element={<StartCampaign />} />
               <Route path="/cause" element={<Cause />} />
 
               {/* Account Page with Nested Routes */}
               <Route element={<ProtectedRoute />}>
                 <Route path="/account" element={<Account />}>
                   <Route index element={<Profile />} />
-                  <Route path="active-campaigns" element={<ActiveCampaigns />} />
+                  <Route
+                    path="active-campaigns"
+                    element={<ActiveCampaigns />}
+                  />
                   <Route path="draft-campaigns" element={<DraftCampaigns />} />
-                  <Route path="donation-history" element={<DonationHistory />} />
+                  <Route
+                    path="donation-history"
+                    element={<DonationHistory />}
+                  />
                   <Route path="bank-account" element={<BankAccount />} />
                   {/* <Route path="kyc-document" element={<KYC />} /> */}
                   <Route path="change-password" element={<ChangePassword />} />
                 </Route>
+                <Route path="/start-campaign" element={<StartCampaign />} />
               </Route>
-
             </Route>
           </Routes>
         </Suspense>
       </BrowserRouter>
     </>
-
   );
 };
 
