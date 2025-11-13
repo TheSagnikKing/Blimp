@@ -3,8 +3,33 @@ import styles from "./StartCampaign.module.css";
 import { DownArrow, UpArrow } from "../../icons";
 import api from "../../api/api";
 import Skeleton from "@mui/material/Skeleton";
+import { useAuth } from "../../context/AuthContext";
+import { ClipLoader } from "react-spinners";
+import toast from "react-hot-toast";
+import { toastStyle } from "../../utils/toastStyles";
 
 const StartCampaign = () => {
+  const parseSelectedCategory =
+    JSON.parse(localStorage.getItem("selectedCategory")) || null;
+  const parseSelectedCountry =
+    JSON.parse(localStorage.getItem("selectedCountry")) || null;
+  const parseTargetedAmount =
+    JSON.parse(localStorage.getItem("targetedAmount")) || null;
+  const parseCampaignTitle =
+    JSON.parse(localStorage.getItem("campaignTitle")) || "";
+  const parseCampaignType =
+    JSON.parse(localStorage.getItem("campaignType")) || "";
+  const parseBeneficiaryDetail =
+    JSON.parse(localStorage.getItem("beneficiaryDetail")) || "";
+  const parseSelectedCampaingDescription =
+    JSON.parse(localStorage.getItem("selectedCampaingDescription")) || "";
+  const parseSelectedCampaignImages =
+    JSON.parse(localStorage.getItem("selectedCampaignImages")) || [];
+  const parseBannerImage =
+    JSON.parse(localStorage.getItem("bannerImage")) || "";
+
+  const { user } = useAuth();
+
   const [stepper, setStepper] = useState([
     {
       id: 1,
@@ -97,13 +122,187 @@ const StartCampaign = () => {
     fetchCountries();
   }, []);
 
+  useEffect(() => {
+    if (user?.fullname || user?.email) {
+      setSelectedName(user?.fullname);
+      setSelectedEmail(user?.email);
+    }
+  }, [user?.fullname, user?.email]);
+
   const [selectedCategoryOpen, setSelectedCategoryOpen] = useState(false);
   const [selectedCountryOpen, setSelectedCountryOpen] = useState(false);
 
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [targetedAmount, setTargetedAmount] = useState(0);
-  const [campaignTitle, setCampaignTitle] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(
+    parseSelectedCategory
+  );
+  const [selectedCountry, setSelectedCountry] = useState(parseSelectedCountry);
+  const [targetedAmount, setTargetedAmount] = useState(parseTargetedAmount);
+  const [campaignTitle, setCampaignTitle] = useState(parseCampaignTitle);
+  const [selectedName, setSelectedName] = useState("");
+  const [selectedEmail, setSelectedEmail] = useState("");
+  const [selectedCampaignType, setSelectedCampaignType] =
+    useState(parseCampaignType);
+  const [selectedCampaingDescription, setSelectedCampaignDescription] =
+    useState(parseSelectedCampaingDescription);
+  const [beneficiaryDetail, setBeneficiaryDetail] = useState(
+    parseBeneficiaryDetail
+  );
+  const [selectedCampaignImages, setSelectedCampaignImages] = useState(
+    parseSelectedCampaignImages
+  );
+  const [bannerImage, setBannerImage] = useState(parseBannerImage);
+
+  const handle_file_select = (e) => {
+    const files = Array.from(e.target.files);
+    const validFiles = [];
+    const maxImages = 5;
+    const maxFileSize = 25 * 1024 * 1024; // 25MB
+
+    if (files.length > maxImages) {
+      alert(`You can upload a maximum of ${maxImages} images at once.`);
+      return;
+    }
+
+    for (const file of files) {
+      if (!file.type.startsWith("image/")) {
+        alert(`"${file.name}" is not a valid image file.`);
+        continue;
+      }
+
+      if (file.size > maxFileSize) {
+        alert(`"${file.name}" exceeds 5MB. Please select smaller images.`);
+        continue;
+      }
+
+      validFiles.push(file);
+    }
+
+    // If no valid files, stop
+    if (validFiles.length === 0) return;
+
+    // Convert files to Base64
+    const fileReaders = validFiles.map((file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve({ file, preview: reader.result }); // Base64
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    });
+
+    Promise.all(fileReaders).then((filePreviews) => {
+      setSelectedCampaignImages((prev) => {
+        const merged = [...prev, ...filePreviews].slice(0, maxImages);
+        return merged;
+      });
+    });
+
+    // Reset input value so same file can be reselected
+    e.target.value = "";
+  };
+
+  const handle_drop_click = () => {
+    document.getElementById("campaign-file-input").click();
+  };
+
+  const handle_remove_image = (index) => {
+    setSelectedCampaignImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handle_banner_file_select = async (e) => {
+    const file = e.target.files[0];
+    const maxFileSize = 5 * 1024 * 1024; // ✅ 5MB
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert(`"${file.name}" is not a valid image file.`);
+      e.target.value = "";
+      return;
+    }
+
+    if (file.size > maxFileSize) {
+      alert(`"${file.name}" exceeds 5MB. Please select a smaller image.`);
+      e.target.value = "";
+      return;
+    }
+
+    try {
+      const reader = new FileReader();
+      const filePreview = await new Promise((resolve, reject) => {
+        reader.onload = () => resolve({ file, preview: reader.result }); // Base64 string
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+
+      setBannerImage(filePreview);
+    } catch (error) {
+      console.error("Error reading file:", error);
+    }
+
+    e.target.value = "";
+  };
+
+  const handle_banner_image_drop_click = () => {
+    document.getElementById("campaign-banner-file-input").click();
+  };
+
+  const handle_remove_banner_image = () => {
+    setBannerImage("");
+  };
+
+  const [startCampaign, setStartCampaign] = useState({
+    loading: false,
+    error: null,
+    data: {},
+  });
+
+  const start_campaign_handler = async () => {
+    const campaign_data = {
+      user_id: user.id,
+      category: parseSelectedCategory.id,
+      country: parseSelectedCountry.id,
+      target_amount: parseTargetedAmount,
+      purpose: 1,
+      campaign_name: parseCampaignTitle,
+      description: parseSelectedCampaingDescription,
+      campagin_date: new Date().toISOString().split("T")[0],
+      hear_about_blimp: "Online",
+      banner_image: "",
+      images: "",
+      name: user.fullname,
+      email: user.email,
+      request_for_donor: 1,
+      team_memeber_name: parseBeneficiaryDetail,
+      is_draft: 0,
+    };
+
+    try {
+      setStartCampaign((prev) => ({ ...prev, loading: true, error: null }));
+
+      const { data } = await api.post("/campaigns", campaign_data);
+
+      if (data.code === 200) {
+        setStartCampaign({ loading: false, error: null, data });
+
+        if (campaign_data?.banner_image) {
+          console.log("Calling banner image api");
+        }
+
+        if (campaign_data?.images.length > 0) {
+          console.log("Calling images api");
+        }
+        console.log("Clearing Local Storage");
+      } else if (data.code === 400) {
+        toast.error(data.message, { duration: 3000, style: toastStyle });
+        setStartCampaign({ loading: false, error: data.message, data: {} });
+      }
+    } catch (error) {
+      setStartCampaign((prev) => ({ ...prev, error: error.message }));
+    } finally {
+      setStartCampaign((prev) => ({ ...prev, loading: false }));
+    }
+  };
 
   return (
     <section className={styles.startCampaignContainer}>
@@ -213,11 +412,12 @@ const StartCampaign = () => {
                   if (!selectedCategory) {
                     return;
                   }
-                  setSelectedStep(2);
+
                   localStorage.setItem(
                     "selectedCategory",
                     JSON.stringify(selectedCategory)
                   );
+                  setSelectedStep(2);
                 }}
               >
                 Save and Continue
@@ -323,11 +523,12 @@ const StartCampaign = () => {
                   if (!selectedCountry) {
                     return;
                   }
-                  setSelectedStep(3);
+
                   localStorage.setItem(
                     "selectedCountry",
                     JSON.stringify(selectedCountry)
                   );
+                  setSelectedStep(3);
                 }}
               >
                 Save and Continue
@@ -408,11 +609,11 @@ const StartCampaign = () => {
                     return;
                   }
 
-                  setSelectedStep(4);
                   localStorage.setItem(
                     "targetedAmount",
                     JSON.stringify(targetedAmount)
                   );
+                  setSelectedStep(4);
                 }}
               >
                 Save and Continue
@@ -439,11 +640,11 @@ const StartCampaign = () => {
                     return;
                   }
 
-                  setSelectedStep(5);
                   localStorage.setItem(
                     "campaignTitle",
                     JSON.stringify(campaignTitle)
                   );
+                  setSelectedStep(5);
                 }}
               >
                 Save and Continue
@@ -454,18 +655,65 @@ const StartCampaign = () => {
 
         {selectedStep === 5 && (
           <div className={styles.stepperImageContainer}>
-            <div>
-              <div>
-                <p>Drag or click to select file</p>
+            <div className={styles.upload_banner_section}>
+              <p className={styles.upload_banner_title}>Upload Banner Image</p>
+
+              <div className={styles.upload_banner_box}>
+                {bannerImage ? (
+                  <div className={styles.preview_item}>
+                    <img
+                      src={bannerImage.preview}
+                      alt={`preview-${bannerImage.file?.name || "banner"}`}
+                      className={styles.preview_image}
+                    />
+                    <button
+                      className={styles.remove_btn}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handle_remove_banner_image(); // if you have a remove function
+                      }}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ) : (
+                  <div
+                    className={styles.upload_banner_dropzone}
+                    onClick={() => handle_banner_image_drop_click()}
+                  >
+                    <p>📁 Click to select banner image</p>
+                  </div>
+                )}
+
+                <p className={styles.upload_note}>
+                  ** Choose a single banner image (recommended{" "}
+                  <strong>1200px * 560px</strong>, max size <strong>5MB</strong>
+                  ).
+                </p>
+
+                <input
+                  id="campaign-banner-file-input"
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  onChange={handle_banner_file_select}
+                />
               </div>
-              <p>
-                ** Choose up to 5 Image (1200px X 560px is perfect, max image
-                size 1MB, max total size 5MB).
-              </p>
             </div>
             <div>
-              <button>Upload file</button>
-              <button onClick={() => setSelectedStep(6)}>
+              <button
+                onClick={() => {
+                  if (!bannerImage) {
+                    return;
+                  }
+
+                  localStorage.setItem(
+                    "bannerImage",
+                    JSON.stringify(bannerImage)
+                  );
+                  setSelectedStep(6);
+                }}
+              >
                 Save and Continue
               </button>
             </div>
@@ -478,32 +726,75 @@ const StartCampaign = () => {
 
             <div>
               <div>
-                <input type="text" placeholder="First Name" />
-                <input type="text" placeholder="Last Name" />
+                <input
+                  type="text"
+                  placeholder="Your full name"
+                  value={selectedName}
+                  onChange={(e) => setSelectedName(e.target.value)}
+                />
               </div>
 
-              <input type="text" placeholder="Email" />
+              <div>
+                <input
+                  type="text"
+                  placeholder="Your email"
+                  value={selectedEmail}
+                  onChange={(e) => setSelectedEmail(e.target.value)}
+                />
+              </div>
 
               <div>
                 <div>
-                  <input type="radio" />
+                  <input
+                    name="accountType"
+                    type="radio"
+                    value="individual"
+                    checked={selectedCampaignType === "individual"}
+                    onChange={(e) => setSelectedCampaignType(e.target.value)}
+                  />
                   <p>Individual</p>
                 </div>
 
                 <div>
-                  <input type="radio" />
+                  <input
+                    name="accountType"
+                    type="radio"
+                    value="organization"
+                    checked={selectedCampaignType === "organization"}
+                    onChange={(e) => setSelectedCampaignType(e.target.value)}
+                  />
                   <p>Organization</p>
                 </div>
 
-                <div>
+                {/* <div>
                   <button>Upload File</button>
                   <p>**Passport / National ID (for individuals)</p>
                   <p>**NGO/ONG Registration Certificate (for organizations)</p>
-                </div>
+                </div> */}
               </div>
             </div>
 
-            <button onClick={() => setSelectedStep(7)}>
+            <button
+              onClick={() => {
+                if (!selectedCampaignType || !selectedName || !selectedEmail) {
+                  return;
+                }
+
+                localStorage.setItem(
+                  "campaignType",
+                  JSON.stringify(selectedCampaignType)
+                );
+                localStorage.setItem(
+                  "userFullname",
+                  JSON.stringify(selectedName)
+                );
+                localStorage.setItem(
+                  "userEmail",
+                  JSON.stringify(selectedEmail)
+                );
+                setSelectedStep(7);
+              }}
+            >
               Save and Continue
             </button>
           </div>
@@ -511,9 +802,26 @@ const StartCampaign = () => {
 
         {selectedStep === 7 && (
           <div className={styles.stepperStoryContainer}>
-            <input type="text" placeholder="Name of the concerned person" />
+            <div>
+              <input
+                type="text"
+                placeholder="Name of the concerned person"
+                value={beneficiaryDetail}
+                onChange={(e) => setBeneficiaryDetail(e.target.value)}
+              />
+            </div>
 
             <div>
+              <textarea
+                name="campaign_description"
+                id="campaign_description"
+                placeholder="Enter your campaign description"
+                value={selectedCampaingDescription}
+                onChange={(e) => setSelectedCampaignDescription(e.target.value)}
+              />
+            </div>
+
+            {/* <div>
               <div>
                 <div>
                   <p>Heading</p>
@@ -531,12 +839,19 @@ const StartCampaign = () => {
                 </div>
               </div>
               <div>
-                <p>Type here {">"}</p>
+                <textarea
+                  name="campaign_description"
+                  id="campaign_description"
+                  value={selectedCampaingDescription}
+                  onChange={(e) =>
+                    setSelectedCampaignDescription(e.target.value)
+                  }
+                />
               </div>
-            </div>
+            </div> */}
 
-            <div>
-              <p>Upload Supporting Documents</p>
+            {/* <div>
+              <p>Upload Campaign Images</p>
 
               <div>
                 <div>
@@ -549,9 +864,86 @@ const StartCampaign = () => {
                 ** Choose up to 5 Image (512px X 512px is perfect, max image
                 size 1MB, max total size 5MB).
               </p>
+            </div> */}
+
+            <div className={styles.upload_section}>
+              <p className={styles.upload_title}>Upload Campaign Images</p>
+
+              <div className={styles.upload_box}>
+                <div
+                  className={styles.upload_dropzone}
+                  onClick={handle_drop_click}
+                >
+                  {selectedCampaignImages.length === 0 ? (
+                    <p>📁 Click to select files</p>
+                  ) : (
+                    <div className={styles.preview_grid}>
+                      {selectedCampaignImages.map((img, index) => (
+                        <div key={index} className={styles.preview_item}>
+                          <img
+                            src={img.preview}
+                            alt={`preview-${index}`}
+                            className={styles.preview_image}
+                          />
+                          <button
+                            className={styles.remove_btn}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handle_remove_image(index);
+                            }}
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <input
+                  id="campaign-file-input"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  hidden
+                  onChange={handle_file_select}
+                />
+
+                {/* <button className={styles.upload_btn}>Upload</button> */}
+              </div>
+
+              <p className={styles.upload_note}>
+                ** You can upload up to <strong>5 images</strong> (512x512px
+                recommended, max <strong>1MB each</strong>, total{" "}
+                <strong>5MB</strong>).
+              </p>
             </div>
 
-            <button onClick={() => setSelectedStep(8)}>
+            <button
+              onClick={() => {
+                if (
+                  !selectedCampaingDescription ||
+                  selectedCampaignImages.length === 0 ||
+                  !beneficiaryDetail
+                ) {
+                  return;
+                }
+
+                localStorage.setItem(
+                  "selectedCampaingDescription",
+                  JSON.stringify(selectedCampaingDescription)
+                );
+                localStorage.setItem(
+                  "selectedCampaignImages",
+                  JSON.stringify(selectedCampaignImages)
+                );
+                localStorage.setItem(
+                  "beneficiaryDetail",
+                  JSON.stringify(beneficiaryDetail)
+                );
+                setSelectedStep(8);
+              }}
+            >
               Save and Continue
             </button>
           </div>
@@ -559,7 +951,21 @@ const StartCampaign = () => {
 
         {selectedStep === 8 && (
           <div className={styles.stepperPaymentContainer}>
-            <button>Setup Payment</button>
+            <button
+              onClick={start_campaign_handler}
+              disabled={startCampaign.loading}
+            >
+              {startCampaign.loading ? (
+                <ClipLoader
+                  size={"3rem"}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                  color="#fff"
+                />
+              ) : (
+                "Setup Payment"
+              )}
+            </button>
           </div>
         )}
       </div>
