@@ -7,6 +7,7 @@ import { useAuth } from "../../context/AuthContext";
 import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import { toastStyle } from "../../utils/toastStyles";
+import { set, get, del } from "idb-keyval";
 
 const StartCampaign = () => {
   const parseSelectedCategory =
@@ -23,10 +24,25 @@ const StartCampaign = () => {
     JSON.parse(localStorage.getItem("beneficiaryDetail")) || "";
   const parseSelectedCampaingDescription =
     JSON.parse(localStorage.getItem("selectedCampaingDescription")) || "";
-  const parseSelectedCampaignImages =
-    JSON.parse(localStorage.getItem("selectedCampaignImages")) || [];
-  const parseBannerImage =
-    JSON.parse(localStorage.getItem("bannerImage")) || "";
+
+  useEffect(() => {
+    const fetch_banner_image = async () => {
+      const idx_banner_image = (await get("bannerImage")) || "";
+
+      setBannerImage(idx_banner_image);
+    };
+
+    const fetch_campaign_images = async () => {
+      const idx_campaign_images = (await get("campaignImages")) || [];
+
+      if (idx_campaign_images.length > 0) {
+        setSelectedCampaignImages(idx_campaign_images);
+      }
+    };
+
+    fetch_banner_image();
+    fetch_campaign_images();
+  }, []);
 
   const { user } = useAuth();
 
@@ -147,10 +163,8 @@ const StartCampaign = () => {
   const [beneficiaryDetail, setBeneficiaryDetail] = useState(
     parseBeneficiaryDetail
   );
-  const [selectedCampaignImages, setSelectedCampaignImages] = useState(
-    parseSelectedCampaignImages
-  );
-  const [bannerImage, setBannerImage] = useState(parseBannerImage);
+  const [selectedCampaignImages, setSelectedCampaignImages] = useState([]);
+  const [bannerImage, setBannerImage] = useState("");
 
   const handle_file_select = (e) => {
     const files = Array.from(e.target.files);
@@ -184,7 +198,12 @@ const StartCampaign = () => {
     const fileReaders = validFiles.map((file) => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = () => resolve({ file, preview: reader.result }); // Base64
+        reader.onload = () =>
+          resolve({
+            id: Date.now() + Math.random(),
+            file,
+            preview: reader.result,
+          }); // Base64
         reader.onerror = reject;
         reader.readAsDataURL(file);
       });
@@ -193,6 +212,9 @@ const StartCampaign = () => {
     Promise.all(fileReaders).then((filePreviews) => {
       setSelectedCampaignImages((prev) => {
         const merged = [...prev, ...filePreviews].slice(0, maxImages);
+
+        set("campaignImages", merged);
+
         return merged;
       });
     });
@@ -205,8 +227,14 @@ const StartCampaign = () => {
     document.getElementById("campaign-file-input").click();
   };
 
-  const handle_remove_image = (index) => {
-    setSelectedCampaignImages((prev) => prev.filter((_, i) => i !== index));
+  const handle_remove_image = async (image_id) => {
+    const campaign_images = await get("campaignImages") || [];
+    const updated_campaign_images = campaign_images.filter(
+      (item) => item.id !== image_id
+    );
+
+    await set("campaignImages", updated_campaign_images);
+    setSelectedCampaignImages(updated_campaign_images);
   };
 
   const handle_banner_file_select = async (e) => {
@@ -236,6 +264,7 @@ const StartCampaign = () => {
       });
 
       setBannerImage(filePreview);
+      await set("bannerImage", filePreview);
     } catch (error) {
       console.error("Error reading file:", error);
     }
@@ -247,8 +276,9 @@ const StartCampaign = () => {
     document.getElementById("campaign-banner-file-input").click();
   };
 
-  const handle_remove_banner_image = () => {
+  const handle_remove_banner_image = async () => {
     setBannerImage("");
+    await del("bannerImage");
   };
 
   const [startCampaign, setStartCampaign] = useState({
@@ -702,15 +732,10 @@ const StartCampaign = () => {
             </div>
             <div>
               <button
-                onClick={() => {
+                onClick={async () => {
                   if (!bannerImage) {
                     return;
                   }
-
-                  localStorage.setItem(
-                    "bannerImage",
-                    JSON.stringify(bannerImage)
-                  );
                   setSelectedStep(6);
                 }}
               >
@@ -889,7 +914,7 @@ const StartCampaign = () => {
                             className={styles.remove_btn}
                             onClick={(e) => {
                               e.stopPropagation();
-                              handle_remove_image(index);
+                              handle_remove_image(img.id);
                             }}
                           >
                             ✕
