@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./StartCampaign.module.css";
+import styles from "./EditCampaign.module.css";
 import { DownArrow, UpArrow } from "../../icons";
 import api from "../../api/api";
 import Skeleton from "@mui/material/Skeleton";
@@ -8,11 +8,15 @@ import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import { toastStyle } from "../../utils/toastStyles";
 import { set, get, del } from "idb-keyval";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const StartCampaign = () => {
-  
-  const navigate = useNavigate()
+const EditCampaign = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { edit_campaign_item } = location.state;
+
+  console.log("edit_campaign_item ", edit_campaign_item);
 
   const parseSelectedCategory =
     JSON.parse(localStorage.getItem("selectedCategory")) || null;
@@ -29,24 +33,24 @@ const StartCampaign = () => {
   const parseSelectedCampaingDescription =
     JSON.parse(localStorage.getItem("selectedCampaingDescription")) || "";
 
-  useEffect(() => {
-    const fetch_banner_image = async () => {
-      const idx_banner_image = (await get("bannerImage")) || "";
+  // useEffect(() => {
+  //   const fetch_banner_image = async () => {
+  //     const idx_banner_image = (await get("bannerImage")) || "";
 
-      setBannerImage(idx_banner_image);
-    };
+  //     setBannerImage(idx_banner_image);
+  //   };
 
-    const fetch_campaign_images = async () => {
-      const idx_campaign_images = (await get("campaignImages")) || [];
+  //   const fetch_campaign_images = async () => {
+  //     const idx_campaign_images = (await get("campaignImages")) || [];
 
-      if (idx_campaign_images.length > 0) {
-        setSelectedCampaignImages(idx_campaign_images);
-      }
-    };
+  //     if (idx_campaign_images.length > 0) {
+  //       setSelectedCampaignImages(idx_campaign_images);
+  //     }
+  //   };
 
-    fetch_banner_image();
-    fetch_campaign_images();
-  }, []);
+  //   fetch_banner_image();
+  //   fetch_campaign_images();
+  // }, []);
 
   const { user } = useAuth();
 
@@ -153,23 +157,32 @@ const StartCampaign = () => {
   const [selectedCountryOpen, setSelectedCountryOpen] = useState(false);
 
   const [selectedCategory, setSelectedCategory] = useState(
-    parseSelectedCategory
+    edit_campaign_item?.categories
   );
-  const [selectedCountry, setSelectedCountry] = useState(parseSelectedCountry);
-  const [targetedAmount, setTargetedAmount] = useState(parseTargetedAmount);
-  const [campaignTitle, setCampaignTitle] = useState(parseCampaignTitle);
+  const [selectedCountry, setSelectedCountry] = useState(
+    edit_campaign_item?.country
+  );
+  const [targetedAmount, setTargetedAmount] = useState(
+    edit_campaign_item?.targetAmount
+  );
+  const [campaignTitle, setCampaignTitle] = useState(
+    edit_campaign_item?.campaign_name
+  );
   const [selectedName, setSelectedName] = useState("");
   const [selectedEmail, setSelectedEmail] = useState("");
   const [selectedCampaignType, setSelectedCampaignType] =
     useState(parseCampaignType);
   const [selectedCampaingDescription, setSelectedCampaignDescription] =
-    useState(parseSelectedCampaingDescription);
+    useState(edit_campaign_item?.description);
   const [beneficiaryDetail, setBeneficiaryDetail] = useState(
-    parseBeneficiaryDetail
+    edit_campaign_item?.team_memeber_name
   );
-  const [selectedCampaignImages, setSelectedCampaignImages] = useState([]);
-  const [bannerImage, setBannerImage] = useState("");
-
+  const [selectedCampaignImages, setSelectedCampaignImages] = useState(edit_campaign_item?.campaignsImages);
+  const [bannerImage, setBannerImage] = useState({
+    preview: edit_campaign_item?.banner_image,
+    file: ""
+  });
+  
   const handle_file_select = (e) => {
     const files = Array.from(e.target.files);
     const validFiles = [];
@@ -216,9 +229,6 @@ const StartCampaign = () => {
     Promise.all(fileReaders).then((filePreviews) => {
       setSelectedCampaignImages((prev) => {
         const merged = [...prev, ...filePreviews].slice(0, maxImages);
-
-        set("campaignImages", merged);
-
         return merged;
       });
     });
@@ -232,12 +242,10 @@ const StartCampaign = () => {
   };
 
   const handle_remove_image = async (image_id) => {
-    const campaign_images = (await get("campaignImages")) || [];
+    const campaign_images = selectedCampaignImages || [];
     const updated_campaign_images = campaign_images.filter(
       (item) => item.id !== image_id
     );
-
-    await set("campaignImages", updated_campaign_images);
     setSelectedCampaignImages(updated_campaign_images);
   };
 
@@ -284,33 +292,31 @@ const StartCampaign = () => {
 
   const handle_remove_banner_image = async () => {
     setBannerImage("");
-    await del("bannerImage");
   };
 
-  const [startCampaign, setStartCampaign] = useState({
+  const [editCampaign, setEditCampaign] = useState({
     loading: false,
     error: null,
     data: {},
   });
 
-
-  const start_campaign_handler = async () => {
+  const edit_campaign_handler = async () => {
     try {
       const formData = new FormData();
 
-      formData.append("user_id", user.id);
-      formData.append("category", parseSelectedCategory.id);
-      formData.append("country", parseSelectedCountry.id);
-      formData.append("target_amount", parseTargetedAmount);
+      formData.append("id", edit_campaign_item.id);
+      formData.append("category", selectedCategory.id);
+      formData.append("country", selectedCountry.id);
+      formData.append("target_amount", targetedAmount);
       formData.append("purpose", 1);
-      formData.append("campaign_name", parseCampaignTitle);
-      formData.append("description", parseSelectedCampaingDescription);
+      formData.append("campaign_name", campaignTitle);
+      formData.append("description", selectedCampaingDescription);
       formData.append("campagin_date", new Date().toISOString().split("T")[0]);
       formData.append("hear_about_blimp", "Online");
       formData.append("name", user.fullname);
       formData.append("email", user.email);
       formData.append("request_for_donor", 1);
-      formData.append("team_memeber_name", parseBeneficiaryDetail);
+      formData.append("team_memeber_name", beneficiaryDetail);
       formData.append("is_draft", 0);
 
       // ✅ Append single file
@@ -325,44 +331,28 @@ const StartCampaign = () => {
         });
       }
 
-      setStartCampaign((prev) => ({ ...prev, loading: true, error: null }));
+      setEditCampaign((prev) => ({ ...prev, loading: true, error: null }));
 
-      const { data } = await api.post("/campaigns", formData, {
+      const { data } = await api.post("/edit-campaign", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
 
       if (data.code === 200) {
-        setStartCampaign({ loading: false, error: null, data });
-        const keysToRemove = [
-          "beneficiaryDetail",
-          "campaignTitle",
-          "selectedCampaingDescription",
-          "selectedCategory",
-          "selectedCountry",
-          "targetedAmount",
-          "userEmail",
-          "userFullname"
-        ]
-
-        keysToRemove.forEach((key) => localStorage.removeItem(key))
-        await del("bannerImage")
-        await del("campaignImages")
+        setEditCampaign({ loading: false, error: null, data });
         toast.success(data.message, { duration: 3000, style: toastStyle });
-        navigate("/account/active-campaigns")
-
+        navigate("/account/active-campaigns");
       } else if (data.code === 400) {
         toast.error(data.message, { duration: 3000, style: toastStyle });
-        setStartCampaign({ loading: false, error: data.message, data: {} });
+        setEditCampaign({ loading: false, error: data.message, data: {} });
       }
     } catch (error) {
-      setStartCampaign((prev) => ({ ...prev, error: error.message }));
+      setEditCampaign((prev) => ({ ...prev, error: error.message }));
     } finally {
-      setStartCampaign((prev) => ({ ...prev, loading: false }));
+      setEditCampaign((prev) => ({ ...prev, loading: false }));
     }
   };
-
 
   return (
     <section className={styles.startCampaignContainer}>
@@ -472,15 +462,10 @@ const StartCampaign = () => {
                   if (!selectedCategory) {
                     return;
                   }
-
-                  localStorage.setItem(
-                    "selectedCategory",
-                    JSON.stringify(selectedCategory)
-                  );
                   setSelectedStep(2);
                 }}
               >
-                Save and Continue
+                Continue
               </button>
 
               {selectedCategoryOpen &&
@@ -584,14 +569,10 @@ const StartCampaign = () => {
                     return;
                   }
 
-                  localStorage.setItem(
-                    "selectedCountry",
-                    JSON.stringify(selectedCountry)
-                  );
                   setSelectedStep(3);
                 }}
               >
-                Save and Continue
+                Continue
               </button>
 
               {selectedCountryOpen &&
@@ -668,15 +649,10 @@ const StartCampaign = () => {
                   if (!targetedAmount) {
                     return;
                   }
-
-                  localStorage.setItem(
-                    "targetedAmount",
-                    JSON.stringify(targetedAmount)
-                  );
                   setSelectedStep(4);
                 }}
               >
-                Save and Continue
+                Continue
               </button>
             </div>
           </div>
@@ -700,14 +676,10 @@ const StartCampaign = () => {
                     return;
                   }
 
-                  localStorage.setItem(
-                    "campaignTitle",
-                    JSON.stringify(campaignTitle)
-                  );
                   setSelectedStep(5);
                 }}
               >
-                Save and Continue
+                Continue
               </button>
             </div>
           </div>
@@ -719,11 +691,11 @@ const StartCampaign = () => {
               <p className={styles.upload_banner_title}>Upload Banner Image</p>
 
               <div className={styles.upload_banner_box}>
-                {bannerImage ? (
+                {bannerImage?.preview ? (
                   <div className={styles.preview_item}>
                     <img
-                      src={bannerImage.preview}
-                      alt={`preview-${bannerImage.file?.name || "banner"}`}
+                      src={bannerImage?.preview}
+                      alt={`preview banner}`}
                       className={styles.preview_image}
                     />
                     <button
@@ -744,6 +716,7 @@ const StartCampaign = () => {
                     <p>📁 Click to select banner image</p>
                   </div>
                 )}
+
 
                 <p className={styles.upload_note}>
                   ** Choose a single banner image (recommended{" "}
@@ -769,7 +742,7 @@ const StartCampaign = () => {
                   setSelectedStep(6);
                 }}
               >
-                Save and Continue
+                Continue
               </button>
             </div>
           </div>
@@ -835,22 +808,10 @@ const StartCampaign = () => {
                   return;
                 }
 
-                localStorage.setItem(
-                  "campaignType",
-                  JSON.stringify(selectedCampaignType)
-                );
-                localStorage.setItem(
-                  "userFullname",
-                  JSON.stringify(selectedName)
-                );
-                localStorage.setItem(
-                  "userEmail",
-                  JSON.stringify(selectedEmail)
-                );
                 setSelectedStep(7);
               }}
             >
-              Save and Continue
+              Continue
             </button>
           </div>
         )}
@@ -936,7 +897,7 @@ const StartCampaign = () => {
                       {selectedCampaignImages.map((img, index) => (
                         <div key={index} className={styles.preview_item}>
                           <img
-                            src={img.preview}
+                            src={img.preview || img.image}
                             alt={`preview-${index}`}
                             className={styles.preview_image}
                           />
@@ -984,18 +945,10 @@ const StartCampaign = () => {
                   return;
                 }
 
-                localStorage.setItem(
-                  "selectedCampaingDescription",
-                  JSON.stringify(selectedCampaingDescription)
-                );
-                localStorage.setItem(
-                  "beneficiaryDetail",
-                  JSON.stringify(beneficiaryDetail)
-                );
                 setSelectedStep(8);
               }}
             >
-              Save and Continue
+              Continue
             </button>
           </div>
         )}
@@ -1003,10 +956,10 @@ const StartCampaign = () => {
         {selectedStep === 8 && (
           <div className={styles.stepperPaymentContainer}>
             <button
-              onClick={start_campaign_handler}
-              disabled={startCampaign.loading}
+              onClick={edit_campaign_handler}
+              disabled={editCampaign.loading}
             >
-              {startCampaign.loading ? (
+              {editCampaign.loading ? (
                 <ClipLoader
                   size={"3rem"}
                   aria-label="Loading Spinner"
@@ -1024,4 +977,4 @@ const StartCampaign = () => {
   );
 };
 
-export default StartCampaign;
+export default EditCampaign;

@@ -10,10 +10,14 @@ import {
   EmergencyIcon,
   EnvironmentIcon,
   EventIcon,
+  FaithIcon,
   FamilyIcon,
+  FlimIcon,
   MedicalIcon,
+  MemorialIcon,
   NonProfitIcon,
   SportIcon,
+  WishIcon,
 } from "../../icons";
 import api from "../../api/api";
 import Skeleton from "@mui/material/Skeleton";
@@ -52,16 +56,15 @@ const Discover = () => {
 
   const sortCardData = [
     { id: 1, icon: <MedicalIcon />, label: "Medical" },
-    { id: 2, icon: <EmergencyIcon />, label: "Emergency" },
-    { id: 3, icon: <AnimalIcon />, label: "Animals" },
+    { id: 2, icon: <SportIcon />, label: "Sport" },
+    { id: 3, icon: <NonProfitIcon />, label: "Non Profit" },
     { id: 4, icon: <EducationIcon />, label: "Education" },
-    { id: 5, icon: <NonProfitIcon />, label: "Non Profit" },
-
+    { id: 5, icon: <AnimalIcon />, label: "Animals" },
     { id: 6, icon: <EnvironmentIcon />, label: "Environment" },
-    { id: 7, icon: <CommunityIcon />, label: "Community" },
-    { id: 8, icon: <EventIcon />, label: "Event" },
-    { id: 9, icon: <FamilyIcon />, label: "Family" },
-    { id: 10, icon: <SportIcon />, label: "Sport" },
+    { id: 7, icon: <FlimIcon />, label: "Art and Flims" },
+    { id: 8, icon: <FaithIcon />, label: "Faith" },
+    { id: 9, icon: <WishIcon />, label: "Wishes" },
+    { id: 10, icon: <MemorialIcon />, label: "Memorial" },
   ];
 
   useEffect(() => {

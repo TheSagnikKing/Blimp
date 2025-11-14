@@ -94,7 +94,7 @@ const ActiveCampaigns = () => {
               <button
                 onClick={() => {
                   window.scrollTo(0, 0);
-                  navigate("/feature-detail", {
+                  navigate("/cause", {
                     state: item,
                   });
                 }}

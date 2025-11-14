@@ -137,7 +137,17 @@ const Hero = () => {
       >
         <div>
           <div className={style.heroContent}>
-            <h1>{supportCampaigns?.data?.data?.campaign_name}</h1>
+            <h1>
+              {supportCampaigns?.data?.data?.campaign_name}{" "}
+              <span
+                style={{
+                  fontSize: "2.4rem",
+                  textTransform: "lowercase"
+                }}
+              >
+                {"( v 1.0.0 )"}
+              </span>
+            </h1>
             {/* <p>Help power the world's social justice movements</p> */}
             <button
               onClick={() => {

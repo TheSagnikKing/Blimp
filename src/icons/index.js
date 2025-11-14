@@ -1,17 +1,20 @@
 import { BsCalendar2Event, BsFillCreditCard2BackFill, BsWhatsapp } from "react-icons/bs";
-import { FaArrowLeft, FaCamera, FaChevronLeft, FaFacebookF, FaPen, FaPlus, FaSortDown } from "react-icons/fa";
+import { FaArrowLeft, FaCamera, FaChevronLeft, FaFacebookF, FaPen, FaPlus, FaRegStar, FaSortDown } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiArrowRight, FiSearch } from "react-icons/fi";
 import { GiHamburgerMenu, GiProgression, GiSprout } from "react-icons/gi";
 import { GoCalendar } from "react-icons/go";
 import { IoIosArrowDown, IoIosArrowUp, IoMdEye, IoMdEyeOff } from "react-icons/io";
-import { LuClock } from "react-icons/lu";
+import { LuClock, LuHandHeart, LuHeartHandshake, LuTrees } from "react-icons/lu";
 import { MdAccountCircle, MdEmergency, MdFilterAlt, MdOutlineEmail, MdOutlineFamilyRestroom, MdOutlinePets, MdOutlinePhone, MdOutlineSportsCricket } from "react-icons/md";
 import { RiAccountCircleLine, RiInstagramFill, RiUserCommunityFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
-import { IoLocationOutline, IoSchoolSharp } from "react-icons/io5";
+import { IoAmericanFootballOutline, IoLocationOutline, IoSchoolOutline, IoSchoolSharp } from "react-icons/io5";
+import { TbGrave2, TbReportMedical } from "react-icons/tb";
 import { MdMedicalServices } from "react-icons/md";
 import { VscAccount } from "react-icons/vsc";
+import { PiDogLight } from "react-icons/pi";
+import { BiCameraMovie } from "react-icons/bi";
 
 export const SearchIcon = FiSearch
 export const AccountIcon = RiAccountCircleLine
@@ -36,16 +39,20 @@ export const EyeIcon = IoMdEye
 export const EyeOffIcon = IoMdEyeOff
 export const PlaceIcon = IoLocationOutline
 
-export const MedicalIcon = MdMedicalServices
+export const MedicalIcon = TbReportMedical
 export const EmergencyIcon = MdEmergency
-export const AnimalIcon = MdOutlinePets
-export const EducationIcon = IoSchoolSharp
-export const NonProfitIcon = GiProgression
-export const EnvironmentIcon = GiSprout
+export const AnimalIcon = PiDogLight
+export const EducationIcon = IoSchoolOutline
+export const NonProfitIcon = LuHeartHandshake
+export const EnvironmentIcon = LuTrees
 export const CommunityIcon = RiUserCommunityFill
 export const EventIcon = BsCalendar2Event
 export const FamilyIcon = MdOutlineFamilyRestroom
-export const SportIcon = MdOutlineSportsCricket
+export const SportIcon = IoAmericanFootballOutline
 export const AddIcon = FaPlus
 export const ProfileIcon = MdAccountCircle
 export const LeftIcon = FaArrowLeft
+export const FlimIcon = BiCameraMovie
+export const FaithIcon = LuHandHeart
+export const WishIcon = FaRegStar
+export const MemorialIcon = TbGrave2

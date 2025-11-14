@@ -6,14 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
+  const { isAuthenticated, setIsAuthenticated, user } = useAuth();
 
-  const {
-    isAuthenticated,
-    setIsAuthenticated,
-    user
-  } = useAuth()
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const menus = [
     {
@@ -37,7 +32,6 @@ const Navbar = () => {
       url: "/contact-us",
     },
   ];
-
 
   return (
     <header className={style.header}>
@@ -64,7 +58,6 @@ const Navbar = () => {
               ))}
             </ul>
           </nav>
-
         </div>
 
         <div>
@@ -73,31 +66,36 @@ const Navbar = () => {
             <span>Search</span>
           </button>
 
-          {
-            isAuthenticated && user?.profile_picture ? (
-              <button
-                className={style.profileBtn}
-                onClick={() => navigate("/account")}
-              >
-                <img src={user?.profile_picture} alt="" width={"100%"} height={"100%"} style={{ borderRadius: "50%" }} />
-              </button>
-            ) : isAuthenticated ? (
-              <button
-                className={style.profileBtn}
-                onClick={() => navigate("/account")}
-              >
-                <ProfileIcon />
-              </button>
-            ) : (
-              <button
-                className={style.signinBtn}
-                onClick={() => navigate("/login-signup")}>Sign In</button>
-            )
-          }
-
+          {isAuthenticated && user?.profile_picture ? (
+            <button
+              className={style.profileBtn}
+              onClick={() => navigate("/account")}
+            >
+              <img
+                src={user?.profile_picture}
+                alt=""
+                width={"100%"}
+                height={"100%"}
+                style={{ borderRadius: "50%" }}
+              />
+            </button>
+          ) : isAuthenticated ? (
+            <button
+              className={style.profileBtn}
+              onClick={() => navigate("/account")}
+            >
+              <ProfileIcon />
+            </button>
+          ) : (
+            <button
+              className={style.signinBtn}
+              onClick={() => navigate("/login-signup")}
+            >
+              Sign In
+            </button>
+          )}
         </div>
       </div>
-
     </header>
   );
 };

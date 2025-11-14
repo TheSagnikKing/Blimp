@@ -1,21 +1,20 @@
 .featureDetailContainer {
   padding: 0rem 7.5rem 7.5rem 7.5rem;
 
-  &>div {
-
+  & > div {
     width: min(100%, var(--maximum-screen-width));
     margin-inline: auto;
     display: flex;
     flex-direction: column;
     gap: 4rem;
 
-    &>h2 {
+    & > h2 {
       font-size: var(--subheader-large);
       line-height: var(--subheader-large-lineheight);
       font-weight: 800;
     }
 
-    &>img {
+    & > img {
       width: 100%;
       height: 56rem;
       border-radius: var(--button-radius);
@@ -23,72 +22,8 @@
       -moz-border-radius: var(--button-radius);
       -ms-border-radius: var(--button-radius);
       -o-border-radius: var(--button-radius);
+      object-fit: cover;
     }
-
-
-    /* .donationContainer {
-    & > div:nth-child(2) {
-      padding: 1rem;
-      border-radius: 0.8rem;
-      -webkit-border-radius: 0.8rem;
-      -moz-border-radius: 0.8rem;
-      -ms-border-radius: 0.8rem;
-      -o-border-radius: 0.8rem;
-      border: 0.1rem solid rgba(142, 142, 142, 1);
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-
-      & > div {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-
-        & > p:nth-child(1) {
-          font-size: var(--font-large);
-          font-family: "Inter", sans-serif;
-          font-weight: 500;
-        }
-
-        & > p:nth-child(2) {
-          font-size: var(--font-small);
-          color: var(--text-secondary);
-        }
-      }
-
-      .circularProgressbar {
-        width: 5.5rem;
-        height: 5.5rem;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        -ms-border-radius: 50%;
-        -o-border-radius: 50%;
-        background-color: rgba(108, 235, 40, 1);
-        padding: 0.4rem;
-
-        & > div {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          -webkit-border-radius: 50%;
-          -moz-border-radius: 50%;
-          -ms-border-radius: 50%;
-          -o-border-radius: 50%;
-          background-color: var(--bg-primary);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          & > p {
-            font-size: var(--font-vsmall);
-            font-weight: 600;
-          }
-        }
-      }
-    }
-  } */
 
     .linkContainer {
       display: flex;
@@ -96,13 +31,13 @@
       align-items: center;
       justify-content: space-between;
 
-      &>div {
+      & > div:nth-child(1) {
         display: flex;
         align-items: center;
         gap: 1rem;
         width: max-content;
 
-        &>button {
+        & > button {
           width: 4rem;
           height: 4rem;
           border-radius: 50%;
@@ -121,52 +56,67 @@
         }
       }
 
-      &>button {
-        width: fit-content;
-        height: 4rem;
-        border-radius: 3rem;
-        -webkit-border-radius: 3rem;
-        -moz-border-radius: 3rem;
-        -ms-border-radius: 3rem;
-        -o-border-radius: 3rem;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        font-size: var(--font-medium);
-        font-weight: 600;
-        text-transform: uppercase;
-        padding-inline: 4rem;
-        background-color: #8FD600;
+      & > div:nth-child(2) {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        & > button {
+          width: fit-content;
+          height: 4rem;
+          border-radius: 3rem;
+          -webkit-border-radius: 3rem;
+          -moz-border-radius: 3rem;
+          -ms-border-radius: 3rem;
+          -o-border-radius: 3rem;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          font-size: var(--font-medium);
+          font-weight: 600;
+          text-transform: uppercase;
+          padding-inline: 4rem;
+          /* background-color: #8fd600; */
+        }
+
+        & > button:nth-child(1) {
+          background-color: #000;
+          color: #fff;
+        }
+
+        & > button:nth-child(2) {
+          background-color: #8fd600;
+          color: #000;
+        }
       }
     }
 
-    &>div {
+    & > div {
       display: flex;
       flex-direction: column;
       gap: 2rem;
 
-      &>h2 {
+      & > h2 {
         font-size: var(--subheader-small);
         line-height: var(--subheader-small-lineheight);
       }
 
-      &>p {
+      & > p {
         font-size: var(--font-medium);
         color: var(--text-secondary);
       }
     }
 
-    &>ul {
+    & > ul {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
       padding-inline: 1.5rem;
 
-      &>li {
+      & > li {
         font-size: var(--font-medium);
         color: var(--text-secondary);
 
-        &>b {
+        & > b {
           color: #000;
         }
       }
@@ -179,7 +129,7 @@
       gap: 2rem;
       flex-wrap: wrap;
 
-      &>img {
+      & > img {
         flex: 1;
         min-width: 22.5rem;
         height: 17.6rem;
@@ -199,11 +149,11 @@
       flex-direction: column;
       gap: 2rem;
 
-      &>h2 {
+      & > h2 {
         text-align: center;
       }
 
-      &>div {
+      & > div {
         margin-inline: auto;
         display: flex;
         flex-direction: column;
@@ -218,22 +168,22 @@
       justify-content: space-between;
       gap: 5rem;
 
-      &>div:nth-child(1) {
+      & > div:nth-child(1) {
         display: flex;
         align-items: center;
         gap: 1rem;
 
-        &>img {
+        & > img {
           width: 5rem;
           height: 5rem;
         }
 
-        &>span {
+        & > span {
           width: 5rem;
           height: 5rem;
         }
 
-        &>div {
+        & > div {
           width: 10rem;
           height: 10rem;
           border-radius: 50%;
@@ -246,25 +196,25 @@
           align-items: center;
           background-color: rgba(217, 217, 217, 1);
 
-          &>h2 {
+          & > h2 {
             font-size: 3.2rem;
             text-transform: uppercase;
           }
         }
       }
 
-      &>div:nth-child(2) {
+      & > div:nth-child(2) {
         display: flex;
         flex-direction: column;
         gap: 1rem;
 
-        &>h3 {
+        & > h3 {
           font-size: var(--font-medium);
           font-weight: 600;
           text-transform: capitalize;
         }
 
-        &>p {
+        & > p {
           padding: 0.5rem 1rem;
           background-color: #000;
           color: #ffffff;
@@ -275,17 +225,17 @@
         }
       }
 
-      &>div:nth-child(3) {
+      & > div:nth-child(3) {
         display: flex;
         align-items: center;
         gap: 2rem;
 
-        &>h3 {
+        & > h3 {
           font-size: var(--font-medium);
           font-weight: 600;
         }
 
-        &>p {
+        & > p {
           font-size: var(--font-medium);
         }
       }
@@ -300,7 +250,7 @@
   gap: 1rem;
   margin-inline: auto;
 
-  &>button {
+  & > button {
     height: 1rem;
     width: 2rem;
     background-color: rgba(217, 217, 217, 1);
@@ -316,28 +266,27 @@
 }
 
 .blogsContainer {
-
   background-color: var(--bg-primary);
 
-  &>div {
+  & > div {
     padding-inline: 7.5rem;
     padding-block: 6rem;
 
-    &>div {
+    & > div {
       width: min(100%, var(--maximum-screen-width));
       margin-inline: auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      &>h2 {
+      & > h2 {
         font-size: var(--subheader-large);
         font-weight: 700;
         line-height: var(--subheader-large-lineheight);
         text-transform: capitalize;
       }
 
-      &>button {
+      & > button {
         width: 19.3rem;
         height: 4rem;
         background-color: #ffffff;
@@ -353,14 +302,14 @@
         justify-content: center;
         gap: 1rem;
 
-        &>span {
+        & > span {
           font-size: var(--font-medium);
           font-weight: 700;
         }
       }
     }
 
-    &>button:nth-child(3) {
+    & > button:nth-child(3) {
       display: none;
     }
   }
@@ -378,24 +327,24 @@
   .featureDetailContainer {
     padding: 1.5rem;
 
-    &>div {
+    & > div {
       gap: 2rem;
 
-      &>h2 {
+      & > h2 {
         font-size: var(--subheader-small);
         line-height: var(--subheader-small-lineheight);
       }
 
-      &>img {
+      & > img {
         height: 20.8rem;
       }
 
       .supporterContainer {
-        &>h2 {
+        & > h2 {
           text-align: start;
         }
 
-        &>div {
+        & > div {
           margin-inline: initial;
 
           .supporterItem {
@@ -404,45 +353,45 @@
             gap: 1rem;
             justify-content: space-evenly;
 
-            &>div:nth-child(1) {
-              &>img {
+            & > div:nth-child(1) {
+              & > img {
                 width: 3rem;
                 height: 3rem;
               }
 
-              &>div {
+              & > div {
                 width: 5.5rem;
                 height: 5.5rem;
 
-                &>h2 {
+                & > h2 {
                   font-size: 2.2rem;
                 }
               }
 
-              &>span {
+              & > span {
                 width: 3rem;
                 height: 3rem;
               }
             }
 
-            &>div:nth-child(2) {
-              &>h3 {
+            & > div:nth-child(2) {
+              & > h3 {
                 font-size: var(--font-small);
-                text-align: center
+                text-align: center;
               }
             }
 
-            &>div:nth-child(3) {
+            & > div:nth-child(3) {
               display: flex;
               flex-direction: column;
               gap: 1rem;
 
-              &>p {
+              & > p {
                 font-size: var(--font-medium);
                 color: var(--text-secondary);
               }
 
-              &>h3 {
+              & > h3 {
                 text-align: center;
                 font-size: var(--font-large);
               }
@@ -455,35 +404,64 @@
 
   .linkContainer {
     flex-direction: column !important;
-    align-items: flex-start !important;
+    align-items: center !important;
     gap: 2rem;
 
-    &>button {
-      width: 100%;
+    & > div:nth-child(2) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      & > button {
+        width: fit-content;
+        height: 4rem;
+        border-radius: 3rem;
+        -webkit-border-radius: 3rem;
+        -moz-border-radius: 3rem;
+        -ms-border-radius: 3rem;
+        -o-border-radius: 3rem;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 1.4rem !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding-inline: 2rem;
+        /* background-color: #8fd600; */
+      }
+
+      & > button:nth-child(1) {
+        background-color: #000;
+        color: #fff;
+      }
+
+      & > button:nth-child(2) {
+        background-color: #8fd600;
+        color: #000;
+      }
     }
   }
 
   .blogsContainer {
-
-    &>div {
+    & > div {
       padding-inline: 1.5rem;
 
-      &>div {
+      & > div {
         display: block;
 
-        &>h2 {
+        & > h2 {
           font-size: var(--subheader-small);
           line-height: var(--subheader-small-lineheight);
           text-align: center;
           text-transform: capitalize;
         }
 
-        &>button {
+        & > button {
           display: none;
         }
       }
 
-      &>button:nth-child(3) {
+      & > button:nth-child(3) {
         display: block;
         margin-inline: auto;
         margin-block: 2rem;
@@ -502,33 +480,30 @@
       }
     }
   }
-
 }
-
-
 
 @media screen and (min-width: 431px) and (max-width: 1200px) {
   .featureDetailContainer {
     padding: 1.5rem;
 
-    &>div {
+    & > div {
       gap: 2rem;
 
-      &>h2 {
+      & > h2 {
         font-size: var(--subheader-small);
         line-height: var(--subheader-small-lineheight);
       }
 
-      &>img {
-        height: 20.8rem;
+      & > img {
+        height: 30.8rem;
       }
 
       .supporterContainer {
-        &>h2 {
+        & > h2 {
           text-align: start;
         }
 
-        &>div {
+        & > div {
           margin-inline: initial;
 
           .supporterItem {
@@ -537,45 +512,45 @@
             gap: 1rem;
             justify-content: space-evenly;
 
-            &>div:nth-child(1) {
-              &>img {
+            & > div:nth-child(1) {
+              & > img {
                 width: 3rem;
                 height: 3rem;
               }
 
-              &>div {
+              & > div {
                 width: 5.5rem;
                 height: 5.5rem;
 
-                &>h2 {
+                & > h2 {
                   font-size: 2.2rem;
                 }
               }
 
-              &>span {
+              & > span {
                 width: 3rem;
                 height: 3rem;
               }
             }
 
-            &>div:nth-child(2) {
-              &>h3 {
+            & > div:nth-child(2) {
+              & > h3 {
                 font-size: var(--font-small);
                 text-align: center;
               }
             }
 
-            &>div:nth-child(3) {
+            & > div:nth-child(3) {
               display: flex;
               flex-direction: column;
               gap: 1rem;
 
-              &>p {
+              & > p {
                 font-size: var(--font-medium);
                 color: var(--text-secondary);
               }
 
-              &>h3 {
+              & > h3 {
                 text-align: center;
                 font-size: var(--font-large);
               }
@@ -588,35 +563,64 @@
 
   .linkContainer {
     flex-direction: column !important;
-    align-items: flex-start !important;
+    align-items: center !important;
     gap: 2rem;
 
-    &>button {
-      width: 100%;
+    & > div:nth-child(2) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      & > button {
+        width: fit-content;
+        height: 4rem;
+        border-radius: 3rem;
+        -webkit-border-radius: 3rem;
+        -moz-border-radius: 3rem;
+        -ms-border-radius: 3rem;
+        -o-border-radius: 3rem;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 1.4rem !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding-inline: 2rem;
+        /* background-color: #8fd600; */
+      }
+
+      & > button:nth-child(1) {
+        background-color: #000;
+        color: #fff;
+      }
+
+      & > button:nth-child(2) {
+        background-color: #8fd600;
+        color: #000;
+      }
     }
   }
 
   .blogsContainer {
-
-    &>div {
+    & > div {
       padding-inline: 1.5rem;
 
-      &>div {
+      & > div {
         /* display: block; */
 
-        &>h2 {
+        & > h2 {
           font-size: var(--subheader-small);
           line-height: var(--subheader-small-lineheight);
           text-align: center;
           text-transform: capitalize;
         }
 
-        &>button {
+        & > button {
           display: none;
         }
       }
 
-      &>button:nth-child(3) {
+      & > button:nth-child(3) {
         display: block;
         margin-inline: auto;
         margin-block: 2rem;
@@ -635,5 +639,4 @@
       }
     }
   }
-
 }

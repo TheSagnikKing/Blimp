@@ -41,6 +41,7 @@ const ChangePassword = lazy(() =>
   import("./pages/Account/ChangePassword/ChangePassword")
 );
 const StartCampaign = lazy(() => import("./pages/StartCampaign/StartCampaign"));
+const EditCampaign = lazy(() => import("./pages/EditCampaign/EditCampaign"))
 const Cause = lazy(() => import("./pages/Cause/Cause"));
 
 const App = () => {
@@ -118,6 +119,7 @@ const App = () => {
                   <Route path="change-password" element={<ChangePassword />} />
                 </Route>
                 <Route path="/start-campaign" element={<StartCampaign />} />
+                <Route path="/edit-campaign" element={<EditCampaign/>}/>
               </Route>
             </Route>
           </Routes>
