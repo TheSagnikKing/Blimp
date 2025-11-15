@@ -7,7 +7,7 @@ import { GoCalendar } from "react-icons/go";
 import { IoIosArrowDown, IoIosArrowUp, IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { LuClock, LuHandHeart, LuHeartHandshake, LuTrees } from "react-icons/lu";
 import { MdAccountCircle, MdEmergency, MdFilterAlt, MdOutlineEmail, MdOutlineFamilyRestroom, MdOutlinePets, MdOutlinePhone, MdOutlineSportsCricket } from "react-icons/md";
-import { RiAccountCircleLine, RiInstagramFill, RiUserCommunityFill } from "react-icons/ri";
+import { RiAccountCircleLine, RiAlignCenter, RiAlignLeft, RiAlignRight, RiInstagramFill, RiUserCommunityFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import { IoAmericanFootballOutline, IoLocationOutline, IoSchoolOutline, IoSchoolSharp } from "react-icons/io5";
 import { TbGrave2, TbReportMedical } from "react-icons/tb";
@@ -56,3 +56,6 @@ export const FlimIcon = BiCameraMovie
 export const FaithIcon = LuHandHeart
 export const WishIcon = FaRegStar
 export const MemorialIcon = TbGrave2
+export const EditorLeftIcon = RiAlignLeft
+export const EditorRightIcon = RiAlignRight
+export const EditorCenterIcon = RiAlignCenter

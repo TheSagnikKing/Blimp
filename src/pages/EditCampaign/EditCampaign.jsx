@@ -9,48 +9,13 @@ import toast from "react-hot-toast";
 import { toastStyle } from "../../utils/toastStyles";
 import { set, get, del } from "idb-keyval";
 import { useLocation, useNavigate } from "react-router-dom";
+import TiptapEditor from "../../components/Tiptap/TiptapEditor";
 
 const EditCampaign = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const { edit_campaign_item } = location.state;
-
-  console.log("edit_campaign_item ", edit_campaign_item);
-
-  const parseSelectedCategory =
-    JSON.parse(localStorage.getItem("selectedCategory")) || null;
-  const parseSelectedCountry =
-    JSON.parse(localStorage.getItem("selectedCountry")) || null;
-  const parseTargetedAmount =
-    JSON.parse(localStorage.getItem("targetedAmount")) || null;
-  const parseCampaignTitle =
-    JSON.parse(localStorage.getItem("campaignTitle")) || "";
-  const parseCampaignType =
-    JSON.parse(localStorage.getItem("campaignType")) || "";
-  const parseBeneficiaryDetail =
-    JSON.parse(localStorage.getItem("beneficiaryDetail")) || "";
-  const parseSelectedCampaingDescription =
-    JSON.parse(localStorage.getItem("selectedCampaingDescription")) || "";
-
-  // useEffect(() => {
-  //   const fetch_banner_image = async () => {
-  //     const idx_banner_image = (await get("bannerImage")) || "";
-
-  //     setBannerImage(idx_banner_image);
-  //   };
-
-  //   const fetch_campaign_images = async () => {
-  //     const idx_campaign_images = (await get("campaignImages")) || [];
-
-  //     if (idx_campaign_images.length > 0) {
-  //       setSelectedCampaignImages(idx_campaign_images);
-  //     }
-  //   };
-
-  //   fetch_banner_image();
-  //   fetch_campaign_images();
-  // }, []);
 
   const { user } = useAuth();
 
@@ -171,18 +136,25 @@ const EditCampaign = () => {
   const [selectedName, setSelectedName] = useState("");
   const [selectedEmail, setSelectedEmail] = useState("");
   const [selectedCampaignType, setSelectedCampaignType] =
-    useState(parseCampaignType);
+    useState("individual");
   const [selectedCampaingDescription, setSelectedCampaignDescription] =
-    useState(edit_campaign_item?.description);
+    useState(
+      edit_campaign_item?.description === "<p></p>"
+        ? "<p></p>"
+        : edit_campaign_item?.description
+    );
+
   const [beneficiaryDetail, setBeneficiaryDetail] = useState(
     edit_campaign_item?.team_memeber_name
   );
-  const [selectedCampaignImages, setSelectedCampaignImages] = useState(edit_campaign_item?.campaignsImages);
+  const [selectedCampaignImages, setSelectedCampaignImages] = useState(
+    edit_campaign_item?.campaignsImages
+  );
   const [bannerImage, setBannerImage] = useState({
     preview: edit_campaign_item?.banner_image,
-    file: ""
+    file: "",
   });
-  
+
   const handle_file_select = (e) => {
     const files = Array.from(e.target.files);
     const validFiles = [];
@@ -717,7 +689,6 @@ const EditCampaign = () => {
                   </div>
                 )}
 
-
                 <p className={styles.upload_note}>
                   ** Choose a single banner image (recommended{" "}
                   <strong>1200px * 560px</strong>, max size <strong>5MB</strong>
@@ -828,6 +799,13 @@ const EditCampaign = () => {
             </div>
 
             <div>
+              <TiptapEditor
+                selectedCampaingDescription={selectedCampaingDescription}
+                setSelectedCampaignDescription={setSelectedCampaignDescription}
+              />
+            </div>
+
+            {/* <div>
               <textarea
                 name="campaign_description"
                 id="campaign_description"
@@ -835,7 +813,7 @@ const EditCampaign = () => {
                 value={selectedCampaingDescription}
                 onChange={(e) => setSelectedCampaignDescription(e.target.value)}
               />
-            </div>
+            </div> */}
 
             {/* <div>
               <div>

@@ -9,10 +9,10 @@ import toast from "react-hot-toast";
 import { toastStyle } from "../../utils/toastStyles";
 import { set, get, del } from "idb-keyval";
 import { useNavigate } from "react-router-dom";
+import TiptapEditor from "../../components/Tiptap/TiptapEditor";
 
 const StartCampaign = () => {
-  
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const parseSelectedCategory =
     JSON.parse(localStorage.getItem("selectedCategory")) || null;
@@ -163,7 +163,45 @@ const StartCampaign = () => {
   const [selectedCampaignType, setSelectedCampaignType] =
     useState(parseCampaignType);
   const [selectedCampaingDescription, setSelectedCampaignDescription] =
-    useState(parseSelectedCampaingDescription);
+    useState(
+      parseSelectedCampaingDescription ||
+        `
+      <h2 style="text-align:center;">Welcome to the blimp editor 👋</h2>
+
+      <p>
+        Type anything you want and style it however you like ✨.
+        You can format your text using the toolbar above.
+      </p>
+
+      <p>
+        Try using <strong>Bold</strong>, <em>Italic</em>, <u>Underline</u>, or
+        <s>Strikethrough</s>.
+        You can also change <span style="text-align:center; display:block;"><strong>alignment</strong></span>.
+      </p>
+
+      <h3>Features you can use:</h3>
+      <ul>
+        <li>Bold, Italic, Underline, Strike</li>
+        <li>Left / Center / Right / Justify alignment</li>
+        <li>Bullet and Numbered Lists</li>
+        <li>Quotes</li>
+      </ul>
+
+      <p>Here's a quick example list:</p>
+      <ul>
+        <li>First bullet item</li>
+        <li>Second bullet item</li>
+      </ul>
+
+      <blockquote>
+        “Writing is the painting of the voice.” — Voltaire
+      </blockquote>
+
+      <p>
+        Start editing this text to begin!
+      </p>
+    `
+    );
   const [beneficiaryDetail, setBeneficiaryDetail] = useState(
     parseBeneficiaryDetail
   );
@@ -293,24 +331,23 @@ const StartCampaign = () => {
     data: {},
   });
 
-
   const start_campaign_handler = async () => {
     try {
       const formData = new FormData();
 
       formData.append("user_id", user.id);
-      formData.append("category", parseSelectedCategory.id);
-      formData.append("country", parseSelectedCountry.id);
-      formData.append("target_amount", parseTargetedAmount);
+      formData.append("category", selectedCategory.id);
+      formData.append("country", selectedCountry.id);
+      formData.append("target_amount", targetedAmount);
       formData.append("purpose", 1);
-      formData.append("campaign_name", parseCampaignTitle);
-      formData.append("description", parseSelectedCampaingDescription);
+      formData.append("campaign_name", campaignTitle);
+      formData.append("description", JSON.stringify(selectedCampaingDescription));
       formData.append("campagin_date", new Date().toISOString().split("T")[0]);
       formData.append("hear_about_blimp", "Online");
       formData.append("name", user.fullname);
       formData.append("email", user.email);
       formData.append("request_for_donor", 1);
-      formData.append("team_memeber_name", parseBeneficiaryDetail);
+      formData.append("team_memeber_name", beneficiaryDetail);
       formData.append("is_draft", 0);
 
       // ✅ Append single file
@@ -343,15 +380,14 @@ const StartCampaign = () => {
           "selectedCountry",
           "targetedAmount",
           "userEmail",
-          "userFullname"
-        ]
+          "userFullname",
+        ];
 
-        keysToRemove.forEach((key) => localStorage.removeItem(key))
-        await del("bannerImage")
-        await del("campaignImages")
+        keysToRemove.forEach((key) => localStorage.removeItem(key));
+        await del("bannerImage");
+        await del("campaignImages");
         toast.success(data.message, { duration: 3000, style: toastStyle });
-        navigate("/account/active-campaigns")
-
+        navigate("/account/active-campaigns");
       } else if (data.code === 400) {
         toast.error(data.message, { duration: 3000, style: toastStyle });
         setStartCampaign({ loading: false, error: data.message, data: {} });
@@ -362,7 +398,6 @@ const StartCampaign = () => {
       setStartCampaign((prev) => ({ ...prev, loading: false }));
     }
   };
-
 
   return (
     <section className={styles.startCampaignContainer}>
@@ -867,6 +902,13 @@ const StartCampaign = () => {
             </div>
 
             <div>
+              <TiptapEditor
+                selectedCampaingDescription={selectedCampaingDescription}
+                setSelectedCampaignDescription={setSelectedCampaignDescription}
+              />
+            </div>
+
+            {/* <div>
               <textarea
                 name="campaign_description"
                 id="campaign_description"
@@ -874,7 +916,7 @@ const StartCampaign = () => {
                 value={selectedCampaingDescription}
                 onChange={(e) => setSelectedCampaignDescription(e.target.value)}
               />
-            </div>
+            </div> */}
 
             {/* <div>
               <div>
@@ -977,7 +1019,7 @@ const StartCampaign = () => {
             <button
               onClick={() => {
                 if (
-                  !selectedCampaingDescription ||
+                  selectedCampaingDescription === "<p></p>" ||
                   selectedCampaignImages.length === 0 ||
                   !beneficiaryDetail
                 ) {
