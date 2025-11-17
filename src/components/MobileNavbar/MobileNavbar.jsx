@@ -1,18 +1,28 @@
 import React, { useState } from "react";
 import style from "./MobileNavbar.module.css";
 import blimpLogoBlack from "../../assets/blimpLogoBlack.png";
-import { CrossIcon, LeftIcon, MenuIcon, ProfileIcon, RightIcon, SearchIcon } from "../../icons";
+import {
+  CrossIcon,
+  LeftIcon,
+  MenuIcon,
+  ProfileIcon,
+  RightIcon,
+  SearchIcon,
+} from "../../icons";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { del } from "idb-keyval";
 
 const MobileNavbar = () => {
-
   const {
+    user,
+    setUser,
     isAuthenticated,
     setIsAuthenticated,
-    user
-  } = useAuth()
+    userId,
+    setUserId,
+  } = useAuth();
 
   const menus = [
     {
@@ -66,8 +76,7 @@ const MobileNavbar = () => {
       name: "Change Password",
       url: "/account/change-password",
     },
-
-  ]
+  ];
 
   const { openMobileMenu, setOpenMobileMenu } = useGlobalContext();
   const [searchOpen, setSearchOpen] = useState(false);
@@ -76,8 +85,33 @@ const MobileNavbar = () => {
 
   const location = useLocation();
 
-  const [authenticated, setAuthenticated] = useState(true)
-  const [profileMenuOpen, setProfileMenuOpen] = useState(false)
+  const [authenticated, setAuthenticated] = useState(true);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+
+  const logout_handler = async () => {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("usersignin");
+    setUser(null);
+    setUserId(null);
+    setIsAuthenticated(false);
+
+    const keysToRemove = [
+      "beneficiaryDetail",
+      "campaignTitle",
+      "selectedCampaingDescription",
+      "selectedCategory",
+      "selectedCountry",
+      "targetedAmount",
+      "userEmail",
+      "userFullname",
+    ];
+
+    keysToRemove.forEach((key) => localStorage.removeItem(key));
+    await del("bannerImage");
+    await del("campaignImages");
+
+    navigate("/login-signup");
+  };
 
   return (
     <header className={style.mobileHeader}>
@@ -126,20 +160,39 @@ const MobileNavbar = () => {
         </>
       )}
 
-
       {openMobileMenu && (
         <div className={style.mobileMenuContainer}>
-          {
-            profileMenuOpen ? (
+          {profileMenuOpen ? (
+            <div>
+              <button
+                onClick={() => {
+                  navigate(-1);
+                  setProfileMenuOpen(false);
+                }}
+              >
+                <LeftIcon size={"1.2rem"} /> Back
+              </button>
+              {AccountMenu.map((item) => {
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      navigate(item.url);
+                      setOpenMobileMenu(false);
+                    }}
+                  >
+                    {item.name}
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <>
               <div>
-                <button onClick={() => {
-                  navigate(-1)
-                  setProfileMenuOpen(false)
-                }}><LeftIcon size={"1.2rem"} /> Back</button>
-                {AccountMenu.map((item) => {
+                {menus.map((item) => {
                   return (
                     <button
-                      key={item.id}
+                      key={item.name}
                       onClick={() => {
                         navigate(item.url);
                         setOpenMobileMenu(false);
@@ -149,69 +202,69 @@ const MobileNavbar = () => {
                     </button>
                   );
                 })}
+
+                {isAuthenticated && (
+                  <button
+                    onClick={logout_handler}
+                    // className={styles.logoutButton}
+                  >
+                    Logout
+                  </button>
+                )}
               </div>
-            ) : (
-              <>
-                <div>
-                  {menus.map((item) => {
-                    return (
-                      <button
-                        key={item.name}
-                        onClick={() => {
-                          navigate(item.url);
-                          setOpenMobileMenu(false);
-                        }}
-                      >
-                        {item.name}
-                      </button>
-                    );
-                  })}
+
+              {isAuthenticated && user?.profile_picture ? (
+                <div
+                  onClick={() => setProfileMenuOpen(true)}
+                  className={style.profileSectionCard}
+                >
+                  <div>
+                    <img
+                      src={user.profile_picture}
+                      alt=""
+                      width={"100%"}
+                      height={"100%"}
+                      style={{ borderRadius: "50%" }}
+                    />
+                  </div>
+                  <div>
+                    <p>{user?.fullname}</p>
+                    <div>
+                      <RightIcon />
+                    </div>
+                  </div>
                 </div>
-
-                {
-                  isAuthenticated && user?.profile_picture ? (
-                    <div
-                      onClick={() => setProfileMenuOpen(true)}
-                      className={style.profileSectionCard}>
-                      <div><img
-                        src={user.profile_picture} alt=""
-                        width={"100%"}
-                        height={"100%"}
-                        style={{ borderRadius: "50%" }}
-                      /></div>
-                      <div>
-                        <p>{user?.fullname}</p>
-                        <div><RightIcon /></div>
-                      </div>
+              ) : isAuthenticated ? (
+                <div
+                  onClick={() => setProfileMenuOpen(true)}
+                  className={style.profileSectionCard}
+                >
+                  <div>
+                    <ProfileIcon size={"4.5rem"} />
+                  </div>
+                  <div>
+                    <p>{user?.fullname}</p>
+                    <div>
+                      <RightIcon />
                     </div>
-                  ) : isAuthenticated ? (
-                    <div
-                      onClick={() => setProfileMenuOpen(true)}
-                      className={style.profileSectionCard}>
-                      <div><ProfileIcon size={"4.5rem"} /></div>
-                      <div>
-                        <p>{user?.fullname}</p>
-                        <div><RightIcon /></div>
-                      </div>
-                    </div>
-                  ) : (
-                    <button
-                      className={style.signinBtn}
-                      onClick={() => {
-                        setOpenMobileMenu(false);
-                        navigate("/login-signup")
-                      }}>Sign In</button>
-                  )
-                }
-
-              </>
-            )
-          }
-
+                  </div>
+                </div>
+              ) : (
+                <button
+                  className={style.signinBtn}
+                  onClick={() => {
+                    setOpenMobileMenu(false);
+                    navigate("/login-signup");
+                  }}
+                >
+                  Sign In
+                </button>
+              )}
+            </>
+          )}
         </div>
-      )
-      }
-    </header >
+      )}
+    </header>
   );
 };
 

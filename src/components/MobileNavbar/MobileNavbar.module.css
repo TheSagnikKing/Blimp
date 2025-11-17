@@ -7,12 +7,12 @@
   padding-inline: 1.5rem;
   position: relative;
 
-  &>div:nth-child(2) {
+  & > div:nth-child(2) {
     display: flex;
     align-items: center;
     gap: 2rem;
 
-    &>button {
+    & > button {
       font-size: 2.2rem;
       background-color: transparent;
       border: none;
@@ -27,7 +27,9 @@
     left: 0rem;
     right: 0rem;
     bottom: 0rem;
-    height: calc(100vh - 9.5rem);
+    height: calc(100dvh - 9.5rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     background-color: var(--bg-primary);
     padding-inline: 1.5rem;
     z-index: 99;
@@ -37,12 +39,12 @@
     padding-bottom: 3rem;
     gap: 2rem;
 
-    &>div {
+    & > div {
       display: flex;
       flex-direction: column;
       gap: 2rem;
 
-      &>button {
+      & > button {
         height: 4rem;
         background-color: transparent;
         text-align: start;
@@ -54,7 +56,7 @@
       }
     }
 
-    &>button {
+    & > button {
       height: 4rem;
       border: none;
       outline: none;
@@ -86,7 +88,7 @@
     align-items: center;
     justify-content: space-between;
 
-    &>input {
+    & > input {
       &::placeholder {
         font-size: var(--font-medium);
         color: var(--text-secondary);
@@ -97,7 +99,7 @@
       outline: none;
     }
 
-    &>button {
+    & > button {
       font-size: 2rem;
       display: flex;
       justify-content: center;
@@ -110,11 +112,10 @@
   }
 }
 
-
 .profileSectionCard {
   height: 6rem;
   width: 100%;
-  background-color: #F2F2FF;
+  background-color: #f2f2ff;
   padding-inline: 1.6rem;
   border-radius: var(--button-radius);
   -webkit-border-radius: var(--button-radius);
@@ -126,7 +127,7 @@
   align-items: center;
   gap: 1rem !important;
 
-  &>div:nth-child(1) {
+  & > div:nth-child(1) {
     width: 4.5rem;
     height: 4.5rem;
     border-radius: 50%;
@@ -134,28 +135,28 @@
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
-    background-color: #D9D9D9;
+    background-color: #d9d9d9;
     display: grid;
     place-items: center;
 
-    &>p {
+    & > p {
       font-size: 1.8rem;
       font-weight: 700;
-      color: #4F4F4F;
+      color: #4f4f4f;
     }
   }
 
-  &>div:nth-child(2) {
+  & > div:nth-child(2) {
     width: calc(100% - 4.5rem - 1rem);
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    &>p {
+    & > p {
       font-size: 1.4rem;
     }
 
-    &>div {
+    & > div {
       display: grid;
       place-items: center;
       font-size: 1.8rem;
