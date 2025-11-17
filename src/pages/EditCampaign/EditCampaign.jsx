@@ -135,8 +135,6 @@ const EditCampaign = () => {
   );
   const [selectedName, setSelectedName] = useState("");
   const [selectedEmail, setSelectedEmail] = useState("");
-  const [selectedCampaignType, setSelectedCampaignType] =
-    useState("individual");
   const [selectedCampaingDescription, setSelectedCampaignDescription] =
     useState(
       edit_campaign_item?.description === "<p></p>"
@@ -775,7 +773,7 @@ const EditCampaign = () => {
 
             <button
               onClick={() => {
-                if (!selectedCampaignType || !selectedName || !selectedEmail) {
+                if (!selectedName || !selectedEmail) {
                   return;
                 }
 

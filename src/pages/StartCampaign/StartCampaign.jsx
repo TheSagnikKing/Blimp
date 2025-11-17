@@ -866,14 +866,10 @@ const StartCampaign = () => {
 
             <button
               onClick={() => {
-                if (!selectedCampaignType || !selectedName || !selectedEmail) {
+                if (!selectedName || !selectedEmail) {
                   return;
                 }
 
-                localStorage.setItem(
-                  "campaignType",
-                  JSON.stringify(selectedCampaignType)
-                );
                 localStorage.setItem(
                   "userFullname",
                   JSON.stringify(selectedName)
