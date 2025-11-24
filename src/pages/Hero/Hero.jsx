@@ -317,15 +317,11 @@ const Hero = () => {
                     latestCampaigns?.data?.data?.latestCampaigns?.[2]
                       ?.banner_image
                   }
-                  description={
-                    // latestCampaigns?.data?.data?.latestCampaigns?.[2]
-                    //   ?.description
-                    convert(
-                      latestCampaigns?.data?.data?.latestCampaigns?.[0]
-                        ?.description,
-                      options
-                    )
-                  }
+                  description={convert(
+                    latestCampaigns?.data?.data?.latestCampaigns?.[0]
+                      ?.description,
+                    options
+                  )}
                   campaignName={
                     latestCampaigns?.data?.data?.latestCampaigns?.[2]
                       ?.campaign_name
@@ -336,10 +332,11 @@ const Hero = () => {
                     latestCampaigns?.data?.data?.latestCampaigns?.[3]
                       ?.banner_image
                   }
-                  description={
-                    latestCampaigns?.data?.data?.latestCampaigns?.[3]
-                      ?.description
-                  }
+                  description={convert(
+                    latestCampaigns?.data?.data?.latestCampaigns?.[0]
+                      ?.description,
+                    options
+                  )}
                   campaignName={
                     latestCampaigns?.data?.data?.latestCampaigns?.[3]
                       ?.campaign_name
