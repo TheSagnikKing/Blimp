@@ -318,8 +318,13 @@ const Hero = () => {
                       ?.banner_image
                   }
                   description={
-                    latestCampaigns?.data?.data?.latestCampaigns?.[2]
-                      ?.description
+                    // latestCampaigns?.data?.data?.latestCampaigns?.[2]
+                    //   ?.description
+                    convert(
+                      latestCampaigns?.data?.data?.latestCampaigns?.[0]
+                        ?.description,
+                      options
+                    )
                   }
                   campaignName={
                     latestCampaigns?.data?.data?.latestCampaigns?.[2]

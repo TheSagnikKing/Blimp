@@ -4,16 +4,16 @@
   gap: 2rem;
   padding: 2rem;
 
-  &>div:nth-child(1) {
+  & > div:nth-child(1) {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    &>button {
+    & > button {
       padding-inline: 3rem;
       height: 4.4rem;
       border: none;
-      background: #8FD600;
+      background: #8fd600;
       font-size: var(--font-medium);
       font-weight: bold;
       cursor: pointer;
@@ -26,38 +26,54 @@
     }
   }
 
-  &>form {
+  & > form {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 3rem;
 
-    &>div {
+    & > div {
       display: flex;
       flex-direction: column;
       gap: 2rem;
 
-      &>label {
+      & > label {
         font-size: var(--font-medium);
         font-weight: 500;
       }
 
-      &>input {
+      & > input {
         width: 100%;
-        height: 5.7rem;
-        border: none;
-        border-radius: var(--button-radius);
-        background-color: white;
-        font-size: var(--font-medium);
-        -webkit-border-radius: var(--button-radius);
-        -moz-border-radius: var(--button-radius);
-        -ms-border-radius: var(--button-radius);
-        -o-border-radius: var(--button-radius);
-        padding-inline: 2rem;
+        height: 6.5rem;
+        padding: 0 1.6rem;
+        background-color: #ffffff;
+        border-radius: 0.8rem;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: all 0.25s ease;
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: #1f2937;
+        letter-spacing: 0.3px;
+        outline: none;
+
+        &:hover {
+          border-color: #cbd5e1;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        &:focus {
+          border-color: #8fd600;
+        }
+
+        &::placeholder {
+          color: #9ca3af;
+          font-weight: 400;
+        }
       }
     }
 
-    &>button {
+    & > button {
       width: 28.2rem;
       height: 6.2rem;
       border: none;
@@ -77,14 +93,14 @@
   }
 }
 
-@media screen and (min-width:0px) and (max-width:430px) {
+@media screen and (min-width: 0px) and (max-width: 430px) {
   .bankContainer {
     padding: 0rem;
 
-    &>div:nth-child(1) {
+    & > div:nth-child(1) {
       justify-content: center;
       align-items: center;
-      &>span {
+      & > span {
         display: none;
       }
     }

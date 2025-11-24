@@ -16,6 +16,7 @@ import {
   MedicalIcon,
   MemorialIcon,
   NonProfitIcon,
+  SearchIcon,
   SportIcon,
   WishIcon,
 } from "../../icons";
@@ -102,14 +103,22 @@ const Discover = () => {
     // get-discover-campaign
   }, [user]);
 
-
   return (
     <main>
       <section className={style.discoverSortContainer}>
         <div>
           <div>
-            <h2>Discover</h2>
-            <p>Find causes you truly care about</p>
+            <div>
+              <h2>Discover</h2>
+              <p>Find causes you truly care about</p>
+            </div>
+
+            <div>
+              <input type="text" placeholder="Search " />
+              <button>
+                <SearchIcon />
+              </button>
+            </div>
           </div>
 
           <div>

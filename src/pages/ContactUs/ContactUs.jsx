@@ -19,7 +19,6 @@ import { PhoneNumberUtil } from "google-libphonenumber";
 import { PhoneInput } from "react-international-phone";
 
 const ContactUs = () => {
-
   const [faqList, setFaqList] = useState({
     loading: false,
     error: null,
@@ -30,7 +29,7 @@ const ContactUs = () => {
     const fetchFaqList = async () => {
       setFaqList((prev) => ({ ...prev, loading: true, error: null }));
       try {
-        const { data } = await api.post("/get-faq-list", { "language": "en" });
+        const { data } = await api.post("/get-faq-list", { language: "en" });
         if (data.code === 200) {
           setFaqList({ loading: false, error: null, data });
         } else if (data.code === 400) {
@@ -41,32 +40,31 @@ const ContactUs = () => {
       }
     };
 
-    fetchFaqList()
-
-  }, [])
+    fetchFaqList();
+  }, []);
 
   const [selectedFaqItem, setSelectedFaqItem] = useState({
     question: "",
     answer: "",
-    id: ""
-  })
+    id: "",
+  });
 
-  const [firstname, setFirstname] = useState("")
-  const [lastname, setLastname] = useState("")
-  const [email, setEmail] = useState("")
-  const [phonenumber, setPhonenumber] = useState("")
-  const [subject, setSubject] = useState("")
-  const [description, setDescription] = useState("")
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phonenumber, setPhonenumber] = useState("");
+  const [subject, setSubject] = useState("");
+  const [description, setDescription] = useState("");
 
   // contact us error states
 
-  const [firstnameError, setFirstnameError] = useState("")
-  const [lastnameError, setLastnameError] = useState("")
-  const [emailError, setEmailError] = useState("")
-  const [phonenumberError, setPhonenumberError] = useState("")
-  const [subjectError, setSubjectError] = useState("")
-  const [descriptionError, setDescriptionError] = useState("")
-  const [sendMessageLoader, setSendMessageLoader] = useState(false)
+  const [firstnameError, setFirstnameError] = useState("");
+  const [lastnameError, setLastnameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phonenumberError, setPhonenumberError] = useState("");
+  const [subjectError, setSubjectError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
+  const [sendMessageLoader, setSendMessageLoader] = useState(false);
   const [countryflag, setCountryFlag] = useState("gb");
   const [countryCode, setCountryCode] = useState("");
   const [invalidnumber, setInvalidNumber] = useState(false);
@@ -82,7 +80,6 @@ const ContactUs = () => {
       return false;
     }
   };
-
 
   const handlePhoneChange = (phone, meta) => {
     setPhonenumberError("");
@@ -103,33 +100,33 @@ const ContactUs = () => {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    let hasError = false
+    let hasError = false;
 
-    setFirstnameError("")
-    setLastnameError("")
-    setEmailError("")
-    setPhonenumberError("")
-    setSubjectError("")
-    setDescriptionError("")
+    setFirstnameError("");
+    setLastnameError("");
+    setEmailError("");
+    setPhonenumberError("");
+    setSubjectError("");
+    setDescriptionError("");
 
     if (!firstname.trim()) {
-      setFirstnameError("Please enter your first name.")
-      hasError = true
-    };
+      setFirstnameError("Please enter your first name.");
+      hasError = true;
+    }
     if (!lastname.trim()) {
-      setLastnameError("Please enter your last name.")
-      hasError = true
-    };
+      setLastnameError("Please enter your last name.");
+      hasError = true;
+    }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!email.trim()) {
-      setEmailError("Please enter your email address.")
-      hasError = true
+      setEmailError("Please enter your email address.");
+      hasError = true;
     } else if (!emailRegex.test(email)) {
-      setEmailError("Invalid email format")
-      hasError = true
-    };
+      setEmailError("Invalid email format");
+      hasError = true;
+    }
 
     if (!phonenumber.trim()) {
       setPhonenumberError("Phone number is required");
@@ -140,15 +137,17 @@ const ContactUs = () => {
     }
 
     if (!subject.trim()) {
-      setSubjectError("Please enter a subject.")
-      hasError = true
-    };
+      setSubjectError("Please enter a subject.");
+      hasError = true;
+    }
     if (!description.trim() || description.trim().length < 10) {
-      setDescriptionError("Please enter a valid message (at least 10 characters).")
-      hasError = true
+      setDescriptionError(
+        "Please enter a valid message (at least 10 characters)."
+      );
+      hasError = true;
     }
 
-    if (hasError) return
+    if (hasError) return;
 
     try {
       const contactData = {
@@ -165,39 +164,43 @@ const ContactUs = () => {
       const { data } = await api.post("/contact-us", contactData);
 
       if (data.code === 200) {
-        toast.success("Message sent successfully", { duration: 3000, style: toastStyle });
+        toast.success("Message sent successfully", {
+          duration: 3000,
+          style: toastStyle,
+        });
 
-        setFirstname("")
-        setLastname("")
-        setEmail("")
-        setPhonenumber("")
-        setSubject("")
-        setDescription("")
-
+        setFirstname("");
+        setLastname("");
+        setEmail("");
+        setPhonenumber("");
+        setSubject("");
+        setDescription("");
       } else {
-        toast.error("Error while sending", { duration: 3000, style: toastStyle });
+        toast.error("Error while sending", {
+          duration: 3000,
+          style: toastStyle,
+        });
       }
-
     } catch (error) {
-      toast.error("Something went wrong. Please try again.", { duration: 3000, style: toastStyle });
+      toast.error("Something went wrong. Please try again.", {
+        duration: 3000,
+        style: toastStyle,
+      });
     } finally {
       setSendMessageLoader(false);
     }
   };
 
-
-
   return (
     <main className={style.contactUsContainer}>
-
       <section className={style.reachOutContainer}>
         <div>
           <div>
             <div>
               <h2>Share love, donate hope.</h2>
               <p>
-                Ut ac mattis senectus ac suspendisse vitae vel nulla eleifend. Est
-                eros facilisi aenean ni
+                Ut ac mattis senectus ac suspendisse vitae vel nulla eleifend.
+                Est eros facilisi aenean ni
               </p>
             </div>
 
@@ -222,7 +225,6 @@ const ContactUs = () => {
                 </div>
                 <p>Mon-Fri: 8:00am - 6:00pm</p>
               </div> */}
-
             </div>
 
             <div>
@@ -288,14 +290,16 @@ const ContactUs = () => {
               <div>
                 <label htmlFor="phone">Phone Number</label>
 
-                <PhoneInput
-                  aria-labelledby="mobileLabel"
-                  forceDialCode={true}
-                  defaultCountry={countryflag}
-                  value={phonenumber}
-                  ref={phoneRef}
-                  onChange={(phone, meta) => handlePhoneChange(phone, meta)}
-                />
+                <div className={style.phoneContainer}>
+                  <PhoneInput
+                    aria-labelledby="mobileLabel"
+                    forceDialCode={true}
+                    defaultCountry={countryflag}
+                    value={phonenumber}
+                    ref={phoneRef}
+                    onChange={(phone, meta) => handlePhoneChange(phone, meta)}
+                  />
+                </div>
 
                 {phonenumberError && (
                   <p className="input-error-message">{phonenumberError}</p>
@@ -332,11 +336,17 @@ const ContactUs = () => {
               )}
             </div>
 
-            <button onClick={sendMessage}>{sendMessageLoader ? <ClipLoader
-              size={"1.8rem"}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            /> : "Send Message"}</button>
+            <button onClick={sendMessage}>
+              {sendMessageLoader ? (
+                <ClipLoader
+                  size={"1.8rem"}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "Send Message"
+              )}
+            </button>
           </form>
         </div>
       </section>
@@ -359,10 +369,8 @@ const ContactUs = () => {
           </div>
 
           <div>
-
-            {
-              faqList?.loading ? (
-                [0, 1, 2, 3].map((item) => {
+            {faqList?.loading
+              ? [0, 1, 2, 3].map((item) => {
                   return (
                     <Skeleton
                       key={item}
@@ -372,15 +380,14 @@ const ContactUs = () => {
                         width: {
                           xs: "100%", // mobile
                           sm: "100%", // tablet
-                          md: "100%",  // desktop
+                          md: "100%", // desktop
                         },
-                        marginBottom: "2rem"
+                        marginBottom: "2rem",
                       }}
                     />
-                  )
+                  );
                 })
-              ) : (
-                faqList?.data?.data?.map((item) => (
+              : faqList?.data?.data?.map((item) => (
                   <React.Fragment key={item.id}>
                     {selectedFaqItem.id === item.id ? (
                       <button
@@ -391,7 +398,9 @@ const ContactUs = () => {
                           <h2>{selectedFaqItem?.question}</h2>
                           <p>{selectedFaqItem?.answer}</p>
                         </div>
-                        <div><CrossIcon size={"1.8rem"} color="#fff" /></div>
+                        <div>
+                          <CrossIcon size={"1.8rem"} color="#fff" />
+                        </div>
                       </button>
                     ) : (
                       <button
@@ -405,16 +414,13 @@ const ContactUs = () => {
                         }
                       >
                         <h2>{item?.question}</h2>
-                        <div><AddIcon size={"1.8rem"} /></div>
+                        <div>
+                          <AddIcon size={"1.8rem"} />
+                        </div>
                       </button>
                     )}
                   </React.Fragment>
-                ))
-              )
-            }
-
-
-
+                ))}
           </div>
         </div>
       </section>

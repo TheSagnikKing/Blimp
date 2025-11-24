@@ -1,31 +1,92 @@
 .discoverSortContainer {
   padding-inline: 7.5rem;
 
-  &>div {
+  & > div {
     width: min(100%, var(--maximum-screen-width));
     margin-inline: auto;
 
-    &>div:nth-child(1) {
+    & > div:nth-child(1) {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
-      width: max-content;
-      margin-inline: auto;
+      gap: 4rem;
 
-      &>h2 {
-        font-size: 4.8rem;
-        font-weight: bold;
-        text-align: center;
+      & > div:nth-child(1) {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: max-content;
+        margin-inline: auto;
+
+        & > h2 {
+          font-size: 4.8rem;
+          font-weight: bold;
+          text-align: center;
+        }
+
+        & > p {
+          font-size: var(--font-large);
+          text-align: center;
+          color: var(--text-secondary);
+        }
       }
 
-      &>p {
-        font-size: var(--font-large);
-        text-align: center;
-        color: var(--text-secondary);
+      & > div:nth-child(2) {
+        width: 100%;
+        height: 5.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: var(--button-radius);
+
+        transition: all 0.25s ease;
+        overflow: hidden;
+
+        /* FOCUS BORDER */
+        &:focus-within {
+          border-color: #8fd600;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        & > input {
+          width: calc(100% - 5.7rem);
+          height: 100%;
+
+          border: none;
+          outline: none;
+
+          padding-inline: 2rem;
+          font-size: var(--font-medium);
+          color: #1f2937;
+          background: transparent;
+        }
+
+        & > input::placeholder {
+          color: #9ca3af;
+        }
+
+        & > button {
+          width: 5.7rem;
+          height: 100%;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          background: transparent;
+          border: none;
+          outline: none;
+
+          font-size: 2rem;
+          cursor: pointer;
+        }
+
       }
     }
 
-    &>div:nth-child(2) {
+    & > div:nth-child(2) {
       display: flex;
       flex-wrap: wrap;
       gap: 4rem;
@@ -34,7 +95,7 @@
       .sortCardItem {
         flex: 0 0 calc((100% - 16rem) / 5);
         height: 20.5rem;
-        background-color: #F7F7F7;
+        background-color: #f7f7f7;
         /* box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; */
         display: flex;
         align-items: center;
@@ -42,19 +103,19 @@
         cursor: pointer;
         border-radius: 1rem;
 
-        &>div {
+        & > div {
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
 
-          &>div {
+          & > div {
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 4rem;
           }
 
-          &>p {
+          & > p {
             font-size: var(--font-medium);
             font-weight: 500;
             text-align: center;
@@ -62,8 +123,6 @@
         }
       }
     }
-
-
   }
 }
 
@@ -71,7 +130,7 @@
   padding-inline: 7.2rem;
   padding-block: 6rem;
 
-  &>div {
+  & > div {
     width: min(100%, var(--maximum-screen-width));
     margin-inline: auto;
   }
@@ -92,22 +151,21 @@
 }
 
 @media screen and (min-width: 0px) and (max-width: 430px) {
-
   .discoverSortContainer {
     padding-inline: 1.5rem;
 
-    &>div {
-      &>div:nth-child(1) {
-        &>h2 {
+    & > div {
+      & > div:nth-child(1) {
+        & > h2 {
           font-size: 2.8rem;
         }
 
-        &>p {
+        & > p {
           font-size: var(--font-medium);
         }
       }
 
-      &>div:nth-child(2) {
+      & > div:nth-child(2) {
         gap: 2rem;
 
         .sortCardItem {
@@ -128,22 +186,21 @@
 }
 
 @media screen and (min-width: 431px) and (max-width: 768px) {
-
   .discoverSortContainer {
     padding-inline: 1.5rem;
 
-    &>div {
-      &>div:nth-child(1) {
-        &>h2 {
+    & > div {
+      & > div:nth-child(1) {
+        & > h2 {
           font-size: 2.8rem;
         }
 
-        &>p {
+        & > p {
           font-size: var(--font-medium);
         }
       }
 
-      &>div:nth-child(2) {
+      & > div:nth-child(2) {
         gap: 2rem;
 
         .sortCardItem {
@@ -164,22 +221,21 @@
 }
 
 @media screen and (min-width: 769px) and (max-width: 1100px) {
-
   .discoverSortContainer {
     padding-inline: 1.5rem;
 
-    &>div {
-      &>div:nth-child(1) {
-        &>h2 {
+    & > div {
+      & > div:nth-child(1) {
+        & > h2 {
           font-size: 2.8rem;
         }
 
-        &>p {
+        & > p {
           font-size: var(--font-medium);
         }
       }
 
-      &>div:nth-child(2) {
+      & > div:nth-child(2) {
         gap: 2rem;
 
         .sortCardItem {
@@ -188,5 +244,4 @@
       }
     }
   }
-
 }

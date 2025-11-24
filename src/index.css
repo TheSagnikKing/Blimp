@@ -43,7 +43,7 @@ body[data-theme="dark"] {
   --bg-primary: #000000;
 }
 
-.react-international-phone-input-container {
+/* .react-international-phone-input-container {
   background-color: rgba(248, 249, 250, 1);
   border-radius: 0.4rem;
   -webkit-border-radius: 0.4rem;
@@ -62,7 +62,8 @@ body[data-theme="dark"] {
   background-color: transparent;
   border: none;
   padding-left: 0.5rem;
-}
+} */
+ 
 
 .react-international-phone-country-selector-dropdown {
   /* display: block !important; */
