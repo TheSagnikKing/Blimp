@@ -486,7 +486,7 @@ const Cause = () => {
                 navigate("/news-blog");
               }}
             >
-              <span>more news</span>
+              <span>MORE NEWS</span>
             </button>
           </div>
 
@@ -515,7 +515,7 @@ const Cause = () => {
                 })}
           </div>
 
-          <button>more causes</button>
+          <button>MORE CAUSES</button>
         </div>
       </section>
     </main>

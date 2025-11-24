@@ -13,12 +13,11 @@ import { useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import Skeleton from "@mui/material/Skeleton";
 import { useAuth } from "../../context/AuthContext";
+import { convert } from "html-to-text";
 
 const Hero = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-
-  console.log(user);
 
   const [supportCampaigns, setSupportCampaigns] = useState({
     loading: false,
@@ -127,6 +126,16 @@ const Hero = () => {
     setVisibleFeatureCount(allFeatureItems.length);
   };
 
+  const options = {
+    // wordwrap: 130,
+    wordwrap: false,
+    selectors: [
+      { selector: "h1", format: "block" },
+      { selector: "p", format: "block" },
+    ],
+    // ...
+  };
+
   return (
     <>
       <main
@@ -142,7 +151,7 @@ const Hero = () => {
               <span
                 style={{
                   fontSize: "2.4rem",
-                  textTransform: "lowercase"
+                  textTransform: "lowercase",
                 }}
               >
                 {"( v 1.0.0 )"}
@@ -171,7 +180,7 @@ const Hero = () => {
         <div>
           <h2>the latest</h2>
           <div>
-            {latestArticles?.loading ? (
+            {latestCampaigns?.loading ? (
               <>
                 <Skeleton
                   variant="rectangular"
@@ -210,16 +219,19 @@ const Hero = () => {
                 <div>
                   <h2>
                     {
-                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                      latestCampaigns?.data?.data?.latestCampaigns?.[0]
                         ?.campaign_name
                     }
                   </h2>
-                  <p>
-                    {
-                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
-                        ?.description
-                    }
-                  </p>
+                  <div style={{ whiteSpace: "pre-wrap" }}>
+                    <p>
+                      {convert(
+                        latestCampaigns?.data?.data?.latestCampaigns?.[0]
+                          ?.description,
+                        options
+                      )}
+                    </p>
+                  </div>
 
                   <ProgressBar
                     raisedAmount={
@@ -254,7 +266,7 @@ const Hero = () => {
                       navigate("/checkout");
                     }}
                   >
-                    Donate
+                    DONATE
                   </button>
                 </div>
               </>
@@ -268,7 +280,7 @@ const Hero = () => {
                 }
               </h3>
               <button>View More</button>
-              <button>Donate</button>
+              <button>DONATE</button>
             </div>
 
             <button>View Details</button>
@@ -362,7 +374,7 @@ const Hero = () => {
           </div>
 
           {visibleFeatureCount < allFeatureItems.length && (
-            <button onClick={handleShowAllFeatureItems}>more causes</button>
+            <button onClick={handleShowAllFeatureItems}>MORE CAUSES</button>
           )}
         </div>
       </section>
@@ -447,11 +459,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-
-
-
-
-
-
-

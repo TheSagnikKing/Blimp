@@ -79,115 +79,114 @@ const AboutUs = () => {
   ];
 
   return (
-    <main>
-      <section className={style.missionContainer}>
-        {aboutUsData.map((item, index) => {
-          return (
-            <WorkCard
-              key={item.id}
-              dir={index % 2 === 0 ? "left" : "right"} // alternate direction
-              title={item.title}
-              description={item.description}
-            />
-          );
-        })}
-      </section>
+    <main className={style.about_wrapper_container}>
+      <div className={style.about_wrapper_content_container}>
+        <section className={style.missionContainer}>
+          {aboutUsData.map((item, index) => {
+            return (
+              <WorkCard
+                key={item.id}
+                dir={index % 2 === 0 ? "left" : "right"} // alternate direction
+                title={item.title}
+                description={item.description}
+              />
+            );
+          })}
+        </section>
 
-      {/* <FocusCard /> */}
-
-      <section className={style.vissionContainer}>
-        <div>
-          <h2>{userCampaigns?.data?.data?.campaigns?.[0]?.campaign_name}</h2>
-        </div>
-        <img
-          src="https://img.lemde.fr/2024/09/27/0/0/7965/5310/1440/960/60/0/85faf87_1727417648111-000-36gp2e6.jpg"
-          alt=""
-        />
-
-        <div>
+        <section className={style.vissionContainer}>
           <div>
-            <h2>our best work</h2>
-            <p>
-              Facilisis mollis morbi ultrices ac tellus vitae pulvinar. Egestas
-              sagittis nec et arcu enim ac. Vivamus a dignissim nulla ornare sit
-              aliquam elementum blandit. Leo in sem pellentesque viverra
-              malesuada viverra eget aliquam. Diam mi dolor pellentesque nec at.
-              Ut nisi faucibus ultrices etiam tortor vitae eros.
-            </p>
-
-            <button
-              onClick={() => {
-                navigate("/feature-detail");
-              }}
-            >
-              <p>learn more</p>
-              <span>
-                <RightIcon />
-              </span>
-            </button>
+            <h2>{userCampaigns?.data?.data?.campaigns?.[0]?.campaign_name}</h2>
           </div>
+          <img
+            src="https://img.lemde.fr/2024/09/27/0/0/7965/5310/1440/960/60/0/85faf87_1727417648111-000-36gp2e6.jpg"
+            alt=""
+          />
 
           <div>
-            <h2>want to contribute ?</h2>
-            <p>
-              Urna velit pharetra pellentesque magna eget. Ut egestas est id
-              netus. Facilisis mollis morbi ultrices ac tellus vitae pulvinar.
-              Egestas sagittis nec et arcu enim ac. Vivamus a dignissim nulla
-              ornare sit aliquam elementum blandit. Leo in sem pellentesque
-              viverra malesuada viverra eget aliquam. Diam mi dolor
-            </p>
+            <div>
+              <h2>our best work</h2>
+              <p>
+                Facilisis mollis morbi ultrices ac tellus vitae pulvinar.
+                Egestas sagittis nec et arcu enim ac. Vivamus a dignissim nulla
+                ornare sit aliquam elementum blandit. Leo in sem pellentesque
+                viverra malesuada viverra eget aliquam. Diam mi dolor
+                pellentesque nec at. Ut nisi faucibus ultrices etiam tortor
+                vitae eros.
+              </p>
 
-            <button
-              onClick={() => {
-                navigate("/checkout");
-              }}
-            >
-              <p>donate</p>
-            </button>
+              <button
+                onClick={() => {
+                  navigate("/feature-detail");
+                }}
+              >
+                <p>learn more</p>
+                <span>
+                  <RightIcon />
+                </span>
+              </button>
+            </div>
+
+            <div>
+              <h2>want to contribute ?</h2>
+              <p>
+                Urna velit pharetra pellentesque magna eget. Ut egestas est id
+                netus. Facilisis mollis morbi ultrices ac tellus vitae pulvinar.
+                Egestas sagittis nec et arcu enim ac. Vivamus a dignissim nulla
+                ornare sit aliquam elementum blandit. Leo in sem pellentesque
+                viverra malesuada viverra eget aliquam. Diam mi dolor
+              </p>
+
+              <button
+                onClick={() => {
+                  navigate("/checkout");
+                }}
+              >
+                <p>donate</p>
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className={style.blogsContainer}>
-        <div>
-          <h2>latest news and blog</h2>
-          {/* <button onClick={() => {
-            window.scrollTo(0, 0)
-            navigate("/news-blog")
-          }}>
-            <span>more news</span>
-          </button> */}
-        </div>
+        <section className={style.blogsContainer}>
+          <div>
+            <h2>latest news and blog</h2>
+          </div>
 
-        <div className={style.blogCardContainer}>
-          {latestArticles.loading
-            ? [0, 1, 2, 3, 4, 5].map((item) => {
-                return (
-                  <Skeleton
-                    key={item}
-                    variant="rectangular"
-                    height={"30rem"}
-                    sx={{
-                      width: {
-                        xs: "100%", // mobile
-                        sm: "48%", // tablet
-                        md: "32%", // desktop
-                      },
-                    }}
-                  />
-                );
-              })
-            : latestArticles?.data?.data?.remainingArticles?.map(
-                (item, index) => {
+          <div className={style.blogCardContainer}>
+            {latestArticles.loading
+              ? [0, 1, 2, 3, 4, 5].map((item) => {
                   return (
-                    <BlogCard index={index} key={item.id} articleItem={item} />
+                    <Skeleton
+                      key={item}
+                      variant="rectangular"
+                      height={"30rem"}
+                      sx={{
+                        width: {
+                          xs: "100%", // mobile
+                          sm: "48%", // tablet
+                          md: "32%", // desktop
+                        },
+                      }}
+                    />
                   );
-                }
-              )}
-        </div>
+                })
+              : latestArticles?.data?.data?.remainingArticles?.map(
+                  (item, index) => {
+                    return (
+                      <BlogCard
+                        index={index}
+                        key={item.id}
+                        articleItem={item}
+                      />
+                    );
+                  }
+                )}
+          </div>
 
-        <button>more causes</button>
-      </section>
+          <button>more causes</button>
+        </section>
+      </div>
     </main>
   );
 };

@@ -341,7 +341,10 @@ const StartCampaign = () => {
       formData.append("target_amount", targetedAmount);
       formData.append("purpose", 1);
       formData.append("campaign_name", campaignTitle);
-      formData.append("description", JSON.stringify(selectedCampaingDescription));
+      formData.append(
+        "description",
+        JSON.stringify(selectedCampaingDescription)
+      );
       formData.append("campagin_date", new Date().toISOString().split("T")[0]);
       formData.append("hear_about_blimp", "Online");
       formData.append("name", user.fullname);
@@ -604,9 +607,7 @@ const StartCampaign = () => {
                 <input
                   type="text"
                   placeholder="Select Country"
-                  value={`${selectedCountry?.name ?? ""} ${
-                    selectedCountry?.phone_code ?? ""
-                  }`.trim()}
+                  value={`${selectedCountry?.name ?? ""}`.trim()}
                   readOnly
                 />
 
@@ -667,9 +668,7 @@ const StartCampaign = () => {
                             setSelectedCountryOpen(false);
                           }}
                         >
-                          <p>
-                            {item.name} {item.phone_code}
-                          </p>
+                          <p>{item.name}</p>
                         </button>
                       );
                     })}
@@ -888,14 +887,14 @@ const StartCampaign = () => {
 
         {selectedStep === 7 && (
           <div className={styles.stepperStoryContainer}>
-            <div>
+            {/* <div>
               <input
                 type="text"
                 placeholder="Name of the concerned person"
                 value={beneficiaryDetail}
                 onChange={(e) => setBeneficiaryDetail(e.target.value)}
               />
-            </div>
+            </div> */}
 
             <div>
               <TiptapEditor
@@ -1016,8 +1015,7 @@ const StartCampaign = () => {
               onClick={() => {
                 if (
                   selectedCampaingDescription === "<p></p>" ||
-                  selectedCampaignImages.length === 0 ||
-                  !beneficiaryDetail
+                  selectedCampaignImages.length === 0
                 ) {
                   return;
                 }

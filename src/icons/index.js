@@ -5,12 +5,12 @@ import { FiArrowRight, FiSearch } from "react-icons/fi";
 import { GiHamburgerMenu, GiProgression, GiSprout } from "react-icons/gi";
 import { GoCalendar } from "react-icons/go";
 import { IoIosArrowDown, IoIosArrowUp, IoMdEye, IoMdEyeOff } from "react-icons/io";
-import { LuClock, LuHandHeart, LuHeartHandshake, LuTrees } from "react-icons/lu";
+import { LuClock, LuDog, LuHandHeart, LuHeartHandshake, LuTrees } from "react-icons/lu";
 import { MdAccountCircle, MdEmergency, MdFilterAlt, MdOutlineEmail, MdOutlineFamilyRestroom, MdOutlinePets, MdOutlinePhone, MdOutlineSportsCricket } from "react-icons/md";
 import { RiAccountCircleLine, RiAlignCenter, RiAlignLeft, RiAlignRight, RiInstagramFill, RiUserCommunityFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import { IoAmericanFootballOutline, IoLocationOutline, IoSchoolOutline, IoSchoolSharp } from "react-icons/io5";
-import { TbGrave2, TbReportMedical } from "react-icons/tb";
+import { TbGrave2, TbReportMedical, TbSchool } from "react-icons/tb";
 import { MdMedicalServices } from "react-icons/md";
 import { VscAccount } from "react-icons/vsc";
 import { PiDogLight } from "react-icons/pi";
@@ -41,8 +41,8 @@ export const PlaceIcon = IoLocationOutline
 
 export const MedicalIcon = TbReportMedical
 export const EmergencyIcon = MdEmergency
-export const AnimalIcon = PiDogLight
-export const EducationIcon = IoSchoolOutline
+export const AnimalIcon = LuDog
+export const EducationIcon = TbSchool
 export const NonProfitIcon = LuHeartHandshake
 export const EnvironmentIcon = LuTrees
 export const CommunityIcon = RiUserCommunityFill

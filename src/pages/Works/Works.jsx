@@ -93,9 +93,7 @@ const Works = () => {
                 </div>
                 <div>
                   <h2>{item.title}</h2>
-                  <p>
-                    {item.description}
-                  </p>
+                  <p>{item.description}</p>
                 </div>
               </div>
             ))}
@@ -113,7 +111,7 @@ const Works = () => {
                 navigate("/news-blog");
               }}
             >
-              <span>more news</span>
+              <span>MORE NEWS</span>
             </button>
           </div>
 
@@ -148,7 +146,7 @@ const Works = () => {
                 )}
           </div>
 
-          <button>more causes</button>
+          <button>MORE CAUSES</button>
         </div>
       </section>
     </main>

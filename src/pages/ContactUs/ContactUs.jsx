@@ -202,12 +202,12 @@ const ContactUs = () => {
             </div>
 
             <div>
-              <div>
+              {/* <div>
                 <div>
                   <PhoneIcon />
                 </div>
                 <p>+ 863-267-3634</p>
-              </div>
+              </div> */}
 
               <div>
                 <div>
