@@ -41,7 +41,7 @@ const ChangePassword = lazy(() =>
   import("./pages/Account/ChangePassword/ChangePassword")
 );
 const StartCampaign = lazy(() => import("./pages/StartCampaign/StartCampaign"));
-const EditCampaign = lazy(() => import("./pages/EditCampaign/EditCampaign"))
+const EditCampaign = lazy(() => import("./pages/EditCampaign/EditCampaign"));
 const Cause = lazy(() => import("./pages/Cause/Cause"));
 
 const App = () => {
@@ -94,7 +94,8 @@ const App = () => {
 
               <Route path="/checkout" element={<CheckOutPage />} />
               <Route path="/news-blog" element={<NewsBlogPage />} />
-
+              <Route path="/start-campaign" element={<StartCampaign />} />
+              
               <Route element={<ProtectedAuthRoute />}>
                 <Route path="/login-signup" element={<LoginSignup />} />
               </Route>
@@ -118,8 +119,8 @@ const App = () => {
                   {/* <Route path="kyc-document" element={<KYC />} /> */}
                   <Route path="change-password" element={<ChangePassword />} />
                 </Route>
-                <Route path="/start-campaign" element={<StartCampaign />} />
-                <Route path="/edit-campaign" element={<EditCampaign/>}/>
+
+                <Route path="/edit-campaign" element={<EditCampaign />} />
               </Route>
             </Route>
           </Routes>

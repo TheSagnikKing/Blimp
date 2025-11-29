@@ -1,14 +1,14 @@
 .authContainer {
   padding: 7.5rem;
 
-  &>div {
+  & > div {
     display: flex;
     flex-wrap: wrap;
     gap: 4rem;
     width: min(100%, var(--maximum-screen-width));
     margin-inline: auto;
 
-    &>div {
+    & > div {
       flex: 1 1 calc(50% - 2rem);
       margin-bottom: 2rem;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -20,29 +20,29 @@
       padding: 4rem;
     }
 
-    &>div:nth-child(1) {
+    & > div:nth-child(1) {
       display: flex;
       flex-direction: column;
       gap: 4rem;
 
-      &>h2 {
+      & > h2 {
         font-size: var(--subheader-small);
         line-height: var(--subheader-small-lineheight);
         font-weight: 700;
       }
 
-      &>div {
+      & > div {
         display: flex;
         flex-direction: column;
         width: 100%;
         gap: 2rem;
 
-        &>label {
+        & > label {
           font-size: var(--font-medium);
           font-weight: 600;
         }
 
-        &>input {
+        & > input {
           width: 100%;
           height: 4rem;
           border-radius: 0.4rem;
@@ -58,14 +58,14 @@
         }
       }
 
-      &>button {
+      & > button {
         min-height: 4rem;
         width: 15rem;
         border: none;
         outline: none;
         cursor: pointer;
         border-radius: 2rem;
-        background-color: #8FD600;
+        background-color: #8fd600;
         color: var(--text-primary);
         font-size: var(--font-medium);
         font-weight: 500;
@@ -76,35 +76,35 @@
       }
     }
 
-    &>div:nth-child(2) {
+    & > div:nth-child(2) {
       display: flex;
       flex-direction: column;
       gap: 4rem;
 
-      &>h2 {
+      & > h2 {
         font-size: var(--subheader-small);
         line-height: var(--subheader-small-lineheight);
         font-weight: 700;
       }
 
-      &>div:nth-child(2) {
+      & > div:nth-child(2) {
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 2rem;
 
-        &>div {
+        & > div {
           display: flex;
           flex-direction: column;
           width: 100%;
           gap: 2rem;
 
-          &>label {
+          & > label {
             font-size: var(--font-medium);
             font-weight: 600;
           }
 
-          &>input {
+          & > input {
             width: 100%;
             height: 4rem;
             border-radius: 0.4rem;
@@ -121,18 +121,18 @@
         }
       }
 
-      &>div {
+      & > div {
         display: flex;
         flex-direction: column;
         width: 100%;
         gap: 2rem;
 
-        &>label {
+        & > label {
           font-size: var(--font-medium);
           font-weight: 600;
         }
 
-        &>input {
+        & > input {
           width: 100%;
           height: 4rem;
           border-radius: 0.4rem;
@@ -148,20 +148,20 @@
         }
       }
 
-      .account_type{
+      .account_type {
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 4rem;
 
-        &>div{
+        & > div {
           display: flex;
           flex-direction: row;
           gap: 2rem;
         }
       }
 
-      &>button {
+      & > button {
         min-height: 4rem;
         width: 19rem;
         border-radius: 2rem;
@@ -176,7 +176,7 @@
         -moz-border-radius: 2rem;
         -ms-border-radius: 2rem;
         -o-border-radius: 2rem;
-}
+      }
     }
   }
 }
@@ -185,20 +185,20 @@
   .authContainer {
     padding: 1.5rem;
 
-    &>div {
+    & > div {
       gap: 2rem;
 
-      &>div {
+      & > div {
         padding: 2rem;
       }
 
-      &>div:nth-child(1),
-      &>div:nth-child(2) {
+      & > div:nth-child(1),
+      & > div:nth-child(2) {
         gap: 2rem;
       }
 
-      &>div:nth-child(2) {
-        &>div:nth-child(2) {
+      & > div:nth-child(2) {
+        & > div:nth-child(2) {
           flex-direction: column;
           gap: 2rem;
         }
@@ -207,25 +207,24 @@
   }
 }
 
-
 @media screen and (min-width: 431px) and (max-width: 1200px) {
   .authContainer {
     padding: 1.5rem;
 
-    &>div {
+    & > div {
       gap: 2rem;
 
-      &>div {
+      & > div {
         padding: 2rem;
       }
 
-      &>div:nth-child(1),
-      &>div:nth-child(2) {
+      & > div:nth-child(1),
+      & > div:nth-child(2) {
         gap: 2rem;
       }
 
-      &>div:nth-child(2) {
-        &>div:nth-child(2) {
+      & > div:nth-child(2) {
+        & > div:nth-child(2) {
           flex-direction: column;
           gap: 2rem;
         }

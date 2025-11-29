@@ -161,13 +161,14 @@ const Hero = () => {
             <button
               onClick={() => {
                 // login-signup
-                if (user === null || user === undefined) {
-                  window.scrollTo(0, 0);
-                  navigate("/login-signup");
-                } else {
-                  window.scrollTo(0, 0);
-                  navigate("/start-campaign");
-                }
+                // if (user === null || user === undefined) {
+                //   window.scrollTo(0, 0);
+                //   navigate("/login-signup");
+                // } else {
+                //   window.scrollTo(0, 0);
+                //   navigate("/start-campaign");
+                // }
+                navigate("/start-campaign");
               }}
             >
               Get Funding
