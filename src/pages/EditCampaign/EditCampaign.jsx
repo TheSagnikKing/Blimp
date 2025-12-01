@@ -271,6 +271,55 @@ const EditCampaign = () => {
   });
 
   const edit_campaign_handler = async () => {
+    if (!selectedCategory) {
+      return toast.error("Category is not selected", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (!selectedCountry) {
+      return toast.error("Country is not selected", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (!targetedAmount) {
+      return toast.error("Targeted amount is required", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (!campaignTitle) {
+      return toast.error("Campaign title is required", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (!bannerImage) {
+      return toast.error("Banner image is required", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (selectedCampaingDescription === "<p></p>") {
+      return toast.error("Campaign description is required", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (selectedCampaignImages.length === 0) {
+      return toast.error("Atleast one campaign image is required", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
     try {
       const formData = new FormData();
 
@@ -787,14 +836,14 @@ const EditCampaign = () => {
 
         {selectedStep === 7 && (
           <div className={styles.stepperStoryContainer}>
-            <div>
+            {/* <div>
               <input
                 type="text"
                 placeholder="Name of the concerned person"
                 value={beneficiaryDetail}
                 onChange={(e) => setBeneficiaryDetail(e.target.value)}
               />
-            </div>
+            </div> */}
 
             <div>
               <TiptapEditor
