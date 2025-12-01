@@ -849,14 +849,11 @@
           text-align: center;
         }
 
-        /* FIRST ROW */
         & > div:nth-child(2) {
           display: flex;
           align-items: center;
           gap: 3rem;
-          height: 6.5rem;
           justify-content: space-between;
-          /* background-color: red; */
 
           & > div {
             flex: 1;
@@ -864,14 +861,11 @@
             align-items: center;
             flex-direction: column;
             gap: 2rem;
-            /* justify-content: space-between; */
-            /* height: 6.5rem; */
             height: inherit;
             background-color: #ffffff;
             overflow: hidden;
             transition: all 0.25s ease;
 
-            /* ⭐ Input gets hover + focus styles */
             & > input:hover {
               border-color: #cbd5e1;
               box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
@@ -882,10 +876,9 @@
               box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             }
 
-            /* input */
             & > input {
-              flex: 1;
-              height: 100%;
+              width: 100%;
+              min-height: 6.5rem;
               padding: 0 1.6rem;
               background: transparent;
               border: none;
@@ -903,7 +896,6 @@
               }
             }
 
-            /* Icon */
             & > div {
               display: grid;
               place-items: center;
@@ -920,15 +912,11 @@
             }
           }
         }
-/* 
-        & > div:not(:nth-child(4)):not(:nth-child(7)) {
+
+        & > div:not(:nth-child(2)):not(:nth-child(4)):not(:nth-last-child(2)) {
           display: flex;
-          align-items: center;
-          justify-content: space-between;
-          height: 6.5rem;
-          background-color: #ffffff;
-          overflow: hidden;
-          transition: all 0.25s ease;
+          flex-direction: column;
+          gap: 2rem;
 
           & > input:hover {
             border-color: #cbd5e1;
@@ -941,8 +929,8 @@
           }
 
           & > input {
-            flex: 1;
-            height: 100%;
+            width: 100%;
+            min-height: 6.5rem;
             padding: 0 1.6rem;
             background: transparent;
             border: none;
@@ -951,8 +939,8 @@
             font-weight: 500;
             color: #1f2937;
             letter-spacing: 0.3px;
-            border: 1px solid #e2e8f0;
             border-radius: 0.8rem;
+            border: 1px solid #e2e8f0;
 
             &::placeholder {
               color: #9ca3af;
@@ -960,6 +948,7 @@
             }
           }
 
+          /* Icon */
           & > div {
             display: grid;
             place-items: center;
@@ -974,6 +963,12 @@
               cursor: pointer;
             }
           }
+        }
+
+        .phoneContainer {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
         }
 
         .phoneContainer :global(.react-international-phone-input-container) {
@@ -1055,7 +1050,14 @@
           font-size: var(--font-medium);
           font-weight: 500;
           margin-inline: auto;
-        } */
+        }
+
+        .input_error_message {
+          width: 100%;
+          color: red;
+          font-size: 1.4rem;
+          padding-left: 1rem;
+        }
       }
     }
 
@@ -1561,39 +1563,23 @@
       .stepperYouContainer {
         margin-block: 4rem;
 
-        & > div:nth-child(2) {
-          width: 100%;
-
-          & > div:nth-child(1) {
+        .stepperYouUnFilledUserContainer{
+          &>div:nth-child(2){
             flex-direction: column;
-            align-items: flex-start;
+            gap: 4rem;
 
-            & > input {
+            &>div{
               width: 100%;
-              min-height: 5.5rem;
             }
           }
 
-          & > input:nth-child(2) {
-            min-height: 5.5rem;
-          }
-
-          & > div:nth-child(3) {
+          &>div:nth-last-child(2){
             flex-direction: column;
-            align-items: flex-start;
+            gap: 3rem;
 
-            & > div:nth-child(1),
-            & > div:nth-child(2) {
+            &>div{
               width: 100%;
-              min-height: 5.5rem;
-            }
-
-            & > div:nth-child(3) {
-              width: 100%;
-              & > button {
-                margin-inline: auto;
-                margin-bottom: 2rem;
-              }
+              min-height: 6.5rem;
             }
           }
         }

@@ -15,6 +15,7 @@ import { PhoneNumberUtil } from "google-libphonenumber";
 
 const StartCampaign = () => {
   const navigate = useNavigate();
+  const { user, setUser, setIsAuthenticated, userId, setUserId } = useAuth();
 
   const parseSelectedCategory =
     JSON.parse(localStorage.getItem("selectedCategory")) || null;
@@ -49,8 +50,6 @@ const StartCampaign = () => {
     fetch_banner_image();
     fetch_campaign_images();
   }, []);
-
-  const { user } = useAuth();
 
   const [stepper, setStepper] = useState([
     {
@@ -334,6 +333,55 @@ const StartCampaign = () => {
   });
 
   const start_campaign_handler = async () => {
+    if (!selectedCategory) {
+      return toast.error("Category is not selected", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (!selectedCountry) {
+      return toast.error("Country is not selected", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (!targetedAmount) {
+      return toast.error("Targeted amount is required", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (!campaignTitle) {
+      return toast.error("Campaign title is required", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (!bannerImage) {
+      return toast.error("Banner image is required", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (selectedCampaingDescription === "<p></p>") {
+      return toast.error("Campaign description is required", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
+    if (selectedCampaignImages.length === 0) {
+      return toast.error("Atleast one campaign image is required", {
+        duration: 3000,
+        style: toastStyle,
+      });
+    }
+
     try {
       const formData = new FormData();
 
@@ -536,18 +584,98 @@ const StartCampaign = () => {
       country_code: Number(countryCode),
     };
 
+    // try {
+    //   setSignupLoader(true);
+    //   const { data } = await api.post("/signup", signupData);
+
+    //   if (data.code === 200) {
+    //     toast.success("Your account has been created successfully!", {
+    //       duration: 3000,
+    //       style: toastStyle,
+    //     });
+
+    //     const signindata = {
+    //       emailOrPhoneNumber: signupData.email,
+    //       password: signupData.password,
+    //     };
+
+    //     const { data } = await api.post("/login", signindata);
+
+    //     if (data.code === 200) {
+    //       localStorage.setItem("usersignin", "true");
+    //       localStorage.setItem("userId", data?.data?.userData?.id);
+    //       setIsAuthenticated(true);
+    //       setUserId(data?.data?.userData?.id);
+
+    //       localStorage.setItem(
+    //         "userFullname",
+    //         JSON.stringify(signupData?.fullname)
+    //       );
+    //       localStorage.setItem("userEmail", JSON.stringify(signupData?.email));
+    //       setSelectedStep(7);
+    //     }
+    //   } else {
+    //     toast.error(data.message, { duration: 3000, style: toastStyle });
+    //   }
+    // } catch (error) {
+    //   toast.error("Signup failed", { duration: 3000, style: toastStyle });
+    // } finally {
+    //   setSignupLoader(false);
+    // }
+
     try {
       setSignupLoader(true);
-      const { data } = await api.post("/signup", signupData);
 
-      if (data.code === 200) {
-        toast.success("Your account has been created successfully!", {
+      // --- SIGNUP ---
+      const signupResponse = await api.post("/signup", signupData);
+      const signupResult = signupResponse.data;
+
+      if (signupResult.code !== 200) {
+        toast.error(signupResult.message, {
           duration: 3000,
           style: toastStyle,
         });
-      } else {
-        toast.error(data.message, { duration: 3000, style: toastStyle });
+        return;
       }
+
+      toast.success("Your account has been created successfully!", {
+        duration: 3000,
+        style: toastStyle,
+      });
+
+      // --- AUTO LOGIN AFTER SIGNUP ---
+      const loginPayload = {
+        emailOrPhoneNumber: signupData.email,
+        password: signupData.password,
+      };
+
+      const loginResponse = await api.post("/login", loginPayload);
+      const loginResult = loginResponse.data;
+
+      if (loginResult.code !== 200) {
+        toast.error("Login failed after signup", {
+          duration: 3000,
+          style: toastStyle,
+        });
+        return;
+      }
+
+      // --- SAVE USER DATA ---
+      const userId = loginResult?.data?.userData?.id;
+
+      localStorage.setItem("usersignin", "true");
+      localStorage.setItem("userId", userId);
+      localStorage.setItem(
+        "userFullname",
+        JSON.stringify(signupData?.fullname)
+      );
+      localStorage.setItem("userEmail", JSON.stringify(signupData?.email));
+
+      setIsAuthenticated(true);
+      setUserId(userId);
+
+      // Go to next step
+      setSelectedStep(7);
     } catch (error) {
       toast.error("Signup failed", { duration: 3000, style: toastStyle });
     } finally {
@@ -626,6 +754,12 @@ const StartCampaign = () => {
                   <div className={styles.circleWrapper}>
                     <button
                       onClick={() => {
+                        if (!user?.email && (item.id === 7 || item.id === 8)) {
+                          return toast.error(
+                            "User not found. Plz create an account",
+                            { duration: 3000, style: toastStyle }
+                          );
+                        }
                         setSelectedStep(item.id);
                       }}
                       className={styles.circle}
@@ -661,7 +795,10 @@ const StartCampaign = () => {
               <button
                 onClick={() => {
                   if (!selectedCategory) {
-                    return;
+                    return toast.error("Category not selected", {
+                      duration: 3000,
+                      style: toastStyle,
+                    });
                   }
 
                   localStorage.setItem(
@@ -770,7 +907,10 @@ const StartCampaign = () => {
               <button
                 onClick={() => {
                   if (!selectedCountry) {
-                    return;
+                    return toast.error("Country not selected", {
+                      duration: 3000,
+                      style: toastStyle,
+                    });
                   }
 
                   localStorage.setItem(
@@ -853,7 +993,10 @@ const StartCampaign = () => {
               <button
                 onClick={() => {
                   if (!targetedAmount) {
-                    return;
+                    return toast.error("Targeted amount is required", {
+                      duration: 3000,
+                      style: toastStyle,
+                    });
                   }
 
                   localStorage.setItem(
@@ -884,7 +1027,10 @@ const StartCampaign = () => {
               <button
                 onClick={() => {
                   if (!campaignTitle) {
-                    return;
+                    return toast.error("Campaign title is required", {
+                      duration: 3000,
+                      style: toastStyle,
+                    });
                   }
 
                   localStorage.setItem(
@@ -951,7 +1097,10 @@ const StartCampaign = () => {
               <button
                 onClick={async () => {
                   if (!bannerImage) {
-                    return;
+                    return toast.error("Banner image is required", {
+                      duration: 3000,
+                      style: toastStyle,
+                    });
                   }
                   setSelectedStep(6);
                 }}
@@ -1050,7 +1199,9 @@ const StartCampaign = () => {
                       onChange={(e) => setFirstname(e.target.value)}
                     />
                     {firstnameError && (
-                      <p className="input-error-message">{firstnameError}</p>
+                      <p className={styles.input_error_message}>
+                        {firstnameError}
+                      </p>
                     )}
                   </div>
                   <div>
@@ -1061,12 +1212,14 @@ const StartCampaign = () => {
                       onChange={(e) => setLastname(e.target.value)}
                     />
                     {lastnameError && (
-                      <p className="input-error-message">{lastnameError}</p>
+                      <p className={styles.input_error_message}>
+                        {lastnameError}
+                      </p>
                     )}
                   </div>
                 </div>
 
-                {/* <div>
+                <div>
                   <input
                     type="text"
                     placeholder="Enter your email ID"
@@ -1074,7 +1227,9 @@ const StartCampaign = () => {
                     onChange={(e) => setSignupEmail(e.target.value)}
                   />
                   {signupEmailError && (
-                    <p className="input-error-message">{signupEmailError}</p>
+                    <p className={styles.input_error_message}>
+                      {signupEmailError}
+                    </p>
                   )}
                 </div>
 
@@ -1088,7 +1243,7 @@ const StartCampaign = () => {
                     onChange={(phone, meta) => handlePhoneChange(phone, meta)}
                   />
                   {signupPhoneNumberError && (
-                    <p className="input-error-message">
+                    <p className={styles.input_error_message}>
                       {signupPhoneNumberError}
                     </p>
                   )}
@@ -1102,7 +1257,9 @@ const StartCampaign = () => {
                     onChange={(e) => setSignupPassword(e.target.value)}
                   />
                   {signupPasswordError && (
-                    <p className="input-error-message">{signupPasswordError}</p>
+                    <p className={styles.input_error_message}>
+                      {signupPasswordError}
+                    </p>
                   )}
                 </div>
 
@@ -1114,7 +1271,7 @@ const StartCampaign = () => {
                     onChange={(e) => setSignupConfirmPassword(e.target.value)}
                   />
                   {signupConfirmPasswordError && (
-                    <p className="input-error-message">
+                    <p className={styles.input_error_message}>
                       {signupConfirmPasswordError}
                     </p>
                   )}
@@ -1143,19 +1300,6 @@ const StartCampaign = () => {
                     <p>Organization</p>
                   </div>
                 </div>
-
-                <button onClick={signupHandler} disabled={signupLoader}>
-                  {signupLoader ? (
-                    <ClipLoader
-                      color="#fff"
-                      size={"3rem"}
-                      aria-label="Loading Spinner"
-                      data-testid="loader"
-                    />
-                  ) : (
-                    "Create My Account"
-                  )}
-                </button> */}
 
                 <button onClick={signupHandler} disabled={signupLoader}>
                   {signupLoader ? (
@@ -1302,11 +1446,18 @@ const StartCampaign = () => {
 
             <button
               onClick={() => {
-                if (
-                  selectedCampaingDescription === "<p></p>" ||
-                  selectedCampaignImages.length === 0
-                ) {
-                  return;
+                if (selectedCampaingDescription === "<p></p>") {
+                  return toast.error("Campaign description is required", {
+                    duration: 3000,
+                    style: toastStyle,
+                  });
+                }
+
+                if (selectedCampaignImages.length === 0) {
+                  return toast.error("Atleast one campaign image is required", {
+                    duration: 3000,
+                    style: toastStyle,
+                  });
                 }
 
                 localStorage.setItem(
