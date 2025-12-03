@@ -203,6 +203,19 @@ const MobileNavbar = () => {
                   );
                 })}
 
+                {location.pathname !== "/discover" ? (
+                  <button
+                    onClick={() => {
+                      navigate("/discover");
+                      setOpenMobileMenu(false);
+                    }}
+                  >
+                    Search
+                  </button>
+                ) : (
+                  <div></div>
+                )}
+
                 {isAuthenticated && (
                   <button
                     onClick={logout_handler}

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import style from "./Navbar.module.css";
 import blimpLogoBlack from "../../assets/blimpLogoBlack.png";
 import { AccountIcon, MenuIcon, ProfileIcon, SearchIcon } from "../../icons";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
   const { isAuthenticated, setIsAuthenticated, user } = useAuth();
+  const location = useLocation();
 
   const navigate = useNavigate();
 
@@ -61,10 +62,18 @@ const Navbar = () => {
         </div>
 
         <div>
-          <button>
-            <SearchIcon />
-            <span>Search</span>
-          </button>
+          {location.pathname !== "/discover" ? (
+            <button
+              onClick={() => {
+                navigate("/discover");
+              }}
+            >
+              <SearchIcon />
+              <span>Search</span>
+            </button>
+          ) : (
+            <div></div>
+          )}
 
           {isAuthenticated && user?.profile_picture ? (
             <button

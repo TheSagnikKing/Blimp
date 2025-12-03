@@ -27,11 +27,9 @@ import { useAuth } from "../../context/AuthContext";
 const Discover = () => {
   const { user } = useAuth();
 
-  const [campaignHistoryList, setCampaignHistoryList] = useState({
-    loading: false,
-    error: null,
-    data: {},
-  });
+  const [campaignHistoryList, setCampaignHistoryList] = useState([]);
+  const [campaignHistoryCopyList, setCampaignHistoryCopyList] = useState([]);
+  const [campaignHistoryLoading, setCampaignHistoryLoading] = useState(false);
 
   const [page, setPage] = useState(1);
   const itemsPerPage = 6;
@@ -57,51 +55,93 @@ const Discover = () => {
 
   const sortCardData = [
     { id: 1, icon: <MedicalIcon />, label: "Medical" },
-    { id: 2, icon: <SportIcon />, label: "Sport" },
+    { id: 2, icon: <SportIcon />, label: "Sports" },
     { id: 3, icon: <NonProfitIcon />, label: "Non Profit" },
     { id: 4, icon: <EducationIcon />, label: "Education" },
-    { id: 5, icon: <AnimalIcon />, label: "Animals" },
+    { id: 5, icon: <AnimalIcon />, label: "Animal" },
     { id: 6, icon: <EnvironmentIcon />, label: "Environment" },
-    { id: 7, icon: <FlimIcon />, label: "Art and Flims" },
+    { id: 7, icon: <FlimIcon />, label: "Art & Film" },
     { id: 8, icon: <FaithIcon />, label: "Faith" },
     { id: 9, icon: <WishIcon />, label: "Wishes" },
     { id: 10, icon: <MemorialIcon />, label: "Memorial" },
   ];
 
+  const [getCategories, setGetCategories] = useState([]);
+  const [getCategoriesLoading, setGetCategoriesLoading] = useState(false);
+
+  useEffect(() => {
+    const fetch_categories = async () => {
+      try {
+        setGetCategoriesLoading(true);
+
+        const { data } = await api.post("/get-category");
+        setGetCategories(data?.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setGetCategoriesLoading(false);
+      }
+    };
+
+    fetch_categories();
+  }, []);
+
   useEffect(() => {
     if (user?.id) {
       const fetchCampaignHistory = async () => {
-        setCampaignHistoryList((prev) => ({
-          ...prev,
-          loading: true,
-          error: null,
-        }));
+        setCampaignHistoryLoading(true);
         try {
           const { data } = await api.post("/get-discover-campaign", {
             userId: user.id,
           });
           if (data.code === 200) {
-            setCampaignHistoryList({ loading: false, error: null, data });
+            setCampaignHistoryList(data?.data);
+            setCampaignHistoryCopyList(data?.data);
           } else if (data.code === 400) {
-            setCampaignHistoryList({
-              loading: false,
-              error: data.message,
-              data: {},
-            });
+            setCampaignHistoryList([]);
+            setCampaignHistoryCopyList([]);
           }
         } catch (error) {
-          setCampaignHistoryList({
-            loading: false,
-            error: error.message,
-            data: {},
-          });
+          setCampaignHistoryList([]);
+        } finally {
+          setCampaignHistoryLoading(false);
         }
       };
 
       fetchCampaignHistory();
     }
-    // get-discover-campaign
   }, [user]);
+
+  const [query, setQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  useEffect(() => {
+    if (!query) {
+      setCampaignHistoryCopyList(campaignHistoryList);
+      return;
+    }
+
+    const filtered = campaignHistoryList.filter((item) =>
+      item.campaign_name.toLowerCase().includes(query.toLowerCase())
+    );
+
+    setCampaignHistoryCopyList(filtered);
+  }, [query, campaignHistoryList]);
+
+  useEffect(() => {
+    if (!selectedCategory) {
+      setCampaignHistoryCopyList(campaignHistoryList);
+      return;
+    }
+
+    const filtered = campaignHistoryList.filter(
+      (item) =>
+        item.category_name?.toLowerCase() ===
+        selectedCategory?.name?.toLowerCase()
+    );
+
+    setCampaignHistoryCopyList(filtered);
+  }, [selectedCategory, campaignHistoryList]);
 
   return (
     <main>
@@ -114,7 +154,12 @@ const Discover = () => {
             </div>
 
             <div>
-              <input type="text" placeholder="Search " />
+              <input
+                type="text"
+                placeholder="Search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
               <button>
                 <SearchIcon />
               </button>
@@ -122,14 +167,46 @@ const Discover = () => {
           </div>
 
           <div>
-            {sortCardData.map((item) => (
-              <div key={item?.label} className={style.sortCardItem}>
-                <div>
-                  <div>{item?.icon}</div>
-                  <p>{item?.label}</p>
-                </div>
-              </div>
-            ))}
+            {getCategoriesLoading
+              ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => {
+                  return (
+                    <Skeleton
+                      key={item}
+                      variant="rectangular"
+                      height={"20.5rem"}
+                      sx={{
+                        width: {
+                          xs: "100%", // mobile
+                          sm: "100%", // tablet
+                          md: "17%", // desktop
+                        },
+                      }}
+                    />
+                  );
+                })
+              : getCategories?.map((item) => {
+                  const categoryItem = sortCardData.find(
+                    (cat) => cat.label === item?.name
+                  );
+                  return (
+                    <button
+                      key={item?.label}
+                      className={style.sortCardItem}
+                      onClick={() => setSelectedCategory(item)}
+                      style={{
+                        border:
+                          selectedCategory?.name === item?.name
+                            ? "0.2rem solid #000"
+                            : "none",
+                      }}
+                    >
+                      <div>
+                        <div>{categoryItem?.icon}</div>
+                        <p>{item?.name}</p>
+                      </div>
+                    </button>
+                  );
+                })}
           </div>
         </div>
       </section>
@@ -137,26 +214,40 @@ const Discover = () => {
       <section className={style.featureContainer}>
         <div>
           <div className={style.featureCardContainer}>
-            {campaignHistoryList?.loading
-              ? [0, 1, 2, 3, 4, 5].map((item) => {
-                  return (
-                    <Skeleton
-                      key={item}
-                      variant="rectangular"
-                      height={"40rem"}
-                      sx={{
-                        width: {
-                          xs: "100%", // mobile
-                          sm: "48%", // tablet
-                          md: "32%", // desktop
-                        },
-                      }}
-                    />
-                  );
-                })
-              : campaignHistoryList?.data?.data?.map((item) => (
-                  <FeatureCard key={item.id} featureItem={item} />
-                ))}
+            {campaignHistoryLoading ? (
+              [0, 1, 2, 3, 4, 5].map((item) => {
+                return (
+                  <Skeleton
+                    key={item}
+                    variant="rectangular"
+                    height={"40rem"}
+                    sx={{
+                      width: {
+                        xs: "100%", // mobile
+                        sm: "48%", // tablet
+                        md: "32%", // desktop
+                      },
+                    }}
+                  />
+                );
+              })
+            ) : campaignHistoryCopyList?.length > 0 ? (
+              campaignHistoryCopyList?.map((item) => (
+                <FeatureCard key={item.id} featureItem={item} />
+              ))
+            ) : (
+              <div
+                style={{
+                  width: "100%",
+                  height: "20rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <p>No campaigns available</p>
+              </div>
+            )}
           </div>
         </div>
       </section>

@@ -16,8 +16,7 @@ const LoginSignup = () => {
   const [signinEmail, setSigninEmail] = useState("");
   const [signinPassword, setSigninPassword] = useState("");
   const [signinLoader, setSigninLoader] = useState("");
-  const [accountType, setAccountType] =
-    useState("individual");
+  const [accountType, setAccountType] = useState("individual");
 
   // signin error states
   const [signinEmailError, setSigninEmailError] = useState("");
@@ -92,7 +91,7 @@ const LoginSignup = () => {
     setSignupPasswordError("");
     setSignupConfirmPasswordError("");
     setSignupPhoneNumberError("");
-    setAccountType("individual")
+    setAccountType("individual");
 
     if (!firstname.trim()) {
       setFirstnameError("First name is required");
@@ -320,14 +319,16 @@ const LoginSignup = () => {
 
           <div>
             <label>Phone number</label>
-            <PhoneInput
-              aria-labelledby="mobileLabel"
-              forceDialCode={true}
-              defaultCountry={countryflag}
-              value={signupPhoneNumber}
-              ref={phoneRef}
-              onChange={(phone, meta) => handlePhoneChange(phone, meta)}
-            />
+            <div className={style.phoneContainer}>
+              <PhoneInput
+                aria-labelledby="mobileLabel"
+                forceDialCode={true}
+                defaultCountry={countryflag}
+                value={signupPhoneNumber}
+                ref={phoneRef}
+                onChange={(phone, meta) => handlePhoneChange(phone, meta)}
+              />
+            </div>
             {signupPhoneNumberError && (
               <p className="input-error-message">{signupPhoneNumberError}</p>
             )}
