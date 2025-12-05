@@ -26,6 +26,9 @@ const CheckOutPage = () => {
   const [lastnameError, setLastnameError] = useState("");
   const [personalEmailError, setPersonalEmailError] = useState("");
 
+  const [value, setValue] = useState([0, 50]);
+
+  console.log(value)
   return (
     <main>
       <section className={style.checkoutSectionContainer}>
@@ -38,7 +41,7 @@ const CheckOutPage = () => {
               alt=""
             /> */}
 
-            <div className={style.donationContainer}>
+            {/* <div className={style.donationContainer}>
               <p>
                 Published by: <b>Arghya Ghosh</b>
               </p>
@@ -68,7 +71,7 @@ const CheckOutPage = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className={style.donationFormContainer}>
               <div className={style.donationTabContainer}>
@@ -127,13 +130,48 @@ const CheckOutPage = () => {
                   and continue supporting those who create positive change.{" "}
                 </p>
               </div>
-
+              {/* 
               <RangeSlider
                 className="single-thumb"
                 defaultValue={[0, 50]}
                 thumbsDisabled={[true, false]}
                 rangeSlideDisabled={true}
-              />
+              /> */}
+
+              <div
+                style={{
+                  position: "relative",
+                  marginBlock: "2rem",
+                }}
+              >
+                {/* Tooltip */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "-3.2rem",
+                    left: `calc(${value[1]}% - 1.5rem)`, // 🔥 Position above the second thumb
+                    background: "black",
+                    color: "white",
+                    padding: "0.4rem 0.8rem",
+                    borderRadius: "0.6rem",
+                    fontSize: "1.2rem",
+                    pointerEvents: "none",
+                    transition: "left 0s linear",
+                  }}
+                >
+                  {value[1]}
+                </div>
+
+                {/* Slider */}
+                <RangeSlider
+                  className="single-thumb"
+                  defaultValue={[0, 50]}
+                  value={value}
+                  onInput={setValue}
+                  thumbsDisabled={[true, false]}
+                  rangeSlideDisabled={true}
+                />
+              </div>
 
               <button
                 onClick={() => {
@@ -151,24 +189,35 @@ const CheckOutPage = () => {
               )}
 
               <div className={style.tip_container}>
-                <p>
-                  Are you able to add a tip? Tips keep Blimp running, so people
-                  like Marjolijn can get the help they need.
-                </p>
-                <div>
-                  <div>
+                {value[1] ? (
+                  <p style={{
+                    fontWeight: "600",
+                    textAlign: "center",
+                    fontSize: "1.6rem",
+                    width: "100%"
+                  }}>Thank you for your generosity!</p>
+                ) : (
+                  <>
+                    <p>
+                      Are you able to add a tip? Tips keep Blimp running, so
+                      people like Marjolijn can get the help they need.
+                    </p>
                     <div>
-                      <p>1.5%</p>
+                      <div>
+                        <div>
+                          <p>1.5%</p>
+                        </div>
+                        <div>
+                          <p>3%</p>
+                        </div>
+                        <div>
+                          <p>5%</p>
+                        </div>
+                      </div>
+                      <p>Your tip: $0</p>
                     </div>
-                    <div>
-                      <p>3%</p>
-                    </div>
-                    <div>
-                      <p>5%</p>
-                    </div>
-                  </div>
-                  <p>Your tip: $0</p>
-                </div>
+                  </>
+                )}
               </div>
 
               <div className={style.donation_header}>
@@ -234,25 +283,29 @@ const CheckOutPage = () => {
               </div>
 
               <div className={style.your_donation_container}>
+                <p>Your donation</p>
+                <div>
                   <p>Your donation</p>
-                  <div>
-                    <p>Your donation</p>
-                    <p>$1000.00</p>
-                  </div>
-                  <div>
-                    <p>Blimp tip</p>
-                    <p>$0.00</p>
-                  </div>
-                  <div className={style.separator}/>
-                  <div>
-                    <p>Total due today</p>
-                    <p>$1000</p>
-                  </div>
-                  <p>Your total amount will be charged in the fundraiser's currency, US <strong>($9.00)</strong>. International transaction and conversion fees may apply based on your payment method.</p>
+                  <p>$1000.00</p>
+                </div>
+                <div>
+                  <p>Blimp tip</p>
+                  <p>$0.00</p>
+                </div>
+                <div className={style.separator} />
+                <div>
+                  <p>Total due today</p>
+                  <p>$1000</p>
+                </div>
+                <p>
+                  Your total amount will be charged in the fundraiser's
+                  currency, US <strong>($9.00)</strong>. International
+                  transaction and conversion fees may apply based on your
+                  payment method.
+                </p>
               </div>
 
               <button className={style.donate_btn}>Donate</button>
-
             </div>
           </div>
         </div>

@@ -227,8 +227,10 @@ const Hero = () => {
                   <div style={{ whiteSpace: "pre-wrap" }}>
                     <p>
                       {convert(
-                        latestCampaigns?.data?.data?.latestCampaigns?.[0]
-                          ?.description,
+                        latestCampaigns?.data?.data?.latestCampaigns?.[0]?.description
+                          ?.replace(/\\n/g, "")
+                          ?.replace(/^"(.*)"$/, "$1")
+                          .trim(),
                         options
                       )}
                     </p>
@@ -320,7 +322,7 @@ const Hero = () => {
                   }
                   description={convert(
                     latestCampaigns?.data?.data?.latestCampaigns?.[0]
-                      ?.description,
+                      ?.description?.replace(/\\n/g, "")?.replace(/^"(.*)"$/, "$1"),
                     options
                   )}
                   campaignName={
@@ -334,8 +336,9 @@ const Hero = () => {
                       ?.banner_image
                   }
                   description={convert(
-                    latestCampaigns?.data?.data?.latestCampaigns?.[0]
-                      ?.description,
+                    latestCampaigns?.data?.data?.latestCampaigns?.[0]?.description
+                      .replace(/\\n/g, "")
+                      ?.replace(/^"(.*)"$/, "$1"),
                     options
                   )}
                   campaignName={

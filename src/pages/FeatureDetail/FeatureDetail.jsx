@@ -24,6 +24,8 @@ const FeatureDetail = () => {
   const location = useLocation();
   const featureItem = location.state;
 
+  console.log("Feature Item ", featureItem);
+
   const [featureItemDetail, setFeatureItemDetail] = useState({
     loading: false,
     error: null,

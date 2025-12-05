@@ -31,28 +31,6 @@ const Discover = () => {
   const [campaignHistoryCopyList, setCampaignHistoryCopyList] = useState([]);
   const [campaignHistoryLoading, setCampaignHistoryLoading] = useState(false);
 
-  const [page, setPage] = useState(1);
-  const itemsPerPage = 6;
-
-  // Dummy data for campaigns
-  const campaigns = Array.from({ length: 30 }, (_, index) => ({
-    id: index + 1,
-    title: `Campaign ${index + 1}`,
-    description: "This is a dummy campaign description.",
-  }));
-
-  // Calculate total pages
-  const totalPages = Math.ceil(campaigns.length / itemsPerPage);
-
-  // Get items for the current page
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = campaigns.slice(startIndex, endIndex);
-
-  const handlePageChange = (event, value) => {
-    setPage(value);
-  };
-
   const sortCardData = [
     { id: 1, icon: <MedicalIcon />, label: "Medical" },
     { id: 2, icon: <SportIcon />, label: "Sports" },
@@ -86,31 +64,36 @@ const Discover = () => {
     fetch_categories();
   }, []);
 
-  useEffect(() => {
-    if (user?.id) {
-      const fetchCampaignHistory = async () => {
-        setCampaignHistoryLoading(true);
-        try {
-          const { data } = await api.post("/get-discover-campaign", {
-            userId: user.id,
-          });
-          if (data.code === 200) {
-            setCampaignHistoryList(data?.data);
-            setCampaignHistoryCopyList(data?.data);
-          } else if (data.code === 400) {
-            setCampaignHistoryList([]);
-            setCampaignHistoryCopyList([]);
-          }
-        } catch (error) {
-          setCampaignHistoryList([]);
-        } finally {
-          setCampaignHistoryLoading(false);
-        }
-      };
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
 
-      fetchCampaignHistory();
+  const fetchCampaignHistory = async (page) => {
+    setCampaignHistoryLoading(true);
+    try {
+      const { data } = await api.post("/get-discover-campaign", {
+        userId: user.id,
+        page,
+      });
+      if (data.code === 200) {
+        setCampaignHistoryList(data?.data);
+        setCampaignHistoryCopyList(data?.data);
+        setTotalPages(data?.pagination?.totalPages);
+      } else if (data.code === 400) {
+        setCampaignHistoryList([]);
+        setCampaignHistoryCopyList([]);
+      }
+    } catch (error) {
+      setCampaignHistoryList([]);
+    } finally {
+      setCampaignHistoryLoading(false);
     }
-  }, [user]);
+  };
+
+  useEffect(() => {
+    if (user?.id && page) {
+      fetchCampaignHistory(page);
+    }
+  }, [user, page]);
 
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -142,6 +125,12 @@ const Discover = () => {
 
     setCampaignHistoryCopyList(filtered);
   }, [selectedCategory, campaignHistoryList]);
+
+  // Pagination logic
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
 
   return (
     <main>
@@ -259,10 +248,12 @@ const Discover = () => {
             count={totalPages}
             page={page}
             onChange={handlePageChange}
-            color="primary"
-            size="large"
-            variant="outlined"
-            shape="rounded"
+            disabled={campaignHistoryLoading}
+            sx={{
+              "& .MuiPaginationItem-root": {
+                fontSize: "1.4rem", 
+              },
+            }}
           />
         </Stack>
       </section>
