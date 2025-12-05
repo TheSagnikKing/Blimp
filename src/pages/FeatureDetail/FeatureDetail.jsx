@@ -17,6 +17,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Skeleton from "@mui/material/Skeleton";
 import api from "../../api/api";
 import Pagination from "@mui/material/Pagination";
+import { convert } from "html-to-text";
 
 const FeatureDetail = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const FeatureDetail = () => {
   const location = useLocation();
   const featureItem = location.state;
 
-  console.log("Feature Item ", featureItem);
+  console.log("Feature Item ", featureItem?.description);
 
   const [featureItemDetail, setFeatureItemDetail] = useState({
     loading: false,
@@ -130,6 +131,16 @@ const FeatureDetail = () => {
       fetchLatestArticles();
     }
   }, [featureItem?.id, pageNo]);
+
+  const options = {
+    // wordwrap: 130,
+    wordwrap: false,
+    selectors: [
+      { selector: "h1", format: "block" },
+      { selector: "p", format: "block" },
+    ],
+    // ...
+  };
 
   return (
     <main>
@@ -244,7 +255,14 @@ const FeatureDetail = () => {
             ) : (
               <>
                 <h2>Description</h2>
-                <p>{featureItemDetail?.data?.data?.description}</p>
+                <p style={{ whiteSpace: "pre-wrap" }}>
+                  {convert(
+                    featureItem?.description
+                      .replace(/\\n/g, "")
+                      ?.replace(/^"(.*)"$/, "$1"),
+                    options
+                  )}
+                </p>
               </>
             )}
           </div>

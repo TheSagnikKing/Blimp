@@ -185,7 +185,7 @@
       margin-inline: auto;
       width: min(100%, var(--maximum-screen-width));
       display: flex;
-      align-items: center;
+      /* align-items: center; */
       gap: 3rem;
     }
 

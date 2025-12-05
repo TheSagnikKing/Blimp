@@ -3,7 +3,7 @@ import styles from "./CampaignCard.module.css";
 import { RightIcon } from "../../icons";
 import { useNavigate } from "react-router-dom";
 
-const CampaignCard = ({ bannerImage, description, campaignName }) => {
+const CampaignCard = ({ bannerImage, description, campaignName, campaignItem }) => {
   const navigate = useNavigate();
 
   return (
@@ -11,7 +11,9 @@ const CampaignCard = ({ bannerImage, description, campaignName }) => {
       className={styles.campaignCardContainer}
       onClick={() => {
         window.scrollTo(0, 0);
-        navigate("/feature-detail");
+        navigate("/feature-detail", {
+          state: campaignItem
+        });
       }}
     >
       <img src={bannerImage} alt="" />

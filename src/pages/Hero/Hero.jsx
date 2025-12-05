@@ -211,7 +211,7 @@ const Hero = () => {
               <>
                 <img
                   src={
-                    latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                    latestCampaigns?.data?.data?.latestCampaigns?.[0]
                       ?.banner_image
                   }
                   alt=""
@@ -238,27 +238,27 @@ const Hero = () => {
 
                   <ProgressBar
                     raisedAmount={
-                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                      latestCampaigns?.data?.data?.latestCampaigns?.[0]
                         ?.raisedAmount
                     }
                     targetAmount={
-                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                      latestCampaigns?.data?.data?.latestCampaigns?.[0]
                         ?.targetAmount
                     }
                     percentageAchieved={
-                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                      latestCampaigns?.data?.data?.latestCampaigns?.[0]
                         ?.percentageAchieved
                     }
                     donationCount={
-                      latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                      latestCampaigns?.data?.data?.latestCampaigns?.[0]
                         ?.donationInfo?.length
                     }
                     currency={
-                      latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country
+                      latestCampaigns?.data?.data?.latestCampaigns?.[0]?.country
                         ?.currency
                     }
                     symbol={
-                      latestCampaigns?.data?.data?.latestCampaigns?.[1]?.country
+                      latestCampaigns?.data?.data?.latestCampaigns?.[0]?.country
                         ?.symbol
                     }
                   />
@@ -278,7 +278,7 @@ const Hero = () => {
             <div className={style.impactMobileContainer}>
               <h3>
                 {
-                  latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                  latestCampaigns?.data?.data?.latestCampaigns?.[0]
                     ?.campaign_name
                 }
               </h3>
@@ -317,34 +317,36 @@ const Hero = () => {
               <>
                 <CampaignCard
                   bannerImage={
-                    latestCampaigns?.data?.data?.latestCampaigns?.[2]
+                    latestCampaigns?.data?.data?.latestCampaigns?.[1]
                       ?.banner_image
                   }
                   description={convert(
-                    latestCampaigns?.data?.data?.latestCampaigns?.[0]
+                    latestCampaigns?.data?.data?.latestCampaigns?.[1]
                       ?.description?.replace(/\\n/g, "")?.replace(/^"(.*)"$/, "$1"),
                     options
                   )}
                   campaignName={
-                    latestCampaigns?.data?.data?.latestCampaigns?.[2]
+                    latestCampaigns?.data?.data?.latestCampaigns?.[1]
                       ?.campaign_name
                   }
+                  campaignItem={latestCampaigns?.data?.data?.latestCampaigns?.[1]}
                 />
                 <CampaignCard
                   bannerImage={
-                    latestCampaigns?.data?.data?.latestCampaigns?.[3]
+                    latestCampaigns?.data?.data?.latestCampaigns?.[2]
                       ?.banner_image
                   }
                   description={convert(
-                    latestCampaigns?.data?.data?.latestCampaigns?.[0]?.description
+                    latestCampaigns?.data?.data?.latestCampaigns?.[2]?.description
                       .replace(/\\n/g, "")
                       ?.replace(/^"(.*)"$/, "$1"),
                     options
                   )}
                   campaignName={
-                    latestCampaigns?.data?.data?.latestCampaigns?.[3]
+                    latestCampaigns?.data?.data?.latestCampaigns?.[2]
                       ?.campaign_name
                   }
+                  campaignItem={latestCampaigns?.data?.data?.latestCampaigns?.[2]}
                 />
               </>
             )}
