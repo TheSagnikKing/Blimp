@@ -14,6 +14,7 @@ import api from "../../api/api";
 import Skeleton from "@mui/material/Skeleton";
 import { useAuth } from "../../context/AuthContext";
 import { convert } from "html-to-text";
+import { Pagination } from "@mui/material";
 
 const Hero = () => {
   const { user } = useAuth();
@@ -76,28 +77,6 @@ const Hero = () => {
       }
     };
 
-    const fetchFeaturedCampaigns = async () => {
-      setFeaturedCampaigns((prev) => ({ ...prev, loading: true, error: null }));
-      try {
-        const { data } = await api.post("/get-featured-campaign");
-        if (data.code === 200) {
-          setFeaturedCampaigns({ loading: false, error: null, data });
-        } else if (data.code === 400) {
-          setFeaturedCampaigns({
-            loading: false,
-            error: data.message,
-            data: {},
-          });
-        }
-      } catch (error) {
-        setFeaturedCampaigns({
-          loading: false,
-          error: error.message,
-          data: {},
-        });
-      }
-    };
-
     const fetchLatestArticles = async () => {
       setLatestArticles((prev) => ({ ...prev, loading: true, error: null }));
       try {
@@ -114,9 +93,40 @@ const Hero = () => {
 
     fetchSupportCampaigns();
     fetchLatestCampaigns();
-    fetchFeaturedCampaigns();
     fetchLatestArticles();
   }, []);
+
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    const fetchFeaturedCampaigns = async () => {
+      setFeaturedCampaigns((prev) => ({ ...prev, loading: true, error: null }));
+      try {
+        const { data } = await api.post("/get-featured-campaign", {
+          page,
+        });
+        if (data.code === 200) {
+          setFeaturedCampaigns({ loading: false, error: null, data });
+          setTotalPages(data?.pagination?.totalPages);
+        } else if (data.code === 400) {
+          setFeaturedCampaigns({
+            loading: false,
+            error: data.message,
+            data: {},
+          });
+        }
+      } catch (error) {
+        setFeaturedCampaigns({
+          loading: false,
+          error: error.message,
+          data: {},
+        });
+      }
+    };
+
+    fetchFeaturedCampaigns();
+  }, [page]);
 
   const [visibleFeatureCount, setVisibleFeatureCount] = useState(6);
 
@@ -134,6 +144,10 @@ const Hero = () => {
       { selector: "p", format: "block" },
     ],
     // ...
+  };
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
   };
 
   return (
@@ -321,15 +335,18 @@ const Hero = () => {
                       ?.banner_image
                   }
                   description={convert(
-                    latestCampaigns?.data?.data?.latestCampaigns?.[1]
-                      ?.description?.replace(/\\n/g, "")?.replace(/^"(.*)"$/, "$1"),
+                    latestCampaigns?.data?.data?.latestCampaigns?.[1]?.description
+                      ?.replace(/\\n/g, "")
+                      ?.replace(/^"(.*)"$/, "$1"),
                     options
                   )}
                   campaignName={
                     latestCampaigns?.data?.data?.latestCampaigns?.[1]
                       ?.campaign_name
                   }
-                  campaignItem={latestCampaigns?.data?.data?.latestCampaigns?.[1]}
+                  campaignItem={
+                    latestCampaigns?.data?.data?.latestCampaigns?.[1]
+                  }
                 />
                 <CampaignCard
                   bannerImage={
@@ -346,7 +363,9 @@ const Hero = () => {
                     latestCampaigns?.data?.data?.latestCampaigns?.[2]
                       ?.campaign_name
                   }
-                  campaignItem={latestCampaigns?.data?.data?.latestCampaigns?.[2]}
+                  campaignItem={
+                    latestCampaigns?.data?.data?.latestCampaigns?.[2]
+                  }
                 />
               </>
             )}
@@ -376,14 +395,35 @@ const Hero = () => {
                     />
                   );
                 })
-              : allFeatureItems.slice(0, visibleFeatureCount).map((item) => {
+              : allFeatureItems?.map((item) => {
                   return <FeatureCard key={item.id} featureItem={item} />;
                 })}
           </div>
 
-          {visibleFeatureCount < allFeatureItems.length && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Pagination
+              count={totalPages}
+              size="large"
+              sx={{
+                "& .MuiPaginationItem-page": {
+                  fontSize: "1.4rem",
+                },
+              }}
+              value={page}
+              onChange={handlePageChange}
+              disabled={featuredCampaigns?.loading}
+            />
+          </div>
+
+          {/* {visibleFeatureCount < allFeatureItems.length && (
             <button onClick={handleShowAllFeatureItems}>MORE CAUSES</button>
-          )}
+          )} */}
         </div>
       </section>
 

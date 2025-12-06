@@ -25,7 +25,7 @@ const FeatureDetail = () => {
   const location = useLocation();
   const featureItem = location.state;
 
-  console.log("Feature Item ", featureItem?.description);
+  // console.log("Feature Item ", featureItem);
 
   const [featureItemDetail, setFeatureItemDetail] = useState({
     loading: false,
@@ -45,7 +45,13 @@ const FeatureDetail = () => {
     data: {},
   });
 
-  const [pageNo, setPageNo] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
+  const [totalSupporterData, setTotalSupporterData] = useState(0);
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
 
   useEffect(() => {
     if (featureItem?.id) {
@@ -77,37 +83,6 @@ const FeatureDetail = () => {
         }
       };
 
-      const fetchTotalSupporters = async () => {
-        try {
-          setTotalSupporters((prev) => ({
-            ...prev,
-            loading: true,
-            error: null,
-          }));
-          const { data } = await api.post("/total-supporters", {
-            id: featureItem.id,
-            limit: 10,
-            page: pageNo,
-          });
-
-          if (data.code === 200) {
-            setTotalSupporters({ loading: false, error: null, data });
-          } else if (data.code === 400) {
-            setTotalSupporters({
-              loading: false,
-              error: data.message,
-              data: {},
-            });
-          }
-        } catch (error) {
-          setTotalSupporters({
-            loading: false,
-            error: error.message,
-            data: {},
-          });
-        }
-      };
-
       const fetchLatestArticles = async () => {
         setLatestArticles((prev) => ({ ...prev, loading: true, error: null }));
         try {
@@ -127,10 +102,48 @@ const FeatureDetail = () => {
       };
 
       fetchCampaignDetails();
-      fetchTotalSupporters();
       fetchLatestArticles();
     }
-  }, [featureItem?.id, pageNo]);
+  }, [featureItem?.id]);
+
+  useEffect(() => {
+    if (featureItem?.id) {
+      const fetchTotalSupporters = async () => {
+        try {
+          setTotalSupporters((prev) => ({
+            ...prev,
+            loading: true,
+            error: null,
+          }));
+          const { data } = await api.post("/total-supporters", {
+            id: featureItem.id,
+            page,
+          });
+
+          setTotalPages(data?.data?.pagination?.totalPages);
+          setTotalSupporterData(data?.data?.pagination?.total);
+
+          if (data.code === 200) {
+            setTotalSupporters({ loading: false, error: null, data });
+          } else if (data.code === 400) {
+            setTotalSupporters({
+              loading: false,
+              error: data.message,
+              data: {},
+            });
+          }
+        } catch (error) {
+          setTotalSupporters({
+            loading: false,
+            error: error.message,
+            data: {},
+          });
+        }
+      };
+
+      fetchTotalSupporters();
+    }
+  }, [page, featureItem?.id]);
 
   const options = {
     // wordwrap: 130,
@@ -283,52 +296,6 @@ const FeatureDetail = () => {
             )}
           </div>
 
-          {/* <div>
-            <p>
-              Vivamus a dignissim nulla ornare sit aliquam elementum blandit. Leo
-              in sem pellentesque viverra malesuada viverra eget aliquam:
-            </p>
-          </div>
-
-          <ul>
-            <li>
-              <b>Nunc tortor et a ornare et placerat.</b> Tellus in ultricies
-              risus accumsan turpis id nam. Maecenas proin sodales diam vel mauris
-              facilisis arcu semper. Mi accumsan gravida dignissim turpis
-              sollicitudin. At auctor sed facilisi massa amet. Est morbi aliquam
-              sed orci.
-            </li>
-
-            <li>
-              <b>Pulvinar aliquam sed egestas tempus aliquet sollicitudin.</b>{" "}
-              Lectus et rhoncus venenatis interdum lectus nam. Amet curabitur
-              cursus pulvinar nisl id morbi adipiscing. Nunc eget arcu enim ac
-              pellentesque integer bibendum augue. Ut amet tortor auctor
-              hendrerit. Massa at amet nisl mauris vulputate.
-            </li>
-
-            <li>
-              <b>Accumsan quis vel habitasse arcu nisi sed.</b> Pharetra malesuada
-              velit iaculis urna eu. Luctus lobortis lacus metus nec ullamcorper.
-              Arcu nisl odio elit nunc. Arcu amet imperdiet cras volutpat.
-              Facilisis euismod bibendum urna eu feugiat. Et morbi mauris ultrices
-              massa tellus purus suspendisse nec. Magnis tempor aliquam elementum
-              imperdiet posuere. Quis arcu ultricies id quisque leo pulvinar augue
-              sit.
-            </li>
-
-            <li>
-              <b>
-                Arcu ultricies malesuada lectus nulla est nunc integer
-                pellentesque magna.
-              </b>{" "}
-              Egestas malesuada faucibus arcu nunc elit leo quis interdum. Ac vel
-              in commodo accumsan mollis cras massa posuere eget. Condimentum
-              posuere velit cras velit tortor ridiculus sit. Lectus augue libero
-              etiam sed nisl.
-            </li>
-          </ul> */}
-
           <div className={style.addGalleryContainer}>
             {featureItemDetail?.loading ? (
               <Skeleton
@@ -353,7 +320,7 @@ const FeatureDetail = () => {
           <div className={style.supporterContainer}>
             <h2>
               Supporters(
-              {totalSupporters?.data?.data?.campaign?.donationInfo.length})
+              {totalSupporterData})
             </h2>
             <div>
               {totalSupporters?.data?.data?.campaign?.donationInfo?.length >
@@ -413,26 +380,19 @@ const FeatureDetail = () => {
 
               <div className={style.supporterPaginationContainer}>
                 <Pagination
-                  count={10}
+                  count={totalPages}
                   size="large"
                   sx={{
                     "& .MuiPaginationItem-page": {
                       fontSize: "1.4rem",
                     },
                   }}
-                  value={pageNo}
-                  onChange={(event, value) => setPageNo(value)}
+                  value={page}
+                  onChange={handlePageChange}
+                  disabled={totalSupporters?.loading}
                 />
               </div>
 
-              {/* <div className={style.supporterPaginationContainer}>
-                <button style={{ backgroundColor: "#000" }}></button>
-                <button></button>
-                <button></button>
-                <button></button>
-                <button></button>
-                <button></button>
-              </div> */}
             </div>
           </div>
         </div>

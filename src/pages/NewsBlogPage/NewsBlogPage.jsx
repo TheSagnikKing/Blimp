@@ -4,6 +4,7 @@ import NewsCard from "../../components/NewsCard/NewsCard";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import api from "../../api/api";
 import Skeleton from "@mui/material/Skeleton";
+import { Pagination } from "@mui/material";
 
 const NewsBlogPage = () => {
   const [latestArticles, setLatestArticles] = useState({
@@ -12,13 +13,19 @@ const NewsBlogPage = () => {
     data: {},
   });
 
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     const fetchLatestArticles = async () => {
       setLatestArticles((prev) => ({ ...prev, loading: true, error: null }));
       try {
-        const { data } = await api.post("/get-latest-article");
+        const { data } = await api.post("/get-latest-article", {
+          page,
+        });
         if (data.code === 200) {
           setLatestArticles({ loading: false, error: null, data });
+          setTotalPages(data?.pagination?.totalPages);
         } else if (data.code === 400) {
           setLatestArticles({ loading: false, error: data.message, data: {} });
         }
@@ -28,7 +35,11 @@ const NewsBlogPage = () => {
     };
 
     fetchLatestArticles();
-  }, []);
+  }, [page]);
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
 
   return (
     <main>
@@ -113,7 +124,20 @@ const NewsBlogPage = () => {
               )}
         </div>
 
-        {!latestArticles.loading && <button>MORE CAUSES</button>}
+        <div className={style.newsPaginationContainer}>
+          <Pagination
+            count={totalPages}
+            size="large"
+            sx={{
+              "& .MuiPaginationItem-page": {
+                fontSize: "1.4rem",
+              },
+            }}
+            value={page}
+            onChange={handlePageChange}
+            disabled={latestArticles?.loading}
+          />
+        </div>
       </div>
     </main>
   );
