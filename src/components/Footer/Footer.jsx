@@ -153,7 +153,7 @@ const Footer = () => {
           </p>
 
           <div>
-            <img src={blimpLogo} alt="Blimp Company Logo" />
+            <img src={blimpLogo} alt="Blimp Company Logo" width={60}/>
           </div>
 
           <div className={styles.menuContainer}>

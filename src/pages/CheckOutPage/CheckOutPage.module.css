@@ -665,10 +665,22 @@
     border-radius: 1rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-    & > h2 {
-      font-size: 4.8rem;
-      font-weight: bold;
-      text-align: center;
+    & > div:nth-child(1) {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      & > p:nth-child(1) {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      & > p:nth-child(2) {
+        font-size: 1.6rem;
+        /* font-weight: bold; */
+        text-align: center;
+      }
     }
 
     & > div {
@@ -1076,8 +1088,12 @@
 
             & > div {
               width: max-content;
-              padding-inline: 1rem;
-              height: 4rem;
+              padding-inline: 0.8rem;
+              height: 3rem;
+              & > p {
+                font-size: 1.4rem;
+              }
+              /* height: 4rem; */
             }
           }
 
@@ -1088,7 +1104,7 @@
               text-align: center;
             }
 
-            &>div:nth-child(2){
+            & > div:nth-child(2) {
               justify-content: center;
               align-items: center;
               gap: 2rem;
@@ -1099,7 +1115,6 @@
     }
   }
 }
-
 
 @media screen and (min-width: 431px) and (max-width: 576px) {
   .checkoutSectionContainer {
@@ -1127,7 +1142,7 @@
               text-align: center;
             }
 
-            &>div:nth-child(2){
+            & > div:nth-child(2) {
               justify-content: center;
               align-items: center;
               gap: 2rem;

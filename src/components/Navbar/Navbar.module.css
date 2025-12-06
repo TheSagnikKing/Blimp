@@ -3,7 +3,7 @@
   width: 100%;
   padding-inline: 7.5rem;
 
-  &>div {
+  & > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,15 +11,22 @@
     width: min(100%, var(--maximum-screen-width));
     margin-inline: auto;
 
-    &>div {
+    & > div {
       display: flex;
       align-items: center;
       gap: 2rem;
     }
 
-    &>div:nth-child(2) {
+    .logoContainer {
+      & > a {
+        & > img {
+          width: 12rem;
+        }
+      }
+    }
 
-      &>button:nth-child(1) {
+    & > div:nth-child(2) {
+      & > button:nth-child(1) {
         height: 4rem;
         width: 13.2rem;
 
@@ -35,7 +42,7 @@
         background-color: transparent;
         cursor: pointer;
 
-        &>span {
+        & > span {
           font-size: var(--font-medium);
         }
       }
@@ -68,18 +75,17 @@
       }
     }
   }
-
 }
 
 .nav {
   margin-left: 20rem;
 
-  &>ul {
+  & > ul {
     display: flex;
     align-items: center;
     gap: 2rem;
 
-    &>li {
+    & > li {
       list-style-type: none;
 
       a {

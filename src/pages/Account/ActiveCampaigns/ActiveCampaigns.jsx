@@ -74,6 +74,7 @@ const ActiveCampaigns = () => {
         return (
           <div className={styles.campaignCard} key={item.id}>
             <h2>{item?.campaign_name}</h2>
+            <p>{item?.is_approved === 0 ? "pending" : item?.is_approved === 1 ? "approved" : "rejected"}</p>
 
             <div className={styles.donationContainer}>
               <p>

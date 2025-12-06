@@ -28,13 +28,15 @@ const CheckOutPage = () => {
 
   const [value, setValue] = useState([0, 50]);
 
-  console.log(value)
+  console.log(value);
   return (
     <main>
       <section className={style.checkoutSectionContainer}>
         <div>
-          {/* <h2>Reduce Homelessness</h2> */}
-
+          <div>
+            <p>Reduce Homelessness</p>
+            <p>Still $8271 to go. Help us build momemtum</p>
+          </div>
           <div>
             {/* <img
               src="https://cdn.sanity.io/images/2ejqxsnu/production/d6965115d7edc08e1417b0a9ae13aca2117c51b0-1280x760.jpg?w=3840&q=75&fit=clip&auto=format"
@@ -96,9 +98,6 @@ const CheckOutPage = () => {
               <p>Boost your impact by giving monthly</p>
 
               <div>
-                <div>
-                  <p>$10</p>
-                </div>
                 <div>
                   <p>$25</p>
                 </div>
@@ -190,12 +189,16 @@ const CheckOutPage = () => {
 
               <div className={style.tip_container}>
                 {value[1] ? (
-                  <p style={{
-                    fontWeight: "600",
-                    textAlign: "center",
-                    fontSize: "1.6rem",
-                    width: "100%"
-                  }}>Thank you for your generosity!</p>
+                  <p
+                    style={{
+                      fontWeight: "600",
+                      textAlign: "center",
+                      fontSize: "1.6rem",
+                      width: "100%",
+                    }}
+                  >
+                    Thank you for your generosity!
+                  </p>
                 ) : (
                   <>
                     <p>

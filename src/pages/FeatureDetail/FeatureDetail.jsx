@@ -267,7 +267,7 @@ const FeatureDetail = () => {
               />
             ) : (
               <>
-                <h2>Description</h2>
+                <h2>Raising fund description</h2>
                 <p style={{ whiteSpace: "pre-wrap" }}>
                   {convert(
                     featureItem?.description
@@ -280,7 +280,7 @@ const FeatureDetail = () => {
             )}
           </div>
 
-          <div>
+          {/* <div>
             {featureItemDetail?.loading ? (
               <Skeleton
                 variant="rectangular"
@@ -294,7 +294,7 @@ const FeatureDetail = () => {
                 <p>{featureItemDetail?.data?.data?.rasing_funds_decription}</p>
               </>
             )}
-          </div>
+          </div> */}
 
           <div className={style.addGalleryContainer}>
             {featureItemDetail?.loading ? (
@@ -436,7 +436,6 @@ const FeatureDetail = () => {
                 })}
           </div>
 
-          <button>MORE CAUSES</button>
         </div>
       </section>
     </main>

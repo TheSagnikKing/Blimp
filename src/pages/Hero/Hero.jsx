@@ -285,6 +285,15 @@ const Hero = () => {
                   >
                     DONATE
                   </button>
+
+                  <button
+                    onClick={() => {
+                      // window.scrollTo(0, 0);
+                      // navigate("/checkout");
+                    }}
+                  >
+                    View
+                  </button>
                 </div>
               </>
             )}
@@ -297,7 +306,14 @@ const Hero = () => {
                 }
               </h3>
               <button>View More</button>
-              <button>DONATE</button>
+              <button
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  navigate("/checkout");
+                }}
+              >
+                DONATE
+              </button>
             </div>
 
             <button>View Details</button>

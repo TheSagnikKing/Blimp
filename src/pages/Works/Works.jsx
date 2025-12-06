@@ -69,11 +69,11 @@ const Works = () => {
     <main>
       <section className={style.crowdFundContainer}>
         <h2>Our guide to crowdfunding</h2>
-        <p>
+        {/* <p>
           Libero dictum ut purus ut vel sit egestas. Ut ac mattis senectus ac
           suspendisse vitae vel nulla eleifend. Est eros facilisi aenean nisl a.
           Vitae et fusce purus consectetur.
-        </p>
+        </p> */}
       </section>
 
       <section className={style.crowdHeaderContainer}>

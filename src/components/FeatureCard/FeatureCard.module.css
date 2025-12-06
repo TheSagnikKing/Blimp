@@ -14,14 +14,14 @@
     gap: 1.5rem;
 
     & > h2 {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 700;
       display: -webkit-box;
       -webkit-line-clamp: 2; /* limit to 2 lines */
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      min-height: calc(2 * 1.2 * 2.4rem);
+      min-height: calc(2 * 1.2 * 2.2rem);
     }
 
     & > div {
@@ -30,6 +30,13 @@
       gap: 0.5rem;
       font-size: var(--font-small);
       font-weight: 400;
+    }
+
+    &>div:nth-child(2){
+      &>p{
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
     }
 
     & > button {

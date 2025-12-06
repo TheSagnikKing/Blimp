@@ -16,10 +16,10 @@ const Navbar = () => {
       name: "How it works",
       url: "/works",
     },
-    {
-      name: "Discover",
-      url: "/discover",
-    },
+    // {
+    //   name: "Discover",
+    //   url: "/discover",
+    // },
     {
       name: "About Us",
       url: "/aboutus",

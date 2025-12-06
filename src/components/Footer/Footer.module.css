@@ -30,7 +30,7 @@
         }
 
         &>div {
-          height: 4.2rem;
+          height: 3.5rem;
           width: 100%;
           border-radius: 3.2rem;
           -webkit-border-radius: 3.2rem;
@@ -102,7 +102,7 @@
           &>button {
             background-color: transparent;
             border: 0.2rem solid rgba(255, 255, 255, 1);
-            font-size: 2.4rem;
+            font-size: 1rem;
             display: grid;
             place-items: center;
             color: rgba(255, 255, 255, 1);
@@ -112,8 +112,10 @@
         }
 
         &>div:nth-child(2) {
-          width: 10.4rem;
-          height: 4rem;
+          /* width: 10.4rem; */
+          width: max-content;
+          padding: 1rem 1.2rem;
+          /* height: 4rem; */
           background-color: rgba(10, 132, 255, 0.34);
           border-radius: 0.5rem;
           -webkit-border-radius: 0.5rem;
@@ -125,7 +127,8 @@
 
           &>p {
             color: rgba(255, 255, 255, 1);
-            font-size: var(--font-large);
+            font-size: 1.2rem;
+            /* font-size: var(--font-large); */
           }
         }
       }
@@ -207,8 +210,8 @@
       }
 
       &>p {
-        margin-block: 2rem;
-        font-size: 1.6rem;
+        margin-block: 1rem;
+        font-size: 1.2rem;
       }
 
       .menuContainer {

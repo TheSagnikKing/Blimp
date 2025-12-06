@@ -66,13 +66,17 @@ const Discover = () => {
 
   const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
+  const [query, setQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const fetchCampaignHistory = async (page) => {
+  const fetchCampaignHistory = async (page, selectedCategory, query) => {
     setCampaignHistoryLoading(true);
     try {
       const { data } = await api.post("/get-discover-campaign", {
         userId: user.id,
         page,
+        category_name: selectedCategory?.name,
+        campaign_name: query,
       });
       if (data.code === 200) {
         setCampaignHistoryList(data?.data);
@@ -91,40 +95,37 @@ const Discover = () => {
 
   useEffect(() => {
     if (user?.id && page) {
-      fetchCampaignHistory(page);
+      fetchCampaignHistory(page, selectedCategory, query);
     }
-  }, [user, page]);
+  }, [user, page, selectedCategory, query]);
 
-  const [query, setQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  // useEffect(() => {
+  //   if (!query) {
+  //     setCampaignHistoryCopyList(campaignHistoryList);
+  //     return;
+  //   }
 
-  useEffect(() => {
-    if (!query) {
-      setCampaignHistoryCopyList(campaignHistoryList);
-      return;
-    }
+  //   const filtered = campaignHistoryList.filter((item) =>
+  //     item.campaign_name.toLowerCase().includes(query.toLowerCase())
+  //   );
 
-    const filtered = campaignHistoryList.filter((item) =>
-      item.campaign_name.toLowerCase().includes(query.toLowerCase())
-    );
+  //   setCampaignHistoryCopyList(filtered);
+  // }, [query, campaignHistoryList]);
 
-    setCampaignHistoryCopyList(filtered);
-  }, [query, campaignHistoryList]);
+  // useEffect(() => {
+  //   if (!selectedCategory) {
+  //     setCampaignHistoryCopyList(campaignHistoryList);
+  //     return;
+  //   }
 
-  useEffect(() => {
-    if (!selectedCategory) {
-      setCampaignHistoryCopyList(campaignHistoryList);
-      return;
-    }
+  //   const filtered = campaignHistoryList.filter(
+  //     (item) =>
+  //       item.category_name?.toLowerCase() ===
+  //       selectedCategory?.name?.toLowerCase()
+  //   );
 
-    const filtered = campaignHistoryList.filter(
-      (item) =>
-        item.category_name?.toLowerCase() ===
-        selectedCategory?.name?.toLowerCase()
-    );
-
-    setCampaignHistoryCopyList(filtered);
-  }, [selectedCategory, campaignHistoryList]);
+  //   setCampaignHistoryCopyList(filtered);
+  // }, [selectedCategory, campaignHistoryList]);
 
   // Pagination logic
 
@@ -145,9 +146,13 @@ const Discover = () => {
             <div>
               <input
                 type="text"
-                placeholder="Search"
+                placeholder="Search by title or country"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setPage(1)
+                  setSelectedCategory("");
+                  setQuery(e.target.value);
+                }}
               />
               <button>
                 <SearchIcon />
@@ -181,7 +186,17 @@ const Discover = () => {
                     <button
                       key={item?.label}
                       className={style.sortCardItem}
-                      onClick={() => setSelectedCategory(item)}
+                      onClick={() => {
+                        setPage(1)
+                        setQuery("");
+                        setSelectedCategory((prev) => {
+                          if (prev.name === item.name) {
+                            return "";
+                          } else {
+                            return item;
+                          }
+                        });
+                      }}
                       style={{
                         border:
                           selectedCategory?.name === item?.name
@@ -251,7 +266,7 @@ const Discover = () => {
             disabled={campaignHistoryLoading}
             sx={{
               "& .MuiPaginationItem-root": {
-                fontSize: "1.4rem", 
+                fontSize: "1.4rem",
               },
             }}
           />

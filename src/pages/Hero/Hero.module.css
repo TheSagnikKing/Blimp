@@ -6,7 +6,7 @@
   background-repeat: no-repeat;
   padding-inline: 7.5rem;
 
-  &>div {
+  & > div {
     width: min(100%, var(--maximum-screen-width));
     margin-inline: auto;
     position: relative;
@@ -23,10 +23,11 @@
   bottom: 0;
   height: 68rem;
   pointer-events: none;
-  background: linear-gradient(to right,
-      rgba(0, 32, 64, 0.7),
-      rgba(0, 32, 64, 0)
-    );
+  background: linear-gradient(
+    to right,
+    rgba(0, 32, 64, 0.7),
+    rgba(0, 32, 64, 0)
+  );
 }
 
 .heroContent {
@@ -38,7 +39,7 @@
   justify-content: space-between;
   z-index: 10;
 
-  &>p {
+  & > p {
     font-size: 2.4rem;
     color: #efefef;
     font-weight: 500;
@@ -46,28 +47,31 @@
     text-transform: capitalize;
   }
 
-  &>h1 {
+  & > h1 {
     font-size: 4rem;
     font-weight: 800;
     color: #ffffff;
     text-transform: uppercase;
+    text-shadow: 2px 2px 4px black;
 
-    &>span {
+    & > span {
       color: var(--header-textcolor);
     }
   }
 
-  &>button {
+  & > button {
     min-height: 4rem;
     padding-inline: 2rem;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
-    border: none;
     outline: none;
     cursor: pointer;
-    background-color: #8FD600;
-    color: var(--text-primary);
+    /* background-color: #8fd600; */
+    /* background-color: #00c1e8; */
+    background-color: transparent;
+    border: 0.1rem solid #00c1e8;
+    color: #fff;
     font-size: var(--font-medium);
     font-weight: 700;
     border-radius: 3.2rem;
@@ -75,6 +79,12 @@
     -moz-border-radius: 3.2rem;
     -ms-border-radius: 3.2rem;
     -o-border-radius: 3.2rem;
+    transition: 0.5s;
+
+    &:hover {
+      background-color: #00c1e8;
+      color: #000;
+    }
   }
 }
 
@@ -82,12 +92,12 @@
   padding-block: 4rem;
   padding-inline: 7.5rem;
 
-  &>div {
+  & > div {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 
-    &>h2 {
+    & > h2 {
       width: min(100%, var(--maximum-screen-width));
       margin-inline: auto;
       font-size: 5.6rem;
@@ -96,7 +106,7 @@
       padding-bottom: 0.5rem;
     }
 
-    &>div {
+    & > div {
       margin-inline: auto;
       width: min(100%, var(--maximum-screen-width));
       background-color: var(--bg-primary);
@@ -104,34 +114,34 @@
       display: flex;
       gap: 6rem;
 
-      &>img {
+      & > img {
         width: 50%;
         height: 73rem;
         object-fit: cover;
       }
 
-      &>div {
+      & > div {
         width: 50%;
         display: flex;
         flex-direction: column;
         gap: 4rem;
 
-        &>h2 {
+        & > h2 {
           font-size: var(--subheader-large);
           line-height: var(--subheader-large-lineheight);
           font-weight: 800;
         }
 
-        &>p {
+        & > p {
           font-size: var(--font-medium);
           line-height: 2.8rem;
           font-weight: 400;
         }
 
-        &>button {
+        & > button {
           width: 15.3rem;
           height: 4rem;
-          background-color: #8FD600;
+          background-color: #00c1e88e;
           border-radius: 3rem;
           -webkit-border-radius: 3rem;
           -moz-border-radius: 3rem;
@@ -143,6 +153,11 @@
           color: #000;
           font-weight: 700;
           cursor: pointer;
+          transition: 0.5s;
+
+          &:hover{
+            background-color: #00c1e8;
+          }
         }
       }
 
@@ -150,8 +165,7 @@
         display: none;
       }
 
-
-      &>button {
+      & > button {
         display: none;
       }
     }
@@ -166,12 +180,12 @@
   gap: 2rem;
   background-color: #000;
 
-  &>div {
+  & > div {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 
-    &>h2 {
+    & > h2 {
       width: min(100%, var(--maximum-screen-width));
       margin-inline: auto;
       font-size: 5.6rem;
@@ -181,38 +195,35 @@
       color: #fff;
     }
 
-    &>div {
+    & > div {
       margin-inline: auto;
       width: min(100%, var(--maximum-screen-width));
       display: flex;
       /* align-items: center; */
       gap: 3rem;
     }
-
   }
-
 }
-
 
 .featureContainer {
   padding-inline: 7.2rem;
   padding-block: 4rem;
   background-color: var(--bg-primary);
 
-  &>div {
+  & > div {
     width: min(100%, var(--maximum-screen-width));
     margin-inline: auto;
 
-    &>h2 {
+    & > h2 {
       width: min(100%, var(--maximum-screen-width));
       margin-inline: auto;
-      font-size: 5.6rem;
+      font-size: 4rem;
       text-transform: capitalize;
       border-bottom: 0.2rem solid #000;
       padding-bottom: 0.5rem;
     }
 
-    &>button {
+    & > button {
       padding: 1.2rem 2rem;
       background-color: #ffffff;
       border: 0.2rem solid rgba(0, 0, 0, 1);
@@ -249,12 +260,12 @@
   padding-block: 2rem;
   padding-inline: 7.5rem;
 
-  &>div {
+  & > div {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 
-    &>h2 {
+    & > h2 {
       width: min(100%, var(--maximum-screen-width));
       margin-inline: auto;
       font-size: 5.6rem;
@@ -263,20 +274,20 @@
       padding-bottom: 0.5rem;
     }
 
-    &>div {
+    & > div {
       display: flex;
       align-items: center;
       gap: 6rem;
       width: min(100%, var(--maximum-screen-width));
       margin-inline: auto;
 
-      &>img {
+      & > img {
         width: 50%;
         height: 56rem;
         object-fit: cover;
       }
 
-      &>div {
+      & > div {
         width: 50%;
         height: min(56rem, auto);
         display: flex;
@@ -293,45 +304,44 @@
   padding-block: 12rem;
   padding-inline: 7.5rem;
 
-
-  &>div {
+  & > div {
     display: flex;
     align-items: center;
     gap: 6rem;
     width: min(100%, var(--maximum-screen-width));
     margin-inline: auto;
 
-    &>img {
+    & > img {
       width: 50%;
       height: 56rem;
       object-fit: cover;
     }
 
-    &>div {
+    & > div {
       width: 50%;
       display: flex;
       flex-direction: column;
       gap: 4rem;
 
-      &>h2 {
+      & > h2 {
         font-size: var(--subheader-large);
         line-height: var(--subheader-large-lineheight);
         font-weight: 800;
       }
 
-      &>p {
+      & > p {
         font-size: var(--font-medium);
         line-height: 2.8rem;
         font-weight: 400;
       }
 
-      &>div {
-        &>p:nth-child(1) {
+      & > div {
+        & > p:nth-child(1) {
           font-size: var(--font-medium);
           font-weight: 600;
         }
 
-        &>p:nth-child(2) {
+        & > p:nth-child(2) {
           font-size: var(--font-small);
           margin-top: 1.5rem;
         }
@@ -340,13 +350,12 @@
   }
 }
 
-
 @media screen and (min-width: 0px) and (max-width: 430px) {
   .heroContainer {
     height: 50rem;
     padding-inline: 1.5rem;
 
-    &>div {
+    & > div {
       width: 100%;
     }
 
@@ -359,22 +368,20 @@
     height: max-content;
     gap: 2rem;
 
-
-    &>h1 {
+    & > h1 {
       font-size: 2.4rem;
       margin: 0rem;
     }
 
-    &>p {
+    & > p {
       font-size: var(--font-small);
       margin-bottom: 0rem;
     }
 
-    &>button {
+    & > button {
       min-height: 4rem;
     }
   }
-
 
   .impactContainer {
     height: auto;
@@ -383,25 +390,24 @@
     padding-inline: 0rem;
     gap: 2rem;
 
-    &>div {
-
-      &>h2 {
+    & > div {
+      & > h2 {
         width: 90vw;
         font-size: 3.2rem;
         margin-inline: auto;
       }
 
-      &>div {
+      & > div {
         display: flex;
         flex-direction: column;
         gap: 0rem;
 
-        &>img {
+        & > img {
           width: 100%;
           height: 64.1rem;
         }
 
-        &>div {
+        & > div {
           display: none;
         }
 
@@ -414,7 +420,7 @@
           width: 100%;
           padding-block: 2rem;
 
-          &>h3 {
+          & > h3 {
             font-size: 2rem;
             color: #fff;
             text-transform: capitalize;
@@ -424,11 +430,10 @@
             text-align: center;
           }
 
-          &>button:nth-child(2) {
+          & > button:nth-child(2) {
             background-color: transparent;
             color: #fff;
           }
-
         }
       }
     }
@@ -437,18 +442,18 @@
   .topCampaignsContainer {
     padding: 1.5rem;
 
-    &>div {
-      &>h2 {
+    & > div {
+      & > h2 {
         font-size: 3.2rem;
         margin-inline: auto;
         width: 90vw;
       }
 
-      &>div {
+      & > div {
         flex-direction: column;
         gap: 2rem;
 
-        &>div {
+        & > div {
           width: 90vw !important;
           margin-inline: auto !important;
         }
@@ -460,14 +465,14 @@
     padding-inline: 0rem;
     padding-block: 2rem;
 
-    &>div {
-      &>h2 {
-        font-size: 3.2rem;
+    & > div {
+      & > h2 {
+        font-size: 3rem;
         margin-inline: auto;
         width: 90vw;
       }
 
-      &>button {
+      & > button {
         margin-block: 4rem;
       }
     }
@@ -477,30 +482,29 @@
     padding-block: 2rem;
     padding-inline: 1.5rem;
 
-    &>div {
-
-      &>h2 {
+    & > div {
+      & > h2 {
         font-size: 3.2rem;
         margin-inline: auto;
         width: 90vw;
       }
 
-      &>div {
+      & > div {
         gap: 0rem;
-        &>img {
+        & > img {
           display: none;
         }
 
-        &>div {
+        & > div {
           width: 100%;
 
-          &>h2 {
+          & > h2 {
             font-size: var(--subheader-small);
             line-height: var(--subheader-small-lineheight);
             text-align: center;
           }
 
-          &>button {
+          & > button {
             display: inline-block;
             width: 100%;
             height: 6rem;
@@ -527,24 +531,24 @@
     padding-block: 2rem;
     padding-inline: 1.5rem;
 
-    &>div {
+    & > div {
       height: auto;
       flex-direction: column-reverse;
       gap: 2rem;
 
-      &>img,
-      &>div {
+      & > img,
+      & > div {
         width: 100%;
       }
 
-      &>img {
+      & > img {
         height: 20.9rem;
       }
 
-      &>div {
+      & > div {
         gap: 2rem;
 
-        &>h2 {
+        & > h2 {
           font-size: var(--subheader-small);
           line-height: var(--subheader-small-lineheight);
         }
@@ -553,13 +557,12 @@
   }
 }
 
-
 @media screen and (min-width: 431px) and (max-width: 768px) {
   .heroContainer {
     height: 50rem;
     padding-inline: 1.5rem;
 
-    &>div {
+    & > div {
       width: 100%;
     }
 
@@ -572,22 +575,20 @@
     height: max-content;
     gap: 2rem;
 
-
-    &>h1 {
+    & > h1 {
       font-size: 2.4rem;
       margin: 0rem;
     }
 
-    &>p {
+    & > p {
       font-size: var(--font-small);
       margin-bottom: 0rem;
     }
 
-    &>button {
+    & > button {
       min-height: 4rem;
     }
   }
-
 
   .impactContainer {
     height: auto;
@@ -596,25 +597,24 @@
     padding-inline: 0rem;
     gap: 2rem;
 
-    &>div {
-
-      &>h2 {
+    & > div {
+      & > h2 {
         width: 90vw;
         font-size: 3.2rem;
         margin-inline: auto;
       }
 
-      &>div {
+      & > div {
         display: flex;
         flex-direction: column;
         gap: 0rem;
 
-        &>img {
+        & > img {
           width: 100%;
           height: 64.1rem;
         }
 
-        &>div {
+        & > div {
           display: none;
         }
 
@@ -627,7 +627,7 @@
           width: 100%;
           padding-block: 2rem;
 
-          &>h3 {
+          & > h3 {
             font-size: 2rem;
             color: #fff;
             text-transform: capitalize;
@@ -637,11 +637,10 @@
             text-align: center;
           }
 
-          &>button:nth-child(2) {
+          & > button:nth-child(2) {
             background-color: transparent;
             color: #fff;
           }
-
         }
       }
     }
@@ -650,18 +649,18 @@
   .topCampaignsContainer {
     padding: 1.5rem;
 
-    &>div {
-      &>h2 {
+    & > div {
+      & > h2 {
         font-size: 3.2rem;
         margin-inline: auto;
         width: 90vw;
       }
 
-      &>div {
+      & > div {
         flex-direction: column;
         gap: 2rem;
 
-        &>div {
+        & > div {
           width: 90vw !important;
           margin-inline: auto !important;
         }
@@ -677,29 +676,28 @@
     padding-block: 2rem;
     padding-inline: 1.5rem;
 
-    &>div {
-
-      &>h2 {
+    & > div {
+      & > h2 {
         font-size: 3.2rem;
         margin-inline: auto;
         width: 90vw;
       }
 
-      &>div {
-        &>img {
+      & > div {
+        & > img {
           display: none;
         }
 
-        &>div {
+        & > div {
           width: 100%;
 
-          &>h2 {
+          & > h2 {
             font-size: var(--subheader-small);
             line-height: var(--subheader-small-lineheight);
             text-align: center;
           }
 
-          &>button {
+          & > button {
             display: inline-block;
             width: 100%;
             height: 6rem;
@@ -726,24 +724,24 @@
     padding-block: 2rem;
     padding-inline: 1.5rem;
 
-    &>div {
+    & > div {
       height: auto;
       flex-direction: column-reverse;
       gap: 2rem;
 
-      &>img,
-      &>div {
+      & > img,
+      & > div {
         width: 100%;
       }
 
-      &>img {
+      & > img {
         height: 20.9rem;
       }
 
-      &>div {
+      & > div {
         gap: 2rem;
 
-        &>h2 {
+        & > h2 {
           font-size: var(--subheader-small);
           line-height: var(--subheader-small-lineheight);
         }
@@ -751,4 +749,3 @@
     }
   }
 }
-
