@@ -32,9 +32,7 @@
         gap: 2rem;
 
         & > h2 {
-          font-size: 4rem;
-          font-weight: 700;
-          line-height: 5rem;
+          font-size: var(--header-large);
           color: #fff;
         }
 
@@ -87,7 +85,7 @@
           -o-border-radius: 50%;
           background-color: #8fd600;
           color: #000;
-          font-size: 1.4rem;
+          font-size: var(--font-medium);
         }
       }
     }
@@ -103,7 +101,7 @@
       gap: 4rem;
 
       & > h2 {
-        font-size: 4rem;
+        font-size: var(--header-large);
       }
 
       .inputContainerOne {
@@ -119,7 +117,6 @@
 
           & > label {
             font-size: var(--font-medium);
-            font-weight: 500;
           }
 
           & > input {
@@ -132,7 +129,6 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transition: all 0.25s ease;
             font-size: 1.6rem;
-            font-weight: 500;
             color: #1f2937;
             letter-spacing: 0.3px;
             outline: none;
@@ -161,7 +157,6 @@
 
         & > label {
           font-size: var(--font-medium);
-          font-weight: 500;
         }
 
         & > input {
@@ -173,8 +168,7 @@
           border: 1px solid #e2e8f0;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
           transition: all 0.25s ease;
-          font-size: 1.6rem;
-          font-weight: 500;
+          font-size: var(--font-medium);
           color: #1f2937;
           letter-spacing: 0.3px;
           outline: none;
@@ -202,7 +196,6 @@
 
         & > label {
           font-size: var(--font-medium);
-          font-weight: 500;
         }
 
         & > textarea {
@@ -214,7 +207,7 @@
           border: 1px solid #e2e8f0;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
           transition: all 0.25s ease;
-          font-size: 1.6rem;
+          font-size: var(--font-medium);
           font-weight: 500;
           color: #1f2937;
           letter-spacing: 0.3px;
@@ -282,14 +275,16 @@
         cursor: pointer;
         background-color: #8fd600;
         font-weight: 500;
-        font-size: var(--font-large);
+        font-size: var(--font-medium);
+        font-weight: var(--btn-font-weight);
       }
     }
   }
 }
 
 .contactBannerImage {
-  padding: 7.5rem;
+  padding-inline: 7.5rem;
+  padding-bottom: 2rem;
 
   & > div {
     width: min(100%, var(--maximum-screen-width));
@@ -324,12 +319,11 @@
       gap: 2rem;
 
       & > h2 {
-        font-size: var(--subheader-large);
-        line-height: var(--subheader-large-lineheight);
+        font-size: var(--header-large);
       }
 
       & > p {
-        font-size: var(--font-large);
+        font-size: var(--font-medium);
         color: var(--text-secondary);
       }
 
@@ -359,7 +353,7 @@
       .openFaqItem {
         background-color: rgba(243, 243, 243, 1);
         min-height: 17.7rem;
-        padding: 4rem;
+        padding: 3rem;
         display: flex;
         justify-content: space-between;
         border: none;
@@ -372,7 +366,7 @@
           flex: 0.9;
 
           & > h2 {
-            font-size: 2.4rem;
+            font-size: var(--font-large);
             text-align: start;
           }
 
@@ -401,21 +395,19 @@
 
       .closeFaqItem {
         width: 100%;
-        height: 12rem;
         border: none;
         outline: none;
         cursor: pointer;
         border-bottom: 0.2rem solid var(--border-color);
         background-color: transparent;
-        padding: 4rem;
+        padding: 3rem 2rem; 
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         & > h2 {
           flex: 0.8;
-          font-size: var(--subheader-small);
-          line-height: var(--subheader-smalls-lineheight);
+          font-size: var(--font-large);
           text-align: start;
         }
 
@@ -430,7 +422,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 2.4rem;
+          font-size: var(--font-medium);
           color: #ffffff;
           background-color: #000000;
         }

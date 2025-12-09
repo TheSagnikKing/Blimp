@@ -12,7 +12,7 @@
   margin-bottom: 2rem;
 
   &>h2 {
-    font-size: 4rem;
+    font-size: var(--font-large);
   }
 
   .donationContainer {
@@ -44,8 +44,6 @@
 
         &>p:nth-child(1) {
           font-size: var(--font-large);
-          font-family: "Inter", sans-serif;
-          font-weight: 500;
         }
 
         &>p:nth-child(2) {
@@ -105,7 +103,7 @@
       outline: none;
       cursor: pointer;
       font-size: var(--font-medium);
-      font-weight: 500;
+      font-weight: var(--btn-font-weight);
       /* text-transform: uppercase; */
     }
 
@@ -145,7 +143,7 @@
       outline: none;
       cursor: pointer;
       font-size: var(--font-medium);
-      font-weight: 700;
+      font-weight: var(--btn-font-weight);
       text-transform: uppercase;
       background-color: #8FD600;
       color: #000;

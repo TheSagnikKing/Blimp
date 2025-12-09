@@ -140,7 +140,6 @@ const Discover = () => {
           <div>
             <div>
               <h2>Discover</h2>
-              <p>Find causes you truly care about</p>
             </div>
 
             <div>

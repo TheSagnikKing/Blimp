@@ -36,15 +36,12 @@
     }
 
     &>h2 {
-      font-size: var(--subheader-small);
-      line-height: var(--subheader-small-lineheight);
+      font-size: var(--font-large);
       text-transform: capitalize;
     }
 
     &>p {
       font-size: var(--font-medium);
-      line-height: 2.8rem;
-      font-weight: 400;
       color: var(--text-secondary);
     }
 

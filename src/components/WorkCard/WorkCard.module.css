@@ -22,9 +22,8 @@
     gap: 4rem;
 
     & > h2 {
-      font-size: var(--subheader-large);
-      line-height: var(--subheader-large-lineheight);
-      font-weight: 800;
+      /* font-size: var(--subheader-large); */
+      font-size: var(--header-large);
       text-transform: capitalize;
     }
 

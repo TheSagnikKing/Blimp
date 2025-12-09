@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./Hero.module.css";
 import crowdImageOne from "../../assets/crowdImageOne.jpg";
-import { FilterIcon } from "../../icons";
+import { FilterIcon, RightIcon } from "../../icons";
 import FeatureCard from "../../components/FeatureCard/FeatureCard";
 import RegionMapContainer from "../../components/RegionMap/RegionMap";
 import NewsCard from "../../components/NewsCard/NewsCard";
@@ -171,17 +171,9 @@ const Hero = () => {
                 {"( v 1.0.0 )"}
               </span>
             </h1>
-            {/* <p>Help power the world's social justice movements</p> */}
+
             <button
               onClick={() => {
-                // login-signup
-                // if (user === null || user === undefined) {
-                //   window.scrollTo(0, 0);
-                //   navigate("/login-signup");
-                // } else {
-                //   window.scrollTo(0, 0);
-                //   navigate("/start-campaign");
-                // }
                 navigate("/start-campaign");
               }}
             >
@@ -277,23 +269,29 @@ const Hero = () => {
                     }
                   />
 
-                  <button
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                      navigate("/checkout");
-                    }}
-                  >
-                    DONATE
-                  </button>
+                  <div>
+                    <button
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                        navigate("/feature-detail", {
+                          state:
+                            latestCampaigns?.data?.data?.latestCampaigns?.[0],
+                        });
+                      }}
+                    >
+                      <span>View More</span>
+                      <RightIcon />
+                    </button>
 
-                  <button
-                    onClick={() => {
-                      // window.scrollTo(0, 0);
-                      // navigate("/checkout");
-                    }}
-                  >
-                    View
-                  </button>
+                    <button
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                        navigate("/checkout");
+                      }}
+                    >
+                      DONATE
+                    </button>
+                  </div>
                 </div>
               </>
             )}
@@ -305,7 +303,10 @@ const Hero = () => {
                     ?.campaign_name
                 }
               </h3>
-              <button>View More</button>
+              <button>
+                <span>View More</span>
+                <RightIcon />
+              </button>
               <button
                 onClick={() => {
                   window.scrollTo(0, 0);
@@ -316,7 +317,17 @@ const Hero = () => {
               </button>
             </div>
 
-            <button>View Details</button>
+            <button
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate("/feature-detail", {
+                  state: latestCampaigns?.data?.data?.latestCampaigns?.[0],
+                });
+              }}
+            >
+              <span>View More</span>
+              <RightIcon />
+            </button>
           </div>
         </div>
       </section>
@@ -443,8 +454,6 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* <RegionMapContainer /> */}
-
       <section className={style.newsContainer}>
         <div>
           <h2>News</h2>
@@ -498,26 +507,6 @@ const Hero = () => {
           </div>
         </div>
       </section>
-
-      {/* <section className={style.biographContainer}>
-        <div>
-          <div>
-            <h2>Changing Lives, Together</h2>
-            <p>
-              "Thanks to this platform and everyone who gave, we turned hope into
-              reality. It truly showed me how powerful we are when we come
-              together."
-            </p>
-
-            <div>
-              <p>George Henry</p>
-              <p>Donor</p>
-            </div>
-          </div>
-
-          <img src={BiographImage} alt="" />
-        </div>
-      </section> */}
     </>
   );
 };

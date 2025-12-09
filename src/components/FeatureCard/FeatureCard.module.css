@@ -14,8 +14,7 @@
     gap: 1.5rem;
 
     & > h2 {
-      font-size: 2.2rem;
-      font-weight: 700;
+      font-size: var(--font-large);
       display: -webkit-box;
       -webkit-line-clamp: 2; /* limit to 2 lines */
       -webkit-box-orient: vertical;
@@ -28,27 +27,22 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: var(--font-small);
-      font-weight: 400;
     }
 
     &>div:nth-child(2){
       &>p{
-        font-size: 1.2rem;
-        font-weight: 500;
+        font-size: var(--font-vsmall);
       }
     }
 
     & > button {
       height: 4rem;
       width: max-content;
-
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
       gap: 1rem;
-
       font-size: var(--font-small);
       border: none;
       outline: none;

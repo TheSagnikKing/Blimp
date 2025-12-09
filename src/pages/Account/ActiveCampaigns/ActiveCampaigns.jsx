@@ -73,9 +73,32 @@ const ActiveCampaigns = () => {
       {activeCampaigns?.data?.data?.campaigns?.map((item) => {
         return (
           <div className={styles.campaignCard} key={item.id}>
-            <h2>{item?.campaign_name}</h2>
-            <p>{item?.is_approved === 0 ? "pending" : item?.is_approved === 1 ? "approved" : "rejected"}</p>
+            <div>
+              <h2>{item?.campaign_name}</h2>
+              <p
+                style={{
+                  backgroundColor:
+                    item?.is_approved === 0
+                      ? "rgba(255, 213, 128, 0.25)" // warm amber
+                      : item?.is_approved === 1
+                      ? "rgba(140, 230, 150, 0.25)" // warm soft green
+                      : "rgba(255, 120, 120, 0.25)", // warm soft red
 
+                  color:
+                    item?.is_approved === 0
+                      ? "#b87900" // darker amber
+                      : item?.is_approved === 1
+                      ? "#2a8c44" // classy green
+                      : "#c33333", // warm red
+                }}
+              >
+                {item?.is_approved === 0
+                  ? "pending"
+                  : item?.is_approved === 1
+                  ? "approved"
+                  : "rejected"}
+              </p>
+            </div>
             <div className={styles.donationContainer}>
               <p>
                 Published by: <b>{item?.name}</b>

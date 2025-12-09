@@ -94,8 +94,7 @@
   border: 1px solid #e2e8f0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: all 0.25s ease;
-  font-size: 1.6rem;
-  font-weight: 500;
+  font-size: var(--font-medium);
   color: #1f2937;
   letter-spacing: 0.3px;
   outline: none;
@@ -134,7 +133,7 @@
   background: black;
   color: white;
   font-size: var(--font-medium);
-  font-weight: 500;
+  font-weight: var(--btn-font-weight);
   cursor: pointer;
   border-radius: 3rem;
   -webkit-border-radius: 3rem;
@@ -151,8 +150,8 @@
   border-radius: 0.8rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: all 0.25s ease;
-  font-size: 1.6rem;
-  font-weight: 500;
+  font-size: var(--font-medium);
+  font-weight: var(--btn-font-weight);
   color: #1f2937;
   letter-spacing: 0.3px;
   outline: none;

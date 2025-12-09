@@ -17,13 +17,11 @@
         gap: 0.5rem;
 
         &>p:nth-child(1) {
-            font-size: var(--font-large);
-            font-family: "Inter", sans-serif;
-            font-weight: 500;
+            font-size: var(--font-medium) !important;
         }
 
         &>p:nth-child(2) {
-            font-size: var(--font-vsmall);
+            font-size: var(--font-vsmall) !important;
             color: #6C757D;
         }
     }
@@ -54,7 +52,6 @@
 
             &>p {
                 font-size: var(--font-vsmall);
-                font-weight: 600;
             }
         }
     }

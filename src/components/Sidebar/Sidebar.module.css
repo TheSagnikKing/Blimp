@@ -3,17 +3,24 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  
 }
 
 .sidebar a {
   text-decoration: none;
-  font-size: var(--font-large);
-  font-weight: 700;
+  font-size: var(--font-medium);
+  font-weight: 500;
   height: 8rem;
   align-content: center;
   padding-inline: 2rem;
+  transition: background 0.25s ease, transform 0.2s ease, color 0.2s ease;
 }
 
+.sidebar a:hover {
+  background: rgba(0, 0, 0, 0.04);
+  transform: translateX(4px);
+  border-radius: var(--button-radius);
+}
 
 .active {
   background-color: rgba(242, 245, 248, 1);
@@ -22,6 +29,7 @@
   -moz-border-radius: var(--button-radius);
   -ms-border-radius: var(--button-radius);
   -o-border-radius: var(--button-radius);
+  border-radius: var(--button-radius);
 }
 
 .logoutButton {
@@ -29,10 +37,16 @@
   padding-inline: 2rem;
   height: 5rem;
   border: none;
-  font-size: var(--font-large);
-  font-weight: 700;
+  font-size: var(--font-medium);
+  font-weight: 600;
   cursor: pointer;
   background-color: transparent;
+  transition: color 0.25s ease, transform 0.2s ease;
+}
+
+.logoutButton:hover {
+  color: #d9534f;
+  transform: translateX(4px);
 }
 
 @media screen and (min-width: 0px) and (max-width: 430px) {

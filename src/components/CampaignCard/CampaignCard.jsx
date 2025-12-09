@@ -18,7 +18,6 @@ const CampaignCard = ({ bannerImage, description, campaignName, campaignItem }) 
     >
       <img src={bannerImage} alt="" />
       <h2>{campaignName}</h2>
-      {/* <p style={{ whiteSpace: "pre-wrap" }}>{description}</p> */}
       <button>
         <span>View More</span>
         <RightIcon />

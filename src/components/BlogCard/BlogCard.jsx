@@ -5,13 +5,12 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
 const BlogCard = ({ index, articleItem }) => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div
       onClick={() => {
-        navigate(`/news-detail/${articleItem.id}`)
+        navigate(`/news-detail/${articleItem.id}`);
         window.scrollTo(0, 0);
       }}
       className={style.blogCardItem}
@@ -27,14 +26,15 @@ const BlogCard = ({ index, articleItem }) => {
         </div>
 
         <h2>{articleItem?.title}</h2>
-        <p style={{
-          display: "-webkit-box",
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: "vertical",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          minHeight: "6rem"
-        }}>
+        <p
+          style={{
+            display: "-webkit-box",
+            WebkitLineClamp: 4,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
           {articleItem?.description}
         </p>
 

@@ -9,14 +9,13 @@
 }
 
 .vissionContainer {
-  /* padding: 7.5rem; */
   display: flex;
   flex-direction: column;
   gap: 4rem;
 
   & > div {
     & > h2 {
-      font-size: var(--subheader-large);
+      font-size: var(--header-large);
       text-transform: capitalize;
     }
   }
@@ -33,18 +32,15 @@
     & > div {
       display: flex;
       flex-direction: column;
-      gap: 4rem;
+      gap: 2rem;
 
       & > h2 {
-        font-size: var(--subheader-small);
-        line-height: var(--subheader-small-lineheight);
         text-transform: capitalize;
+        font-size: var(--font-large);
       }
 
       & > p {
         font-size: var(--font-medium);
-        line-height: 2.8rem;
-        font-weight: 400;
         color: var(--text-secondary);
       }
 
@@ -66,27 +62,19 @@
 
         & > p {
           text-transform: uppercase;
-          font-weight: 600;
           font-size: var(--font-medium);
+          font-weight: var(--btn-font-weight);
         }
 
         & > span {
           display: grid;
           place-items: center;
-          font-size: 1.8rem;
+          font-size: var(--font-medium);
+          font-weight: var(--btn-font-weight);
         }
       }
     }
 
-    & > div:nth-child(1) {
-      & > button {
-        /* background: transparent; */
-
-        & > span {
-          /* color:#FCC535; */
-        }
-      }
-    }
 
     & > div:nth-child(2) {
       & > button {
@@ -97,7 +85,6 @@
 }
 
 .blogsContainer {
-  /* padding-inline: 7.2rem; */
   padding-block: 6rem;
   background-color: var(--bg-primary);
 
@@ -107,9 +94,7 @@
     justify-content: space-between;
 
     & > h2 {
-      font-size: var(--subheader-large);
-      font-weight: 800;
-      line-height: var(--subheader-large-lineheight);
+      font-size: var(--header-large);
       text-transform: capitalize;
     }
 
@@ -131,7 +116,7 @@
 
       & > span {
         font-size: var(--font-medium);
-        font-weight: 700;
+        font-weight: var(--btn-font-weight);
       }
     }
   }
@@ -161,8 +146,6 @@
 
     & > div {
       & > h2 {
-        font-size: var(--subheader-small);
-        line-height: var(--subheader-small-lineheight);
         text-transform: capitalize;
         text-align: center;
       }
@@ -170,7 +153,6 @@
 
     & > div:nth-child(3) {
       flex-direction: column;
-      /* gap: 2rem; */
 
       & > div {
         gap: 2rem;
@@ -186,8 +168,6 @@
       display: block;
 
       & > h2 {
-        font-size: var(--subheader-small);
-        line-height: var(--subheader-small-lineheight);
         text-align: center;
         text-transform: capitalize;
       }
@@ -228,8 +208,6 @@
 
     & > div {
       & > h2 {
-        font-size: var(--subheader-small);
-        line-height: var(--subheader-small-lineheight);
         text-transform: capitalize;
         text-align: center;
       }
@@ -237,7 +215,6 @@
 
     & > div:nth-child(3) {
       flex-direction: column;
-      /* gap: 2rem; */
 
       & > div {
         gap: 2rem;
@@ -251,8 +228,6 @@
 
     & > div {
       & > h2 {
-        font-size: var(--subheader-small);
-        line-height: var(--subheader-small-lineheight);
         text-align: center;
         text-transform: capitalize;
       }
@@ -276,7 +251,7 @@
       border: 0.2rem solid #000000;
       background-color: transparent;
       font-size: var(--font-medium);
-      font-weight: 600;
+      font-weight: var(--btn-font-weight);
       cursor: pointer;
     }
   }
