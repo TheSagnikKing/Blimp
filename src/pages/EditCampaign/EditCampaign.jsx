@@ -436,7 +436,7 @@ const EditCampaign = () => {
                 key={item.id}
                 className={styles.stepperItem}
                 style={{
-                  width: stepper.length - 1 === index ? "6.2rem" : "14%",
+                  width: stepper.length - 1 === index ? "6rem" : "14%",
                 }}
               >
                 <div>
@@ -449,7 +449,7 @@ const EditCampaign = () => {
                       className={styles.circle}
                       style={{
                         backgroundColor:
-                          selectedStep === item.id ? "#8fd600" : "#0A84FF",
+                          selectedStep === item.id ? "#00c1e8" : "#00c1e88e",
                       }}
                     >
                       <p>{item.id}</p>

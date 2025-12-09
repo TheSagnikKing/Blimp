@@ -19,16 +19,13 @@
       width: 100%;
 
       & > h2 {
-        font-size: 3.2rem;
-        font-weight: bold;
+        font-size: var(--font-large);
         text-align: center;
       }
 
       & > p {
-        font-size: var(--font-medium);
-        /* font-weight: 600; */
+        font-size: var(--font-small);
         text-align: center;
-        /* max-width: 55%; */
         max-width: 85%;
         margin-inline: auto;
       }
@@ -46,17 +43,16 @@
 
         & > div:nth-child(1) {
           display: flex;
-          /* align-items: center; */
 
           .circleWrapper {
             display: flex;
             flex-direction: column;
-            align-items: center; /* centers label under circle */
-            gap: 0.5rem; /* spacing between circle and text */
-
+            align-items: center; 
+            gap: 0.5rem; 
+            
             .circle {
-              width: 6.2rem;
-              height: 6.2rem;
+              width: 6rem;
+              height: 6rem;
               border-radius: 50%;
               display: flex;
               justify-content: center;
@@ -68,13 +64,12 @@
 
               p {
                 font-size: var(--font-large);
-                color: #ffffff;
+                color: #000;
               }
             }
 
             .label {
-              font-size: var(--font-small);
-              font-weight: 600;
+              font-size: var(--font-vsmall);
               text-align: center;
             }
           }
@@ -83,7 +78,7 @@
             width: 100%;
             height: 0.5rem;
             background-color: #c2c0c0;
-            margin-top: calc(6.2rem / 2);
+            margin-top: calc(6rem / 2);
           }
         }
       }
@@ -99,10 +94,10 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 6.5rem;
+          height: var(--input-height);
           background-color: #ffffff;
           border-radius: 0.8rem;
-          border: 1px solid #e2e8f0;
+          border: 0.1rem solid #e2e8f0;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
           transition: all 0.25s ease;
           overflow: hidden;
@@ -123,8 +118,7 @@
             background-color: transparent;
             border: none;
             outline: none;
-            font-size: 1.6rem;
-            font-weight: 500;
+            font-size: var(--font-medium);
             color: #1f2937;
             letter-spacing: 0.3px;
 
@@ -156,7 +150,7 @@
           height: 4.4rem;
           border-radius: 2.5rem;
           font-size: var(--font-medium);
-          font-weight: 600;
+          font-weight: var(--btn-font-weight);
           cursor: pointer;
           outline: none;
           border: none;
@@ -271,7 +265,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 6.5rem;
+          height: var(--input-height);
           background-color: #ffffff;
           border-radius: 0.8rem;
           border: 1px solid #e2e8f0;
@@ -295,8 +289,7 @@
             background-color: transparent;
             border: none;
             outline: none;
-            font-size: 1.6rem;
-            font-weight: 500;
+            font-size: var(--font-medium);
             color: #1f2937;
             letter-spacing: 0.3px;
 
@@ -328,7 +321,7 @@
           height: 4.4rem;
           border-radius: 2.5rem;
           font-size: var(--font-medium);
-          font-weight: 600;
+          font-weight: var(--btn-font-weight);
           cursor: pointer;
           outline: none;
           border: none;
@@ -422,7 +415,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 6.5rem;
+          height: var(--input-height);
           background-color: #ffffff;
           border-radius: 0.8rem;
           border: 1px solid #e2e8f0;
@@ -446,8 +439,7 @@
             background-color: transparent;
             border: none;
             outline: none;
-            font-size: 1.6rem;
-            font-weight: 500;
+            font-size: var(--font-medium);
             color: #1f2937;
             letter-spacing: 0.3px;
 
@@ -479,7 +471,7 @@
           height: 4.4rem;
           border-radius: 2.5rem;
           font-size: var(--font-medium);
-          font-weight: 600;
+          font-weight: var(--btn-font-weight);
           cursor: pointer;
           outline: none;
           border: none;
@@ -514,7 +506,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 6.5rem;
+          height: var(--input-height);
           background-color: #ffffff;
           border-radius: 0.8rem;
           border: 1px solid #e2e8f0;
@@ -538,8 +530,7 @@
             background-color: transparent;
             border: none;
             outline: none;
-            font-size: 1.6rem;
-            font-weight: 500;
+            font-size: var(--font-medium);
             color: #1f2937;
             letter-spacing: 0.3px;
 
@@ -556,7 +547,7 @@
           height: 4.4rem;
           border-radius: 2.5rem;
           font-size: var(--font-medium);
-          font-weight: 600;
+          font-weight: var(--btn-font-weight);
           cursor: pointer;
           outline: none;
           border: none;
@@ -581,60 +572,6 @@
     }
 
     .stepperImageContainer {
-      /* & > div:nth-child(1) {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-
-        & > div:nth-child(1) {
-          height: 27rem;
-          background-color: #fafafa;
-          border: 0.2rem dashed #dddddd;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          & > p {
-            font-size: var(--font-medium);
-            color: #aaaaaa;
-          }
-        }
-
-        & > p {
-          font-size: var(--font-medium);
-          color: #757575;
-        }
-      }
-
-      & > div:nth-child(2) {
-        margin-block: 6rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        width: max-content;
-        margin-inline: auto;
-
-        & > button {
-          height: 4.4rem;
-          width: 26.2rem;
-          border-radius: 2.5rem;
-          outline: none;
-          border: none;
-          cursor: pointer;
-          font-size: var(--font-large);
-          font-weight: 600;
-        }
-
-        & > button:nth-child(1) {
-          background-color: #8fd600;
-        }
-
-        & > button:nth-child(2) {
-          background-color: black;
-          color: #ffffff;
-        }
-      } */
-
       .upload_banner_section {
         display: flex;
         flex-direction: column;
@@ -708,14 +645,14 @@
 
       .remove_btn {
         position: absolute;
-        top: 6px;
-        right: 6px;
+        top: 0.6rem;
+        right: 0.6rem;
         background-color: rgba(0, 0, 0, 0.6);
         color: #fff;
         border: none;
         border-radius: 50%;
-        width: 22px;
-        height: 22px;
+        width: 2.2rem;
+        height: 2.2rem;
         font-size: 1.2rem;
         cursor: pointer;
         transition: background-color 0.2s ease;
@@ -732,7 +669,7 @@
           height: 4.4rem;
           border-radius: 2.5rem;
           font-size: var(--font-medium);
-          font-weight: 600;
+          font-weight: var(--btn-font-weight);
           cursor: pointer;
           outline: none;
           border: none;
@@ -745,20 +682,20 @@
     }
 
     .stepperYouContainer {
+
       .stepperYouFilledUserContainer {
         display: flex;
         flex-direction: column;
         gap: 3rem;
 
         & > button:nth-child(1) {
-          height: 4.4rem;
+          padding: 1rem 2rem;
           border-radius: 2.5rem;
-          font-weight: 600;
-          font-size: var(--font-large);
+          font-weight: var(--btn-font-weight);
+          font-size: var(--font-medium);
           outline: none;
           border: 0.1rem solid #000;
           cursor: pointer;
-          padding-inline: 4rem;
           display: block;
           margin-inline: auto;
           background-color: #ffffff;
@@ -769,7 +706,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 6.5rem;
+          height: var(--input-height);
           background-color: #ffffff;
           border-radius: 0.8rem;
           border: 1px solid #e2e8f0;
@@ -827,7 +764,7 @@
           height: 4.4rem;
           border-radius: 2.5rem;
           font-size: var(--font-medium);
-          font-weight: 600;
+          font-weight: var(--btn-font-weight);
           cursor: pointer;
           outline: none;
           border: none;
@@ -843,9 +780,7 @@
         gap: 4rem;
 
         & > h2 {
-          font-size: var(--subheader-small);
-          line-height: var(--subheader-small-lineheight);
-          font-weight: 700;
+          font-size: var(--font-large);
           text-align: center;
         }
 
@@ -878,13 +813,12 @@
 
             & > input {
               width: 100%;
-              min-height: 6.5rem;
+              min-height: var(--input-height);
               padding: 0 1.6rem;
               background: transparent;
               border: none;
               outline: none;
               font-size: 1.6rem;
-              font-weight: 500;
               color: #1f2937;
               letter-spacing: 0.3px;
               border-radius: 0.8rem;
@@ -930,13 +864,12 @@
 
           & > input {
             width: 100%;
-            min-height: 6.5rem;
+            min-height: var(--input-height);
             padding: 0 1.6rem;
             background: transparent;
             border: none;
             outline: none;
             font-size: 1.6rem;
-            font-weight: 500;
             color: #1f2937;
             letter-spacing: 0.3px;
             border-radius: 0.8rem;
@@ -973,7 +906,7 @@
 
         .phoneContainer :global(.react-international-phone-input-container) {
           width: 100%;
-          height: 6.5rem;
+          height: var(--input-height);
           background-color: #ffffff;
           border-radius: 0.8rem;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -1024,8 +957,7 @@
             background: transparent;
             border: none;
             outline: none;
-            font-size: 1.6rem;
-            font-weight: 500;
+            font-size: var(--font-medium);
             color: #1f2937;
             letter-spacing: 0.3px;
             border-radius: 0.8rem;
@@ -1048,7 +980,7 @@
           background: #000;
           color: #fff;
           font-size: var(--font-medium);
-          font-weight: 500;
+          font-weight: var(--btn-font-weight);
           margin-inline: auto;
         }
 
@@ -1068,61 +1000,13 @@
       flex-direction: column;
       gap: 4rem;
 
-      /* & > div:nth-child(1) {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 6.5rem;
-        background-color: #ffffff;
-        border-radius: 0.8rem;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        transition: all 0.25s ease;
-
-        &:hover {
-          border-color: #cbd5e1;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        &:focus-within {
-          border-color: #8fd600;
-        }
-
-        & > input {
-          flex: 1;
-          height: 100%;
-          padding: 0 1.6rem;
-          background-color: transparent;
-          border: none;
-          outline: none;
-          font-size: 1.6rem;
-          font-weight: 500;
-          color: #1f2937;
-          letter-spacing: 0.3px;
-
-          &::placeholder {
-            color: #9ca3af;
-            font-weight: 400;
-          }
-        }
-      } */
-
       & > div:nth-child(1) {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        /* height: 6.5rem; */
         background-color: #ffffff;
         border-radius: 0.8rem;
-        /* border: 1px solid #e2e8f0; */
-        /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); */
         transition: all 0.25s ease;
-        /* padding: 2rem; */
-
-        &:hover {
-          /* border-color: #cbd5e1; */
-          /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); */
-        }
 
         &:focus-within {
           border-color: #8fd600;
@@ -1135,8 +1019,7 @@
           background-color: transparent;
           border: none;
           outline: none;
-          font-size: 1.6rem;
-          font-weight: 500;
+          font-size: var(--font-medium);
           color: #1f2937;
           letter-spacing: 0.3px;
 
@@ -1146,132 +1029,6 @@
           }
         }
       }
-
-      /* & > input {
-        height: 8.5rem;
-        border-radius: 1rem;
-        background-color: #f8f9fa;
-        padding-inline: 2rem;
-        font-size: var(--font-medium);
-        outline: none;
-        border: none;
-        width: 100%;
-      }
-
-      & > div:nth-child(2) {
-        height: 40rem;
-        width: 100%;
-        background-color: #f8f9fa;
-
-        & > div:nth-child(1) {
-          height: 5.2rem;
-          background-color: #000;
-          border-top-left-radius: 1rem;
-          border-top-right-radius: 1rem;
-
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          padding: 1rem;
-
-          & > div:nth-child(1) {
-            height: 100%;
-            background-color: #ffffff;
-            width: 36.6rem;
-            align-content: center;
-            padding-inline: 2rem;
-
-            & > p {
-              font-size: var(--font-medium);
-            }
-          }
-
-          & > div:nth-child(2) {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            height: 100%;
-
-            & > div {
-              height: 100%;
-              width: 4rem;
-              background-color: #ffffff;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              & > p {
-                font-size: var(--font-medium);
-              }
-            }
-          }
-        }
-
-        & > div:nth-child(2) {
-          padding: 2rem;
-          height: inherit;
-
-          & > textarea {
-            width: 100%;
-            height: calc(100% - 5rem);
-            outline: none;
-            border: none;
-            background-color: transparent;
-            font-size: 1.6rem;
-          }
-        }
-      } */
-
-      /* & > div:nth-child(3) {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-
-        & > p:nth-child(1) {
-          font-size: 2rem;
-          font-weight: bold;
-          text-transform: uppercase;
-        }
-
-        & > div {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 2rem;
-
-          & > div {
-            flex: 1;
-            background-color: #fafafa;
-            min-height: 10.2rem;
-            border: 0.2rem dashed #dddddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            & > p {
-              font-size: var(--font-medium);
-              color: #aaaaaa;
-            }
-          }
-
-          & > button {
-            height: 4.4rem;
-            width: 26.2rem;
-            background-color: #000;
-            border-radius: 2.5rem;
-            outline: none;
-            border: none;
-            cursor: pointer;
-            color: #ffffff;
-            font-size: var(--font-large);
-          }
-        }
-
-        & > p:nth-last-child(1) {
-          font-size: var(--font-medium);
-          color: #757575;
-        }
-      } */
 
       .upload_section {
         display: flex;
@@ -1285,8 +1042,8 @@
       }
 
       .upload_section .upload_title {
-        font-size: 1.8rem;
-        font-weight: 600;
+        font-size: var(--font-medium);
+        /* font-weight: 600; */
         color: #111827;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -1319,7 +1076,7 @@
       }
 
       .upload_section .upload_dropzone p {
-        font-size: 1.5rem;
+        font-size: var(--font-medium);
         color: #6b7280;
         font-weight: 500;
       }
@@ -1331,8 +1088,8 @@
         border-radius: 0.8rem;
         border: none;
         color: #ffffff;
-        font-size: 1.5rem;
-        font-weight: 600;
+        font-size: var(--font-medium);
+        font-weight: var(--btn-font-weight);
         cursor: pointer;
         transition: all 0.25s ease;
       }
@@ -1343,7 +1100,7 @@
       }
 
       .upload_section .upload_note {
-        font-size: 1.4rem;
+        font-size: var(--font-medium);
         color: #6b7280;
         line-height: 1.6;
       }
@@ -1379,14 +1136,14 @@
 
       .remove_btn {
         position: absolute;
-        top: 6px;
-        right: 6px;
+        top: 0.6rem;
+        right: 0.6rem;
         background-color: rgba(0, 0, 0, 0.6);
         color: #fff;
         border: none;
         border-radius: 50%;
-        width: 22px;
-        height: 22px;
+        width: 2.2rem;
+        height: 2.2rem;
         font-size: 1.2rem;
         cursor: pointer;
         transition: background-color 0.2s ease;

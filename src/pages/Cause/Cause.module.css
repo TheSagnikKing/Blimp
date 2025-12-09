@@ -79,8 +79,14 @@
         }
 
         & > button:nth-child(1) {
-          background-color: #000;
+          background-color: var(--btn-hover-black-color);
           color: #fff;
+          transition: 0.3s ease-in;
+          text-transform: capitalize;
+
+          &:hover {
+            background-color: #000;
+          }
         }
 
         & > button:nth-child(2) {

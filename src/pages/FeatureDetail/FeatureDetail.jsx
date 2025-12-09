@@ -18,6 +18,7 @@ import Skeleton from "@mui/material/Skeleton";
 import api from "../../api/api";
 import Pagination from "@mui/material/Pagination";
 import { convert } from "html-to-text";
+import campaignDummy from "../../assets/campaign_dummy.jpeg";
 
 const FeatureDetail = () => {
   const navigate = useNavigate();
@@ -155,6 +156,8 @@ const FeatureDetail = () => {
     // ...
   };
 
+  console.log(featureItemDetail?.data?.data);
+
   return (
     <main>
       <section className={style.featureDetailContainer}>
@@ -252,7 +255,10 @@ const FeatureDetail = () => {
             ) : (
               <>
                 <h2>Campaign Details</h2>
-                <p>{featureItemDetail?.data?.data?.campaign_details}</p>
+                <p>
+                  {featureItemDetail?.data?.data?.categories?.name} | {" "}
+                  {featureItemDetail?.data?.data?.country?.name}
+                </p>
               </>
             )}
           </div>
@@ -317,15 +323,14 @@ const FeatureDetail = () => {
             <h2>Run Ads / Causes section</h2>
           </div>
 
-          <div className={style.supporterContainer}>
-            <h2>
-              Supporters(
-              {totalSupporterData})
-            </h2>
-            <div>
-              {totalSupporters?.data?.data?.campaign?.donationInfo?.length >
-                0 &&
-                totalSupporters?.data?.data?.campaign?.donationInfo?.map(
+          {totalSupporters?.data?.data?.campaign?.donationInfo?.length > 0 && (
+            <div className={style.supporterContainer}>
+              <h2>
+                Supporters(
+                {totalSupporterData})
+              </h2>
+              <div>
+                {totalSupporters?.data?.data?.campaign?.donationInfo?.map(
                   (item, index) => {
                     return (
                       <div key={item.id} className={style.supporterItem}>
@@ -378,23 +383,23 @@ const FeatureDetail = () => {
                   }
                 )}
 
-              <div className={style.supporterPaginationContainer}>
-                <Pagination
-                  count={totalPages}
-                  size="large"
-                  sx={{
-                    "& .MuiPaginationItem-page": {
-                      fontSize: "1.4rem",
-                    },
-                  }}
-                  value={page}
-                  onChange={handlePageChange}
-                  disabled={totalSupporters?.loading}
-                />
+                <div className={style.supporterPaginationContainer}>
+                  <Pagination
+                    count={totalPages}
+                    size="large"
+                    sx={{
+                      "& .MuiPaginationItem-page": {
+                        fontSize: "1.4rem",
+                      },
+                    }}
+                    value={page}
+                    onChange={handlePageChange}
+                    disabled={totalSupporters?.loading}
+                  />
+                </div>
               </div>
-
             </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -435,7 +440,6 @@ const FeatureDetail = () => {
                   );
                 })}
           </div>
-
         </div>
       </section>
     </main>

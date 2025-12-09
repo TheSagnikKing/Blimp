@@ -11,7 +11,9 @@ const NewsCard = ({ index, articleItem }) => {
     <div
       onClick={() => {
         window.scrollTo(0, 0)
-        navigate("/news-detail")
+        navigate("/news-detail", {
+          state: articleItem
+        })
       }}
       style={{ borderTop: index === 0 ? 'none' : '0.1rem solid rgba(232, 232, 232, 1)' }}
       className={style.newscardItem}>

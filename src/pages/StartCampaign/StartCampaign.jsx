@@ -683,6 +683,31 @@ const StartCampaign = () => {
     }
   };
 
+  const logout_handler = async () => {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("usersignin");
+    setUser(null);
+    setUserId(null);
+    setIsAuthenticated(false);
+
+    const keysToRemove = [
+      "beneficiaryDetail",
+      "campaignTitle",
+      "selectedCampaingDescription",
+      "selectedCategory",
+      "selectedCountry",
+      "targetedAmount",
+      "userEmail",
+      "userFullname",
+    ];
+
+    keysToRemove.forEach((key) => localStorage.removeItem(key));
+    await del("bannerImage");
+    await del("campaignImages");
+
+    navigate("/login-signup");
+  };
+
   return (
     <section className={styles.startCampaignContainer}>
       <div>
@@ -707,7 +732,7 @@ const StartCampaign = () => {
 
             {selectedStep === 6 && "Tell us about yourself"}
 
-            {selectedStep === 7 && "What’s the purpose of your fundraiser?"}
+            {selectedStep === 7 && "What's the purpose of your fundraiser?"}
 
             {selectedStep === 8 &&
               "Congratulations! Your campaign has been successfully created."}
@@ -746,7 +771,7 @@ const StartCampaign = () => {
                 key={item.id}
                 className={styles.stepperItem}
                 style={{
-                  width: stepper.length - 1 === index ? "6.2rem" : "14%",
+                  width: stepper.length - 1 === index ? "6rem" : "14%",
                 }}
               >
                 <div>
@@ -765,7 +790,7 @@ const StartCampaign = () => {
                       className={styles.circle}
                       style={{
                         backgroundColor:
-                          selectedStep === item.id ? "#8fd600" : "#0A84FF",
+                          selectedStep === item.id ? "#00c1e8" : "#00c1e88e",
                       }}
                     >
                       <p>{item.id}</p>
@@ -1115,7 +1140,7 @@ const StartCampaign = () => {
           <div className={styles.stepperYouContainer}>
             {selectedName && selectedEmail ? (
               <div className={styles.stepperYouFilledUserContainer}>
-                <button>Not You ? Logout</button>
+                <button onClick={logout_handler}>Not You ? Logout</button>
                 <div>
                   <input
                     type="text"

@@ -87,7 +87,7 @@
 
 .inputGroup input {
   width: 100%;
-  height: 6.5rem;
+  height: var(--input-height);
   padding: 0 1.6rem;
   background-color: #ffffff;
   border-radius: 0.8rem;
@@ -145,7 +145,7 @@
 
 .phoneContainer :global(.react-international-phone-input-container) {
   width: 100%;
-  height: 6.5rem;
+  height: var(--input-height);
   background-color: #ffffff;
   border-radius: 0.8rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);

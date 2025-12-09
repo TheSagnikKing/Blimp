@@ -289,7 +289,7 @@ const Hero = () => {
                         navigate("/checkout");
                       }}
                     >
-                      DONATE
+                      Donate
                     </button>
                   </div>
                 </div>
@@ -447,10 +447,6 @@ const Hero = () => {
               disabled={featuredCampaigns?.loading}
             />
           </div>
-
-          {/* {visibleFeatureCount < allFeatureItems.length && (
-            <button onClick={handleShowAllFeatureItems}>MORE CAUSES</button>
-          )} */}
         </div>
       </section>
 
