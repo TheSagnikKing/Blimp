@@ -20,8 +20,8 @@
 
   --header-large: 4rem;
   --header-semi-large: 3rem;
-
   --btn-font-weight: 600;
+  --input-height: 4.5rem;
 
   --icon-size: 2.2rem;
   --button-radius: 1rem;
@@ -35,8 +35,8 @@
 @media (max-width: 768px) {
   :root {
     --font-large: 1.8rem;
-    --font-semi-large: 1.4rem;
-    --font-medium: 1.2rem;
+    --font-semi-large: 1.6rem;
+    --font-medium: 1.4rem;
     --font-small: 1.2rem;
     --font-vsmall: 1rem;
     --header-large: 2.5rem;
