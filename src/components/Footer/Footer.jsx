@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Footer.module.css";
-import blimpLogo from "../../assets/blimpLogo.png";
+import blimpLogo from "../../assets/blimpLogo.svg";
 import { FacebookIcon, InstagramIcon, TwitterXIcon } from "../../icons";
 import toast from "react-hot-toast";
 import { toastStyle } from "../../utils/toastStyles";

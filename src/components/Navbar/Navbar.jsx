@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./Navbar.module.css";
-import blimpLogoBlack from "../../assets/blimpLogoBlack.png";
+import blimpLogoBlack from "../../assets/blimpLogoBlack.svg";
 import { AccountIcon, MenuIcon, ProfileIcon, SearchIcon } from "../../icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
@@ -16,10 +16,6 @@ const Navbar = () => {
       name: "How it works",
       url: "/works",
     },
-    // {
-    //   name: "Discover",
-    //   url: "/discover",
-    // },
     {
       name: "About Us",
       url: "/aboutus",
