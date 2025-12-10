@@ -99,33 +99,6 @@ const Discover = () => {
     }
   }, [user, page, selectedCategory, query]);
 
-  // useEffect(() => {
-  //   if (!query) {
-  //     setCampaignHistoryCopyList(campaignHistoryList);
-  //     return;
-  //   }
-
-  //   const filtered = campaignHistoryList.filter((item) =>
-  //     item.campaign_name.toLowerCase().includes(query.toLowerCase())
-  //   );
-
-  //   setCampaignHistoryCopyList(filtered);
-  // }, [query, campaignHistoryList]);
-
-  // useEffect(() => {
-  //   if (!selectedCategory) {
-  //     setCampaignHistoryCopyList(campaignHistoryList);
-  //     return;
-  //   }
-
-  //   const filtered = campaignHistoryList.filter(
-  //     (item) =>
-  //       item.category_name?.toLowerCase() ===
-  //       selectedCategory?.name?.toLowerCase()
-  //   );
-
-  //   setCampaignHistoryCopyList(filtered);
-  // }, [selectedCategory, campaignHistoryList]);
 
   // Pagination logic
 

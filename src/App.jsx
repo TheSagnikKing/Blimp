@@ -95,12 +95,10 @@ const App = () => {
               <Route path="/checkout" element={<CheckOutPage />} />
               <Route path="/news-blog" element={<NewsBlogPage />} />
               <Route path="/start-campaign" element={<StartCampaign />} />
-              
+
               <Route element={<ProtectedAuthRoute />}>
                 <Route path="/login-signup" element={<LoginSignup />} />
               </Route>
-
-              <Route path="/cause" element={<Cause />} />
 
               {/* Account Page with Nested Routes */}
               <Route element={<ProtectedRoute />}>
@@ -121,6 +119,7 @@ const App = () => {
                 </Route>
 
                 <Route path="/edit-campaign" element={<EditCampaign />} />
+                <Route path="/cause" element={<Cause />} />
               </Route>
             </Route>
           </Routes>

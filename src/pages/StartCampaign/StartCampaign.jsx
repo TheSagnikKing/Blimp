@@ -790,7 +790,9 @@ const StartCampaign = () => {
                       className={styles.circle}
                       style={{
                         backgroundColor:
-                          selectedStep === item.id ? "#00c1e8" : "#00c1e88e",
+                          selectedStep === item.id
+                            ? "var(--btn-hover-color)"
+                            : "var(--btn-base-color)",
                       }}
                     >
                       <p>{item.id}</p>

@@ -46,7 +46,7 @@
 
         /* FOCUS BORDER */
         &:focus-within {
-          border-color: #8fd600;
+          border-color: var(--btn-hover-color);
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
 

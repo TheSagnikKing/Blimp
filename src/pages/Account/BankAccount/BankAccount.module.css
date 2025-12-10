@@ -13,7 +13,7 @@
       padding-inline: 3rem;
       height: 4.4rem;
       border: none;
-      background: #8fd600;
+      background: var(--btn-hover-color);
       font-size: var(--font-medium);
       font-weight: bold;
       cursor: pointer;
@@ -63,7 +63,7 @@
         }
 
         &:focus {
-          border-color: #8fd600;
+          border-color: var(--btn-hover-color);
         }
 
         &::placeholder {

@@ -108,7 +108,7 @@
           }
 
           &:focus-within {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
           }
 
           & > input {
@@ -138,14 +138,14 @@
             transition: color 0.25s ease;
 
             &:hover {
-              color: #8fd600;
+              color: var(--btn-hover-color);
               cursor: pointer;
             }
           }
         }
 
         & > button {
-          background-color: #8fd600;
+          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -279,7 +279,7 @@
           }
 
           &:focus-within {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
           }
 
           & > input {
@@ -309,14 +309,14 @@
             transition: color 0.25s ease;
 
             &:hover {
-              color: #8fd600;
+              color: var(--btn-hover-color);
               cursor: pointer;
             }
           }
         }
 
         & > button {
-          background-color: #8fd600;
+          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -429,7 +429,7 @@
           }
 
           &:focus-within {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
           }
 
           & > input {
@@ -459,14 +459,14 @@
             transition: color 0.25s ease;
 
             &:hover {
-              color: #8fd600;
+              color: var(--btn-hover-color);
               cursor: pointer;
             }
           }
         }
 
         & > button {
-          background-color: #8fd600;
+          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -520,7 +520,7 @@
           }
 
           &:focus-within {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
           }
 
           & > input {
@@ -542,7 +542,7 @@
         }
 
         & > button {
-          background-color: #8fd600;
+          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -664,7 +664,7 @@
 
       & > div:nth-child(2) {
         & > button {
-          background-color: #8fd600;
+          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -721,7 +721,7 @@
           }
 
           &:focus-within {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
           }
 
           & > input {
@@ -752,14 +752,14 @@
             transition: color 0.25s ease;
 
             &:hover {
-              color: #8fd600;
+              color: var(--btn-hover-color);
               cursor: pointer;
             }
           }
         }
 
         & > button:nth-child(4) {
-          background-color: #8fd600;
+          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -807,7 +807,7 @@
             }
 
             & > input:focus {
-              border-color: #8fd600;
+              border-color: var(--btn-hover-color);
               box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             }
 
@@ -840,7 +840,7 @@
               transition: color 0.25s ease;
 
               &:hover {
-                color: #8fd600;
+                color: var(--btn-hover-color);
                 cursor: pointer;
               }
             }
@@ -858,7 +858,7 @@
           }
 
           & > input:focus {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
           }
 
@@ -892,7 +892,7 @@
             transition: color 0.25s ease;
 
             &:hover {
-              color: #8fd600;
+              color: var(--btn-hover-color);
               cursor: pointer;
             }
           }
@@ -933,7 +933,7 @@
           background-color: transparent;
 
           &:focus {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
           }
         }
 
@@ -1009,7 +1009,7 @@
         transition: all 0.25s ease;
 
         &:focus-within {
-          border-color: #8fd600;
+          border-color: var(--btn-hover-color);
         }
 
         & > textarea {
@@ -1154,7 +1154,7 @@
       }
 
       & > button:nth-last-child(1) {
-        background-color: #8fd600;
+        background-color: var(--btn-hover-color);
         width: max-content;
         height: 4.4rem;
         border-radius: 2.5rem;
@@ -1172,7 +1172,7 @@
 
     .stepperPaymentContainer {
       & > button {
-        background-color: #8fd600;
+        background-color: var(--btn-hover-color);
         min-width: 10rem;
         height: 4.4rem;
         border-radius: 2.5rem;
@@ -1201,7 +1201,7 @@
         display: block !important;
 
         & > div {
-          background-color: #8fd600;
+          background-color: var(--btn-hover-color);
           width: 4rem;
           height: 4rem;
           margin-bottom: 2rem;
@@ -1383,7 +1383,7 @@
         display: block !important;
 
         & > div {
-          background-color: #8fd600;
+          background-color: var(--btn-hover-color);
           width: 4rem;
           height: 4rem;
           margin-bottom: 2rem;

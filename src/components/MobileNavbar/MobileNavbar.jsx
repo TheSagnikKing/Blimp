@@ -115,7 +115,7 @@ const MobileNavbar = () => {
 
   return (
     <header className={style.mobileHeader}>
-      {searchOpen && location.pathname === "/" ? (
+      {/* {searchOpen && location.pathname === "/" ? (
         <div className={style.search_input}>
           <input placeholder="Search for campaigns or causes" />
           <button
@@ -158,7 +158,40 @@ const MobileNavbar = () => {
             </button>
           </div>
         </>
-      )}
+      )} */}
+
+      <>
+        <div className={style.logoContainer}>
+          <a href="/" aria-label="Go to Home">
+            <img
+              src={blimpLogoBlack}
+              alt="Blimp Company Logo"
+              className={style.logo}
+            />
+          </a>
+        </div>
+
+        <div>
+          {location.pathname !== "/discover" ? (
+            <button
+              onClick={() => {
+                navigate("/discover")
+                setOpenMobileMenu(false)
+              }}
+            >
+              <SearchIcon />
+            </button>
+          ) : null}
+
+          <button
+            onClick={() => {
+              setOpenMobileMenu((prev) => !prev);
+            }}
+          >
+            {openMobileMenu ? <CrossIcon /> : <MenuIcon />}
+          </button>
+        </div>
+      </>
 
       {openMobileMenu && (
         <div className={style.mobileMenuContainer}>

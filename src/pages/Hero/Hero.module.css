@@ -151,7 +151,7 @@
           & > button:nth-child(2) {
             width: 15.3rem;
             height: 4rem;
-            background-color: #00c1e88e;
+            background-color: var(--btn-base-color);
             border-radius: 3rem;
             -webkit-border-radius: 3rem;
             -moz-border-radius: 3rem;
@@ -166,7 +166,7 @@
             transition: 0.5s;
 
             &:hover {
-              background-color: #00c1e8;
+              background-color: var(--btn-hover-color);
             }
           }
         }

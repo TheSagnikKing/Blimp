@@ -387,7 +387,7 @@ const ContactUs = () => {
                     />
                   );
                 })
-              : faqList?.data?.data?.map((item) => (
+              : faqList?.data?.data?.map((item, index) => (
                   <React.Fragment key={item.id}>
                     {selectedFaqItem.id === item.id ? (
                       <button
@@ -405,6 +405,9 @@ const ContactUs = () => {
                     ) : (
                       <button
                         className={style.closeFaqItem}
+                        style={{
+                          borderBottom: faqList?.data?.data.length - 1 === index ? "none" : "0.1rem solid #000"
+                        }}
                         onClick={() =>
                           setSelectedFaqItem({
                             question: item?.question,

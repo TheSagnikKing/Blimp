@@ -54,8 +54,10 @@ body[data-theme="light"] {
   --footer-bgcolor: rgba(26, 26, 26, 1);
   --border-color: rgba(137, 137, 137, 1);
   --theme-color: #8fd600;
-  --btn-hover-color: #00c1e88e;
-  --btn-hover-black-color: #0000008e;
+
+  --btn-base-color: #00c1e88e;
+  --btn-hover-color: #00c1e8;
+  --btn-base-black-color: #0000008e;
 }
 
 body[data-theme="dark"] {

@@ -106,7 +106,7 @@
 }
 
 .inputGroup input:focus {
-  border-color: #8fd600;
+  border-color: var(--btn-hover-color);
 }
 
 .inputGroup input::placeholder {
@@ -171,7 +171,7 @@
   background-color: transparent;
 
   &:focus {
-    border-color: #8fd600;
+    border-color: var(--btn-hover-color);
   }
 }
 

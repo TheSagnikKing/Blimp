@@ -1,17 +1,12 @@
 .missionCardWrapper {
   display: flex;
   align-items: center;
-  gap: 6rem;
+  gap: 4rem;
 
   & > img {
     width: 50%;
-    height: 56rem;
-    margin-block: 8rem;
-    /* border-radius: 2rem;
-    -webkit-border-radius: 2rem;
-    -moz-border-radius: 2rem;
-    -ms-border-radius: 2rem;
-    -o-border-radius: 2rem; */
+    height: 40rem;
+    margin-block: 4rem;
     object-fit: cover;
   }
 
@@ -19,18 +14,16 @@
     width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
 
     & > h2 {
-      /* font-size: var(--subheader-large); */
       font-size: var(--header-large);
       text-transform: capitalize;
     }
 
     & > p {
       font-size: var(--font-medium);
-      line-height: 2.8rem;
-      font-weight: 400;
+      color: var(--text-secondary);
     }
   }
 }
@@ -53,11 +46,6 @@
     & > div {
       gap: 2rem;
       margin-bottom: 1.5rem;
-
-      & > h2 {
-        font-size: var(--subheader-small);
-        line-height: var(--subheader-small-lineheight);
-      }
     }
   }
 }
@@ -81,11 +69,6 @@
     & > div {
       gap: 2rem;
       margin-bottom: 1.5rem;
-
-      & > h2 {
-        font-size: var(--subheader-small);
-        line-height: var(--subheader-small-lineheight);
-      }
     }
   }
 }

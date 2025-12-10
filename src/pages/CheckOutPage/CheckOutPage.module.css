@@ -398,7 +398,7 @@
                 cursor: pointer;
                 border: none;
                 outline: none;
-                background-color: #8fd600;
+                background-color: var(--btn-hover-color);
               }
             }
           }
@@ -1008,7 +1008,7 @@
               }
 
               &:focus {
-                border-color: #8fd600;
+                border-color: var(--btn-hover-color);
               }
 
               &::placeholder {
@@ -1060,7 +1060,7 @@
         .donate_btn {
           height: 6rem;
           width: 100%;
-          background-color: #8fd600;
+          background-color: var(--btn-hover-color);
           border: none;
           outline: none;
           cursor: pointer;

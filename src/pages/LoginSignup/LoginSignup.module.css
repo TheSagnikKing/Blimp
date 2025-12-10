@@ -62,7 +62,7 @@
           }
 
           &:focus {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
           }
 
           &::placeholder {
@@ -79,7 +79,7 @@
         outline: none;
         cursor: pointer;
         border-radius: 2rem;
-        background-color: #8fd600;
+        background-color: var(--btn-hover-color);
         color: var(--text-primary);
         font-size: var(--font-medium);
         font-weight: 500;
@@ -137,7 +137,7 @@
             }
 
             &:focus {
-              border-color: #8fd600;
+              border-color: var(--btn-hover-color);
             }
 
             &::placeholder {
@@ -180,7 +180,7 @@
           }
 
           &:focus {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
           }
 
           &::placeholder {
@@ -251,7 +251,7 @@
   background-color: transparent;
 
   &:focus {
-    border-color: #8fd600;
+    border-color: var(--btn-hover-color);
   }
 }
 

@@ -1,12 +1,3 @@
-.contactUsContainer {
-  & > h2 {
-    text-align: center;
-    font-size: 6rem;
-    font-weight: 700;
-    margin-block: 12rem;
-  }
-}
-
 .reachOutContainer {
   padding-inline: 7.5rem;
 
@@ -24,7 +15,7 @@
       border-bottom-left-radius: 2rem;
       display: flex;
       flex-direction: column;
-      gap: 6rem;
+      gap: 4rem;
 
       & > div:nth-child(1) {
         display: flex;
@@ -57,7 +48,7 @@
             justify-content: center;
             align-items: center;
             font-size: 2.2rem;
-            color: #8fd600;
+            color: var(--btn-hover-color);
           }
 
           & > p {
@@ -83,7 +74,7 @@
           -moz-border-radius: 50%;
           -ms-border-radius: 50%;
           -o-border-radius: 50%;
-          background-color: #8fd600;
+          background-color: var(--btn-hover-color);
           color: #000;
           font-size: var(--font-medium);
         }
@@ -139,7 +130,7 @@
             }
 
             &:focus {
-              border-color: #8fd600;
+              border-color: var(--btn-hover-color);
             }
 
             &::placeholder {
@@ -179,7 +170,7 @@
           }
 
           &:focus {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
           }
 
           &::placeholder {
@@ -220,7 +211,7 @@
           }
 
           &:focus {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
           }
 
           &::placeholder {
@@ -238,7 +229,7 @@
 
           /* when textarea is focused */
           &:focus-within {
-            border-color: #8fd600;
+            border-color: var(--btn-hover-color);
             box-shadow: 0 0 0 3px rgba(143, 214, 0, 0.2); /* optional glow */
           }
 
@@ -274,7 +265,7 @@
         border: none;
         outline: none;
         cursor: pointer;
-        background-color: #8fd600;
+        background-color: var(--btn-hover-color);
         font-weight: 500;
         font-size: var(--font-medium);
         font-weight: var(--btn-font-weight);
@@ -354,7 +345,7 @@
       .openFaqItem {
         background-color: rgba(243, 243, 243, 1);
         min-height: 17.7rem;
-        padding: 3rem;
+        padding: 3rem 2rem;
         display: flex;
         justify-content: space-between;
         border: none;
@@ -401,7 +392,7 @@
         cursor: pointer;
         border-bottom: 0.2rem solid var(--border-color);
         background-color: transparent;
-        padding: 3rem 2rem; 
+        padding: 3rem 2rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -460,7 +451,7 @@
   background-color: transparent;
 
   &:focus {
-    border-color: #8fd600;
+    border-color: var(--btn-hover-color);
   }
 }
 
@@ -484,7 +475,6 @@
     & > div {
       margin-inline: initial;
       flex-direction: column;
-      /* width: 100%; */
 
       & > div:nth-child(1) {
         width: 100%;
@@ -546,13 +536,11 @@
 
         .charityItem {
           padding: 1.5rem;
-
         }
       }
     }
   }
 }
-
 
 @media screen and (min-width: 431px) and (max-width: 1160px) {
   .contactUsContainer {
@@ -629,7 +617,6 @@
 
         .charityItem {
           padding: 1.5rem;
-
         }
       }
     }

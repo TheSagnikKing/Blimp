@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from "react";
 import style from "./NewsDetail.module.css";
 import BlogCard from "../../components/BlogCard/BlogCard";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import Skeleton from "@mui/material/Skeleton";
 
 const NewsDetail = () => {
+  const location = useLocation();
+  const { state: newsItem } = location;
+
+  // console.log(newsItem);
+
   const navigate = useNavigate();
-  const params = useParams();
 
   const [newsDetailItem, setNewsDetailItem] = useState({
+    loading: false,
+    error: null,
+    data: {},
+  });
+
+  const [latestArticles, setLatestArticles] = useState({
     loading: false,
     error: null,
     data: {},
@@ -20,7 +30,7 @@ const NewsDetail = () => {
       setNewsDetailItem((prev) => ({ ...prev, loading: true, error: null }));
       try {
         const { data } = await api.post("/get-articles-details", {
-          article_id: params.id,
+          article_id: newsItem.id,
         });
         if (data.code === 200) {
           setNewsDetailItem({ loading: false, error: null, data });
@@ -32,7 +42,26 @@ const NewsDetail = () => {
       }
     };
 
+    const fetchLatestArticles = async () => {
+      setLatestArticles((prev) => ({ ...prev, loading: true, error: null }));
+      try {
+        const { data } = await api.post("/get-latest-article");
+        if (data.code === 200) {
+          setLatestArticles({ loading: false, error: null, data });
+        } else if (data.code === 400) {
+          setLatestArticles({
+            loading: false,
+            error: data.message,
+            data: {},
+          });
+        }
+      } catch (error) {
+        setLatestArticles({ loading: false, error: error.message, data: {} });
+      }
+    };
+
     fetchNewsDetailItem();
+    fetchLatestArticles();
   }, []);
 
   return (
@@ -79,12 +108,37 @@ const NewsDetail = () => {
           </div>
 
           <div className={style.blogCardContainer}>
-            <BlogCard title={"where to give now"} />
-            <BlogCard title={"popular charities"} />
-            <BlogCard title={"childcare crisis"} />
+            {latestArticles?.loading
+              ? [0, 1, 2, 3, 4, 5].map((item) => {
+                  return (
+                    <Skeleton
+                      key={item}
+                      variant="rectangular"
+                      height={"30rem"}
+                      sx={{
+                        width: {
+                          xs: "100%", // mobile
+                          sm: "48%", // tablet
+                          md: "32%", // desktop
+                        },
+                      }}
+                    />
+                  );
+                })
+              : latestArticles?.data?.data?.nextArticles
+                  ?.slice(0, 3)
+                  ?.map((item, index) => {
+                    return (
+                      <BlogCard
+                        index={index}
+                        key={item.id}
+                        articleItem={item}
+                      />
+                    );
+                  })}
           </div>
 
-          <button>MORE CAUSES</button>
+          <button>more cause</button>
         </div>
       </section>
     </main>

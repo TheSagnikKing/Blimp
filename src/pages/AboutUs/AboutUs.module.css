@@ -75,10 +75,9 @@
       }
     }
 
-
     & > div:nth-child(2) {
       & > button {
-        background-color: #8fd600;
+        background-color: var(--btn-hover-color);
       }
     }
   }
@@ -139,9 +138,7 @@
     padding-inline: 1.5rem;
   }
 
-
   .vissionContainer {
-    padding: 1.5rem;
     gap: 2rem;
 
     & > div {
@@ -161,9 +158,6 @@
   }
 
   .blogsContainer {
-    padding-block: 1.5rem;
-    padding-inline: 1.5rem;
-
     & > div {
       display: block;
 
@@ -180,7 +174,7 @@
     & > button:nth-child(3) {
       display: block;
       margin-inline: auto;
-      margin-block: 2rem;
+      margin-top: 2rem;
       height: 3.6rem;
       width: 15.7rem;
       border-radius: 1.6rem;
@@ -203,7 +197,6 @@
   }
 
   .vissionContainer {
-    padding: 1.5rem;
     gap: 2rem;
 
     & > div {

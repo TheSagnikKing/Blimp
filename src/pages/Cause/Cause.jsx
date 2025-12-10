@@ -21,6 +21,7 @@ import { useAuth } from "../../context/AuthContext";
 import toast from "react-hot-toast";
 import { toastStyle } from "../../utils/toastStyles";
 import { ClipLoader } from "react-spinners";
+import { convert } from "html-to-text";
 
 const Cause = () => {
   const { user } = useAuth();
@@ -28,6 +29,13 @@ const Cause = () => {
 
   const location = useLocation();
   const featureItem = location.state;
+
+  // 🚨 Redirect if featureItem is missing
+  useEffect(() => {
+    if (!featureItem) {
+      navigate("/", { replace: true }); // always go to homepage
+    }
+  }, [featureItem, navigate]);
 
   const [featureItemDetail, setFeatureItemDetail] = useState({
     loading: false,
@@ -50,7 +58,7 @@ const Cause = () => {
   const [pageNo, setPageNo] = useState(1);
 
   useEffect(() => {
-    if (featureItem.id) {
+    if (featureItem?.id) {
       const fetchCampaignDetails = async () => {
         try {
           setFeatureItemDetail((prev) => ({
@@ -132,7 +140,7 @@ const Cause = () => {
       fetchTotalSupporters();
       fetchLatestArticles();
     }
-  }, [featureItem.id, pageNo]);
+  }, [featureItem?.id, pageNo]);
 
   const [stopCampaign, setStopCampaign] = useState({
     loading: false,
@@ -163,6 +171,16 @@ const Cause = () => {
     } finally {
       setStopCampaign((prev) => ({ ...prev, loading: false }));
     }
+  };
+
+  const options = {
+    // wordwrap: 130,
+    wordwrap: false,
+    selectors: [
+      { selector: "h1", format: "block" },
+      { selector: "p", format: "block" },
+    ],
+    // ...
   };
 
   return (
@@ -285,23 +303,10 @@ const Cause = () => {
             ) : (
               <>
                 <h2>Campaign Details</h2>
-                <p>{featureItemDetail?.data?.data?.campaign_details}</p>
-              </>
-            )}
-          </div>
-
-          <div>
-            {featureItemDetail?.loading ? (
-              <Skeleton
-                variant="rectangular"
-                width={"100%"}
-                height={"10rem"}
-                // sx={{ bgcolor: "black" }}
-              />
-            ) : (
-              <>
-                <h2>Description</h2>
-                <p>{featureItemDetail?.data?.data?.description}</p>
+                <p>
+                  {featureItemDetail?.data?.data?.categories?.name} |{" "}
+                  {featureItemDetail?.data?.data?.country?.name}
+                </p>
               </>
             )}
           </div>
@@ -317,56 +322,17 @@ const Cause = () => {
             ) : (
               <>
                 <h2>Raising fund description</h2>
-                <p>{featureItemDetail?.data?.data?.rasing_funds_decription}</p>
+                <p style={{ whiteSpace: "pre-wrap" }}>
+                  {convert(
+                    featureItemDetail?.data?.data?.description
+                      .replace(/\\n/g, "")
+                      ?.replace(/^"(.*)"$/, "$1"),
+                    options
+                  )}
+                </p>
               </>
             )}
           </div>
-
-          {/* <div>
-            <p>
-              Vivamus a dignissim nulla ornare sit aliquam elementum blandit. Leo
-              in sem pellentesque viverra malesuada viverra eget aliquam:
-            </p>
-          </div>
-
-          <ul>
-            <li>
-              <b>Nunc tortor et a ornare et placerat.</b> Tellus in ultricies
-              risus accumsan turpis id nam. Maecenas proin sodales diam vel mauris
-              facilisis arcu semper. Mi accumsan gravida dignissim turpis
-              sollicitudin. At auctor sed facilisi massa amet. Est morbi aliquam
-              sed orci.
-            </li>
-
-            <li>
-              <b>Pulvinar aliquam sed egestas tempus aliquet sollicitudin.</b>{" "}
-              Lectus et rhoncus venenatis interdum lectus nam. Amet curabitur
-              cursus pulvinar nisl id morbi adipiscing. Nunc eget arcu enim ac
-              pellentesque integer bibendum augue. Ut amet tortor auctor
-              hendrerit. Massa at amet nisl mauris vulputate.
-            </li>
-
-            <li>
-              <b>Accumsan quis vel habitasse arcu nisi sed.</b> Pharetra malesuada
-              velit iaculis urna eu. Luctus lobortis lacus metus nec ullamcorper.
-              Arcu nisl odio elit nunc. Arcu amet imperdiet cras volutpat.
-              Facilisis euismod bibendum urna eu feugiat. Et morbi mauris ultrices
-              massa tellus purus suspendisse nec. Magnis tempor aliquam elementum
-              imperdiet posuere. Quis arcu ultricies id quisque leo pulvinar augue
-              sit.
-            </li>
-
-            <li>
-              <b>
-                Arcu ultricies malesuada lectus nulla est nunc integer
-                pellentesque magna.
-              </b>{" "}
-              Egestas malesuada faucibus arcu nunc elit leo quis interdum. Ac vel
-              in commodo accumsan mollis cras massa posuere eget. Condimentum
-              posuere velit cras velit tortor ridiculus sit. Lectus augue libero
-              etiam sed nisl.
-            </li>
-          </ul> */}
 
           <div className={style.addGalleryContainer}>
             {featureItemDetail?.loading ? (
@@ -389,15 +355,14 @@ const Cause = () => {
             <h2>Run Ads / Causes section</h2>
           </div>
 
-          <div className={style.supporterContainer}>
-            <h2>
-              Supporters(
-              {totalSupporters?.data?.data?.campaign?.donationInfo.length})
-            </h2>
-            <div>
-              {totalSupporters?.data?.data?.campaign?.donationInfo?.length >
-                0 &&
-                totalSupporters?.data?.data?.campaign?.donationInfo?.map(
+          {totalSupporters?.data?.data?.campaign?.donationInfo?.length > 0 && (
+            <div className={style.supporterContainer}>
+              <h2>
+                Supporters(
+                {totalSupporters?.data?.data?.campaign?.donationInfo.length})
+              </h2>
+              <div>
+                {totalSupporters?.data?.data?.campaign?.donationInfo?.map(
                   (item, index) => {
                     return (
                       <div key={item.id} className={style.supporterItem}>
@@ -450,30 +415,22 @@ const Cause = () => {
                   }
                 )}
 
-              <div className={style.supporterPaginationContainer}>
-                <Pagination
-                  count={10}
-                  size="large"
-                  sx={{
-                    "& .MuiPaginationItem-page": {
-                      fontSize: "1.4rem",
-                    },
-                  }}
-                  value={pageNo}
-                  onChange={(event, value) => setPageNo(value)}
-                />
+                <div className={style.supporterPaginationContainer}>
+                  <Pagination
+                    count={10}
+                    size="large"
+                    sx={{
+                      "& .MuiPaginationItem-page": {
+                        fontSize: "1.4rem",
+                      },
+                    }}
+                    value={pageNo}
+                    onChange={(event, value) => setPageNo(value)}
+                  />
+                </div>
               </div>
-
-              {/* <div className={style.supporterPaginationContainer}>
-                <button style={{ backgroundColor: "#000" }}></button>
-                <button></button>
-                <button></button>
-                <button></button>
-                <button></button>
-                <button></button>
-              </div> */}
             </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -508,11 +465,17 @@ const Cause = () => {
                     />
                   );
                 })
-              : latestArticles?.data?.data?.nextArticles?.map((item, index) => {
-                  return (
-                    <BlogCard index={index} key={item.id} articleItem={item} />
-                  );
-                })}
+              : latestArticles?.data?.data?.nextArticles
+                  ?.slice(0, 3)
+                  ?.map((item, index) => {
+                    return (
+                      <BlogCard
+                        index={index}
+                        key={item.id}
+                        articleItem={item}
+                      />
+                    );
+                  })}
           </div>
 
           <button>MORE CAUSES</button>

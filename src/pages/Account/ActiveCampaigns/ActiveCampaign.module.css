@@ -20,7 +20,7 @@
       font-size: var(--font-large);
     }
 
-    &>p{
+    & > p {
       padding: 0.6rem 1.2rem;
       border-radius: 0.5rem;
       font-weight: var(--btn-font-weight);
@@ -120,7 +120,7 @@
     }
 
     & > button:nth-child(1) {
-      background-color: #8fd600;
+      background-color: var(--btn-hover-color);
       color: var(--text-primary);
     }
 
@@ -157,7 +157,7 @@
       font-size: var(--font-medium);
       font-weight: var(--btn-font-weight);
       text-transform: uppercase;
-      background-color: #8fd600;
+      background-color: var(--btn-hover-color);
       color: #000;
       margin-top: 2rem;
     }

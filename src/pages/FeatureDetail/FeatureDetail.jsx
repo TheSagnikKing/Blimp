@@ -156,8 +156,6 @@ const FeatureDetail = () => {
     // ...
   };
 
-  console.log(featureItemDetail?.data?.data);
-
   return (
     <main>
       <section className={style.featureDetailContainer}>
@@ -256,7 +254,7 @@ const FeatureDetail = () => {
               <>
                 <h2>Campaign Details</h2>
                 <p>
-                  {featureItemDetail?.data?.data?.categories?.name} | {" "}
+                  {featureItemDetail?.data?.data?.categories?.name} |{" "}
                   {featureItemDetail?.data?.data?.country?.name}
                 </p>
               </>
@@ -285,22 +283,6 @@ const FeatureDetail = () => {
               </>
             )}
           </div>
-
-          {/* <div>
-            {featureItemDetail?.loading ? (
-              <Skeleton
-                variant="rectangular"
-                width={"100%"}
-                height={"10rem"}
-                // sx={{ bgcolor: "black" }}
-              />
-            ) : (
-              <>
-                <h2>Raising fund description</h2>
-                <p>{featureItemDetail?.data?.data?.rasing_funds_decription}</p>
-              </>
-            )}
-          </div> */}
 
           <div className={style.addGalleryContainer}>
             {featureItemDetail?.loading ? (
@@ -434,12 +416,20 @@ const FeatureDetail = () => {
                     />
                   );
                 })
-              : latestArticles?.data?.data?.nextArticles?.map((item, index) => {
-                  return (
-                    <BlogCard index={index} key={item.id} articleItem={item} />
-                  );
-                })}
+              : latestArticles?.data?.data?.nextArticles
+                  ?.slice(0, 3)
+                  ?.map((item, index) => {
+                    return (
+                      <BlogCard
+                        index={index}
+                        key={item.id}
+                        articleItem={item}
+                      />
+                    );
+                  })}
           </div>
+
+          <button>more cause</button>
         </div>
       </section>
     </main>
