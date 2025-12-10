@@ -1,0 +1,100 @@
+.featureCardMobile {
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  min-height: 15rem;
+  margin-bottom: 1rem;
+  box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.05);
+
+  & > img {
+    width: 12rem;
+    height: inherit;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+
+  & > div {
+    padding-block: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    & > h2 {
+      font-size: var(--font-medium);
+    }
+
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    & > div:nth-child(2) {
+      & > p {
+        font-size: var(--font-vsmall);
+      }
+    }
+
+    & > button {
+      /* height: 4rem; */
+      width: max-content;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: var(--font-small);
+      border: none;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      & > span {
+        font-size: var(--font-small);
+      }
+
+      & > div {
+        background-color: #efefef;
+        height: 2.5rem;
+        width: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+      }
+    }
+  }
+
+  .ProgressBar{
+    height: 0.6rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    background-color: #f2f4f4;
+
+    &>div{
+        height: inherit;
+        max-width: 100%;
+        background-color: var(--btn-hover-color);
+        border-radius: 0.5rem;
+    }
+  }
+
+  .ProgressBarText{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+
+    &>p{
+        font-size: var(--font-vsmall);
+        font-weight: 500;
+    }
+  }
+}
+
+

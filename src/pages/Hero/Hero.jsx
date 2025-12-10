@@ -15,6 +15,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { useAuth } from "../../context/AuthContext";
 import { convert } from "html-to-text";
 import { Pagination } from "@mui/material";
+import FeatureCardMobile from "../../components/FeatureCardMobile/FeatureCardMobile";
 
 const Hero = () => {
   const { user } = useAuth();
@@ -236,9 +237,11 @@ const Hero = () => {
                         latestCampaigns?.data?.data?.latestCampaigns?.[0]?.description
                           ?.replace(/\\n/g, "")
                           ?.replace(/^"(.*)"$/, "$1")
+                          ?.slice(0, 1500)
                           .trim(),
                         options
-                      )}
+                      )}{" "}
+                      {"..."}
                     </p>
                   </div>
 
@@ -427,6 +430,29 @@ const Hero = () => {
                 })}
           </div>
 
+          <div className={style.featureCardMobileContainer}>
+            {featuredCampaigns?.loading
+              ? [0, 1, 2, 3, 4, 5].map((item) => {
+                  return (
+                    <Skeleton
+                      key={item}
+                      variant="rectangular"
+                      height={"40rem"}
+                      sx={{
+                        width: {
+                          xs: "100%", // mobile
+                          sm: "48%", // tablet
+                          md: "32%", // desktop
+                        },
+                      }}
+                    />
+                  );
+                })
+              : allFeatureItems?.map((item) => {
+                  return <FeatureCardMobile key={item.id} featureItem={item} />;
+                })}
+          </div>
+
           <div
             style={{
               display: "flex",
@@ -501,6 +527,17 @@ const Hero = () => {
                   )}
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className={style.blimp_content_container}>
+        <div>
+          <h2>Blimp has your back.</h2>
+          <p>
+            Backed by careful safety measures and straightforward pricing, we're
+            here to help you raise funds or give with confidence and peace of
+            mind.
+          </p>
         </div>
       </section>
     </>

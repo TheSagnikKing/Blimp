@@ -10,6 +10,7 @@ const ProgressBar = ({
   donationCount,
   currency,
   symbol,
+  height = "auto",
 }) => {
   const formatNumber = (num) => {
     if (num == null || isNaN(num)) return "0";
@@ -23,7 +24,12 @@ const ProgressBar = ({
   };
 
   return (
-    <div className={styles.progressContainer}>
+    <div
+      className={styles.progressContainer}
+      style={{
+        height: height,
+      }}
+    >
       <div>
         <p>
           {symbol} {raisedAmount} {currency} raised
