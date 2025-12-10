@@ -79,7 +79,6 @@
 }
 
 .inputGroup {
-  /* position: relative; */
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -114,23 +113,14 @@
   font-weight: 400;
 }
 
-/* .editIcon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-  font-size: 14px;
-  cursor: pointer;
-} */
-
 /* Update Button */
 .updateBtn {
   margin-top: 1rem;
-  width: 20rem;
+  width: max-content;
+  padding-inline: 3rem;
   height: 4rem;
   border: none;
-  background: black;
+  background: var(--btn-base-black-color);
   color: white;
   font-size: var(--font-medium);
   font-weight: var(--btn-font-weight);
@@ -140,7 +130,11 @@
   -moz-border-radius: 3rem;
   -ms-border-radius: 3rem;
   -o-border-radius: 3rem;
-  /* text-transform: uppercase; */
+  transition: 0.3s ease-in;
+
+  &:hover {
+    background-color: var(--btn-hover-black-color);
+  }
 }
 
 .phoneContainer :global(.react-international-phone-input-container) {

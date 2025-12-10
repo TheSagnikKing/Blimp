@@ -111,7 +111,7 @@ const Works = () => {
                 navigate("/news-blog");
               }}
             >
-              <span>MORE NEWS</span>
+              <span>more news</span>
             </button>
           </div>
 
@@ -133,7 +133,7 @@ const Works = () => {
                     />
                   );
                 })
-              : latestArticles?.data?.data?.remainingArticles?.map(
+              : latestArticles?.data?.data?.remainingArticles?.slice(0,3)?.map(
                   (item, index) => {
                     return (
                       <BlogCard
@@ -146,7 +146,7 @@ const Works = () => {
                 )}
           </div>
 
-          <button>MORE CAUSES</button>
+          <button>more news</button>
         </div>
       </section>
     </main>

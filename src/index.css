@@ -58,6 +58,7 @@ body[data-theme="light"] {
   --btn-base-color: #00c1e88e;
   --btn-hover-color: #00c1e8;
   --btn-base-black-color: #0000008e;
+  --btn-hover-black-color: #000;
 }
 
 body[data-theme="dark"] {

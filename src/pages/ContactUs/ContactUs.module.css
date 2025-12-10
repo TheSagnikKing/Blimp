@@ -265,10 +265,14 @@
         border: none;
         outline: none;
         cursor: pointer;
-        background-color: var(--btn-hover-color);
-        font-weight: 500;
+        background-color: var(--btn-base-color);
         font-size: var(--font-medium);
         font-weight: var(--btn-font-weight);
+        transition: 0.3s ease-in;
+
+        &:hover{
+          background-color: var(--btn-hover-color);
+        }
       }
     }
   }

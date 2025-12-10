@@ -103,11 +103,16 @@
       cursor: pointer;
       font-size: var(--font-medium);
       font-weight: var(--btn-font-weight);
+      transition: 0.3s ease-in;
     }
 
     & > button:nth-child(1) {
-      background-color: var(--btn-hover-color);
-      color: var(--text-primary);
+      background-color: var(--btn-base-color);
+      color: #000;
+
+      &:hover{
+        background-color: var(--btn-hover-color);
+      }
     }
 
     & > button:nth-child(2) {

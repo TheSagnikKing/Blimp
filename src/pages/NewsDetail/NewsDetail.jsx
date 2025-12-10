@@ -85,7 +85,7 @@ const NewsDetail = () => {
             <p>{newsDetailItem?.data?.data?.description}</p>
           </div>
 
-          <button>Donate now</button>
+          <button>donate now</button>
 
           <div className={style.addsContainer}>
             <h2>Run Ads / Causes section</h2>
@@ -103,7 +103,7 @@ const NewsDetail = () => {
                 navigate("/news-blog");
               }}
             >
-              <span>MORE NEWS</span>
+              <span>more news</span>
             </button>
           </div>
 
@@ -138,7 +138,7 @@ const NewsDetail = () => {
                   })}
           </div>
 
-          <button>more cause</button>
+          <button>more news</button>
         </div>
       </section>
     </main>

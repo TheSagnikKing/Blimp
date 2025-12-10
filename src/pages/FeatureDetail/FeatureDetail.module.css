@@ -67,9 +67,13 @@
         cursor: pointer;
         font-size: var(--font-medium);
         font-weight: var(--btn-font-weight);
-        text-transform: uppercase;
         padding-inline: 4rem;
-        background-color: var(--btn-hover-color);
+        background-color: var(--btn-base-color);
+        transition: 0.3s ease-in;
+
+        &:hover{
+          background-color: var(--btn-hover-color);
+        }
       }
     }
 
@@ -283,6 +287,7 @@
 
         & > span {
           font-size: var(--font-medium);
+          font-weight: 600;
         }
       }
     }

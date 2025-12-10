@@ -171,7 +171,7 @@ const AboutUs = () => {
                     />
                   );
                 })
-              : latestArticles?.data?.data?.remainingArticles?.map(
+              : latestArticles?.data?.data?.remainingArticles?.slice(0,3)?.map(
                   (item, index) => {
                     return (
                       <BlogCard

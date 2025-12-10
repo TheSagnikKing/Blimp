@@ -235,7 +235,7 @@ const FeatureDetail = () => {
                       navigate("/checkout");
                     }}
                   >
-                    DONATE
+                    donate
                   </button>
                 </div>
               </>
@@ -394,7 +394,7 @@ const FeatureDetail = () => {
                 navigate("/news-blog");
               }}
             >
-              <span>MORE NEWS</span>
+              <span>more news</span>
             </button>
           </div>
 
@@ -429,7 +429,7 @@ const FeatureDetail = () => {
                   })}
           </div>
 
-          <button>more cause</button>
+          <button>more news</button>
         </div>
       </section>
     </main>

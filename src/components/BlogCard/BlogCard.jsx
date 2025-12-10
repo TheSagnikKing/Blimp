@@ -10,7 +10,9 @@ const BlogCard = ({ index, articleItem }) => {
   return (
     <div
       onClick={() => {
-        navigate(`/news-detail/${articleItem.id}`);
+        navigate("/news-detail", {
+          state: articleItem,
+        });
         window.scrollTo(0, 0);
       }}
       className={style.blogCardItem}
