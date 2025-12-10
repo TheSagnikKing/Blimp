@@ -169,7 +169,6 @@ const Hero = () => {
                   textTransform: "lowercase",
                 }}
               >
-                {"( v 1.0.0 )"}
               </span>
             </h1>
 
