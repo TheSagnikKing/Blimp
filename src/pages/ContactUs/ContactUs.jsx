@@ -6,6 +6,7 @@ import {
   CrossIcon,
   EmailIcon,
   FacebookIcon,
+  FaqCrossIcon,
   InstagramIcon,
   PhoneIcon,
   TwitterXIcon,
@@ -362,11 +363,13 @@ const ContactUs = () => {
 
       <section className={style.questionContainer}>
         <div>
-          <div>
+          {/* <div>
             <h2>Frequently Asked Questions</h2>
-            {/* <p>Connect with the forum:</p>
-            <input type="text" placeholder="Ask away..." /> */}
-          </div>
+            <p>Connect with the forum:</p>
+            <input type="text" placeholder="Ask away..." />
+          </div> */}
+
+          <h2>Frequently Asked Questions</h2>
 
           <div>
             {faqList?.loading
@@ -399,7 +402,7 @@ const ContactUs = () => {
                           <p>{selectedFaqItem?.answer}</p>
                         </div>
                         <div>
-                          <CrossIcon size={"1.6rem"} color="#fff" />
+                          <FaqCrossIcon size={"1.4rem"} color="#fff" />
                         </div>
                       </button>
                     ) : (
@@ -418,7 +421,7 @@ const ContactUs = () => {
                       >
                         <h2>{item?.question}</h2>
                         <div>
-                          <AddIcon size={"1.8rem"} />
+                          <AddIcon size={"1.4rem"} />
                         </div>
                       </button>
                     )}

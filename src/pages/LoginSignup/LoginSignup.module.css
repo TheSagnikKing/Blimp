@@ -79,7 +79,7 @@
         outline: none;
         cursor: pointer;
         border-radius: 2rem;
-        background-color: var(--btn-hover-color);
+        background-color: var(--btn-base-color);
         color: var(--text-primary);
         font-size: var(--font-medium);
         font-weight: 500;
@@ -87,6 +87,11 @@
         -moz-border-radius: 2rem;
         -ms-border-radius: 2rem;
         -o-border-radius: 2rem;
+        transition: 0.3s ease-in;
+
+        &:hover{
+          background-color: var(--btn-hover-color);
+        }
       }
     }
 
@@ -210,7 +215,7 @@
         border: none;
         outline: none;
         cursor: pointer;
-        background-color: #000;
+        background-color: var(--btn-base-black-color);
         color: #fff;
         font-size: var(--font-medium);
         font-weight: 500;
@@ -218,6 +223,11 @@
         -moz-border-radius: 2rem;
         -ms-border-radius: 2rem;
         -o-border-radius: 2rem;
+        transition: 0.3s ease-in;
+
+        &:hover{
+          background-color: var(--btn-hover-black-color);
+        }
       }
     }
   }

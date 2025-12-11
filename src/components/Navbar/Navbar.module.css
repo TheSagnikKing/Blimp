@@ -60,7 +60,7 @@
       }
 
       .signinBtn {
-        background-color: #000;
+        background-color: var(--btn-base-black-color);
         color: #fff;
         width: 13.2rem;
         height: 4rem;
@@ -71,6 +71,13 @@
         -o-border-radius: 3rem;
         font-size: var(--font-medium);
         cursor: pointer;
+        transition: 0.3s ease-in;
+        border: none;
+        outline: none;
+
+        &:hover{
+          background-color: var(--btn-hover-black-color);
+        }
       }
     }
   }

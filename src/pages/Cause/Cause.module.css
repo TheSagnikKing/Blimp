@@ -71,7 +71,7 @@
           cursor: pointer;
           font-size: var(--font-medium);
           font-weight: var(--btn-font-weight);
-          text-transform: uppercase;
+          /* text-transform: uppercase; */
           padding-inline: 4rem;
         }
 
@@ -87,8 +87,14 @@
         }
 
         & > button:nth-child(2) {
-          background-color: var(--btn-hover-color);
+          background-color: var(--btn-base-color);
           color: #000;
+          transition: 0.3s ease-in;
+          text-transform: capitalize;
+
+          &:hover{
+            background-color: var(--btn-hover-color);
+          }
         }
       }
     }
@@ -304,6 +310,8 @@
 
         & > span {
           font-size: var(--font-medium);
+          font-weight: 600;
+          text-transform: lowercase;
         }
       }
     }

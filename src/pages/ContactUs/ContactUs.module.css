@@ -270,7 +270,7 @@
         font-weight: var(--btn-font-weight);
         transition: 0.3s ease-in;
 
-        &:hover{
+        &:hover {
           background-color: var(--btn-hover-color);
         }
       }
@@ -303,12 +303,22 @@
   padding: 0rem 7.5rem 7.5rem 7.5rem;
 
   & > div {
-    display: flex;
-    gap: 15rem;
+    /* display: flex; */
+    /* gap: 15rem; */
     width: min(100%, var(--maximum-screen-width));
     margin-inline: auto;
+    padding-block: 2rem;
 
-    & > div:nth-child(1) {
+    & > h2 {
+      width: min(100%, var(--maximum-screen-width));
+      margin-inline: auto;
+      font-size: var(--header-large);
+      text-transform: capitalize;
+      /* border-bottom: 0.2rem solid #000; */
+      padding-bottom: 0.5rem;
+    }
+
+    /* & > div:nth-child(1) {
       width: 28.2rem;
       display: flex;
       flex-direction: column;
@@ -316,6 +326,7 @@
 
       & > h2 {
         font-size: var(--header-large);
+        text-align: center;
       }
 
       & > p {
@@ -341,10 +352,11 @@
           font-size: var(--font-medium);
         }
       }
-    }
+    } */
 
     & > div:nth-child(2) {
       flex: 1;
+      margin-top: 2rem;
 
       .openFaqItem {
         background-color: rgba(243, 243, 243, 1);
@@ -362,20 +374,20 @@
           flex: 0.9;
 
           & > h2 {
-            font-size: var(--font-large);
+            font-size: var(--font-semi-large);
             text-align: start;
           }
 
           & > p {
-            font-size: var(--font-medium);
+            font-size: var(--font-small);
             color: var(--text-secondary);
             text-align: start;
           }
         }
 
         & > div:nth-child(2) {
-          width: 4rem;
-          height: 4rem;
+          width: 3.5rem;
+          height: 3.5rem;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -396,20 +408,20 @@
         cursor: pointer;
         border-bottom: 0.2rem solid var(--border-color);
         background-color: transparent;
-        padding: 3rem 2rem;
+        padding: 3rem 2rem 3rem 0rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         & > h2 {
           flex: 0.8;
-          font-size: var(--font-large);
+          font-size: var(--font-semi-large);
           text-align: start;
         }
 
         & > div {
-          width: 4rem;
-          height: 4rem;
+          width: 3.5rem;
+          height: 3.5rem;
           border-radius: 50%;
           -webkit-border-radius: 50%;
           -moz-border-radius: 50%;

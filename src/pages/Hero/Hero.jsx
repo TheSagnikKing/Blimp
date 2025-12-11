@@ -638,9 +638,14 @@ const Hero = () => {
       <section
         ref={ref}
         style={{
-          width: isVisible ? "100%" : "70%",
+          transform: isVisible ? "scale(1)" : "scale(0.92)",
+          opacity: isVisible ? 1 : 0,
           borderRadius: isVisible ? "0rem" : "2rem",
-          transition: "all 0.3s ease-out",
+          boxShadow: isVisible
+            ? "0 20px 40px rgba(0,0,0,0.1)"
+            : "0 10px 20px rgba(0,0,0,0)",
+          transition:
+            "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, border-radius 0.8s ease, box-shadow 0.8s ease",
         }}
         className={style.blimp_content_container}
       >

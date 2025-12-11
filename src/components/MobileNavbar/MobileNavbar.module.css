@@ -71,13 +71,18 @@
       cursor: pointer;
       font-size: var(--font-medium);
       font-weight: 500;
-      background-color: #000;
+      background-color: var(--btn-base-black-color);
       color: #ffffff;
       border-radius: 2rem;
       -webkit-border-radius: 2rem;
       -moz-border-radius: 2rem;
       -ms-border-radius: 2rem;
       -o-border-radius: 2rem;
+      transition: 0.3s ease-in;
+
+      &:hover{
+        background-color: var(--btn-hover-black-color);
+      }
     }
   }
 
