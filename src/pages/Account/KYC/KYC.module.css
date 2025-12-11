@@ -6,21 +6,21 @@
   flex-direction: column;
   gap: 3rem;
 
-  &>div:nth-child(1) {
+  & > div:nth-child(1) {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 
-    &>h2 {
+    & > h2 {
       font-size: var(--font-large);
     }
 
-    &>div {
+    & > div {
       display: flex;
       align-items: center;
       gap: 3rem;
 
-      &>button {
+      & > button {
         /* width: 28.2rem; */
         width: 100%;
         height: 6.2rem;
@@ -38,14 +38,14 @@
         padding-inline: 2rem;
       }
 
-      &>button:nth-child(1) {
-        background-color: #000;
+      & > button:nth-child(1) {
+        background-color: var(--text-primary);
         color: #fff;
       }
 
-      &>button:nth-child(2) {
+      & > button:nth-child(2) {
         background-color: #fff;
-        color: #000;
+        color: var(--text-primary);
       }
     }
   }
@@ -55,14 +55,14 @@
     flex-direction: column;
     gap: 2rem;
 
-    &>label {
+    & > label {
       font-size: var(--font-large);
     }
 
-    &>div {
+    & > div {
       position: relative;
 
-      &>input {
+      & > input {
         width: 100%;
         height: 5.7rem;
         border: none;
@@ -93,12 +93,12 @@
     cursor: pointer;
   }
 
-  &>div:nth-last-child(2) {
+  & > div:nth-last-child(2) {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 
-    &>button {
+    & > button {
       height: 4.8rem;
       width: max-content;
       padding-inline: 3rem;
@@ -115,13 +115,13 @@
       background-color: transparent;
     }
 
-    &>p {
+    & > p {
       color: var(--text-secondary);
       font-size: var(--font-medium);
     }
   }
 
-  &>button {
+  & > button {
     width: 28.2rem;
     height: 6.2rem;
     border: none;
@@ -140,12 +140,12 @@
   }
 }
 
-@media screen and (min-width:0px) and (max-width:430px) {
+@media screen and (min-width: 0px) and (max-width: 430px) {
   .kycContainer {
     width: 100%;
 
-    &>div:nth-child(1) {
-      &>div {
+    & > div:nth-child(1) {
+      & > div {
         gap: 1rem;
       }
     }

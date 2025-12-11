@@ -409,7 +409,10 @@ const ContactUs = () => {
                       <button
                         className={style.closeFaqItem}
                         style={{
-                          borderBottom: faqList?.data?.data.length - 1 === index ? "none" : "0.1rem solid #000"
+                          borderBottom:
+                            faqList?.data?.data.length - 1 === index
+                              ? "none"
+                              : "0.1rem solid var(--text-primary)",
                         }}
                         onClick={() =>
                           setSelectedFaqItem({

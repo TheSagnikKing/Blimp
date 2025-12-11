@@ -122,9 +122,9 @@
 
     & > button:nth-child(1) {
       background-color: var(--btn-base-color);
-      color: #000;
+      color: var(--text-primary);
 
-      &:hover{
+      &:hover {
         background-color: var(--btn-hover-color);
       }
     }
@@ -133,7 +133,7 @@
       background-color: var(--btn-base-black-color);
       color: #fff;
 
-      &:hover{
+      &:hover {
         background-color: var(--btn-hover-black-color);
       }
     }
@@ -167,7 +167,7 @@
       font-weight: var(--btn-font-weight);
       text-transform: uppercase;
       background-color: var(--btn-hover-color);
-      color: #000;
+      color: var(--text-primary);
       margin-top: 2rem;
     }
   }

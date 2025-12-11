@@ -47,9 +47,9 @@
           .circleWrapper {
             display: flex;
             flex-direction: column;
-            align-items: center; 
-            gap: 0.5rem; 
-            
+            align-items: center;
+            gap: 0.5rem;
+
             .circle {
               width: 6rem;
               height: 6rem;
@@ -64,7 +64,7 @@
 
               p {
                 font-size: var(--font-large);
-                color: #000;
+                color: var(--text-primary);
               }
             }
 
@@ -145,7 +145,6 @@
         }
 
         & > button {
-          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -158,6 +157,13 @@
           margin-inline: auto;
           margin-block: 4rem;
           padding-inline: 2rem;
+          background-color: var(--btn-base-color);
+          transition: 0.3s ease-in;
+          color: #000;
+
+          &:hover {
+            background-color: var(--btn-hover-color);
+          }
         }
 
         .drop_down_container_loading {
@@ -316,7 +322,6 @@
         }
 
         & > button {
-          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -329,6 +334,12 @@
           margin-inline: auto;
           margin-block: 4rem;
           padding-inline: 2rem;
+          background-color: var(--btn-base-color);
+          transition: 0.3s ease-in;
+
+          &:hover {
+            background-color: var(--btn-hover-color);
+          }
         }
 
         .drop_down_container_loading {
@@ -466,7 +477,6 @@
         }
 
         & > button {
-          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -479,6 +489,13 @@
           margin-inline: auto;
           margin-block: 4rem;
           padding-inline: 2rem;
+
+          background-color: var(--btn-base-color);
+          transition: 0.3s ease-in;
+
+          &:hover {
+            background-color: var(--btn-hover-color);
+          }
         }
 
         .dropdownContainer {
@@ -542,7 +559,6 @@
         }
 
         & > button {
-          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -555,6 +571,12 @@
           margin-inline: auto;
           margin-block: 4rem;
           padding-inline: 2rem;
+          background-color: var(--btn-base-color);
+          transition: 0.3s ease-in;
+
+          &:hover {
+            background-color: var(--btn-hover-color);
+          }
         }
 
         .dropdownContainer {
@@ -664,7 +686,6 @@
 
       & > div:nth-child(2) {
         & > button {
-          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -677,12 +698,17 @@
           margin-inline: auto;
           margin-block: 4rem;
           padding-inline: 2rem;
+          background-color: var(--btn-base-color);
+          transition: 0.3s ease-in;
+
+          &:hover {
+            background-color: var(--btn-hover-color);
+          }
         }
       }
     }
 
     .stepperYouContainer {
-
       .stepperYouFilledUserContainer {
         display: flex;
         flex-direction: column;
@@ -694,7 +720,7 @@
           font-weight: var(--btn-font-weight);
           font-size: var(--font-medium);
           outline: none;
-          border: 0.1rem solid #000;
+          border: 0.1rem solid var(--text-primary);
           cursor: pointer;
           display: block;
           margin-inline: auto;
@@ -759,7 +785,6 @@
         }
 
         & > button:nth-child(4) {
-          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -771,6 +796,12 @@
           display: block;
           margin-inline: auto;
           padding-inline: 2rem;
+          background-color: var(--btn-base-color);
+          transition: 0.3s ease-in;
+
+          &:hover {
+            background-color: var(--btn-hover-color);
+          }
         }
       }
 
@@ -977,7 +1008,7 @@
           border: none;
           outline: none;
           cursor: pointer;
-          background: #000;
+          background: var(--text-primary);
           color: #fff;
           font-size: var(--font-medium);
           font-weight: var(--btn-font-weight);
@@ -1154,7 +1185,6 @@
       }
 
       & > button:nth-last-child(1) {
-        background-color: var(--btn-hover-color);
         width: max-content;
         height: 4.4rem;
         border-radius: 2.5rem;
@@ -1167,6 +1197,13 @@
         margin-inline: auto;
         margin-block: 4rem;
         padding-inline: 2rem;
+
+        background-color: var(--btn-base-color);
+        transition: 0.3s ease-in;
+
+        &:hover {
+          background-color: var(--btn-hover-color);
+        }
       }
     }
 
@@ -1320,21 +1357,21 @@
       .stepperYouContainer {
         margin-block: 4rem;
 
-        .stepperYouUnFilledUserContainer{
-          &>div:nth-child(2){
+        .stepperYouUnFilledUserContainer {
+          & > div:nth-child(2) {
             flex-direction: column;
             gap: 4rem;
 
-            &>div{
+            & > div {
               width: 100%;
             }
           }
 
-          &>div:nth-last-child(2){
+          & > div:nth-last-child(2) {
             flex-direction: column;
             gap: 3rem;
 
-            &>div{
+            & > div {
               width: 100%;
               min-height: 6.5rem;
             }

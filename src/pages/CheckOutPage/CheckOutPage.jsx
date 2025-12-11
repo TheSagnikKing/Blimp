@@ -87,7 +87,10 @@ const CheckOutPage = () => {
                       style={{
                         backgroundColor:
                           selectedTab === item ? "#274A34" : "#fff",
-                        color: selectedTab === item ? "#CBF78D" : "#000",
+                        color:
+                          selectedTab === item
+                            ? "#CBF78D"
+                            : "var(--text-primary)",
                       }}
                     >
                       {item}

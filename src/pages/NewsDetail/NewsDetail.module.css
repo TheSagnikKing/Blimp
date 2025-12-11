@@ -49,7 +49,7 @@
         color: var(--text-secondary);
 
         & > b {
-          color: #000;
+          color: var(--text-primary);
         }
       }
     }
@@ -71,7 +71,7 @@
       background-color: var(--btn-base-color);
       transition: 0.3s ease-in;
 
-      &:hover{
+      &:hover {
         background-color: var(--btn-hover-color);
       }
     }
@@ -177,7 +177,7 @@
         -moz-border-radius: 1.6rem;
         -ms-border-radius: 1.6rem;
         -o-border-radius: 1.6rem;
-        border: 0.2rem solid #000000;
+        border: 0.2rem solid var(--text-primary) 000;
         background-color: transparent;
         font-size: var(--font-medium);
         font-weight: var(--btn-font-weight);
@@ -220,7 +220,7 @@
         -moz-border-radius: 1.6rem;
         -ms-border-radius: 1.6rem;
         -o-border-radius: 1.6rem;
-        border: 0.2rem solid #000000;
+        border: 0.2rem solid var(--text-primary) 000;
         background-color: transparent;
         font-size: var(--font-medium);
         font-weight: var(--btn-font-weight);

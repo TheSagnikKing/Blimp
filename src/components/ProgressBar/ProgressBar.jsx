@@ -63,8 +63,8 @@ const ProgressBar = ({
 
             // Colors
             pathColor: "var(--btn-hover-color)",
-            textColor: "#000",
-            trailColor: "#000000",
+            textColor: "var(--text-primary)",
+            trailColor: "var(--text-primary)000",
             backgroundColor: "#ffffff",
           })}
         />

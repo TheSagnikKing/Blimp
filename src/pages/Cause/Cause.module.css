@@ -82,17 +82,17 @@
           text-transform: capitalize;
 
           &:hover {
-            background-color: #000;
+            background-color: var(--text-primary);
           }
         }
 
         & > button:nth-child(2) {
           background-color: var(--btn-base-color);
-          color: #000;
+          color: var(--text-primary);
           transition: 0.3s ease-in;
           text-transform: capitalize;
 
-          &:hover{
+          &:hover {
             background-color: var(--btn-hover-color);
           }
         }
@@ -125,7 +125,7 @@
         color: var(--text-secondary);
 
         & > b {
-          color: #000;
+          color: var(--text-primary);
         }
       }
     }
@@ -224,7 +224,7 @@
 
         & > p {
           padding: 0.5rem 1rem;
-          background-color: #000;
+          background-color: var(--text-primary);
           color: #ffffff;
           display: flex;
           justify-content: center;
@@ -429,13 +429,13 @@
       }
 
       & > button:nth-child(1) {
-        background-color: #000;
+        background-color: var(--text-primary);
         color: #fff;
       }
 
       & > button:nth-child(2) {
         background-color: var(--btn-hover-color);
-        color: #000;
+        color: var(--text-primary);
       }
     }
   }
@@ -468,7 +468,7 @@
         -moz-border-radius: 1.6rem;
         -ms-border-radius: 1.6rem;
         -o-border-radius: 1.6rem;
-        border: 0.2rem solid #000000;
+        border: 0.2rem solid var(--text-primary) 000;
         background-color: transparent;
         font-size: var(--font-medium);
         font-weight: var(--btn-font-weight);
@@ -586,13 +586,13 @@
       }
 
       & > button:nth-child(1) {
-        background-color: #000;
+        background-color: var(--text-primary);
         color: #fff;
       }
 
       & > button:nth-child(2) {
         background-color: var(--btn-hover-color);
-        color: #000;
+        color: var(--text-primary);
       }
     }
   }
@@ -627,7 +627,7 @@
         -moz-border-radius: 1.6rem;
         -ms-border-radius: 1.6rem;
         -o-border-radius: 1.6rem;
-        border: 0.2rem solid #000000;
+        border: 0.2rem solid var(--text-primary) 000;
         background-color: transparent;
         font-size: var(--font-medium);
         font-weight: 600;

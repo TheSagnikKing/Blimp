@@ -75,7 +75,7 @@
           -ms-border-radius: 50%;
           -o-border-radius: 50%;
           background-color: var(--btn-hover-color);
-          color: #000;
+          color: var(--text-primary);
           font-size: var(--font-medium);
         }
       }
@@ -314,7 +314,7 @@
       margin-inline: auto;
       font-size: var(--header-large);
       text-transform: capitalize;
-      /* border-bottom: 0.2rem solid #000; */
+      /* border-bottom: 0.2rem solid var(--text-primary); */
       padding-bottom: 0.5rem;
     }
 
@@ -432,7 +432,7 @@
           align-items: center;
           font-size: var(--font-medium);
           color: #ffffff;
-          background-color: #000000;
+          background-color: var(--text-primary) 000;
         }
       }
     }

@@ -221,7 +221,7 @@
         -moz-border-radius: 1.6rem;
         -ms-border-radius: 1.6rem;
         -o-border-radius: 1.6rem;
-        border: 0.2rem solid #000000;
+        border: 0.2rem solid var(--text-primary) 000;
         background-color: transparent;
         font-size: var(--font-medium);
         font-weight: 600;

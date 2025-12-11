@@ -15,15 +15,17 @@
   /* for Firefox on macOS */
   text-rendering: optimizeLegibility;
   /* improves legibility */
+  -webkit-tap-highlight-color: transparent;
 }
 
-button{
-  background-color: red !important;
-}
 
-button:focus,
-button:active {
-  color: #000 !important;
+/* Fix Safari turning text purple on click/visited */
+button,
+button:visited,
+button:active,
+button:focus{
+  color: var(--text-primary) !important;
+  -webkit-text-fill-color: var(--text-primary) !important; 
 }
 
 :root {
@@ -63,6 +65,7 @@ button:active {
 body[data-theme="light"] {
   --bg-primary: #fff;
   --text-primary: #000000;
+  --text-primary-white: #fff;
   --text-secondary: rgba(0, 0, 0, 0.6);
   --header-textcolor: #fcc535;
   --button-bgcolor-1: #fcc535;

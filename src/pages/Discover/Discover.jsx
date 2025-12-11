@@ -99,7 +99,6 @@ const Discover = () => {
     }
   }, [user, page, selectedCategory, query]);
 
-
   // Pagination logic
 
   const handlePageChange = (event, value) => {
@@ -121,7 +120,7 @@ const Discover = () => {
                 placeholder="Search by title or country"
                 value={query}
                 onChange={(e) => {
-                  setPage(1)
+                  setPage(1);
                   setSelectedCategory("");
                   setQuery(e.target.value);
                 }}
@@ -159,7 +158,7 @@ const Discover = () => {
                       key={item?.label}
                       className={style.sortCardItem}
                       onClick={() => {
-                        setPage(1)
+                        setPage(1);
                         setQuery("");
                         setSelectedCategory((prev) => {
                           if (prev.name === item.name) {
@@ -172,7 +171,7 @@ const Discover = () => {
                       style={{
                         border:
                           selectedCategory?.name === item?.name
-                            ? "0.2rem solid #000"
+                            ? "0.2rem solid var(--text-primary)"
                             : "none",
                       }}
                     >

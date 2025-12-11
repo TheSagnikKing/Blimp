@@ -183,7 +183,7 @@
 
           & > div {
             width: calc(100% / 6);
-            border: 1px solid #000;
+            border: 1px solid var(--text-primary);
             height: 5rem;
             display: flex;
             justify-content: center;
@@ -197,7 +197,7 @@
         }
 
         & > div:nth-child(4) {
-          border: 1px solid #000;
+          border: 1px solid var(--text-primary);
           width: 100%;
           display: flex;
           justify-content: space-between;
@@ -233,13 +233,13 @@
           border: none;
           outline: none;
           cursor: pointer;
-          border-bottom: 0.1rem solid #000;
+          border-bottom: 0.1rem solid var(--text-primary);
           border-bottom-style: dotted;
         }
 
         .custom_input {
           width: 100%;
-          border: 1px solid #000;
+          border: 1px solid var(--text-primary);
           height: 5rem;
           display: flex;
           justify-content: center;
@@ -277,7 +277,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border: 0.1rem solid #000;
+                border: 0.1rem solid var(--text-primary);
                 border-radius: 3rem;
 
                 & > p {
@@ -391,12 +391,12 @@
           .separator {
             height: 0.1rem;
             width: 100%;
-            background-color: #000;
+            background-color: var(--text-primary);
           }
 
           & > div:nth-last-child(2) {
             & > p {
-              color: #000;
+              color: var(--text-primary);
               font-weight: 500;
             }
           }

@@ -47,8 +47,8 @@
           .circleWrapper {
             display: flex;
             flex-direction: column;
-            align-items: center; 
-            gap: 0.5rem; 
+            align-items: center;
+            gap: 0.5rem;
 
             .circle {
               width: 6rem;
@@ -64,7 +64,7 @@
 
               p {
                 font-size: var(--font-large);
-                color: #000;
+                color: var(--text-primary);
               }
             }
 
@@ -145,7 +145,6 @@
         }
 
         & > button {
-          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -158,6 +157,12 @@
           margin-inline: auto;
           margin-block: 4rem;
           padding-inline: 2rem;
+          background-color: var(--btn-base-color);
+          transition: 0.3s ease-in;
+
+          &:hover {
+            background-color: var(--btn-hover-color);
+          }
         }
 
         .drop_down_container_loading {
@@ -316,7 +321,6 @@
         }
 
         & > button {
-          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -329,6 +333,12 @@
           margin-inline: auto;
           margin-block: 4rem;
           padding-inline: 2rem;
+          background-color: var(--btn-base-color);
+          transition: 0.3s ease-in;
+
+          &:hover {
+            background-color: var(--btn-hover-color);
+          }
         }
 
         .drop_down_container_loading {
@@ -466,7 +476,6 @@
         }
 
         & > button {
-          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -479,6 +488,12 @@
           margin-inline: auto;
           margin-block: 4rem;
           padding-inline: 2rem;
+          background-color: var(--btn-base-color);
+          transition: 0.3s ease-in;
+
+          &:hover {
+            background-color: var(--btn-hover-color);
+          }
         }
 
         .dropdownContainer {
@@ -542,7 +557,6 @@
         }
 
         & > button {
-          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -555,6 +569,12 @@
           margin-inline: auto;
           margin-block: 4rem;
           padding-inline: 2rem;
+          background-color: var(--btn-base-color);
+          transition: 0.3s ease-in;
+
+          &:hover {
+            background-color: var(--btn-hover-color);
+          }
         }
 
         .dropdownContainer {
@@ -572,7 +592,6 @@
     }
 
     .stepperImageContainer {
-
       .upload_banner_section {
         display: flex;
         flex-direction: column;
@@ -664,7 +683,6 @@
 
       & > div:nth-child(2) {
         & > button {
-          background-color: var(--btn-hover-color);
           width: max-content;
           height: 4.4rem;
           border-radius: 2.5rem;
@@ -677,6 +695,12 @@
           margin-inline: auto;
           margin-block: 4rem;
           padding-inline: 2rem;
+          background-color: var(--btn-base-color);
+          transition: 0.3s ease-in;
+
+          &:hover {
+            background-color: var(--btn-hover-color);
+          }
         }
       }
     }
@@ -688,7 +712,7 @@
         font-weight: 600;
         font-size: var(--font-large);
         outline: none;
-        border: 0.1rem solid #000;
+        border: 0.1rem solid var(--text-primary);
         cursor: pointer;
         padding-inline: 4rem;
         display: block;
@@ -849,7 +873,7 @@
               height: 4.4rem;
               width: 26.2rem;
               border-radius: 2.5rem;
-              background-color: #000;
+              background-color: var(--text-primary);
               color: #ffffff;
               outline: none;
               border: none;
@@ -866,7 +890,6 @@
       }
 
       & > button:nth-child(3) {
-        background-color: var(--btn-hover-color);
         width: max-content;
         height: 4.4rem;
         border-radius: 2.5rem;
@@ -879,6 +902,12 @@
         margin-inline: auto;
         margin-block: 4rem;
         padding-inline: 2rem;
+        background-color: var(--btn-base-color);
+        transition: 0.3s ease-in;
+
+        &:hover {
+          background-color: var(--btn-hover-color);
+        }
       }
     }
 
@@ -888,7 +917,6 @@
       display: flex;
       flex-direction: column;
       gap: 4rem;
-
 
       & > div:nth-child(1) {
         display: flex;
@@ -1053,7 +1081,6 @@
       }
 
       & > button:nth-last-child(1) {
-        background-color: var(--btn-hover-color);
         width: max-content;
         height: 4.4rem;
         border-radius: 2.5rem;
@@ -1066,12 +1093,17 @@
         margin-inline: auto;
         margin-block: 4rem;
         padding-inline: 2rem;
+        background-color: var(--btn-base-color);
+        transition: 0.3s ease-in;
+
+        &:hover {
+          background-color: var(--btn-hover-color);
+        }
       }
     }
 
     .stepperPaymentContainer {
       & > button {
-        background-color: var(--btn-hover-color);
         min-width: 10rem;
         height: 4.4rem;
         border-radius: 2.5rem;
@@ -1084,6 +1116,12 @@
         margin-inline: auto;
         margin-block: 4rem;
         padding-inline: 2rem;
+        background-color: var(--btn-base-color);
+        transition: 0.3s ease-in;
+
+        &:hover {
+          background-color: var(--btn-hover-color);
+        }
       }
     }
   }
