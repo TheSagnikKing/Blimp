@@ -17,6 +17,10 @@
   /* improves legibility */
 }
 
+button{
+  background-color: red !important;
+}
+
 button:focus,
 button:active {
   color: #000 !important;
