@@ -49,9 +49,11 @@
       outline: none;
       background-color: transparent;
       cursor: pointer;
+      color: var(--text-primary);
 
       & > span {
         font-size: var(--font-small);
+        color: var(--text-primary);
       }
 
       & > div {

@@ -13,6 +13,7 @@
   height: 8rem;
   align-content: center;
   padding-inline: 2rem;
+  color: var(--text-primary);
   transition: background 0.25s ease, transform 0.2s ease, color 0.2s ease;
 }
 
@@ -42,6 +43,7 @@
   cursor: pointer;
   background-color: transparent;
   transition: color 0.25s ease, transform 0.2s ease;
+  color: var(--text-primary);
 }
 
 .logoutButton:hover {

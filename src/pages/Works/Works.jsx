@@ -106,7 +106,7 @@ const Works = () => {
                 navigate("/news-blog");
               }}
             >
-              <span>more news</span>
+              more news
             </button>
           </div>
 

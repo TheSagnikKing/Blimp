@@ -40,9 +40,11 @@
         outline: none;
         background-color: transparent;
         cursor: pointer;
+        color: var(--text-primary);
 
         & > span {
           font-size: var(--font-medium);
+          color: var(--text-primary);
         }
       }
 
@@ -99,6 +101,7 @@
       a {
         font-size: var(--font-medium);
         text-decoration: none;
+        color: var(--text-primary);
       }
     }
   }

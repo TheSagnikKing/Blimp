@@ -75,11 +75,6 @@
       background-color: #00c1e8;
       color: var(--text-primary);
     }
-
-    &:visited {
-      -webkit-text-fill-color: #fff;
-      color: #fff;
-    }
   }
 }
 
@@ -254,7 +249,7 @@
       justify-content: center;
       gap: 1rem;
       font-size: var(--font-medium);
-      font-weight: 700;
+      font-weight: var(--btn-font-weight);
       margin-inline: auto;
       margin-top: 4rem;
       text-transform: uppercase;
@@ -511,7 +506,7 @@
             background-color: transparent;
             cursor: pointer;
             color: #fff;
-            margin-left: 1.5rem;
+            margin-left: 0.5rem;
 
             & > span {
               display: grid;

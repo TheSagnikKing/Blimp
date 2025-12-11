@@ -269,6 +269,7 @@
         font-size: var(--font-medium);
         font-weight: var(--btn-font-weight);
         transition: 0.3s ease-in;
+        color: var(--text-primary);
 
         &:hover {
           background-color: var(--btn-hover-color);
@@ -432,7 +433,7 @@
           align-items: center;
           font-size: var(--font-medium);
           color: #ffffff;
-          background-color: var(--text-primary) 000;
+          background-color: var(--text-primary);
         }
       }
     }

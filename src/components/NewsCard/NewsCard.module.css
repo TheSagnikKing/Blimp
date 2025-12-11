@@ -17,7 +17,7 @@
 
     & > h2 {
       font-size: var(--font-semi-large);
-      font-weight: 600;
+      font-weight: var(--btn-font-weight);
       max-width: 60%;
     }
   }
