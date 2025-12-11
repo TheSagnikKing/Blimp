@@ -8,6 +8,13 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   font-optical-sizing: auto;
+  /* Font smoothing and anti-aliasing */
+  -webkit-font-smoothing: antialiased;
+  /* for Webkit (Chrome, Safari) */
+  -moz-osx-font-smoothing: grayscale;
+  /* for Firefox on macOS */
+  text-rendering: optimizeLegibility;
+  /* improves legibility */
 }
 
 :root {
