@@ -17,6 +17,11 @@
   /* improves legibility */
 }
 
+button:focus,
+button:active {
+  color: #000 !important;
+}
+
 :root {
   font-size: 62.5%;
   --font-large: 2.2rem;
