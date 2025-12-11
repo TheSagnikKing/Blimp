@@ -26,6 +26,7 @@
       border: none;
       outline: none;
       cursor: pointer;
+      color: var(--text-primary);
     }
   }
 
