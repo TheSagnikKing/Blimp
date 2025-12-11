@@ -151,6 +151,14 @@ const AboutUs = () => {
         <section className={style.blogsContainer}>
           <div>
             <h2>latest news and blog</h2>
+            <button
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate("/news-blog");
+              }}
+            >
+              <span>more news</span>
+            </button>
           </div>
 
           <div className={style.blogCardContainer}>
@@ -171,8 +179,9 @@ const AboutUs = () => {
                     />
                   );
                 })
-              : latestArticles?.data?.data?.remainingArticles?.slice(0,3)?.map(
-                  (item, index) => {
+              : latestArticles?.data?.data?.remainingArticles
+                  ?.slice(0, 3)
+                  ?.map((item, index) => {
                     return (
                       <BlogCard
                         index={index}
@@ -180,11 +189,10 @@ const AboutUs = () => {
                         articleItem={item}
                       />
                     );
-                  }
-                )}
+                  })}
           </div>
 
-          <button>more causes</button>
+          <button>more news</button>
         </section>
       </div>
     </main>

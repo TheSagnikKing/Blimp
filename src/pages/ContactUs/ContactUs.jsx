@@ -364,8 +364,8 @@ const ContactUs = () => {
         <div>
           <div>
             <h2>Frequently Asked Questions</h2>
-            <p>Connect with the forum:</p>
-            <input type="text" placeholder="Ask away..." />
+            {/* <p>Connect with the forum:</p>
+            <input type="text" placeholder="Ask away..." /> */}
           </div>
 
           <div>
@@ -399,7 +399,7 @@ const ContactUs = () => {
                           <p>{selectedFaqItem?.answer}</p>
                         </div>
                         <div>
-                          <CrossIcon size={"1.8rem"} color="#fff" />
+                          <CrossIcon size={"1.6rem"} color="#fff" />
                         </div>
                       </button>
                     ) : (

@@ -15,6 +15,7 @@ import { MdMedicalServices } from "react-icons/md";
 import { VscAccount } from "react-icons/vsc";
 import { PiDogLight } from "react-icons/pi";
 import { BiCameraMovie } from "react-icons/bi";
+import { ImCross } from "react-icons/im";
 
 export const SearchIcon = FiSearch
 export const AccountIcon = RiAccountCircleLine
@@ -25,7 +26,7 @@ export const MenuIcon = GiHamburgerMenu
 export const FilterIcon = MdFilterAlt
 export const RightIcon = FiArrowRight
 export const CalenderIcon = GoCalendar
-export const CrossIcon = RxCross2
+export const CrossIcon = ImCross
 export const PhoneIcon = MdOutlinePhone
 export const EmailIcon = MdOutlineEmail
 export const ClockIcon = LuClock

@@ -10,25 +10,24 @@ import { ClipLoader } from "react-spinners";
 const Footer = () => {
   const menus = [
     {
-      name: "Our Story",
-    },
-    {
       name: "How it Works",
+      link: "/works"
     },
     {
       name: "Team",
-    },
-    {
-      name: "Contact Us",
+      link: "/aboutus"
     },
     {
       name: "Privacy Policy",
+      link: "#"
     },
     {
       name: "FAQ",
+      link: "/contact-us"
     },
     {
       name: "Terms & Conditions",
+      link: "#"
     },
   ];
 
@@ -145,12 +144,15 @@ const Footer = () => {
             </div>
           </div>
 
-          <p>
+          <i style={{
+            color: "#fff",
+            fontSize: "var(--font-vsmall)"
+          }}>
             By signing up, you agree to the <span>Terms of Use</span> and{" "}
             <span>Privacy Policy</span> & to receive electronic communications
             from VICE Media Group, which may include marketing promotions,
             advertisements and sponsored content.
-          </p>
+          </i>
 
           <div>
             <img src={blimpLogo} alt="Blimp Company Logo" width={60}/>
@@ -159,7 +161,7 @@ const Footer = () => {
           <div className={styles.menuContainer}>
             {menus.map((item) => {
               return (
-                <a href="#" key={item.name}>
+                <a href={item?.link} key={item.name}>
                   {item.name}
                 </a>
               );

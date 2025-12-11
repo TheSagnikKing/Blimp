@@ -171,3 +171,8 @@
     }
   }
 }
+
+.navLinkActive {
+  font-weight: 600; /* bold */
+  color: var(--btn-hover-color); /* optional */
+}

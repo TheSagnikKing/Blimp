@@ -48,7 +48,12 @@ const Navbar = () => {
             <ul>
               {menus.map((item) => (
                 <li key={item.name}>
-                  <a href={item.url} className={style.navLink}>
+                  <a
+                    href={item.url}
+                    className={`${style.navLink} ${
+                      location.pathname === item.url ? style.navLinkActive : ""
+                    }`}
+                  >
                     {item.name}
                   </a>
                 </li>

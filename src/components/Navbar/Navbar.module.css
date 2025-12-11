@@ -2,6 +2,7 @@
   height: 9.5rem;
   width: 100%;
   padding-inline: 7.5rem;
+  position: relative;
 
   & > div {
     display: flex;
@@ -76,7 +77,9 @@
 }
 
 .nav {
-  margin-left: 20rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 
   & > ul {
     display: flex;
@@ -92,4 +95,9 @@
       }
     }
   }
+}
+
+.navLinkActive {
+  font-weight: 600; /* bold */
+  color: var(--btn-hover-color); /* optional */
 }

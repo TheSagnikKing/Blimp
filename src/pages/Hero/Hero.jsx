@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "./Hero.module.css";
 import crowdImageOne from "../../assets/crowdImageOne.jpg";
 import { FilterIcon, RightIcon } from "../../icons";
@@ -16,6 +16,10 @@ import { useAuth } from "../../context/AuthContext";
 import { convert } from "html-to-text";
 import { Pagination } from "@mui/material";
 import FeatureCardMobile from "../../components/FeatureCardMobile/FeatureCardMobile";
+
+import HeroCarouselOne from "../../assets/hero_carousel_one.svg";
+import HeroCarouselTwo from "../../assets/hero_carousel_two.svg";
+import HeroCarouselThree from "../../assets/hero_carousel_three.svg";
 
 const Hero = () => {
   const { user } = useAuth();
@@ -151,6 +155,65 @@ const Hero = () => {
     setPage(value);
   };
 
+  const [carouselImages, setCarouselImages] = useState([
+    HeroCarouselOne,
+    HeroCarouselTwo,
+    HeroCarouselThree,
+  ]);
+
+  const [selectedCarousel, setSelectedCarousel] = useState(0);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSelectedCarousel((prev) => {
+        if (prev >= 2) {
+          return 0;
+        } else {
+          return prev + 1;
+        }
+      });
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [selectedCarousel]);
+
+  const workDetails = [
+    {
+      id: 1,
+      title: "Create your campaign with ease",
+      description:
+        "Use BLIMP's intuitive tools to build your fundraiser. Just follow simple prompts to add your story, set a goal, and customize your page. You can edit and update anytime — your campaign grows as your story grows.",
+    },
+    {
+      id: 2,
+      title: "Share and build momentum",
+      description:
+        "Spread the word by sharing your campaign link. Use BLIMP's resources to engage supporters and accelerate donations.",
+    },
+    {
+      id: 3,
+      title: "Receive funds securely",
+      description:
+        "Add your bank details — we use trusted payment gateway like stripe and razorpay to ensure seamless disbursement within 2 business days",
+    },
+  ];
+
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+
+    observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <main
@@ -168,8 +231,7 @@ const Hero = () => {
                   fontSize: "2.4rem",
                   textTransform: "lowercase",
                 }}
-              >
-              </span>
+              ></span>
             </h1>
 
             <button
@@ -236,7 +298,7 @@ const Hero = () => {
                         latestCampaigns?.data?.data?.latestCampaigns?.[0]?.description
                           ?.replace(/\\n/g, "")
                           ?.replace(/^"(.*)"$/, "$1")
-                          ?.slice(0, 1500)
+                          ?.slice(0, 500)
                           .trim(),
                         options
                       )}{" "}
@@ -305,7 +367,14 @@ const Hero = () => {
                     ?.campaign_name
                 }
               </h3>
-              <button>
+              <button
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  navigate("/feature-detail", {
+                    state: latestCampaigns?.data?.data?.latestCampaigns?.[0],
+                  });
+                }}
+              >
                 <span>View More</span>
                 <RightIcon />
               </button>
@@ -398,6 +467,43 @@ const Hero = () => {
                 />
               </>
             )}
+          </div>
+        </div>
+      </section>
+
+      <section className={style.heroCarouselContainer}>
+        <div>
+          <div>
+            {carouselImages.map((item, index) => {
+              return (
+                <img
+                  src={item}
+                  key={index}
+                  style={{
+                    transform: `translateX(-${selectedCarousel * 100}%)`,
+                  }}
+                />
+              );
+            })}
+          </div>
+
+          <div>
+            {workDetails.map((item, index) => (
+              <div className={style.crowdHeadItem} key={item.id}>
+                <div
+                  style={{
+                    border:
+                      selectedCarousel === index ? "2px solid black" : "none",
+                  }}
+                >
+                  <p>{item.id}</p>
+                </div>
+                <div>
+                  <h2>{item.title}</h2>
+                  <p>{item.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -529,7 +635,15 @@ const Hero = () => {
         </div>
       </section>
 
-      <section className={style.blimp_content_container}>
+      <section
+        ref={ref}
+        style={{
+          width: isVisible ? "100%" : "70%",
+          borderRadius: isVisible ? "0rem" : "2rem",
+          transition: "all 0.3s ease-out",
+        }}
+        className={style.blimp_content_container}
+      >
         <div>
           <h2>Blimp has your back.</h2>
           <p>
