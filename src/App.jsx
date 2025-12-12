@@ -21,6 +21,7 @@ const FeatureDetail = lazy(() => import("./pages/FeatureDetail/FeatureDetail"));
 const CheckOutPage = lazy(() => import("./pages/CheckOutPage/CheckOutPage"));
 const NewsBlogPage = lazy(() => import("./pages/NewsBlogPage/NewsBlogPage"));
 const LoginSignup = lazy(() => import("./pages/LoginSignup/LoginSignup"));
+const ForgetPassword = lazy(() => import("./pages/ForgetPassword/ForgetPassword"))
 
 const Account = lazy(() => import("./pages/Account/Account"));
 const Profile = lazy(() => import("./pages/Account/Profile/Profile"));
@@ -98,6 +99,7 @@ const App = () => {
 
               <Route element={<ProtectedAuthRoute />}>
                 <Route path="/login-signup" element={<LoginSignup />} />
+                <Route path="/forget-password" element={<ForgetPassword />} />
               </Route>
 
               {/* Account Page with Nested Routes */}

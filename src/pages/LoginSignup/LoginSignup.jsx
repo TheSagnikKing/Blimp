@@ -260,6 +260,13 @@ const LoginSignup = () => {
             )}
           </div>
 
+          <div>
+            <div />
+            <button onClick={() => {
+              navigate("/forget-password")
+            }}>Forget Password ?</button>
+          </div>
+
           <button onClick={signinHandler} disabled={signinLoader}>
             {signinLoader ? (
               <ClipLoader
